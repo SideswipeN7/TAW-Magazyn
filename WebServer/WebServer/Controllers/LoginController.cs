@@ -9,10 +9,13 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using WebServer.Models;
+using WebServer.Classes;
+using System.Web.Mvc;
+using System.Web.Routing;
 
 namespace WebServer.Controllers
 {
-    public class LoginController : ApiController
+    public class LoginController : ApiController, IController
     {
         private magazynEntities db = new magazynEntities();
 
@@ -71,18 +74,21 @@ namespace WebServer.Controllers
         }
 
         // POST: api/Login
-        [ResponseType(typeof(Pracownik))]
-        public IHttpActionResult PostPracownik(Pracownik pracownik)
+        //[ResponseType(typeof(Pracownik))]
+        public int PostPracownik(LoginPassword id)
         {
-            if (!ModelState.IsValid)
+            Pracownik pracownik = db.Pracownicy.FirstOrDefault(x => x.Login == id.login);
+            if (pracownik == null)
             {
-                return BadRequest(ModelState);
+                return 0;
             }
 
-            db.Pracownicy.Add(pracownik);
-            db.SaveChanges();
+            if (pracownik.Haslo == id.password)
+            {
+                return pracownik.idPracownika;
+            }
+            return 0;
 
-            return CreatedAtRoute("DefaultApi", new { id = pracownik.idPracownika }, pracownik);
         }
 
         // DELETE: api/Login/5
@@ -113,6 +119,11 @@ namespace WebServer.Controllers
         private bool PracownikExists(int id)
         {
             return db.Pracownicy.Count(e => e.idPracownika == id) > 0;
+        }
+
+        public void Execute(RequestContext requestContext)
+        {
+            throw new NotImplementedException();
         }
     }
 }
