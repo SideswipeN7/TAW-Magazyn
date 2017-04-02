@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using WebServer.Models;
 using WebServer.Classes;
-using System.Web.Mvc;
-using System.Web.Routing;
+using WebServer.Models;
 
 namespace WebServer.Controllers
 {
@@ -74,7 +68,7 @@ namespace WebServer.Controllers
         }
 
         // POST: api/Login
-        //[ResponseType(typeof(Pracownik))]
+        [ResponseType(typeof(int))]
         public int PostPracownik(LoginPassword id)
         {
             Pracownik pracownik = db.Pracownicy.FirstOrDefault(x => x.Login == id.login);
@@ -88,7 +82,6 @@ namespace WebServer.Controllers
                 return pracownik.idPracownika;
             }
             return 0;
-
         }
 
         // DELETE: api/Login/5
@@ -120,6 +113,5 @@ namespace WebServer.Controllers
         {
             return db.Pracownicy.Count(e => e.idPracownika == id) > 0;
         }
-        
     }
 }
