@@ -15,7 +15,7 @@ using System.Web.Routing;
 
 namespace WebServer.Controllers
 {
-    public class LoginController : ApiController, IController
+    public class LoginController : ApiController
     {
         private magazynEntities db = new magazynEntities();
 
@@ -120,10 +120,6 @@ namespace WebServer.Controllers
         {
             return db.Pracownicy.Count(e => e.idPracownika == id) > 0;
         }
-
-        public void Execute(RequestContext requestContext)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }
