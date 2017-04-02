@@ -37,52 +37,39 @@ namespace WebServer.Controllers
 
         // PUT: api/Adresss/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutAdres(int id, Adres adres)
+        public bool ChangeAdres(Adres newAdres)
         {
-            if (!ModelState.IsValid)
+            var oldAdress = db.Ksiazka_adresow.SingleOrDefault(b => b.idAdresu == newAdres.idAdresu);
+            if (oldAdress != null)
             {
-                return BadRequest(ModelState);
-            }
-
-            if (id != adres.idAdresu)
-            {
-                return BadRequest();
-            }
-
-            db.Entry(adres).State = EntityState.Modified;
-
-            try
-            {
+                oldAdress.Miejscowosc = newAdres.Miejscowosc;
+                oldAdress.Kod_pocztowy = newAdres.Kod_pocztowy;
+                oldAdress.Wojewodztwo = newAdres.Wojewodztwo;
                 db.SaveChanges();
+                return true;
             }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!AdresExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return StatusCode(HttpStatusCode.NoContent);
+            return false;
         }
 
         // POST: api/Adresss
         [ResponseType(typeof(Adres))]
-        public IHttpActionResult PostAdres(Adres adres)
+        public int RegisterAddress(Adres adres)
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return 0;
             }
 
-            db.Ksiazka_adresow.Add(adres);
-            db.SaveChanges();
+            Adres newAdres = db.Ksiazka_adresow.FirstOrDefault(a => a.idAdresu == adres.idAdresu);
 
-            return CreatedAtRoute("DefaultApi", new { id = adres.idAdresu }, adres);
+            if (newAdres == null)
+            {
+                db.Ksiazka_adresow.Add(adres);
+                db.SaveChanges();
+                return adres.idAdresu; // Yes it's here
+            }
+
+            return newAdres.idAdresu;
         }
 
         // DELETE: api/Adresss/5
