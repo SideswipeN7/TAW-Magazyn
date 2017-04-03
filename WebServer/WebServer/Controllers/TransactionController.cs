@@ -16,24 +16,28 @@ namespace WebServer.Controllers
     {
         private magazynEntities db = new magazynEntities();
 
-        //    // GET: api/Transaction
-        //    public IQueryable<Transakcja> GetTransakcje()
+        // GET: api/Transaction
+        [HttpGet]
+        [ActionName("GetTransactions")]
+        public IQueryable<Transakcja> GetTransactions()
+        {
+            return db.Transakcje;
+        }
+
+        // GET: api/Transaction/5
+        //[HttpGet]
+        //[ActionName("GetCategories")]
+        //[ResponseType(typeof(Transakcja))]
+        //public IHttpActionResult GetTransakcja(int id)
+        //{
+        //    Transakcja transakcja = db.Transakcje.Find(id);
+        //    if (transakcja == null)
         //    {
-        //        return db.Transakcje;
+        //        return NotFound();
         //    }
 
-        //    // GET: api/Transaction/5
-        //    [ResponseType(typeof(Transakcja))]
-        //    public IHttpActionResult GetTransakcja(int id)
-        //    {
-        //        Transakcja transakcja = db.Transakcje.Find(id);
-        //        if (transakcja == null)
-        //        {
-        //            return NotFound();
-        //        }
-
-        //        return Ok(transakcja);
-        //    }
+        //    return Ok(transakcja);
+        //}
 
         //    // PUT: api/Transaction/5
         //    [ResponseType(typeof(void))]
