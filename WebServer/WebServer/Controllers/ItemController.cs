@@ -41,21 +41,16 @@ namespace WebServer.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult ChangeItem(Artykul artykul)
         {
-            var oldArt = db.Artykuly.SingleOrDefault(b => b.idArtykulu == artykul.idArtykulu);
-            if (oldArt != null)
+            try
             {
-                try
-                {
-                    db.Entry(artykul).State = EntityState.Modified;
-                    db.SaveChanges();
-                    return StatusCode(HttpStatusCode.OK);
-                }
-                catch(Exception ex)
-                {
-                    return StatusCode(HttpStatusCode.NotModified);
-                }
+                db.Entry(artykul).State = EntityState.Modified;
+                db.SaveChanges();
+                return StatusCode(HttpStatusCode.OK);
             }
-            return StatusCode(HttpStatusCode.NotModified);
+            catch (Exception ex)
+            {
+                return StatusCode(HttpStatusCode.NotModified);
+            }
         }
 
         // POST: api/Item
@@ -65,16 +60,16 @@ namespace WebServer.Controllers
         public IHttpActionResult RegisterItem(Artykul art)
         {
             Artykul newArt = db.Artykuly.FirstOrDefault(a => a.idArtykulu == art.idArtykulu);
-            
+
             if (newArt == null)
             {
                 try
                 {
-                db.Artykuly.Add(art);
-                db.SaveChanges();
-                return StatusCode(HttpStatusCode.OK);
+                    db.Artykuly.Add(art);
+                    db.SaveChanges();
+                    return StatusCode(HttpStatusCode.OK);
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     return StatusCode(HttpStatusCode.Conflict);
                 }

@@ -41,22 +41,16 @@ namespace WebServer.Controllers
             {
                 return false;
             }
-
-            var oldAdress = db.Ksiazka_adresow.SingleOrDefault(b => b.idAdresu == adres.idAdresu);
-            if (oldAdress != null)
+            try
             {
-                try
-                {
-                    db.Entry(adres).State = EntityState.Modified;
-                    db.SaveChanges();
-                    return true;
-                }
-                catch (Exception ex)
-                {
-                    return false;
-                }
+                db.Entry(adres).State = EntityState.Modified;
+                db.SaveChanges();
+                return true;
             }
-            return false;
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
 
         // POST: api/Adresss
@@ -73,7 +67,7 @@ namespace WebServer.Controllers
             Adres newAdres = db.Ksiazka_adresow.FirstOrDefault(a => a.idAdresu == adres.idAdresu);
 
             if (newAdres == null)
-            {                
+            {
                 try
                 {
                     db.Ksiazka_adresow.Add(adres);
@@ -83,7 +77,7 @@ namespace WebServer.Controllers
                 catch (DbEntityValidationException ex)
                 {
                     return 0;
-                }                
+                }
             }
             return newAdres.idAdresu;
         }
