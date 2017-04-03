@@ -71,18 +71,20 @@ namespace WebServer.Controllers
         }
 
         // POST: api/Item
+        [HttpPost]
+        [ActionName("RegisterItem")]
         [ResponseType(typeof(Artykul))]
-        public IHttpActionResult PostArtykul(Artykul artykul)
+        public HttpResponseMessage RegisterItem(Artykul art)
         {
-            if (!ModelState.IsValid)
+            Artykul newArt = db.Artykuly.FirstOrDefault(a => a.idArtykulu == art.idArtykulu);
+            
+            if (newArt == null)
             {
-                return BadRequest(ModelState);
+                db.Artykuly.Add(art);
+                db.SaveChanges();
+                return new HttpResponseMessage(HttpStatusCode.Created);
             }
-
-            db.Artykuly.Add(artykul);
-            db.SaveChanges();
-
-            return CreatedAtRoute("DefaultApi", new { id = artykul.idArtykulu }, artykul);
+            return new HttpResponseMessage(HttpStatusCode.Conflict);
         }
 
         // DELETE: api/Item/5

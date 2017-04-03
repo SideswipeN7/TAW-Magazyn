@@ -31,6 +31,8 @@ namespace WebServer.Controllers
         }
 
         // PUT: api/Adresss/5
+        [HttpPut]
+        [ActionName("ChangeAddress")]
         [ResponseType(typeof(void))]
         public bool ChangeAdres(Adres newAdres)
         {
@@ -47,6 +49,8 @@ namespace WebServer.Controllers
         }
 
         // POST: api/Adresss
+        [HttpPost]
+        [ActionName("RegisterAddress")]
         [ResponseType(typeof(Adres))]
         public int RegisterAddress(Adres adres)
         {
