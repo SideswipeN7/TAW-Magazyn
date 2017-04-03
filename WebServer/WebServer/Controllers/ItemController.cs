@@ -41,6 +41,11 @@ namespace WebServer.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult ChangeItem(Artykul artykul)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             try
             {
                 db.Entry(artykul).State = EntityState.Modified;
@@ -59,6 +64,11 @@ namespace WebServer.Controllers
         [ResponseType(typeof(Artykul))]
         public IHttpActionResult RegisterItem(Artykul art)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             Artykul newArt = db.Artykuly.FirstOrDefault(a => a.idArtykulu == art.idArtykulu);
 
             if (newArt == null)
@@ -67,7 +77,7 @@ namespace WebServer.Controllers
                 {
                     db.Artykuly.Add(art);
                     db.SaveChanges();
-                    return StatusCode(HttpStatusCode.OK);
+                    return StatusCode(HttpStatusCode.Created);
                 }
                 catch (Exception ex)
                 {

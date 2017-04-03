@@ -71,18 +71,31 @@ namespace WebServer.Controllers
         }
 
         // POST: api/Supply
+        [HttpPost]
+        [ActionName("RegisterSupplier")]
         [ResponseType(typeof(Dostawca))]
-        public IHttpActionResult PostDostawca(Dostawca dostawca)
+        public IHttpActionResult RegisterSupplier(Dostawca supplier)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Dostawcy.Add(dostawca);
-            db.SaveChanges();
-
-            return CreatedAtRoute("DefaultApi", new { id = dostawca.idDostawcy }, dostawca);
+            Dostawca newSupplier = db.Dostawcy.FirstOrDefault(a => a.idDostawcy == supplier.idDostawcy);
+            if(newSupplier == null)
+            {
+                try
+                {
+                    db.Dostawcy.Add(newSupplier);
+                    db.SaveChanges();
+                    return StatusCode(HttpStatusCode.Created);
+                }
+                catch (Exception ex)
+                {
+                    return StatusCode(HttpStatusCode.Conflict);
+                }
+            }
+            return StatusCode(HttpStatusCode.Conflict);
         }
 
         // DELETE: api/Supply/5
