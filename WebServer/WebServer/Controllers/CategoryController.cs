@@ -14,47 +14,43 @@ namespace WebServer.Controllers
         private magazynEntities db = new magazynEntities();
 
         // GET: api/Category
+        [HttpGet]
+        [ActionName("GetCategories")]
         public IQueryable<Kategoria> GetCategories()
         {
             return db.Kategorie;
         }
 
         // PUT: api/Category/5
+        [HttpPut]
+        [ActionName("ChangeCategory")]
         [ResponseType(typeof(void))]
-        public IHttpActionResult ChangeCategory(int id, Kategoria kategoria)
+        public IHttpActionResult ChangeCategory(Kategoria kategoria)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != kategoria.idKategorii)
-            {
-                return BadRequest();
-            }
-
+            
             db.Entry(kategoria).State = EntityState.Modified;
 
             try
             {
                 db.SaveChanges();
             }
-            catch (DbUpdateConcurrencyException)
+            catch (DbUpdateConcurrencyException ex)
             {
-                if (!KategoriaExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                Console.WriteLine($"Error: {ex}");
+                return Content(HttpStatusCode.Conflict, kategoria);
             }
 
             return StatusCode(HttpStatusCode.OK);
         }
 
         // POST: api/Category
+        [HttpPost]
+        [ActionName("RegisterCategory")]
         [ResponseType(typeof(Kategoria))]
         public IHttpActionResult RegisterCategory(Kategoria kategoria)
         {
