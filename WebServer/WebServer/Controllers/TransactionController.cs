@@ -14,105 +14,116 @@ namespace WebServer.Controllers
 {
     public class TransactionController : ApiController
     {
-    //    private magazynEntities db = new magazynEntities();
+        private magazynEntities db = new magazynEntities();
 
-    //    // GET: api/Transaction
-    //    public IQueryable<Transakcja> GetTransakcje()
-    //    {
-    //        return db.Transakcje;
-    //    }
+        //    // GET: api/Transaction
+        //    public IQueryable<Transakcja> GetTransakcje()
+        //    {
+        //        return db.Transakcje;
+        //    }
 
-    //    // GET: api/Transaction/5
-    //    [ResponseType(typeof(Transakcja))]
-    //    public IHttpActionResult GetTransakcja(int id)
-    //    {
-    //        Transakcja transakcja = db.Transakcje.Find(id);
-    //        if (transakcja == null)
-    //        {
-    //            return NotFound();
-    //        }
+        //    // GET: api/Transaction/5
+        //    [ResponseType(typeof(Transakcja))]
+        //    public IHttpActionResult GetTransakcja(int id)
+        //    {
+        //        Transakcja transakcja = db.Transakcje.Find(id);
+        //        if (transakcja == null)
+        //        {
+        //            return NotFound();
+        //        }
 
-    //        return Ok(transakcja);
-    //    }
+        //        return Ok(transakcja);
+        //    }
 
-    //    // PUT: api/Transaction/5
-    //    [ResponseType(typeof(void))]
-    //    public IHttpActionResult PutTransakcja(int id, Transakcja transakcja)
-    //    {
-    //        if (!ModelState.IsValid)
-    //        {
-    //            return BadRequest(ModelState);
-    //        }
+        //    // PUT: api/Transaction/5
+        //    [ResponseType(typeof(void))]
+        //    public IHttpActionResult PutTransakcja(int id, Transakcja transakcja)
+        //    {
+        //        if (!ModelState.IsValid)
+        //        {
+        //            return BadRequest(ModelState);
+        //        }
 
-    //        if (id != transakcja.idTransakcji)
-    //        {
-    //            return BadRequest();
-    //        }
+        //        if (id != transakcja.idTransakcji)
+        //        {
+        //            return BadRequest();
+        //        }
 
-    //        db.Entry(transakcja).State = EntityState.Modified;
+        //        db.Entry(transakcja).State = EntityState.Modified;
 
-    //        try
-    //        {
-    //            db.SaveChanges();
-    //        }
-    //        catch (DbUpdateConcurrencyException)
-    //        {
-    //            if (!TransakcjaExists(id))
-    //            {
-    //                return NotFound();
-    //            }
-    //            else
-    //            {
-    //                throw;
-    //            }
-    //        }
+        //        try
+        //        {
+        //            db.SaveChanges();
+        //        }
+        //        catch (DbUpdateConcurrencyException)
+        //        {
+        //            if (!TransakcjaExists(id))
+        //            {
+        //                return NotFound();
+        //            }
+        //            else
+        //            {
+        //                throw;
+        //            }
+        //        }
 
-    //        return StatusCode(HttpStatusCode.NoContent);
-    //    }
+        //        return StatusCode(HttpStatusCode.NoContent);
+        //    }
 
-    //    // POST: api/Transaction
-    //    [ResponseType(typeof(Transakcja))]
-    //    public IHttpActionResult PostTransakcja(Transakcja transakcja)
-    //    {
-    //        if (!ModelState.IsValid)
-    //        {
-    //            return BadRequest(ModelState);
-    //        }
+        // POST: api/Transaction
+        [HttpPost]
+        [ActionName("RegisterTransaction ")]
+        [ResponseType(typeof(Transakcja))]
+        public IHttpActionResult RegisterTransaction(Transakcja transakcja)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
-    //        db.Transakcje.Add(transakcja);
-    //        db.SaveChanges();
+            try
+            {
+                db.Transakcje.Add(transakcja);
+                db.SaveChanges();
+                int id = transakcja.idTransakcji;
 
-    //        return CreatedAtRoute("DefaultApi", new { id = transakcja.idTransakcji }, transakcja);
-    //    }
+                return Content(HttpStatusCode.Created, id);
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine($"Error: {ex}");
+                return Content(HttpStatusCode.Conflict, transakcja);
+            }
+        }
 
-    //    // DELETE: api/Transaction/5
-    //    [ResponseType(typeof(Transakcja))]
-    //    public IHttpActionResult DeleteTransakcja(int id)
-    //    {
-    //        Transakcja transakcja = db.Transakcje.Find(id);
-    //        if (transakcja == null)
-    //        {
-    //            return NotFound();
-    //        }
+        //    // DELETE: api/Transaction/5
+        //    [ResponseType(typeof(Transakcja))]
+        //    public IHttpActionResult DeleteTransakcja(int id)
+        //    {
+        //        Transakcja transakcja = db.Transakcje.Find(id);
+        //        if (transakcja == null)
+        //        {
+        //            return NotFound();
+        //        }
 
-    //        db.Transakcje.Remove(transakcja);
-    //        db.SaveChanges();
+        //        db.Transakcje.Remove(transakcja);
+        //        db.SaveChanges();
 
-    //        return Ok(transakcja);
-    //    }
+        //        return Ok(transakcja);
+        //    }
 
-    //    protected override void Dispose(bool disposing)
-    //    {
-    //        if (disposing)
-    //        {
-    //            db.Dispose();
-    //        }
-    //        base.Dispose(disposing);
-    //    }
+        //    protected override void Dispose(bool disposing)
+        //    {
+        //        if (disposing)
+        //        {
+        //            db.Dispose();
+        //        }
+        //        base.Dispose(disposing);
+        //    }
 
-    //    private bool TransakcjaExists(int id)
-    //    {
-    //        return db.Transakcje.Count(e => e.idTransakcji == id) > 0;
-    //    }
+        //    private bool TransakcjaExists(int id)
+        //    {
+        //        return db.Transakcje.Count(e => e.idTransakcji == id) > 0;
+        //    }
     }
 }
