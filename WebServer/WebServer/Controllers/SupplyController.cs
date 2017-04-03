@@ -74,7 +74,7 @@ namespace WebServer.Controllers
             {
                 try
                 {
-                    db.Dostawcy.Add(newSupplier);
+                    db.Dostawcy.Add(supplier);
                     db.SaveChanges();
                     return StatusCode(HttpStatusCode.Created);
                 }
