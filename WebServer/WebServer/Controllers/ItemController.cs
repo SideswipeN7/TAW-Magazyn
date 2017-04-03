@@ -36,45 +36,30 @@ namespace WebServer.Controllers
         }
 
         // PUT: api/Item/5
+        [HttpPut]
+        [ActionName("ChangeItem")]
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutArtykul(int id, Artykul artykul)
+        public IHttpActionResult ChangeItem(Artykul artykul)
         {
-            if (!ModelState.IsValid)
+            var oldArt = db.Artykuly.SingleOrDefault(b => b.idArtykulu == artykul.idArtykulu);
+            if (oldArt != null)
             {
-                return BadRequest(ModelState);
-            }
-
-            if (id != artykul.idArtykulu)
-            {
-                return BadRequest();
-            }
-
-            db.Entry(artykul).State = EntityState.Modified;
-
-            try
-            {
+                oldArt.Nazwa = artykul.Nazwa;
+                oldArt.Ilosc = artykul.Ilosc;
+                oldArt.Cena = artykul.Cena;
+                oldArt.idKategorii = artykul.idKategorii;
                 db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ArtykulExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                return StatusCode(HttpStatusCode.OK);
             }
 
-            return StatusCode(HttpStatusCode.NoContent);
+            return StatusCode(HttpStatusCode.Conflict);
         }
 
         // POST: api/Item
         [HttpPost]
         [ActionName("RegisterItem")]
         [ResponseType(typeof(Artykul))]
-        public HttpResponseMessage RegisterItem(Artykul art)
+        public IHttpActionResult RegisterItem(Artykul art)
         {
             Artykul newArt = db.Artykuly.FirstOrDefault(a => a.idArtykulu == art.idArtykulu);
             
@@ -82,9 +67,9 @@ namespace WebServer.Controllers
             {
                 db.Artykuly.Add(art);
                 db.SaveChanges();
-                return new HttpResponseMessage(HttpStatusCode.Created);
+                return StatusCode(HttpStatusCode.OK);
             }
-            return new HttpResponseMessage(HttpStatusCode.Conflict);
+            return StatusCode(HttpStatusCode.Conflict);
         }
 
         // DELETE: api/Item/5
