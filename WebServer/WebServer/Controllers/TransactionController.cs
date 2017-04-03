@@ -93,7 +93,7 @@ namespace WebServer.Controllers
 
                 return Content(HttpStatusCode.Created, id);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine($"Error: {ex}");
                 return Content(HttpStatusCode.Conflict, transakcja);
