@@ -17,7 +17,7 @@ namespace WebServer.Controllers
         private magazynEntities db = new magazynEntities();
 
         // GET: api/Category
-        public IQueryable<Kategoria> GetKategorie()
+        public IQueryable<Kategoria> GetCategories()
         {
             return db.Kategorie;
         }
