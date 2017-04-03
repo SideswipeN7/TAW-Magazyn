@@ -50,7 +50,7 @@ namespace WebServer.Controllers
             catch (Exception ex)
             {
                 return false;
-   Kategorias         }
+            }
         }
 
         // POST: api/Adresss

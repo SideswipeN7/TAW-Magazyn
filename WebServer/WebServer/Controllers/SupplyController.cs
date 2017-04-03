@@ -17,39 +17,39 @@ namespace WebServer.Controllers
         private magazynEntities db = new magazynEntities();
 
         // GET: api/Supply
-        public IQueryable<Kategoria> GetKategorie()
+        public IQueryable<Dostawca> GetDostawcy()
         {
-            return db.Kategorie;
+            return db.Dostawcy;
         }
 
         // GET: api/Supply/5
-        [ResponseType(typeof(Kategoria))]
-        public IHttpActionResult GetKategoria(int id)
+        [ResponseType(typeof(Dostawca))]
+        public IHttpActionResult GetDostawca(int id)
         {
-            Kategoria kategoria = db.Kategorie.Find(id);
-            if (kategoria == null)
+            Dostawca dostawca = db.Dostawcy.Find(id);
+            if (dostawca == null)
             {
                 return NotFound();
             }
 
-            return Ok(kategoria);
+            return Ok(dostawca);
         }
 
         // PUT: api/Supply/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutKategoria(int id, Kategoria kategoria)
+        public IHttpActionResult PutDostawca(int id, Dostawca dostawca)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != kategoria.idKategorii)
+            if (id != dostawca.idDostawcy)
             {
                 return BadRequest();
             }
 
-            db.Entry(kategoria).State = EntityState.Modified;
+            db.Entry(dostawca).State = EntityState.Modified;
 
             try
             {
@@ -57,7 +57,7 @@ namespace WebServer.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!KategoriaExists(id))
+                if (!DostawcaExists(id))
                 {
                     return NotFound();
                 }
@@ -71,34 +71,34 @@ namespace WebServer.Controllers
         }
 
         // POST: api/Supply
-        [ResponseType(typeof(Kategoria))]
-        public IHttpActionResult PostKategoria(Kategoria kategoria)
+        [ResponseType(typeof(Dostawca))]
+        public IHttpActionResult PostDostawca(Dostawca dostawca)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Kategorie.Add(kategoria);
+            db.Dostawcy.Add(dostawca);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = kategoria.idKategorii }, kategoria);
+            return CreatedAtRoute("DefaultApi", new { id = dostawca.idDostawcy }, dostawca);
         }
 
         // DELETE: api/Supply/5
-        [ResponseType(typeof(Kategoria))]
-        public IHttpActionResult DeleteKategoria(int id)
+        [ResponseType(typeof(Dostawca))]
+        public IHttpActionResult DeleteDostawca(int id)
         {
-            Kategoria kategoria = db.Kategorie.Find(id);
-            if (kategoria == null)
+            Dostawca dostawca = db.Dostawcy.Find(id);
+            if (dostawca == null)
             {
                 return NotFound();
             }
 
-            db.Kategorie.Remove(kategoria);
+            db.Dostawcy.Remove(dostawca);
             db.SaveChanges();
 
-            return Ok(kategoria);
+            return Ok(dostawca);
         }
 
         protected override void Dispose(bool disposing)
@@ -110,9 +110,9 @@ namespace WebServer.Controllers
             base.Dispose(disposing);
         }
 
-        private bool KategoriaExists(int id)
+        private bool DostawcaExists(int id)
         {
-            return db.Kategorie.Count(e => e.idKategorii == id) > 0;
+            return db.Dostawcy.Count(e => e.idDostawcy == id) > 0;
         }
     }
 }
