@@ -44,15 +44,21 @@ namespace WebServer.Controllers
             var oldArt = db.Artykuly.SingleOrDefault(b => b.idArtykulu == artykul.idArtykulu);
             if (oldArt != null)
             {
-                oldArt.Nazwa = artykul.Nazwa;
-                oldArt.Ilosc = artykul.Ilosc;
-                oldArt.Cena = artykul.Cena;
-                oldArt.idKategorii = artykul.idKategorii;
-                db.SaveChanges();
-                return StatusCode(HttpStatusCode.OK);
+                try
+                {
+                    oldArt.Nazwa = artykul.Nazwa;
+                    oldArt.Ilosc = artykul.Ilosc;
+                    oldArt.Cena = artykul.Cena;
+                    oldArt.idKategorii = artykul.idKategorii;
+                    db.SaveChanges();
+                    return StatusCode(HttpStatusCode.OK);
+                }
+                catch(Exception ex)
+                {
+                    return StatusCode(HttpStatusCode.NotModified);
+                }
             }
-
-            return StatusCode(HttpStatusCode.Conflict);
+            return StatusCode(HttpStatusCode.NotModified);
         }
 
         // POST: api/Item
@@ -65,9 +71,16 @@ namespace WebServer.Controllers
             
             if (newArt == null)
             {
+                try
+                {
                 db.Artykuly.Add(art);
                 db.SaveChanges();
                 return StatusCode(HttpStatusCode.OK);
+                }
+                catch(Exception ex)
+                {
+                    return StatusCode(HttpStatusCode.Conflict);
+                }
             }
             return StatusCode(HttpStatusCode.Conflict);
         }

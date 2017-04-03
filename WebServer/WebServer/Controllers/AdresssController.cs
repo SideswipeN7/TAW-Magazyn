@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -36,14 +37,26 @@ namespace WebServer.Controllers
         [ResponseType(typeof(void))]
         public bool ChangeAdres(Adres newAdres)
         {
+            if (!ModelState.IsValid)
+            {
+                return false;
+            }
+
             var oldAdress = db.Ksiazka_adresow.SingleOrDefault(b => b.idAdresu == newAdres.idAdresu);
             if (oldAdress != null)
             {
-                oldAdress.Miejscowosc = newAdres.Miejscowosc;
-                oldAdress.Kod_pocztowy = newAdres.Kod_pocztowy;
-                oldAdress.Wojewodztwo = newAdres.Wojewodztwo;
-                db.SaveChanges();
-                return true;
+                try
+                {
+                    oldAdress.Miejscowosc = newAdres.Miejscowosc;
+                    oldAdress.Kod_pocztowy = newAdres.Kod_pocztowy;
+                    oldAdress.Wojewodztwo = newAdres.Wojewodztwo;
+                    db.SaveChanges();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    return false;
+                }
             }
             return false;
         }
@@ -62,12 +75,18 @@ namespace WebServer.Controllers
             Adres newAdres = db.Ksiazka_adresow.FirstOrDefault(a => a.idAdresu == adres.idAdresu);
 
             if (newAdres == null)
-            {
-                db.Ksiazka_adresow.Add(adres);
-                db.SaveChanges();
-                return adres.idAdresu; // Yes it's here
+            {                
+                try
+                {
+                    db.Ksiazka_adresow.Add(adres);
+                    db.SaveChanges();
+                    return adres.idAdresu; // Yes it's here
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    return 0;
+                }                
             }
-
             return newAdres.idAdresu;
         }
 
