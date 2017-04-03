@@ -36,38 +36,26 @@ namespace WebServer.Controllers
         }
 
         // PUT: api/Supply/5
+        [HttpPut]
+        [ActionName("ChangeSupplier")]
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutDostawca(int id, Dostawca dostawca)
+        public IHttpActionResult ChangeSupplier(Dostawca supplier)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != dostawca.idDostawcy)
-            {
-                return BadRequest();
-            }
-
-            db.Entry(dostawca).State = EntityState.Modified;
-
             try
             {
+                db.Entry(supplier).State = EntityState.Modified;
                 db.SaveChanges();
+                return StatusCode(HttpStatusCode.OK);
             }
-            catch (DbUpdateConcurrencyException)
+            catch (Exception ex)
             {
-                if (!DostawcaExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                return StatusCode(HttpStatusCode.NotModified);
             }
-
-            return StatusCode(HttpStatusCode.NoContent);
         }
 
         // POST: api/Supply
