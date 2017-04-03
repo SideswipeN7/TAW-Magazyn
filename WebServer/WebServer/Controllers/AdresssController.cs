@@ -24,15 +24,10 @@ namespace WebServer.Controllers
 
         // GET: api/Adresss/5
         [ResponseType(typeof(Adres))]
-        public IHttpActionResult GetAdres(int id)
+        public Adres GetAddress(int id)
         {
             Adres adres = db.Ksiazka_adresow.Find(id);
-            if (adres == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(adres);
+            return adres;
         }
 
         // PUT: api/Adresss/5
