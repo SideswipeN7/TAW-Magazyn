@@ -17,7 +17,7 @@ namespace WebServer.Controllers
         private magazynEntities db = new magazynEntities();
 
         // GET: api/Supply
-        public IQueryable<Dostawca> GetDostawcy()
+        public IQueryable<Dostawca> GetSuppliers()
         {
             return db.Dostawcy;
         }
