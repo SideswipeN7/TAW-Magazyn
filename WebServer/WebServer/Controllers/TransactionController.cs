@@ -25,19 +25,19 @@ namespace WebServer.Controllers
         }
 
         // GET: api/Transaction/5
-        //[HttpGet]
-        //[ActionName("GetCategories")]
-        //[ResponseType(typeof(Transakcja))]
-        //public IHttpActionResult GetTransakcja(int id)
-        //{
-        //    Transakcja transakcja = db.Transakcje.Find(id);
-        //    if (transakcja == null)
-        //    {
-        //        return NotFound();
-        //    }
+        [HttpGet]
+        [ActionName("GetTransaction ")]
+        [ResponseType(typeof(Transakcja))]
+        public IHttpActionResult GetTransaction(int id)
+        {
+            Transakcja transakcja = db.Transakcje.Find(id);
+            if (transakcja == null)
+            {
+                return NotFound();
+            }
 
-        //    return Ok(transakcja);
-        //}
+            return Ok(transakcja);
+        }
 
         //    // PUT: api/Transaction/5
         //    [ResponseType(typeof(void))]
