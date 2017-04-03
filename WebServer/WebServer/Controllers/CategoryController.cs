@@ -17,7 +17,7 @@ namespace WebServer.Controllers
         private magazynEntities db = new magazynEntities();
 
         // GET: api/Category
-        public IQueryable<Kategoria> GetCategories()
+        public IQueryable<Kategoria> GetCategories ()
         {
             return db.Kategorie;
         }
@@ -72,17 +72,24 @@ namespace WebServer.Controllers
 
         // POST: api/Category
         [ResponseType(typeof(Kategoria))]
-        public IHttpActionResult PostKategoria(Kategoria kategoria)
+        public IHttpActionResult RegisterCategory(Kategoria kategoria)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
+            try
+            {
+                db.Kategorie.Add(kategoria);
+                db.SaveChanges();
 
-            db.Kategorie.Add(kategoria);
-            db.SaveChanges();
-
-            return CreatedAtRoute("DefaultApi", new { id = kategoria.idKategorii }, kategoria);
+               return Content(HttpStatusCode.Created, kategoria);
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine($"Error: {ex}");
+                return Content(HttpStatusCode.Conflict, kategoria);
+            }
         }
 
         // DELETE: api/Category/5
