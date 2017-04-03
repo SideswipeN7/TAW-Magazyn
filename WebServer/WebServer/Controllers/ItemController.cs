@@ -46,10 +46,7 @@ namespace WebServer.Controllers
             {
                 try
                 {
-                    oldArt.Nazwa = artykul.Nazwa;
-                    oldArt.Ilosc = artykul.Ilosc;
-                    oldArt.Cena = artykul.Cena;
-                    oldArt.idKategorii = artykul.idKategorii;
+                    db.Entry(artykul).State = EntityState.Modified;
                     db.SaveChanges();
                     return StatusCode(HttpStatusCode.OK);
                 }

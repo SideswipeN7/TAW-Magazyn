@@ -35,21 +35,19 @@ namespace WebServer.Controllers
         [HttpPut]
         [ActionName("ChangeAddress")]
         [ResponseType(typeof(void))]
-        public bool ChangeAdres(Adres newAdres)
+        public bool ChangeAdres(Adres adres)
         {
             if (!ModelState.IsValid)
             {
                 return false;
             }
 
-            var oldAdress = db.Ksiazka_adresow.SingleOrDefault(b => b.idAdresu == newAdres.idAdresu);
+            var oldAdress = db.Ksiazka_adresow.SingleOrDefault(b => b.idAdresu == adres.idAdresu);
             if (oldAdress != null)
             {
                 try
                 {
-                    oldAdress.Miejscowosc = newAdres.Miejscowosc;
-                    oldAdress.Kod_pocztowy = newAdres.Kod_pocztowy;
-                    oldAdress.Wojewodztwo = newAdres.Wojewodztwo;
+                    db.Entry(adres).State = EntityState.Modified;
                     db.SaveChanges();
                     return true;
                 }
