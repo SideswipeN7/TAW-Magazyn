@@ -24,7 +24,7 @@ namespace WebServer.Controllers
 
         // GET: api/Supply/5
         [ResponseType(typeof(Dostawca))]
-        public IHttpActionResult GetDostawca(int id)
+        public IHttpActionResult GetSupplier(int id)
         {
             Dostawca dostawca = db.Dostawcy.Find(id);
             if (dostawca == null)
