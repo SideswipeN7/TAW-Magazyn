@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using WebServer.Models;
@@ -17,27 +14,14 @@ namespace WebServer.Controllers
         private magazynEntities db = new magazynEntities();
 
         // GET: api/Category
-        public IQueryable<Kategoria> GetCategories ()
+        public IQueryable<Kategoria> GetCategories()
         {
             return db.Kategorie;
         }
 
-        // GET: api/Category/5
-        [ResponseType(typeof(Kategoria))]
-        public IHttpActionResult GetKategoria(int id)
-        {
-            Kategoria kategoria = db.Kategorie.Find(id);
-            if (kategoria == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(kategoria);
-        }
-
         // PUT: api/Category/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutKategoria(int id, Kategoria kategoria)
+        public IHttpActionResult ChangeCategory(int id, Kategoria kategoria)
         {
             if (!ModelState.IsValid)
             {
@@ -67,7 +51,7 @@ namespace WebServer.Controllers
                 }
             }
 
-            return StatusCode(HttpStatusCode.NoContent);
+            return StatusCode(HttpStatusCode.OK);
         }
 
         // POST: api/Category
@@ -82,31 +66,32 @@ namespace WebServer.Controllers
             {
                 db.Kategorie.Add(kategoria);
                 db.SaveChanges();
+                int id = kategoria.idKategorii;
 
-               return Content(HttpStatusCode.Created, kategoria);
+                return Content(HttpStatusCode.Created, id);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine($"Error: {ex}");
                 return Content(HttpStatusCode.Conflict, kategoria);
             }
         }
 
-        // DELETE: api/Category/5
-        [ResponseType(typeof(Kategoria))]
-        public IHttpActionResult DeleteKategoria(int id)
-        {
-            Kategoria kategoria = db.Kategorie.Find(id);
-            if (kategoria == null)
-            {
-                return NotFound();
-            }
+        //// DELETE: api/Category/5
+        //[ResponseType(typeof(Kategoria))]
+        //public IHttpActionResult DeleteKategoria(int id)
+        //{
+        //    Kategoria kategoria = db.Kategorie.Find(id);
+        //    if (kategoria == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            db.Kategorie.Remove(kategoria);
-            db.SaveChanges();
+        //    db.Kategorie.Remove(kategoria);
+        //    db.SaveChanges();
 
-            return Ok(kategoria);
-        }
+        //    return Ok(kategoria);
+        //}
 
         protected override void Dispose(bool disposing)
         {
