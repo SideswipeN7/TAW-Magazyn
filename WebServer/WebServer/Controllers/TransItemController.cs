@@ -17,14 +17,17 @@ namespace WebServer.Controllers
         private magazynEntities db = new magazynEntities();
 
         // GET: api/TransItem
-        public IQueryable<Artykul_w_transakcji> GetArtykuly_w_transakcji()
+        [HttpGet]
+        [ActionName("GetTransItems")]
+        public IQueryable<Artykul_w_transakcji> GetTransItems()
         {
             return db.Artykuly_w_transakcji;
         }
 
-
+        [HttpGet]
+        [ActionName("GetTransItem")]
         [ResponseType(typeof(Artykul))]
-        public IQueryable GetArtykuly_w_transakcji(int id)
+        public IQueryable GetTransItem(int id)
         {
 
             var result = from a in db.Artykuly_w_transakcji
@@ -76,85 +79,5 @@ namespace WebServer.Controllers
             return StatusCode(HttpStatusCode.Conflict);
         }
 
-
-        // PUT: api/TransItem/5
-        [ResponseType(typeof(void))]
-        public IHttpActionResult PutArtykul_w_transakcji(int id, Artykul_w_transakcji artykul_w_transakcji)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            if (id != artykul_w_transakcji.idArt_w_trans)
-            {
-                return BadRequest();
-            }
-
-            db.Entry(artykul_w_transakcji).State = EntityState.Modified;
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!Artykul_w_transakcjiExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return StatusCode(HttpStatusCode.NoContent);
-        }
-
-        //// POST: api/TransItem
-        //[ResponseType(typeof(Artykul_w_transakcji))]
-        //public IHttpActionResult PostArtykul_w_transakcji(Artykul_w_transakcji artykul_w_transakcji)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
-
-        //    db.Artykuly_w_transakcji.Add(artykul_w_transakcji);
-        //    db.SaveChanges();
-
-        //    return CreatedAtRoute("DefaultApi", new { id = artykul_w_transakcji.idArt_w_trans }, artykul_w_transakcji);
-        //}
-
-        // DELETE: api/TransItem/5
-        [ResponseType(typeof(Artykul_w_transakcji))]
-        public IHttpActionResult DeleteArtykul_w_transakcji(int id)
-        {
-            Artykul_w_transakcji artykul_w_transakcji = db.Artykuly_w_transakcji.Find(id);
-            if (artykul_w_transakcji == null)
-            {
-                return NotFound();
-            }
-
-            db.Artykuly_w_transakcji.Remove(artykul_w_transakcji);
-            db.SaveChanges();
-
-            return Ok(artykul_w_transakcji);
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
-        private bool Artykul_w_transakcjiExists(int id)
-        {
-            return db.Artykuly_w_transakcji.Count(e => e.idArt_w_trans == id) > 0;
-        }
     }
 }

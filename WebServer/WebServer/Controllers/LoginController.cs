@@ -1,18 +1,17 @@
-<<<<<<< HEAD
+
 ﻿using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-=======
+
 ﻿using System.Linq;
->>>>>>> BranchStana
+
 using System.Web.Http;
 using System.Web.Http.Description;
 using WebServer.Classes;
-<<<<<<< HEAD
-=======
+
 using WebServer.Models;
->>>>>>> BranchStana
+
 
 namespace WebServer.Controllers
 {

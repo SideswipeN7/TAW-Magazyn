@@ -17,13 +17,18 @@ namespace WebServer.Controllers
         private magazynEntities db = new magazynEntities();
 
         // GET: api/Supply
+        [HttpGet]
+        [ActionName("GetSuppliers")]
         public IQueryable<Dostawca> GetSuppliers()
         {
             return db.Dostawcy;
         }
 
         // GET: api/Supply/5
+        [HttpGet]
+        [ActionName("GetSupplier")]
         [ResponseType(typeof(Dostawca))]
+    
         public IHttpActionResult GetSupplier(int id)
         {
             Dostawca dostawca = db.Dostawcy.Find(id);
@@ -86,34 +91,6 @@ namespace WebServer.Controllers
             return StatusCode(HttpStatusCode.Conflict);
         }
 
-        // DELETE: api/Supply/5
-        [ResponseType(typeof(Dostawca))]
-        public IHttpActionResult DeleteDostawca(int id)
-        {
-            Dostawca dostawca = db.Dostawcy.Find(id);
-            if (dostawca == null)
-            {
-                return NotFound();
-            }
-
-            db.Dostawcy.Remove(dostawca);
-            db.SaveChanges();
-
-            return Ok(dostawca);
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
-        private bool DostawcaExists(int id)
-        {
-            return db.Dostawcy.Count(e => e.idDostawcy == id) > 0;
-        }
+      
     }
 }

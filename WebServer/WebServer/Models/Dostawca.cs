@@ -24,6 +24,6 @@ namespace WebServer.Models
         public string Nazwa { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public ICollection<Transakcja> Transakcje { get; set; }
+        public virtual ICollection<Transakcja> Transakcje { get; set; }
     }
 }

@@ -72,7 +72,7 @@ namespace WebServer.Controllers
                 {
                     db.Ksiazka_adresow.Add(adres);
                     db.SaveChanges();
-                    return adres.idAdresu; // Yes it's here
+                    return adres.idAdresu; 
                 }
                 catch (DbEntityValidationException ex)
                 {
@@ -82,34 +82,6 @@ namespace WebServer.Controllers
             return newAdres.idAdresu;
         }
 
-        // DELETE: api/Adresss/5
-        [ResponseType(typeof(Adres))]
-        public IHttpActionResult DeleteAdres(int id)
-        {
-            Adres adres = db.Ksiazka_adresow.Find(id);
-            if (adres == null)
-            {
-                return NotFound();
-            }
-
-            db.Ksiazka_adresow.Remove(adres);
-            db.SaveChanges();
-
-            return Ok(adres);
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
-        private bool AdresExists(int id)
-        {
-            return db.Ksiazka_adresow.Count(e => e.idAdresu == id) > 0;
-        }
+        
     }
 }
