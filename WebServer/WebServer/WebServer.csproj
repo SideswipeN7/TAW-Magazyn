@@ -178,7 +178,11 @@
     <Compile Include="Controllers\TransItemController.cs" />
 =======
     <Compile Include="Classes\LoginPassword.cs" />
+<<<<<<< HEAD
     <Compile Include="Controllers\CategoryController.cs" />
+=======
+    <Compile Include="Controllers\ClientsController.cs" />
+>>>>>>> BranchStana
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\TransactionController.cs" />

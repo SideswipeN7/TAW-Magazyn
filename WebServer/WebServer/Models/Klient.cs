@@ -26,8 +26,8 @@ namespace WebServer.Models
         public string Nazwa_firmy { get; set; }
         public int idAdresu { get; set; }
     
-        public virtual Adres Ksiazka_adresow { get; set; }
+        public Adres Ksiazka_adresow { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Transakcja> Transakcje { get; set; }
+        public ICollection<Transakcja> Transakcje { get; set; }
     }
 }
