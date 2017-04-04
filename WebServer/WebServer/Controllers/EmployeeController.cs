@@ -17,31 +17,26 @@ namespace WebServer.Controllers
         private magazynEntities db = new magazynEntities();
 
 
+        // POST: api/Employee/Register 
+        //[HttpPost]
         [HttpPost]
-        [ActionName("RegisterEmployee")]
-        public IHttpActionResult RegisterEmployee(Pracownik prac, Adres adr)
-        {
-            int id_adresu = new AdresController().RegisterAddress(adr);
-            Pracownik newprac = db.Pracownicy.FirstOrDefault(a => a.idPracownika == prac.idPracownika);
-
-            prac.idAdresu = id_adresu;
-            if (newprac == null)
-            {
-                try
-                {
-                    db.Pracownicy.Add(prac);
-                    db.SaveChanges();
-                    return StatusCode(HttpStatusCode.OK);
-                }
-                catch (Exception ex)
-                {
-                    return StatusCode(HttpStatusCode.Conflict);
-                }
-            }
-            return StatusCode(HttpStatusCode.Conflict);
-        }
-
-
+        [Route("Employee/Register")]
+         public HttpResponseMessage RegisterEmployee(Pracownik pracownik, Adres adres)
+         {
+             try
+             {
+                 db.Ksiazka_adresow.Add(adres);
+                 adres.idAdresu = db.Ksiazka_adresow.Find(adres).idAdresu;
+                 pracownik.idAdresu = adres.idAdresu;
+                 db.Pracownicy.Add(pracownik);
+                 db.SaveChanges();
+                 return Request.CreateResponse(HttpStatusCode.Created);
+             }
+             catch
+             {
+                 return Request.CreateResponse(HttpStatusCode.Conflict);
+             }
+         }
 
 
         // GET: api/Employee
