@@ -52,16 +52,16 @@ namespace WebServer.Controllers
 
         // PUT: api/Clients/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutKlient(int id, Klient klient)
+        public HttpResponseMessage PutKlient(int id, Klient klient)
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return Request.CreateResponse(HttpStatusCode.Conflict);
             }
 
             if (id != klient.idKlienta)
             {
-                return BadRequest();
+                return Request.CreateResponse(HttpStatusCode.Conflict);
             }
 
             db.Entry(klient).State = EntityState.Modified;
@@ -74,7 +74,7 @@ namespace WebServer.Controllers
             {
                 if (!KlientExists(id))
                 {
-                    return NotFound();
+                    return Request.CreateResponse(HttpStatusCode.Conflict);
                 }
                 else
                 {
@@ -82,7 +82,7 @@ namespace WebServer.Controllers
                 }
             }
 
-            return StatusCode(HttpStatusCode.NoContent);
+            return Request.CreateResponse(HttpStatusCode.OK);
         }
 
         // POST: api/Clients

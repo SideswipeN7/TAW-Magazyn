@@ -321,6 +321,5 @@ C:\Users\stanu\Documents\TAW-Magazyn\WebServer\WebServer\bin\pl\System.Web.Razor
 C:\Users\stanu\Documents\TAW-Magazyn\WebServer\WebServer\bin\pl\System.Web.WebPages.resources.dll
 C:\Users\stanu\Documents\TAW-Magazyn\WebServer\WebServer\bin\pl\System.Web.WebPages.Deployment.resources.dll
 C:\Users\stanu\Documents\TAW-Magazyn\WebServer\WebServer\bin\pl\System.Web.WebPages.Razor.resources.dll
-C:\Users\stanu\Documents\TAW-Magazyn\WebServer\WebServer\obj\Debug\WebServer.csprojResolveAssemblyReference.cache
 C:\Users\stanu\Documents\TAW-Magazyn\WebServer\WebServer\obj\Debug\WebServer.dll
 C:\Users\stanu\Documents\TAW-Magazyn\WebServer\WebServer\obj\Debug\WebServer.pdb
