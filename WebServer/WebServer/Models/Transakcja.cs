@@ -27,9 +27,9 @@ namespace WebServer.Models
         public int idDostawcy { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Artykul_w_transakcji> Artykuly_w_transakcji { get; set; }
-        public virtual Dostawca Dostawcy { get; set; }
-        public virtual Klient Klienci { get; set; }
-        public virtual Pracownik Pracownicy { get; set; }
+        public  ICollection<Artykul_w_transakcji> Artykuly_w_transakcji { get; set; }
+        public  Dostawca Dostawcy { get; set; }
+        public  Klient Klienci { get; set; }
+        public  Pracownik Pracownicy { get; set; }
     }
 }

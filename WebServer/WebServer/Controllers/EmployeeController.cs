@@ -16,6 +16,34 @@ namespace WebServer.Controllers
     {
         private magazynEntities db = new magazynEntities();
 
+
+        [HttpPost]
+        [ActionName("RegisterEmployee")]
+        public IHttpActionResult RegisterEmployee(Pracownik prac, Adres adr)
+        {
+            int id_adresu = new AdresController().RegisterAddress(adr);
+            Pracownik newprac = db.Pracownicy.FirstOrDefault(a => a.idPracownika == prac.idPracownika);
+
+            prac.idAdresu = id_adresu;
+            if (newprac == null)
+            {
+                try
+                {
+                    db.Pracownicy.Add(prac);
+                    db.SaveChanges();
+                    return StatusCode(HttpStatusCode.OK);
+                }
+                catch (Exception ex)
+                {
+                    return StatusCode(HttpStatusCode.Conflict);
+                }
+            }
+            return StatusCode(HttpStatusCode.Conflict);
+        }
+
+
+
+
         // GET: api/Employee
         public IQueryable<Pracownik> GetPracownicy()
         {
@@ -70,20 +98,20 @@ namespace WebServer.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Employee
-        [ResponseType(typeof(Pracownik))]
-        public IHttpActionResult PostPracownik(Pracownik pracownik)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+        //// POST: api/Employee
+        //[ResponseType(typeof(Pracownik))]
+        //public IHttpActionResult PostPracownik(Pracownik pracownik)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
 
-            db.Pracownicy.Add(pracownik);
-            db.SaveChanges();
+        //    db.Pracownicy.Add(pracownik);
+        //    db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = pracownik.idPracownika }, pracownik);
-        }
+        //    return CreatedAtRoute("DefaultApi", new { id = pracownik.idPracownika }, pracownik);
+        //}
 
         // DELETE: api/Employee/5
         [ResponseType(typeof(Pracownik))]
