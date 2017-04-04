@@ -2,6 +2,7 @@
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using WebServer.Models;
@@ -29,6 +30,24 @@ namespace WebServer.Controllers
             }
 
             return klient;
+        }
+        // POST: api/Clients/Register 
+        [Route("Clients/Register")]
+        public HttpResponseMessage RegisterClient(Klient klient, Adres adres)
+        {
+            try
+            {
+                db.Ksiazka_adresow.Add(adres);
+                adres.idAdresu = db.Ksiazka_adresow.Find(adres).idAdresu;
+                klient.idAdresu = adres.idAdresu;
+                db.Klienci.Add(klient);
+                db.SaveChanges();
+                return Request.CreateResponse(HttpStatusCode.Created);
+            }
+            catch
+            {
+                return Request.CreateResponse(HttpStatusCode.Conflict);
+            }
         }
 
         // PUT: api/Clients/5
