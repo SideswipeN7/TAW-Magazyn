@@ -20,15 +20,15 @@ namespace WebServer.Controllers
 
         // GET: api/Clients/5
         [ResponseType(typeof(Klient))]
-        public IHttpActionResult GetKlient(int id)
+        public Klient GetKlient(int id)
         {
             Klient klient = db.Klienci.Find(id);
             if (klient == null)
             {
-                return NotFound();
+                return null;
             }
 
-            return Ok(klient);
+            return klient;
         }
 
         // PUT: api/Clients/5
