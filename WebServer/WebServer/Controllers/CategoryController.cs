@@ -32,7 +32,7 @@ namespace WebServer.Controllers
                 return BadRequest(ModelState);
             }
 
-            
+
             db.Entry(kategoria).State = EntityState.Modified;
 
             try
@@ -71,36 +71,6 @@ namespace WebServer.Controllers
                 Console.WriteLine($"Error: {ex}");
                 return Content(HttpStatusCode.Conflict, kategoria);
             }
-        }
-
-        //// DELETE: api/Category/5
-        //[ResponseType(typeof(Kategoria))]
-        //public IHttpActionResult DeleteKategoria(int id)
-        //{
-        //    Kategoria kategoria = db.Kategorie.Find(id);
-        //    if (kategoria == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    db.Kategorie.Remove(kategoria);
-        //    db.SaveChanges();
-
-        //    return Ok(kategoria);
-        //}
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
-        private bool KategoriaExists(int id)
-        {
-            return db.Kategorie.Count(e => e.idKategorii == id) > 0;
         }
     }
 }
