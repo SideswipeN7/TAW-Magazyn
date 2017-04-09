@@ -59,6 +59,5 @@ namespace WebServer.Controllers
                 return Content(HttpStatusCode.Conflict, transakcja);
             }
         }
-
     }
 }

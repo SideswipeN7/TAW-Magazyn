@@ -32,7 +32,6 @@ namespace WebServer.Controllers
                 return BadRequest(ModelState);
             }
 
-
             db.Entry(kategoria).State = EntityState.Modified;
 
             try

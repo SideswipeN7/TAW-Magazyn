@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
 using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using WebServer.Models;
@@ -28,7 +24,6 @@ namespace WebServer.Controllers
         [HttpGet]
         [ActionName("GetSupplier")]
         [ResponseType(typeof(Dostawca))]
-    
         public IHttpActionResult GetSupplier(int id)
         {
             Dostawca dostawca = db.Dostawcy.Find(id);
@@ -75,7 +70,7 @@ namespace WebServer.Controllers
             }
 
             Dostawca newSupplier = db.Dostawcy.FirstOrDefault(a => a.idDostawcy == supplier.idDostawcy);
-            if(newSupplier == null)
+            if (newSupplier == null)
             {
                 try
                 {
@@ -90,7 +85,5 @@ namespace WebServer.Controllers
             }
             return StatusCode(HttpStatusCode.Conflict);
         }
-
-      
     }
 }
