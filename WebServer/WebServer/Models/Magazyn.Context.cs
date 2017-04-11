@@ -13,10 +13,10 @@ namespace WebServer.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class magazynEntities : DbContext
+    public partial class DB_A1D841_magazynEntities : DbContext
     {
-        public magazynEntities()
-            : base("name=magazynEntities")
+        public DB_A1D841_magazynEntities()
+            : base("name=DB_A1D841_magazynEntities")
         {
         }
     

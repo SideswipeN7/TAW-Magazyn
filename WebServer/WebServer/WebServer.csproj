@@ -223,8 +223,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="Models\Magazyn.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Magazyn.Context.cs</LastGenOutput>
       <DependentUpon>Magazyn.edmx</DependentUpon>
+      <LastGenOutput>Magazyn.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\Magazyn.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -243,6 +243,7 @@
     <Content Include="Models\Magazyn.edmx.diagram">
       <DependentUpon>Magazyn.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\magazyn.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

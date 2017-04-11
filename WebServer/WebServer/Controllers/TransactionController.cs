@@ -9,7 +9,7 @@ namespace WebServer.Controllers
 {
     public class TransactionController : ApiController
     {
-        private magazynEntities db = new magazynEntities();
+        private DB_A1D841_magazynEntities db = new DB_A1D841_magazynEntities();
 
         // GET: api/Transaction
         [HttpGet]

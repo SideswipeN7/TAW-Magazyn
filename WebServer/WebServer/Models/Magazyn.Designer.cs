@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'F:\GIT\KOT\WebServer\WebServer\Models\Magazyn.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\Michał\Documents\GitHub\TAW-Magazyn\WebServer\WebServer\Models\Magazyn.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

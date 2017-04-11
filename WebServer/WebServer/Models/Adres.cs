@@ -27,8 +27,8 @@ namespace WebServer.Models
         public string Wojewodztwo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Klient> Klienci { get; set; }
+        public  ICollection<Klient> Klienci { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Pracownik> Pracownicy { get; set; }
+        public  ICollection<Pracownik> Pracownicy { get; set; }
     }
 }
