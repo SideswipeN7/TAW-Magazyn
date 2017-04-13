@@ -107,6 +107,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\PluginExecutor\PluginExecutor.csproj">
+      <Project>{8d80d14a-3242-4bdb-ac4e-bfeaa38b528e}</Project>
+      <Name>PluginExecutor</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
