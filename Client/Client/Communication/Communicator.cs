@@ -60,7 +60,13 @@ namespace Client.Communication
 
         public IEnumerable<Artykul> GetItems()
         {
-            throw new NotImplementedException();
+            string baseUrl = $"{urlAddress}/api/Item";
+            var client = new RestClient(baseUrl);
+            var request = new RestRequest(Method.GET);
+            request.AddHeader("cache-control", "no-cache");
+            request.AddHeader("content-type", "application/json");
+            IRestResponse response = client.Execute(request);
+            return JsonConvert.DeserializeObject<List<Artykul>>(response.Content);
         }
 
         public int GetSupplier(int id)
