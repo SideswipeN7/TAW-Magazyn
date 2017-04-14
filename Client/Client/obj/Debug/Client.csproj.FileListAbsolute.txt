@@ -36,3 +36,5 @@ F:\GIT\KOT\Client\Client\bin\Debug\PluginExecutor.dll
 F:\GIT\KOT\Client\Client\bin\Debug\RestSharp.dll
 F:\GIT\KOT\Client\Client\bin\Debug\PluginExecutor.pdb
 F:\GIT\KOT\Client\Client\bin\Debug\RestSharp.xml
+C:\Users\USER\Documents\GitHub\TAW-Magazyn\Client\Client\bin\Debug\RestSharp.dll
+C:\Users\USER\Documents\GitHub\TAW-Magazyn\Client\Client\bin\Debug\RestSharp.xml

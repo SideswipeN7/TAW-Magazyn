@@ -19,7 +19,17 @@ namespace Client.Communication
 
         public bool ChangeAddress(Adres adres)
         {
-            throw new NotImplementedException();
+            string baseUrl = $"{urlAddress}/api/Adresss";
+            var client = new RestClient(baseUrl);
+            var request = new RestRequest(Method.PUT);
+
+            request.AddHeader("cache-control", "no-cache");
+            request.AddHeader("content-type", "application/json");
+            request.AddJsonBody(adres);
+            var response = client.Execute(request);
+            if (response.Content.Equals("true")) return true;
+            if (response.Content.Equals("false")) return false;
+            throw new Exception("Exception in ChangeAddress");
         }
 
         public bool ChangeCategory(Kategoria kategoria)
