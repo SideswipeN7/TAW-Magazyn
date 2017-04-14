@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Client.Model;
 using RestSharp;
 using Newtonsoft.Json;
-
+using System.Net;
 namespace Client.Communication
 {
     public class Communicator : ICommunication
@@ -34,7 +34,17 @@ namespace Client.Communication
 
         public bool ChangeItem(Artykul artykul)
         {
-            throw new NotImplementedException();
+            string baseUrl = $"{urlAddress}/api/Item";
+            var client = new RestClient(baseUrl);
+            var request = new RestRequest(Method.PUT);
+           
+            request.AddHeader("cache-control", "no-cache");
+            request.AddHeader("content-type", "application/json");            
+            request.AddJsonBody(artykul);
+            var response = client.Execute(request);
+            if (response.StatusCode.Equals(HttpStatusCode.OK)) return true;
+            if (response.StatusCode.Equals(HttpStatusCode.NotModified)) return false;
+            throw new Exception("Exception in ChangeItem");
         }
 
         public bool ChangeSupplier(Dostawca dostawca)
