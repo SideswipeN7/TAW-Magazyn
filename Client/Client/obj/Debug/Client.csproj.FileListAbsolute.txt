@@ -32,3 +32,7 @@ C:\Users\USER\Documents\GitHub\TAW-Magazyn\Client\Client\obj\Debug\Client.Proper
 C:\Users\USER\Documents\GitHub\TAW-Magazyn\Client\Client\obj\Debug\Client.csproj.GenerateResource.Cache
 C:\Users\USER\Documents\GitHub\TAW-Magazyn\Client\Client\obj\Debug\Client.exe
 C:\Users\USER\Documents\GitHub\TAW-Magazyn\Client\Client\obj\Debug\Client.pdb
+F:\GIT\KOT\Client\Client\bin\Debug\PluginExecutor.dll
+F:\GIT\KOT\Client\Client\bin\Debug\RestSharp.dll
+F:\GIT\KOT\Client\Client\bin\Debug\PluginExecutor.pdb
+F:\GIT\KOT\Client\Client\bin\Debug\RestSharp.xml

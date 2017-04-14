@@ -9,8 +9,9 @@ namespace Client.Communication
 {
 
 
-    internal interface ICommunication
+    public interface ICommunication
     {
+        void SetUrlAddress(string URL);
         IEnumerable<Artykul_w_transakcji> GetTransItems();
 
         bool RegisterTransItems(IEnumerable<Artykul_w_transakcji> artykul_w_transkacji);

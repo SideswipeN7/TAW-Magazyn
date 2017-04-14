@@ -19,3 +19,5 @@ F:\GIT\KOT\Client\TDD-TEST\bin\Debug\RestSharp.dll
 F:\GIT\KOT\Client\TDD-TEST\bin\Debug\Newtonsoft.Json.dll
 F:\GIT\KOT\Client\TDD-TEST\bin\Debug\RestSharp.xml
 F:\GIT\KOT\Client\TDD-TEST\bin\Debug\Newtonsoft.Json.xml
+F:\GIT\KOT\Client\TDD-TEST\bin\Debug\PluginExecutor.dll
+F:\GIT\KOT\Client\TDD-TEST\bin\Debug\PluginExecutor.pdb

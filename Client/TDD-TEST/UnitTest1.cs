@@ -8,15 +8,23 @@ using System.Threading;
 namespace TDD_TEST
 {
 
-
+    [TestFixture]
     public class UnitTest1
     {
-        [Test]
 
-        public void GetCategories()
+        ICommunication comm;
+        [SetUp]
+        public void Setup()
         {
-            var GetCategories = new Communicator();
-            IEnumerable<Kategoria> result = GetCategories.GetCategories();
+            comm = new Communicator();
+            comm.SetUrlAddress("http://o1018869-001-site1.htempurl.com");
+        }
+
+
+        [Test]
+        public void GetCategories()
+        {           
+            IEnumerable<Kategoria> result = comm.GetCategories();
             Thread.Sleep(500);
             result.Should().Equals(new List<Kategoria> {new Kategoria {idKategorii=1,Nazwa="Komputery" },
            new Kategoria {idKategorii=2,Nazwa="Telefony" },

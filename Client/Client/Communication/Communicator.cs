@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Client.Model;
+using RestSharp;
+using Newtonsoft.Json;
 
 namespace Client.Communication
 {
-    class Communicator : ICommunication
+    public class Communicator : ICommunication
     {
         string urlAddress;
         public void SetUrlAddress(string URL)
@@ -46,8 +48,14 @@ namespace Client.Communication
         }
 
         public IEnumerable<Kategoria> GetCategories()
-        {
-            throw new NotImplementedException();
+        {           
+            string baseUrl = $"{urlAddress}/api/Category";
+            var client = new RestClient(baseUrl);
+            var request = new RestRequest(Method.GET);
+            request.AddHeader("cache-control", "no-cache");
+            request.AddHeader("content-type", "application/json");
+            IRestResponse response = client.Execute(request);
+            return JsonConvert.DeserializeObject<List<Kategoria>>(response.Content);
         }
 
         public IEnumerable<Artykul> GetItems()
