@@ -50,6 +50,29 @@ namespace TDD_TEST
             result.Should().BeFalse();
         }
 
+        [Test]
+        [TestCaseSource(typeof(UnitTest1), nameof(UnitTest1.TestChangeAddressCases))]
+        public void RegisterAddress(Adres adres)
+        {
+            int result = comm.RegisterAddress(adres);
 
+            if (adres.idAdresu == 1)
+            {
+                result.ShouldBeEquivalentTo(1);
+            }
+
+            else result.Should().BeGreaterThan(0);
+        }
+
+
+
+
+        //Test cases
+        public static Adres[] TestChangeAddressCases =
+        {
+            new Adres { idAdresu = 1, Miejscowosc = "Czeladz", Kod_pocztowy = "41-250", Wojewodztwo = "Slaskie" },
+            new Adres { idAdresu = 999, Miejscowosc = "Testowa", Kod_pocztowy = "11-111", Wojewodztwo = "Slaskie" }
+
+        };
     }
 }
