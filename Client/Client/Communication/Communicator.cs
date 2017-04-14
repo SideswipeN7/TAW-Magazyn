@@ -96,7 +96,13 @@ namespace Client.Communication
 
         public IEnumerable<Artykul_w_transakcji> GetTransItems()
         {
-            throw new NotImplementedException();
+            string baseUrl = $"{urlAddress}/api/transitem";
+            var client = new RestClient(baseUrl);
+            var request = new RestRequest(Method.GET);
+            request.AddHeader("cache-control", "no-cache");
+            request.AddHeader("content-type", "application/json");
+            IRestResponse response = client.Execute(request);
+            return JsonConvert.DeserializeObject<List<Artykul_w_transakcji>>(response.Content);
         }
 
         public IEnumerable<Transakcja> IEnumerableGetTransactions()

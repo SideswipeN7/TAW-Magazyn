@@ -44,6 +44,19 @@ namespace TDD_TEST
         }
 
         [Test]
+        public void GetTransItems()
+        {
+            IEnumerable<Artykul_w_transakcji> result = comm.GetTransItems();
+            result.ShouldBeEquivalentTo(new List<Artykul_w_transakcji> {
+                new Artykul_w_transakcji { idArt_w_trans = 2, Cena = 1523.37M, idTransakcji = 2, idArtykulu = 2 },
+                new Artykul_w_transakcji { idArt_w_trans = 3, Cena = 899M, idTransakcji = 3, idArtykulu = 3},
+                new Artykul_w_transakcji { idArt_w_trans = 4, Cena = 3150M, idTransakcji = 4, idArtykulu = 4},
+                new Artykul_w_transakcji { idArt_w_trans = 5, Cena = 799.99M, idTransakcji = 5, idArtykulu = 5},
+                new Artykul_w_transakcji { idArt_w_trans = 6, Cena = 11799M, idTransakcji = 6, idArtykulu = 6}
+           });
+        }
+
+        [Test]
         public void ChangeItems()
         {
             bool result = comm.ChangeItem(new Artykul { idArtykulu = 999, Nazwa = "LG OLED55B6J", Ilosc = 35, idKategorii = 5, Cena = 11799M });
