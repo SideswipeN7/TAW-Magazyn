@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="magazynModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+<Schema Namespace="DB_A1D841_magazynModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityType Name="Artykul">
     <Key>
       <PropertyRef Name="idArtykulu" />
@@ -92,8 +92,8 @@
     <NavigationProperty Name="Pracownicy" Relationship="Self.FK_Transakcje_To_Pracownicy" FromRole="Transakcje" ToRole="Pracownicy" />
   </EntityType>
   <Association Name="FK_Artykuly_To_Kategorie">
-    <End Role="Kategorie" Type="magazynModel.Kategoria" Multiplicity="1" />
-    <End Role="Artykuly" Type="magazynModel.Artykul" Multiplicity="*" />
+    <End Role="Kategorie" Type="DB_A1D841_magazynModel.Kategoria" Multiplicity="1" />
+    <End Role="Artykuly" Type="DB_A1D841_magazynModel.Artykul" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Kategorie">
         <PropertyRef Name="idKategorii" />
@@ -104,8 +104,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Artykuly_w_transakcji_To_Artykuly">
-    <End Role="Artykuly" Type="magazynModel.Artykul" Multiplicity="1" />
-    <End Role="Artykuly_w_transakcji" Type="magazynModel.Artykul_w_transakcji" Multiplicity="*" />
+    <End Role="Artykuly" Type="DB_A1D841_magazynModel.Artykul" Multiplicity="1" />
+    <End Role="Artykuly_w_transakcji" Type="DB_A1D841_magazynModel.Artykul_w_transakcji" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Artykuly">
         <PropertyRef Name="idArtykulu" />
@@ -116,8 +116,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Artykuly_w_transakcji_To_Transakcje">
-    <End Role="Transakcje" Type="magazynModel.Transakcja" Multiplicity="1" />
-    <End Role="Artykuly_w_transakcji" Type="magazynModel.Artykul_w_transakcji" Multiplicity="*" />
+    <End Role="Transakcje" Type="DB_A1D841_magazynModel.Transakcja" Multiplicity="1" />
+    <End Role="Artykuly_w_transakcji" Type="DB_A1D841_magazynModel.Artykul_w_transakcji" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Transakcje">
         <PropertyRef Name="idTransakcji" />
@@ -128,8 +128,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Transakcje_To_Dostawcy">
-    <End Role="Dostawcy" Type="magazynModel.Dostawca" Multiplicity="1" />
-    <End Role="Transakcje" Type="magazynModel.Transakcja" Multiplicity="*" />
+    <End Role="Dostawcy" Type="DB_A1D841_magazynModel.Dostawca" Multiplicity="1" />
+    <End Role="Transakcje" Type="DB_A1D841_magazynModel.Transakcja" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Dostawcy">
         <PropertyRef Name="idDostawcy" />
@@ -140,8 +140,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Klienci_To_Ksiazka_adresow">
-    <End Role="Ksiazka_adresow" Type="magazynModel.Adres" Multiplicity="1" />
-    <End Role="Klienci" Type="magazynModel.Klient" Multiplicity="*" />
+    <End Role="Ksiazka_adresow" Type="DB_A1D841_magazynModel.Adres" Multiplicity="1" />
+    <End Role="Klienci" Type="DB_A1D841_magazynModel.Klient" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Ksiazka_adresow">
         <PropertyRef Name="idAdresu" />
@@ -152,8 +152,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Transakcje_To_Klienci">
-    <End Role="Klienci" Type="magazynModel.Klient" Multiplicity="1" />
-    <End Role="Transakcje" Type="magazynModel.Transakcja" Multiplicity="*" />
+    <End Role="Klienci" Type="DB_A1D841_magazynModel.Klient" Multiplicity="1" />
+    <End Role="Transakcje" Type="DB_A1D841_magazynModel.Transakcja" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Klienci">
         <PropertyRef Name="idKlienta" />
@@ -164,8 +164,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Pracownicy_To_Ksiazka_adresow">
-    <End Role="Ksiazka_adresow" Type="magazynModel.Adres" Multiplicity="1" />
-    <End Role="Pracownicy" Type="magazynModel.Pracownik" Multiplicity="*" />
+    <End Role="Ksiazka_adresow" Type="DB_A1D841_magazynModel.Adres" Multiplicity="1" />
+    <End Role="Pracownicy" Type="DB_A1D841_magazynModel.Pracownik" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Ksiazka_adresow">
         <PropertyRef Name="idAdresu" />
@@ -176,8 +176,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Transakcje_To_Pracownicy">
-    <End Role="Pracownicy" Type="magazynModel.Pracownik" Multiplicity="1" />
-    <End Role="Transakcje" Type="magazynModel.Transakcja" Multiplicity="*" />
+    <End Role="Pracownicy" Type="DB_A1D841_magazynModel.Pracownik" Multiplicity="1" />
+    <End Role="Transakcje" Type="DB_A1D841_magazynModel.Transakcja" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Pracownicy">
         <PropertyRef Name="idPracownika" />
@@ -187,15 +187,15 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="magazynEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="Artykuly" EntityType="magazynModel.Artykul" />
-    <EntitySet Name="Artykuly_w_transakcji" EntityType="magazynModel.Artykul_w_transakcji" />
-    <EntitySet Name="Dostawcy" EntityType="magazynModel.Dostawca" />
-    <EntitySet Name="Kategorie" EntityType="magazynModel.Kategoria" />
-    <EntitySet Name="Klienci" EntityType="magazynModel.Klient" />
-    <EntitySet Name="Ksiazka_adresow" EntityType="magazynModel.Adres" />
-    <EntitySet Name="Pracownicy" EntityType="magazynModel.Pracownik" />
-    <EntitySet Name="Transakcje" EntityType="magazynModel.Transakcja" />
+  <EntityContainer Name="DB_A1D841_magazynEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Artykuly" EntityType="DB_A1D841_magazynModel.Artykul" />
+    <EntitySet Name="Artykuly_w_transakcji" EntityType="DB_A1D841_magazynModel.Artykul_w_transakcji" />
+    <EntitySet Name="Dostawcy" EntityType="DB_A1D841_magazynModel.Dostawca" />
+    <EntitySet Name="Kategorie" EntityType="DB_A1D841_magazynModel.Kategoria" />
+    <EntitySet Name="Klienci" EntityType="DB_A1D841_magazynModel.Klient" />
+    <EntitySet Name="Ksiazka_adresow" EntityType="DB_A1D841_magazynModel.Adres" />
+    <EntitySet Name="Pracownicy" EntityType="DB_A1D841_magazynModel.Pracownik" />
+    <EntitySet Name="Transakcje" EntityType="DB_A1D841_magazynModel.Transakcja" />
     <AssociationSet Name="FK_Artykuly_To_Kategorie" Association="Self.FK_Artykuly_To_Kategorie">
       <End Role="Kategorie" EntitySet="Kategorie" />
       <End Role="Artykuly" EntitySet="Artykuly" />
