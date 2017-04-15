@@ -50,6 +50,29 @@ namespace TDD_TEST
             result.Should().BeFalse();
         }
 
+        [Test]
+        [TestCaseSource(typeof(UnitTest1), nameof(UnitTest1.TestChangeSupplierCases))]
+        public void ChangeSupplier(Dostawca dostawca)
+        {
+            bool result = comm.ChangeSupplier(dostawca);
 
+            if (dostawca.idDostawcy == 1)
+            {
+                result.Should().BeTrue();
+            }
+
+            if (dostawca.idDostawcy == 999)
+            {
+                result.Should().BeFalse();
+            }
+        }
+
+        //Test cases
+        public static Dostawca[] TestChangeSupplierCases =
+        {
+            new Dostawca { idDostawcy = 1, Nazwa = "Kuries"},
+            new Dostawca { idDostawcy = 999, Nazwa = "Test"}
+
+        };
     }
 }
