@@ -176,7 +176,16 @@ namespace Client.Communication
 
         public bool RegisterSupplier(Dostawca dostawca)
         {
-            throw new NotImplementedException();
+            string baseUrl = $"{urlAddress}/api/Supply";
+            var client = new RestClient(baseUrl);
+            var request = new RestRequest(Method.POST);
+            request.AddHeader("cache-control", "no-cache");
+            request.AddHeader("content-type", "application/json");
+            request.AddJsonBody(dostawca);
+            IRestResponse response = client.Execute(request);
+            if (response.StatusCode.Equals(HttpStatusCode.Created)) return true;
+            if (response.StatusCode.Equals(HttpStatusCode.Conflict)) return false;
+            throw new Exception("Exception in RegisterSupplier");
         }
 
         public int RegisterTransaction(Transakcja transakcja)

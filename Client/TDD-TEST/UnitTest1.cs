@@ -66,6 +66,7 @@ namespace TDD_TEST
         [Test]
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         [TestCase(0)]
         [TestCase(1)]
         [TestCase(null)]
@@ -120,10 +121,26 @@ namespace TDD_TEST
 >>>>>>> origin/Method-ChangeSupplier-
             {
                 result.Should().BeFalse();
+=======
+        [TestCaseSource(typeof(UnitTest1), nameof(UnitTest1.TestRegisterSupplyCases))]
+        public void RegisterSupply(Dostawca dostawca)
+        {
+            bool result = comm.RegisterSupplier(dostawca);
+
+            if (dostawca.idDostawcy == 1)
+            {
+                result.ShouldBeEquivalentTo(false);
+            }
+            
+            if(dostawca.idDostawcy == 999)
+            {
+                result.ShouldBeEquivalentTo(true);
+>>>>>>> Method-RegisterSupplier
             }
         }
 
         //Test cases
+<<<<<<< HEAD
 <<<<<<< HEAD
         public static Kategoria[] TestChangeCategoryCases =
         {
@@ -159,6 +176,14 @@ namespace TDD_TEST
             new Adres { idAdresu = 1, Miejscowosc = "Czeladz", Kod_pocztowy = "41-250", Wojewodztwo = "Slaskie" },
             new Adres { idAdresu = 999, Miejscowosc = "Testowa", Kod_pocztowy = "11-111", Wojewodztwo = "Slaskie" }
 >>>>>>> origin/Method-RegisterAddress
+=======
+        public static Dostawca[] TestRegisterSupplyCases =
+        {
+            new Dostawca { idDostawcy = 1, Nazwa = "Kuriers"},
+            new Dostawca { idDostawcy= 999, Nazwa="999"}
+
+        };
+>>>>>>> Method-RegisterSupplier
 
         };
     }
