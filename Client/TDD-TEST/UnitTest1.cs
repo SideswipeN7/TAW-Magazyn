@@ -50,6 +50,30 @@ namespace TDD_TEST
             result.Should().BeFalse();
         }
 
+        [Test]
+        [TestCaseSource(typeof(UnitTest1), nameof(UnitTest1.TestRegisterSupplyCases))]
+        public void RegisterSupply(Dostawca dostawca)
+        {
+            bool result = comm.RegisterSupplier(dostawca);
+
+            if (dostawca.idDostawcy == 1)
+            {
+                result.ShouldBeEquivalentTo(false);
+            }
+            
+            if(dostawca.idDostawcy == 999)
+            {
+                result.ShouldBeEquivalentTo(true);
+            }
+        }
+
+        //Test cases
+        public static Dostawca[] TestRegisterSupplyCases =
+        {
+            new Dostawca { idDostawcy = 1, Nazwa = "Kuriers"},
+            new Dostawca { idDostawcy= 999, Nazwa="999"}
+
+        };
 
     }
 }
