@@ -92,6 +92,30 @@ namespace TDD_TEST
                 result.ShouldBeEquivalentTo(null);
             }
         }
+=======
+        [TestCaseSource(typeof(UnitTest1), nameof(UnitTest1.TestChangeCategoryCases))]
+        public void ChangeCategory(Kategoria kategoria)
+        {
+            bool result = comm.ChangeCategory(kategoria);
 
+            if (kategoria.idKategorii == 1)
+            {
+                result.Should().BeTrue();
+            }
+
+            if (kategoria.idKategorii == 999)
+            {
+                result.Should().BeFalse();
+            }
+        }
+
+        //Test cases
+        public static Kategoria[] TestChangeCategoryCases =
+        {
+            new Kategoria { idKategorii = 1, Nazwa = "Komputery"},
+            new Kategoria { idKategorii = 999, Nazwa = "Test"}
+>>>>>>> origin/Method-ChangeCategory
+
+        };
     }
 }
