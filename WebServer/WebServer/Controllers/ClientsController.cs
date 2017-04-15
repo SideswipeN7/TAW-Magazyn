@@ -35,7 +35,8 @@ namespace WebServer.Controllers
 
             return klient;
         }
-        // POST: api/Clients/Register 
+
+        // POST: api/Clients/Register
         [HttpPost]
         [ActionName("RegisterClient")]
         public HttpResponseMessage RegisterClient(Klient klient, Adres adres)
@@ -61,7 +62,7 @@ namespace WebServer.Controllers
         [ResponseType(typeof(void))]
         [HttpPut]
         [ActionName("ChangeClient")]
-        public HttpResponseMessage ChangeClient( Klient klient)
+        public HttpResponseMessage ChangeClient(Klient klient)
         {
             if (!ModelState.IsValid)
             {
@@ -81,7 +82,5 @@ namespace WebServer.Controllers
 
             return Request.CreateResponse(HttpStatusCode.OK);
         }
-
-       
     }
 }

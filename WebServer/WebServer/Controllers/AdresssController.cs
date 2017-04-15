@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
 using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using WebServer.Models;
@@ -72,7 +67,7 @@ namespace WebServer.Controllers
                 {
                     db.Ksiazka_adresow.Add(adres);
                     db.SaveChanges();
-                    return adres.idAdresu; 
+                    return adres.idAdresu;
                 }
                 catch (DbEntityValidationException ex)
                 {
@@ -81,7 +76,5 @@ namespace WebServer.Controllers
             }
             return newAdres.idAdresu;
         }
-
-        
     }
 }
