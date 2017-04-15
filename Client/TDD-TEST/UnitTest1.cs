@@ -50,6 +50,30 @@ namespace TDD_TEST
             result.Should().BeFalse();
         }
 
+        [Test]
+        [TestCaseSource(typeof(UnitTest1), nameof(UnitTest1.TestChangeClientCases))]
+        public void ChangeClient(Klient klient)
+        {
+            bool result = comm.ChangeClient(klient);
+
+            if (klient.idKlienta == 1)
+            {
+                result.Should().BeTrue();
+            }
+
+            if (klient.idKlienta == 999)
+            {
+                result.Should().BeFalse();
+            }
+        }
+
+        //Test cases
+        public static Klient[] TestChangeClientCases =
+        {
+            new Klient { idKlienta = 1, Imie ="Mariusz", Nazwisko ="Cebula", Nazwa_firmy = "Cebulex", idAdresu = 3 },
+            new Klient { idKlienta = 999, Imie ="Test", Nazwisko ="Test", Nazwa_firmy = "Test", idAdresu = 3 }
+
+        };
 
     }
 }
