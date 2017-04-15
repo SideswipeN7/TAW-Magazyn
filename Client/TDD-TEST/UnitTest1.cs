@@ -67,6 +67,7 @@ namespace TDD_TEST
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         [TestCase(0)]
         [TestCase(1)]
         [TestCase(null)]
@@ -110,10 +111,19 @@ namespace TDD_TEST
 
             if (dostawca.idDostawcy == 1)
 >>>>>>> origin/Method-ChangeSupplier-
+=======
+        [TestCaseSource(typeof(UnitTest1), nameof(UnitTest1.TestChangeAddressCases))]
+        public void ChangeAddress(Adres adres)
+        {
+            bool result = comm.ChangeAddress(adres);
+
+            if (adres.idAdresu == 1)
+>>>>>>> Method-ChangeAddress
             {
                 result.Should().BeTrue();
             }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
             if (kategoria.idKategorii == 999)
 =======
@@ -170,11 +180,20 @@ namespace TDD_TEST
 
 
 
+=======
+            if (adres.idAdresu == 999)
+            {
+                result.Should().BeFalse();
+            }
+        }
+
+>>>>>>> Method-ChangeAddress
         //Test cases
         public static Adres[] TestChangeAddressCases =
         {
             new Adres { idAdresu = 1, Miejscowosc = "Czeladz", Kod_pocztowy = "41-250", Wojewodztwo = "Slaskie" },
             new Adres { idAdresu = 999, Miejscowosc = "Testowa", Kod_pocztowy = "11-111", Wojewodztwo = "Slaskie" }
+<<<<<<< HEAD
 >>>>>>> origin/Method-RegisterAddress
 =======
         public static Dostawca[] TestRegisterSupplyCases =
@@ -184,6 +203,10 @@ namespace TDD_TEST
 
         };
 >>>>>>> Method-RegisterSupplier
+=======
+
+        };
+>>>>>>> Method-ChangeAddress
 
         };
     }
