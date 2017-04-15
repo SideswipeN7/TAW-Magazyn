@@ -63,6 +63,35 @@ namespace TDD_TEST
             result.Should().BeFalse();
         }
 
+        [Test]
+        [TestCase(0)]
+        [TestCase(1)]
+        [TestCase(null)]
+        public void GetAddress(int id)
+        {
+            Adres result = comm.GetAddress(id);
+
+            if(id == 1)
+            {
+                result.ShouldBeEquivalentTo(new Adres
+                {
+                    idAdresu = 1,
+                    Miejscowosc = "Czeladz",
+                    Kod_pocztowy = "41-250",
+                    Wojewodztwo = "Slaskie"
+                });
+            }
+
+            if (id == 0)
+            {
+                result.ShouldBeEquivalentTo(null);
+            }
+
+            if (id == null)
+            {
+                result.ShouldBeEquivalentTo(null);
+            }
+        }
 
     }
 }

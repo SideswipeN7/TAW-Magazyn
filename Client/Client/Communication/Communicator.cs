@@ -54,7 +54,13 @@ namespace Client.Communication
 
         public Adres GetAddress(int id)
         {
-            throw new NotImplementedException();
+            string baseUrl = $"{urlAddress}/api/Adresss/"+id;
+            var client = new RestClient(baseUrl);
+            var request = new RestRequest(Method.GET);
+            request.AddHeader("cache-control", "no-cache");
+            request.AddHeader("content-type", "application/json");
+            IRestResponse response = client.Execute(request);
+            return JsonConvert.DeserializeObject<Adres>(response.Content);
         }
 
         public IEnumerable<Kategoria> GetCategories()
