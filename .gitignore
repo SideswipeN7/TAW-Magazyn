@@ -29,3 +29,14 @@ Client/Client/obj/Debug/Client.g.resources
 Client/Client/obj/Debug/Client.pdb
 Client/TDD-TEST/obj/Debug/TDD-TEST.dll
 Client/TDD-TEST/obj/Debug/TDD-TEST.pdb
+Client/.vs/Client/v15/.suo
+Client/Client/obj/Debug/Client.csproj.FileListAbsolute.txt
+Client/Client/obj/Debug/CoreCompileInputs.cache
+Client/PluginExecutor/bin/Debug/nunit_random_seed.tmp
+Client/PluginExecutor/obj/Debug/CoreCompileInputs.cache
+Client/TDD-TEST/bin/Debug/Client.exe.config
+Client/TDD-TEST/bin/Debug/Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+Client/TDD-TEST/bin/Debug/pl/Microsoft.VisualStudio.QualityTools.UnitTestFramework.resources.dll
+Client/TDD-TEST/obj/Debug/CoreCompileInputs.cache
+Client/TDD-TEST/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+Client/TDD-TEST/obj/Debug/TDD-TEST.csproj.FileListAbsolute.txt

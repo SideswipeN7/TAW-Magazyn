@@ -50,7 +50,7 @@ namespace Client.Communication
 
         int RegisterTransaction(Transakcja transakcja);
 
-        IEnumerable<Transakcja> IEnumerableGetTransactions();
+        IEnumerable<Transakcja> GetTransactions();
 
         int GetTransaction(int id);
     }
