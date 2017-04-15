@@ -144,7 +144,14 @@ namespace Client.Communication
 
         public int RegisterAddress(Adres adres)
         {
-            throw new NotImplementedException();
+            string baseUrl = $"{urlAddress}/api/Adresss";
+            var client = new RestClient(baseUrl);
+            var request = new RestRequest(Method.POST);
+            request.AddHeader("cache-control", "no-cache");
+            request.AddHeader("content-type", "application/json");
+            request.AddJsonBody(adres);
+            IRestResponse response = client.Execute(request);
+            return Int32.Parse(response.Content);
         }
 
         public bool RegisterCategory(Kategoria kategoria)
