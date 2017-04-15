@@ -72,7 +72,7 @@ namespace TDD_TEST
         {
             Adres result = comm.GetAddress(id);
 
-            if(id == 1)
+            if (id == 1)
             {
                 result.ShouldBeEquivalentTo(new Adres
                 {
@@ -86,10 +86,33 @@ namespace TDD_TEST
             if (id == 0)
             {
                 result.ShouldBeEquivalentTo(null);
-            }            
+            }
         }
 
+        [Test]
+        [TestCase(2)]
+        [TestCase(null)]
+        public void GetTransaction(int id)
+        {
+            Transakcja result = comm.GetTransaction(id);
 
+            if (id == 2)
+            {
+                result.ShouldBeEquivalentTo(new Transakcja
+                {
+                    idTransakcji = 2,
+                    Data = new System.DateTime(2017,06,01,13,45,30),
+                    idKlienta = 1,
+                    idPracownika = 3,
+                    idDostawcy = 1
+                });
+            }
+
+            if (id == 0)
+            {
+                result.ShouldBeEquivalentTo(null);
+            }
+        }
         [TestCaseSource(typeof(UnitTest1), nameof(UnitTest1.TestChangeAddressCases))]
         public void ChangeAddress(Adres adres)
         {
@@ -106,7 +129,7 @@ namespace TDD_TEST
             }
         }
 
-            
+
 
         [TestCaseSource(typeof(UnitTest1), nameof(UnitTest1.TestRegisterSupplyCases))]
         public void RegisterSupply(Dostawca dostawca)
@@ -117,8 +140,8 @@ namespace TDD_TEST
             {
                 result.ShouldBeEquivalentTo(false);
             }
-            
-            if(dostawca.idDostawcy == 999)
+
+            if (dostawca.idDostawcy == 999)
             {
                 result.ShouldBeEquivalentTo(true);
             }
@@ -154,7 +177,7 @@ namespace TDD_TEST
 
 
 
-            
+
 
 
         //Test cases
@@ -162,7 +185,7 @@ namespace TDD_TEST
         {
             new Adres { idAdresu = 1, Miejscowosc = "Czeladz", Kod_pocztowy = "41-250", Wojewodztwo = "Slaskie" },
             new Adres { idAdresu = 999, Miejscowosc = "Testowa", Kod_pocztowy = "11-111", Wojewodztwo = "Slaskie" }
-
+        };
         public static Dostawca[] TestRegisterSupplyCases =
         {
             new Dostawca { idDostawcy = 1, Nazwa = "Kuriers"},
@@ -171,9 +194,5 @@ namespace TDD_TEST
         };
 
 
-        };
-
-
-        };
     }
-
+}

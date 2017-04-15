@@ -52,7 +52,7 @@ namespace Client.Communication
 
         IEnumerable<Transakcja> GetTransactions();
 
-        int GetTransaction(int id);
+        Transakcja GetTransaction(int id);
     }
 }
 

@@ -125,9 +125,15 @@ namespace Client.Communication
             throw new NotImplementedException();
         }
 
-        public int GetTransaction(int id)
+        public Transakcja GetTransaction(int id)
         {
-            throw new NotImplementedException();
+            string baseUrl = $"{urlAddress}/api/transaction/" + id;
+            var client = new RestClient(baseUrl);
+            var request = new RestRequest(Method.GET);
+            request.AddHeader("cache-control", "no-cache");
+            request.AddHeader("content-type", "application/json");
+            IRestResponse response = client.Execute(request);
+            return JsonConvert.DeserializeObject<Transakcja>(response.Content);
         }
 
         public IEnumerable<Artykul_w_transakcji> GetTransItems()
