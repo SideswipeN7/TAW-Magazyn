@@ -64,6 +64,7 @@ namespace TDD_TEST
         }
 
         [Test]
+<<<<<<< HEAD
         [TestCase(0)]
         [TestCase(1)]
         [TestCase(null)]
@@ -99,22 +100,41 @@ namespace TDD_TEST
             bool result = comm.ChangeCategory(kategoria);
 
             if (kategoria.idKategorii == 1)
+=======
+        [TestCaseSource(typeof(UnitTest1), nameof(UnitTest1.TestChangeSupplierCases))]
+        public void ChangeSupplier(Dostawca dostawca)
+        {
+            bool result = comm.ChangeSupplier(dostawca);
+
+            if (dostawca.idDostawcy == 1)
+>>>>>>> origin/Method-ChangeSupplier-
             {
                 result.Should().BeTrue();
             }
 
+<<<<<<< HEAD
             if (kategoria.idKategorii == 999)
+=======
+            if (dostawca.idDostawcy == 999)
+>>>>>>> origin/Method-ChangeSupplier-
             {
                 result.Should().BeFalse();
             }
         }
 
         //Test cases
+<<<<<<< HEAD
         public static Kategoria[] TestChangeCategoryCases =
         {
             new Kategoria { idKategorii = 1, Nazwa = "Komputery"},
             new Kategoria { idKategorii = 999, Nazwa = "Test"}
 >>>>>>> origin/Method-ChangeCategory
+=======
+        public static Dostawca[] TestChangeSupplierCases =
+        {
+            new Dostawca { idDostawcy = 1, Nazwa = "Kuries"},
+            new Dostawca { idDostawcy = 999, Nazwa = "Test"}
+>>>>>>> origin/Method-ChangeSupplier-
 
         };
     }

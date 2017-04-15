@@ -59,7 +59,17 @@ namespace Client.Communication
 
         public bool ChangeSupplier(Dostawca dostawca)
         {
-            throw new NotImplementedException();
+            string baseUrl = $"{urlAddress}/api/Supply";
+            var client = new RestClient(baseUrl);
+            var request = new RestRequest(Method.PUT);
+
+            request.AddHeader("cache-control", "no-cache");
+            request.AddHeader("content-type", "application/json");
+            request.AddJsonBody(dostawca);
+            var response = client.Execute(request);
+            if (response.StatusCode.Equals(HttpStatusCode.OK)) return true;
+            if (response.StatusCode.Equals(HttpStatusCode.NotModified)) return false;
+            throw new Exception("Exception in ChangeSupplier");
         }
 
         public Adres GetAddress(int id)
