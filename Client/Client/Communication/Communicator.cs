@@ -238,7 +238,14 @@ namespace Client.Communication
 
         public int RegisterTransaction(Transakcja transakcja)
         {
-            throw new NotImplementedException();
+            string baseUrl = $"{urlAddress}/api/transaction";
+            var client = new RestClient(baseUrl);
+            var request = new RestRequest(Method.POST);
+            request.AddHeader("cache-control", "no-cache");
+            request.AddHeader("content-type", "application/json");
+            request.AddJsonBody(transakcja);
+            IRestResponse response = client.Execute(request);
+            return Int32.Parse(response.Content);
         }
 
         public bool RegisterTransItems(IEnumerable<Artykul_w_transakcji> artykul_w_transkacji)

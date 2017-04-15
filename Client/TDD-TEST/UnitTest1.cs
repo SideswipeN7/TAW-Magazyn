@@ -72,7 +72,7 @@ namespace TDD_TEST
         {
             Adres result = comm.GetAddress(id);
 
-            if(id == 1)
+            if (id == 1)
             {
                 result.ShouldBeEquivalentTo(new Adres
                 {
@@ -86,7 +86,7 @@ namespace TDD_TEST
             if (id == 0)
             {
                 result.ShouldBeEquivalentTo(null);
-            }            
+            }
         }
 
 
@@ -106,7 +106,7 @@ namespace TDD_TEST
             }
         }
 
-            
+
 
         [TestCaseSource(typeof(UnitTest1), nameof(UnitTest1.TestRegisterSupplyCases))]
         public void RegisterSupply(Dostawca dostawca)
@@ -117,8 +117,8 @@ namespace TDD_TEST
             {
                 result.ShouldBeEquivalentTo(false);
             }
-            
-            if(dostawca.idDostawcy == 999)
+
+            if (dostawca.idDostawcy == 999)
             {
                 result.ShouldBeEquivalentTo(true);
             }
@@ -152,17 +152,33 @@ namespace TDD_TEST
         }
 
 
+        [TestCaseSource(typeof(UnitTest1), nameof(UnitTest1.TestRegisterTransactionCases))]
+        public void RegisterTransaction(Transakcja transakcja)
+        {
+            int result = comm.RegisterTransaction(transakcja);
 
+            if (transakcja.idTransakcji == 1)
+            {
+                result.ShouldBeEquivalentTo(1);
+            }
 
-            
+            else result.Should().BeGreaterThan(0);
+        }
+
 
 
         //Test cases
+        public static Transakcja[] TestRegisterTransactionCases =
+        {
+            new Transakcja {idTransakcji = 2 , Data = new System.DateTime(2017,06,01,13,45,30), idKlienta = 1, idPracownika = 3, idDostawcy =1},
+            new Transakcja {idTransakcji = 9999, Data = new System.DateTime(2017,06,01,13,45,30), idKlienta = 1, idPracownika = 3, idDostawcy =1}
+
+        };
         public static Adres[] TestChangeAddressCases =
         {
             new Adres { idAdresu = 1, Miejscowosc = "Czeladz", Kod_pocztowy = "41-250", Wojewodztwo = "Slaskie" },
             new Adres { idAdresu = 999, Miejscowosc = "Testowa", Kod_pocztowy = "11-111", Wojewodztwo = "Slaskie" }
-
+        };
         public static Dostawca[] TestRegisterSupplyCases =
         {
             new Dostawca { idDostawcy = 1, Nazwa = "Kuriers"},
@@ -171,9 +187,6 @@ namespace TDD_TEST
         };
 
 
-        };
 
-
-        };
     }
-
+}
