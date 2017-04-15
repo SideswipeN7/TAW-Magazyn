@@ -166,7 +166,16 @@ namespace Client.Communication
 
         public bool RegisterCategory(Kategoria kategoria)
         {
-            throw new NotImplementedException();
+            string baseUrl = $"{urlAddress}/api/Category";
+            var client = new RestClient(baseUrl);
+            var request = new RestRequest(Method.POST);
+            request.AddHeader("cache-control", "no-cache");
+            request.AddHeader("content-type", "application/json");
+            request.AddJsonBody(kategoria);
+            IRestResponse response = client.Execute(request);
+            if (response.StatusCode.Equals(HttpStatusCode.Created)) return true;
+            if (response.StatusCode.Equals(HttpStatusCode.Conflict)) return false;
+            throw new Exception("Exception in RegisterCategory");
         }
 
         public bool RegisterClient(Klient klient, Adres adres)
