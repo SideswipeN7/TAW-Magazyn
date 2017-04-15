@@ -215,7 +215,16 @@ namespace Client.Communication
 
         public bool RegisterTransItems(IEnumerable<Artykul_w_transakcji> artykul_w_transkacji)
         {
-            throw new NotImplementedException();
+            string baseUrl = $"{urlAddress}/api/TransItem";
+            var client = new RestClient(baseUrl);
+            var request = new RestRequest(Method.POST);
+            request.AddHeader("cache-control", "no-cache");
+            request.AddHeader("content-type", "application/json");
+            request.AddJsonBody(artykul_w_transkacji);
+            IRestResponse response = client.Execute(request);
+            if (response.StatusCode.Equals(HttpStatusCode.OK)) return true;
+            if (response.StatusCode.Equals(HttpStatusCode.Conflict)) return false;
+            throw new Exception("Exception in RegisterTransItems");
         }
     }
 }
