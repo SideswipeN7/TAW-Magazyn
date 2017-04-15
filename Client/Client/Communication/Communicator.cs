@@ -105,9 +105,15 @@ namespace Client.Communication
             return JsonConvert.DeserializeObject<List<Artykul_w_transakcji>>(response.Content);
         }
 
-        public IEnumerable<Transakcja> IEnumerableGetTransactions()
+        public IEnumerable<Transakcja> GetTransactions()
         {
-            throw new NotImplementedException();
+            string baseUrl = $"{urlAddress}/api/transaction";
+            var client = new RestClient(baseUrl);
+            var request = new RestRequest(Method.GET);
+            request.AddHeader("cache-control", "no-cache");
+            request.AddHeader("content-type", "application/json");
+            IRestResponse response = client.Execute(request);
+            return JsonConvert.DeserializeObject<List<Transakcja>>(response.Content);
         }
 
         public int RegisterAddress(Adres adres)
