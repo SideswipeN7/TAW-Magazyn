@@ -13,6 +13,7 @@ namespace TDD_TEST
 
         ICommunication comm;
         [SetUp]
+
         public void Setup()
         {
             comm = new Communicator();
@@ -64,10 +65,6 @@ namespace TDD_TEST
         }
 
         [Test]
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
         [TestCase(0)]
         [TestCase(1)]
         [TestCase(null)]
@@ -89,49 +86,28 @@ namespace TDD_TEST
             if (id == 0)
             {
                 result.ShouldBeEquivalentTo(null);
-            }
-
-            if (id == null)
-            {
-                result.ShouldBeEquivalentTo(null);
-            }
+            }            
         }
-=======
-        [TestCaseSource(typeof(UnitTest1), nameof(UnitTest1.TestChangeCategoryCases))]
-        public void ChangeCategory(Kategoria kategoria)
-        {
-            bool result = comm.ChangeCategory(kategoria);
 
-            if (kategoria.idKategorii == 1)
-=======
-        [TestCaseSource(typeof(UnitTest1), nameof(UnitTest1.TestChangeSupplierCases))]
-        public void ChangeSupplier(Dostawca dostawca)
-        {
-            bool result = comm.ChangeSupplier(dostawca);
 
-            if (dostawca.idDostawcy == 1)
->>>>>>> origin/Method-ChangeSupplier-
-=======
         [TestCaseSource(typeof(UnitTest1), nameof(UnitTest1.TestChangeAddressCases))]
         public void ChangeAddress(Adres adres)
         {
             bool result = comm.ChangeAddress(adres);
 
             if (adres.idAdresu == 1)
->>>>>>> Method-ChangeAddress
+
             {
                 result.Should().BeTrue();
             }
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-            if (kategoria.idKategorii == 999)
-=======
-            if (dostawca.idDostawcy == 999)
->>>>>>> origin/Method-ChangeSupplier-
+            if (adres.idAdresu == 999)
             {
                 result.Should().BeFalse();
-=======
+            }
+        }
+
+            
+
         [TestCaseSource(typeof(UnitTest1), nameof(UnitTest1.TestRegisterSupplyCases))]
         public void RegisterSupply(Dostawca dostawca)
         {
@@ -145,25 +121,23 @@ namespace TDD_TEST
             if(dostawca.idDostawcy == 999)
             {
                 result.ShouldBeEquivalentTo(true);
->>>>>>> Method-RegisterSupplier
             }
         }
 
         //Test cases
-<<<<<<< HEAD
-<<<<<<< HEAD
         public static Kategoria[] TestChangeCategoryCases =
         {
             new Kategoria { idKategorii = 1, Nazwa = "Komputery"},
             new Kategoria { idKategorii = 999, Nazwa = "Test"}
->>>>>>> origin/Method-ChangeCategory
-=======
+        };
+
         public static Dostawca[] TestChangeSupplierCases =
         {
             new Dostawca { idDostawcy = 1, Nazwa = "Kuries"},
             new Dostawca { idDostawcy = 999, Nazwa = "Test"}
->>>>>>> origin/Method-ChangeSupplier-
-=======
+        };
+
+
         [TestCaseSource(typeof(UnitTest1), nameof(UnitTest1.TestChangeAddressCases))]
         public void RegisterAddress(Adres adres)
         {
@@ -180,34 +154,26 @@ namespace TDD_TEST
 
 
 
-=======
-            if (adres.idAdresu == 999)
-            {
-                result.Should().BeFalse();
-            }
-        }
+            
 
->>>>>>> Method-ChangeAddress
+
         //Test cases
         public static Adres[] TestChangeAddressCases =
         {
             new Adres { idAdresu = 1, Miejscowosc = "Czeladz", Kod_pocztowy = "41-250", Wojewodztwo = "Slaskie" },
             new Adres { idAdresu = 999, Miejscowosc = "Testowa", Kod_pocztowy = "11-111", Wojewodztwo = "Slaskie" }
-<<<<<<< HEAD
->>>>>>> origin/Method-RegisterAddress
-=======
+
         public static Dostawca[] TestRegisterSupplyCases =
         {
             new Dostawca { idDostawcy = 1, Nazwa = "Kuriers"},
             new Dostawca { idDostawcy= 999, Nazwa="999"}
 
         };
->>>>>>> Method-RegisterSupplier
-=======
+
 
         };
->>>>>>> Method-ChangeAddress
+
 
         };
     }
-}
+
