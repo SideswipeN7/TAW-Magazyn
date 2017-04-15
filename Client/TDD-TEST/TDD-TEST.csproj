@@ -75,6 +75,10 @@
       <Project>{f204b7ea-321e-40ba-84da-9d16709d6087}</Project>
       <Name>Client</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PluginExecutor\PluginExecutor.csproj">
+      <Project>{8d80d14a-3242-4bdb-ac4e-bfeaa38b528e}</Project>
+      <Name>PluginExecutor</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

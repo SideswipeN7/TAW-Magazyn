@@ -18,7 +18,7 @@ namespace Client.Communication
 
         bool ChangeSupplier(Dostawca dostawca);
 
-        int GetSupplier(int id);
+        Dostawca GetSupplier(int id);
 
         IEnumerable<Dostawca> GetSuppliers();
 
