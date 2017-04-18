@@ -90,7 +90,30 @@ namespace TDD_TEST
             }
         }
 
+        [Test]
+        [TestCase(2)]
+        [TestCase(null)]
+        public void GetTransaction(int id)
+        {
+            Transakcja result = comm.GetTransaction(id);
 
+            if (id == 2)
+            {
+                result.ShouldBeEquivalentTo(new Transakcja
+                {
+                    idTransakcji = 2,
+                    Data = new System.DateTime(2017,06,01,13,45,30),
+                    idKlienta = 1,
+                    idPracownika = 3,
+                    idDostawcy = 1
+                });
+            }
+
+            if (id == 0)
+            {
+                result.ShouldBeEquivalentTo(null);
+            }
+        }
         [TestCaseSource(typeof(UnitTest1), nameof(UnitTest1.TestChangeAddressCases))]
         public void ChangeAddress(Adres adres)
         {
@@ -166,6 +189,10 @@ namespace TDD_TEST
             else result.Should().BeGreaterThan(0);
         }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/Method-GetTransaction
 
 
         //Test cases
@@ -188,6 +215,7 @@ namespace TDD_TEST
         };
 
 
+<<<<<<< HEAD
 =======
         [TestCaseSource(typeof(UnitTest1), nameof(UnitTest1.TestChangeClientCases))]
         public void ChangeClient(Klient klient)
@@ -214,5 +242,7 @@ namespace TDD_TEST
         };
 >>>>>>> origin/Method-ChangeClient
 
+=======
+>>>>>>> origin/Method-GetTransaction
     }
 }
