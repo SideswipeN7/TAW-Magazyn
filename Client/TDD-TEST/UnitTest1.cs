@@ -65,7 +65,6 @@ namespace TDD_TEST
         }
 
         [Test]
-<<<<<<< HEAD
         [TestCase(0)]
         [TestCase(1)]
         [TestCase(null)]
@@ -189,10 +188,6 @@ namespace TDD_TEST
             else result.Should().BeGreaterThan(0);
         }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/Method-GetTransaction
 
 
         //Test cases
@@ -215,8 +210,7 @@ namespace TDD_TEST
         };
 
 
-<<<<<<< HEAD
-=======
+
         [TestCaseSource(typeof(UnitTest1), nameof(UnitTest1.TestChangeClientCases))]
         public void ChangeClient(Klient klient)
         {
@@ -240,9 +234,6 @@ namespace TDD_TEST
             new Klient { idKlienta = 999, Imie ="Test", Nazwisko ="Test", Nazwa_firmy = "Test", idAdresu = 3 }
 
         };
->>>>>>> origin/Method-ChangeClient
 
-=======
->>>>>>> origin/Method-GetTransaction
     }
 }

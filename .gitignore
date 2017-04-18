@@ -40,3 +40,13 @@ Client/TDD-TEST/bin/Debug/pl/Microsoft.VisualStudio.QualityTools.UnitTestFramewo
 Client/TDD-TEST/obj/Debug/CoreCompileInputs.cache
 Client/TDD-TEST/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
 Client/TDD-TEST/obj/Debug/TDD-TEST.csproj.FileListAbsolute.txt
+Client/PluginExecutor/obj/Debug/PluginExecutor.csprojResolveAssemblyReference.cache
+Client/Client/bin/Debug/PluginExecutor.dll
+Client/Client/bin/Debug/PluginExecutor.pdb
+Client/PluginExecutor/bin/Debug/PluginExecutor.dll
+Client/PluginExecutor/bin/Debug/PluginExecutor.pdb
+Client/PluginExecutor/obj/Debug/PluginExecutor.csproj.FileListAbsolute.txt
+Client/PluginExecutor/obj/Debug/PluginExecutor.dll
+Client/PluginExecutor/obj/Debug/PluginExecutor.pdb
+Client/TDD-TEST/bin/Debug/PluginExecutor.dll
+Client/TDD-TEST/bin/Debug/PluginExecutor.pdb
