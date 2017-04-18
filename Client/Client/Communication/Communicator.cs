@@ -49,7 +49,17 @@ namespace Client.Communication
 
         public bool ChangeClient(Klient klient)
         {
-            throw new NotImplementedException();
+            string baseUrl = $"{urlAddress}/api/Clients";
+            var client = new RestClient(baseUrl);
+            var request = new RestRequest(Method.PUT);
+
+            request.AddHeader("cache-control", "no-cache");
+            request.AddHeader("content-type", "application/json");
+            request.AddJsonBody(klient);
+            var response = client.Execute(request);
+            if (response.StatusCode.Equals(HttpStatusCode.OK)) return true;
+            if (response.StatusCode.Equals(HttpStatusCode.Conflict)) return false;
+            throw new Exception("Exception in ChangeClient");
         }
 
         public bool ChangeItem(Artykul artykul)
