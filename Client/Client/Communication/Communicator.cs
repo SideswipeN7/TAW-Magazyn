@@ -125,14 +125,26 @@ namespace Client.Communication
             return JsonConvert.DeserializeObject<List<Artykul>>(response.Content);
         }
 
-        public int GetSupplier(int id)
+        public Dostawca GetSupplier(int id)
         {
-            throw new NotImplementedException();
+            string baseUrl = $"{urlAddress}/api/Supply/" + id;
+            var client = new RestClient(baseUrl);
+            var request = new RestRequest(Method.GET);
+            request.AddHeader("cache-control", "no-cache");
+            request.AddHeader("content-type", "application/json");
+            IRestResponse response = client.Execute(request);
+            return JsonConvert.DeserializeObject<Dostawca>(response.Content);
         }
 
         public IEnumerable<Dostawca> GetSuppliers()
         {
-            throw new NotImplementedException();
+            string baseUrl = $"{urlAddress}/api/Supply";
+            var client = new RestClient(baseUrl);
+            var request = new RestRequest(Method.GET);
+            request.AddHeader("cache-control", "no-cache");
+            request.AddHeader("content-type", "application/json");
+            IRestResponse response = client.Execute(request);
+            return JsonConvert.DeserializeObject<List<Dostawca>>(response.Content);
         }
 
         public Transakcja GetTransaction(int id)
@@ -277,5 +289,6 @@ namespace Client.Communication
             if (response.StatusCode.Equals(HttpStatusCode.Conflict)) return false;
             throw new Exception("Exception in RegisterTransItems");
         }
+        
     }
 }

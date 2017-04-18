@@ -3,6 +3,8 @@ using Client.Communication;
 using Client.Model;
 using System.Collections.Generic;
 using FluentAssertions;
+using PluginExecutor;
+using System;
 
 namespace TDD_TEST
 {
@@ -55,6 +57,13 @@ namespace TDD_TEST
                 new Artykul_w_transakcji { idArt_w_trans = 5, Cena = 799.99M, idTransakcji = 5, idArtykulu = 5},
                 new Artykul_w_transakcji { idArt_w_trans = 6, Cena = 11799M, idTransakcji = 6, idArtykulu = 6}
            });
+        }
+
+        [Test]
+        public void GetSuppliers()
+        {
+            IEnumerable<Dostawca> result = comm.GetSuppliers();
+            result.Should().HaveCount(x => x > 5);
         }
 
         [Test]
@@ -174,7 +183,30 @@ namespace TDD_TEST
             else result.Should().BeGreaterThan(0);
         }
 
+        [Test]
+        [TestCase(0)]
+        [TestCase(1)]
+        [TestCase(null)]
+        public void GetSupplier(int id)
+        {
+            Dostawca result = comm.GetSupplier(id);
 
+            if (id == 1)
+            {
+                result.ShouldBeEquivalentTo(new Dostawca
+                {
+                    idDostawcy = 1,
+                    Nazwa = "Kurierex"
+                });
+            }
+
+            if (id == 0)
+            {
+                result.ShouldBeEquivalentTo(null);
+            }
+        }
+
+<<<<<<< HEAD
         [TestCaseSource(typeof(UnitTest1), nameof(UnitTest1.TestRegisterTransactionCases))]
         public void RegisterTransaction(Transakcja transakcja)
         {
@@ -186,6 +218,18 @@ namespace TDD_TEST
             }
 
             else result.Should().BeGreaterThan(0);
+=======
+        [Test]
+        [TestCase("RogalDDL", "P@ssw0rd")]
+        public void Login(string login, string haslo)
+        {
+            IPluginLogin i = new PluginLogin();
+
+            string result = i.Login(login, haslo);
+            int x = Int32.Parse(result);
+            x.Should().BeGreaterOrEqualTo(1);
+           
+>>>>>>> Supplier
         }
 
 
@@ -202,6 +246,10 @@ namespace TDD_TEST
             new Adres { idAdresu = 1, Miejscowosc = "Czeladz", Kod_pocztowy = "41-250", Wojewodztwo = "Slaskie" },
             new Adres { idAdresu = 999, Miejscowosc = "Testowa", Kod_pocztowy = "11-111", Wojewodztwo = "Slaskie" }
         };
+<<<<<<< HEAD
+=======
+
+>>>>>>> Supplier
         public static Dostawca[] TestRegisterSupplyCases =
         {
             new Dostawca { idDostawcy = 1, Nazwa = "Kuriers"},
@@ -210,6 +258,10 @@ namespace TDD_TEST
         };
 
 
+<<<<<<< HEAD
+=======
+    };
+>>>>>>> Supplier
 
         [TestCaseSource(typeof(UnitTest1), nameof(UnitTest1.TestChangeClientCases))]
         public void ChangeClient(Klient klient)
@@ -233,7 +285,12 @@ namespace TDD_TEST
             new Klient { idKlienta = 1, Imie ="Mariusz", Nazwisko ="Cebula", Nazwa_firmy = "Cebulex", idAdresu = 3 },
             new Klient { idKlienta = 999, Imie ="Test", Nazwisko ="Test", Nazwa_firmy = "Test", idAdresu = 3 }
 
+<<<<<<< HEAD
         };
+=======
+};
+
+>>>>>>> Supplier
 
     }
 }
