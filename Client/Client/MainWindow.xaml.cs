@@ -15,23 +15,12 @@ namespace Client
         {
             InitializeComponent();
         }
-        
-        private void btnLogin_Click(object sender, RoutedEventArgs e)
+
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            DirectoryInfo di = new DirectoryInfo(".");
-            foreach (FileInfo fi in di.GetFiles("Plugin*.dll"))
-            {
-                Assembly pluginAssembly = Assembly.LoadFrom(fi.FullName);
-                foreach (Type pluginType in pluginAssembly.GetExportedTypes())
-                {
-                    if (pluginType.GetInterface(typeof(IPluginLogin).Name) != null)
-                    {
-                        IPluginLogin TypeLoadedFromPlugin = (IPluginLogin)Activator.CreateInstance(pluginType);
-                        string idPracownika = TypeLoadedFromPlugin.Login(txtLogin.Text, txtPassword.Text);
-                        lblId.Content = idPracownika;
-                    }
-                }
-            }
+            LoginWIndow lw = new LoginWIndow();
+            lw.Show();
+            this.Close();
         }
     }
 }
