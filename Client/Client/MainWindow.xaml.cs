@@ -15,12 +15,5 @@ namespace Client
         {
             InitializeComponent();
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            LoginWIndow lw = new LoginWIndow();
-            lw.Show();
-            this.Close();
-        }
     }
 }
