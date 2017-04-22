@@ -66,8 +66,7 @@ namespace TDD_TEST
             result.Should().HaveCount(x => x > 5);
         }
 
-        [Test]
-        public void ChangeItems()
+        [Test]        public void ChangeItems()
         {
             bool result = comm.ChangeItem(new Artykul { idArtykulu = 999, Nazwa = "LG OLED55B6J", Ilosc = 35, idKategorii = 5, Cena = 11799M });
             result.Should().BeFalse();
@@ -110,7 +109,7 @@ namespace TDD_TEST
                 result.ShouldBeEquivalentTo(new Transakcja
                 {
                     idTransakcji = 2,
-                    Data = new System.DateTime(2017,06,01,13,45,30),
+                    Data = new System.DateTime(2017, 06, 01, 13, 45, 30),
                     idKlienta = 1,
                     idPracownika = 3,
                     idDostawcy = 1
@@ -122,6 +121,8 @@ namespace TDD_TEST
                 result.ShouldBeEquivalentTo(null);
             }
         }
+
+        [Test]
         [TestCaseSource(typeof(UnitTest1), nameof(UnitTest1.TestChangeAddressCases))]
         public void ChangeAddress(Adres adres)
         {
@@ -139,7 +140,7 @@ namespace TDD_TEST
         }
 
 
-
+        [Test]
         [TestCaseSource(typeof(UnitTest1), nameof(UnitTest1.TestRegisterSupplyCases))]
         public void RegisterSupply(Dostawca dostawca)
         {
@@ -156,20 +157,9 @@ namespace TDD_TEST
             }
         }
 
-        //Test cases
-        public static Kategoria[] TestChangeCategoryCases =
-        {
-            new Kategoria { idKategorii = 1, Nazwa = "Komputery"},
-            new Kategoria { idKategorii = 999, Nazwa = "Test"}
-        };
+       
 
-        public static Dostawca[] TestChangeSupplierCases =
-        {
-            new Dostawca { idDostawcy = 1, Nazwa = "Kuries"},
-            new Dostawca { idDostawcy = 999, Nazwa = "Test"}
-        };
-
-
+        [Test]
         [TestCaseSource(typeof(UnitTest1), nameof(UnitTest1.TestChangeAddressCases))]
         public void RegisterAddress(Adres adres)
         {
@@ -206,7 +196,7 @@ namespace TDD_TEST
             }
         }
 
-<<<<<<< HEAD
+        [Test]
         [TestCaseSource(typeof(UnitTest1), nameof(UnitTest1.TestRegisterTransactionCases))]
         public void RegisterTransaction(Transakcja transakcja)
         {
@@ -218,7 +208,7 @@ namespace TDD_TEST
             }
 
             else result.Should().BeGreaterThan(0);
-=======
+        }
         [Test]
         [TestCase("RogalDDL", "P@ssw0rd")]
         public void Login(string login, string haslo)
@@ -228,41 +218,11 @@ namespace TDD_TEST
             string result = i.Login(login, haslo);
             int x = Int32.Parse(result);
             x.Should().BeGreaterOrEqualTo(1);
-           
->>>>>>> Supplier
+
+
         }
 
-
-
-        //Test cases
-        public static Transakcja[] TestRegisterTransactionCases =
-        {
-            new Transakcja {idTransakcji = 2 , Data = new System.DateTime(2017,06,01,13,45,30), idKlienta = 1, idPracownika = 3, idDostawcy =1},
-            new Transakcja {idTransakcji = 9999, Data = new System.DateTime(2017,06,01,13,45,30), idKlienta = 1, idPracownika = 3, idDostawcy =1}
-
-        };
-        public static Adres[] TestChangeAddressCases =
-        {
-            new Adres { idAdresu = 1, Miejscowosc = "Czeladz", Kod_pocztowy = "41-250", Wojewodztwo = "Slaskie" },
-            new Adres { idAdresu = 999, Miejscowosc = "Testowa", Kod_pocztowy = "11-111", Wojewodztwo = "Slaskie" }
-        };
-<<<<<<< HEAD
-=======
-
->>>>>>> Supplier
-        public static Dostawca[] TestRegisterSupplyCases =
-        {
-            new Dostawca { idDostawcy = 1, Nazwa = "Kuriers"},
-            new Dostawca { idDostawcy= 999, Nazwa="999"}
-
-        };
-
-
-<<<<<<< HEAD
-=======
-    };
->>>>>>> Supplier
-
+        [Test]
         [TestCaseSource(typeof(UnitTest1), nameof(UnitTest1.TestChangeClientCases))]
         public void ChangeClient(Klient klient)
         {
@@ -279,18 +239,51 @@ namespace TDD_TEST
             }
         }
 
+
+
         //Test cases
+        public static Kategoria[] TestChangeCategoryCases =
+        {
+            new Kategoria { idKategorii = 1, Nazwa = "Komputery"},
+            new Kategoria { idKategorii = 999, Nazwa = "Test"}
+        };
+
+        public static Dostawca[] TestChangeSupplierCases =
+        {
+            new Dostawca { idDostawcy = 1, Nazwa = "Kuries"},
+            new Dostawca { idDostawcy = 999, Nazwa = "Test"}
+        };
+
+        public static Transakcja[] TestRegisterTransactionCases =
+        {
+            new Transakcja {idTransakcji = 2 , Data = new System.DateTime(2017,06,01,13,45,30), idKlienta = 1, idPracownika = 3, idDostawcy =1},
+            new Transakcja {idTransakcji = 9999, Data = new System.DateTime(2017,06,01,13,45,30), idKlienta = 1, idPracownika = 3, idDostawcy =1}
+
+        };
+        public static Adres[] TestChangeAddressCases =
+        {
+            new Adres { idAdresu = 1, Miejscowosc = "Czeladz", Kod_pocztowy = "41-250", Wojewodztwo = "Slaskie" },
+            new Adres { idAdresu = 999, Miejscowosc = "Testowa", Kod_pocztowy = "11-111", Wojewodztwo = "Slaskie" }
+        };
+
+        public static Dostawca[] TestRegisterSupplyCases =
+        {
+            new Dostawca { idDostawcy = 1, Nazwa = "Kuriers"},
+            new Dostawca { idDostawcy= 999, Nazwa="999"}
+
+        };
+
         public static Klient[] TestChangeClientCases =
         {
             new Klient { idKlienta = 1, Imie ="Mariusz", Nazwisko ="Cebula", Nazwa_firmy = "Cebulex", idAdresu = 3 },
             new Klient { idKlienta = 999, Imie ="Test", Nazwisko ="Test", Nazwa_firmy = "Test", idAdresu = 3 }
 
-<<<<<<< HEAD
-        };
-=======
-};
 
->>>>>>> Supplier
+        };
+
+
+
+
 
     }
 }
