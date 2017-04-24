@@ -38,16 +38,21 @@ namespace Client
                             }
                             else
                             {
-                                //TODO start a new not implemented yet method Login Error
+                                ShowError();
                             }
                         }
                         else
                         {
-                            //TODO start a new not implemented yet method Login Error
+                            ShowError();
                         }
                     }
                 }
             }
+        }
+
+        public void ShowError()
+        {
+            MessageBox.Show("Wprowadzone dane są niepoprawne");
         }
     }
 }
