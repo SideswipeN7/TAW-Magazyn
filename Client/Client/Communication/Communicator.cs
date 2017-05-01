@@ -11,6 +11,18 @@ namespace Client.Communication
 {
     public class Communicator : ICommunication
     {
+        private static Communicator _instance;
+        private Communicator() { }
+        public static Communicator GetInstance()
+        {
+            if(_instance == null)
+            {
+                return new Communicator();
+            }
+            return _instance;
+        }
+
+       
         string urlAddress;
         public void SetUrlAddress(string URL)
         {
