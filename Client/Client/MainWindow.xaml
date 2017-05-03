@@ -7,12 +7,12 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        <TabControl>
-            <TabItem Header="Stan Magazynu"/>
-            <TabItem Header="Transakcje" />
-            <TabItem Header="Klienci" />
-            <TabItem Header="Artykuł" />
-            <TabItem Header="Kategorie" />
+        <TabControl x:Name="MainTab">
+            <TabItem x:Name="TabState" Header="Stan Magazynu"/>
+            <TabItem x:Name="TabTransactions" Header="Transakcje" />
+            <TabItem x:Name="TabClients" Header="Klienci" />
+            <TabItem x:Name="TabItems" Header="Artykuł" />
+            <TabItem x:Name="TabCategory" Header="Kategorie" />
         </TabControl>
     </Grid>
 </Window>
