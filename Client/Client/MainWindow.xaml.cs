@@ -19,6 +19,8 @@ namespace Client
         public MainWindow()
         {
             InitializeComponent();
+            lblid.Visibility = Visibility.Collapsed;
+            lblnazwa.Visibility = Visibility.Collapsed;
             btndodaj.Visibility = Visibility.Collapsed;
             txt_nazwa.Visibility = Visibility.Collapsed;
             btnmodyfikuj.Visibility = Visibility.Collapsed;
@@ -28,6 +30,8 @@ namespace Client
 
         private void rb_kat_dodaj_Checked(object sender, RoutedEventArgs e)
         {
+            lblid.Visibility = Visibility.Collapsed;
+            lblnazwa.Visibility = Visibility.Visible;
             btndodaj.Visibility = Visibility.Visible;
             txt_nazwa.Visibility = Visibility.Visible;
             cb_kat_id.Visibility = Visibility.Collapsed;
@@ -37,6 +41,8 @@ namespace Client
 
         private void rb_kat_wszystko_Checked(object sender, RoutedEventArgs e)
         {
+            lblid.Visibility = Visibility.Collapsed;
+            lblnazwa.Visibility = Visibility.Collapsed;
             btndodaj.Visibility = Visibility.Collapsed;
             txt_nazwa.Visibility = Visibility.Collapsed;
             btnmodyfikuj.Visibility = Visibility.Collapsed;
@@ -46,6 +52,8 @@ namespace Client
 
         private void rb_kat_modyfikuj_Checked(object sender, RoutedEventArgs e)
         {
+            lblid.Visibility = Visibility.Visible;
+            lblnazwa.Visibility = Visibility.Visible;
             cb_kat_id.Visibility = Visibility.Visible;
             btnmodyfikuj.Visibility = Visibility.Visible;
             btnusun.Visibility = Visibility.Collapsed;
@@ -55,6 +63,8 @@ namespace Client
 
         private void rb_kat_usun_Checked(object sender, RoutedEventArgs e)
         {
+            lblid.Visibility = Visibility.Visible;
+            lblnazwa.Visibility = Visibility.Visible;
             btnusun.Visibility = Visibility.Visible;
             txt_nazwa.Visibility = Visibility.Visible;
             cb_kat_id.Visibility = Visibility.Visible;
