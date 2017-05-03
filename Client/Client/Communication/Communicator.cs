@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Client.Model;
 using RestSharp;
 using Newtonsoft.Json;
 using System.Net;
 namespace Client.Communication
 {
-    public class Communicator : ICommunication
+    public sealed class Communicator : ICommunication
     {
         private static Communicator _instance;
         private Communicator() { }
@@ -17,7 +14,7 @@ namespace Client.Communication
         {
             if(_instance == null)
             {
-                return new Communicator();
+                return _instance=new Communicator();
             }
             return _instance;
         }
