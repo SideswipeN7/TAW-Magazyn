@@ -14,6 +14,13 @@ namespace Client
         public MainWindow()
         {
             InitializeComponent();
+
+        }
+
+
+        private void btnDodajArtykuly_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

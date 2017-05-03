@@ -2,3 +2,8 @@ C:\Users\USER\Documents\GitHub\TAW-Magazyn\Client\PluginExecutor\bin\Debug\Plugi
 C:\Users\USER\Documents\GitHub\TAW-Magazyn\Client\PluginExecutor\bin\Debug\PluginExecutor.pdb
 C:\Users\USER\Documents\GitHub\TAW-Magazyn\Client\PluginExecutor\obj\Debug\PluginExecutor.dll
 C:\Users\USER\Documents\GitHub\TAW-Magazyn\Client\PluginExecutor\obj\Debug\PluginExecutor.pdb
+C:\Users\stanu\Documents\TAW-Magazyn\Client\PluginExecutor\bin\Debug\PluginExecutor.dll
+C:\Users\stanu\Documents\TAW-Magazyn\Client\PluginExecutor\bin\Debug\PluginExecutor.pdb
+C:\Users\stanu\Documents\TAW-Magazyn\Client\PluginExecutor\obj\Debug\PluginExecutor.csprojResolveAssemblyReference.cache
+C:\Users\stanu\Documents\TAW-Magazyn\Client\PluginExecutor\obj\Debug\PluginExecutor.dll
+C:\Users\stanu\Documents\TAW-Magazyn\Client\PluginExecutor\obj\Debug\PluginExecutor.pdb
