@@ -2,8 +2,6 @@
 using Client.Model;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -46,7 +44,7 @@ namespace Client.Controller
 
 
 
-        internal void SearchCategoriesSate()
+        public void SearchCategoriesSate()
         {
             List<Artykul> list = new List<Artykul>();
             for (int i = 0; i < _window.DgStateLista.Items.Count; i++)
@@ -95,7 +93,7 @@ namespace Client.Controller
 
         }
 
-        internal void ShowMagazineStateAll()
+        public void ShowMagazineStateAll()
         {
             _window.ChbStateCena.Visibility = Visibility.Hidden;
             _window.ChbStateIlosc.Visibility = Visibility.Hidden;
@@ -118,7 +116,7 @@ namespace Client.Controller
             GetMagazineState();
         }
 
-        internal void ShowMagazineStateSearch()
+        public void ShowMagazineStateSearch()
         {
             _window.ChbStateCena.Visibility = Visibility.Visible;
             _window.ChbStateIlosc.Visibility = Visibility.Visible;
@@ -153,7 +151,7 @@ namespace Client.Controller
                 });
             });
         }
-        private void ShowMagazineStateData(IEnumerable<Artykul> categories)
+        public void ShowMagazineStateData(IEnumerable<Artykul> categories)
         {
             _window.Dispatcher.BeginInvoke(new Action(() =>
             {
@@ -176,7 +174,7 @@ namespace Client.Controller
                 });
             });
         }
-        private void ShowCategoryData(IEnumerable<Kategoria> categories)
+        public void ShowCategoryData(IEnumerable<Kategoria> categories)
         {
             _window.Dispatcher.BeginInvoke(new Action(() =>
             {
@@ -186,7 +184,7 @@ namespace Client.Controller
             }));
         }
 
-        internal void ShowCategoriesSate()
+        public void ShowCategoriesSate()
         {
             _window.ChbCategoryNazwa.Visibility = Visibility.Hidden;
 
@@ -203,7 +201,7 @@ namespace Client.Controller
             _window.BtnCategoryUsun.Visibility = Visibility.Hidden;
         }
 
-        internal void ShowCategoriesAdd()
+        public void ShowCategoriesAdd()
         {
             _window.ChbCategoryNazwa.Visibility = Visibility.Hidden;
 
@@ -220,7 +218,7 @@ namespace Client.Controller
             _window.BtnCategoryUsun.Visibility = Visibility.Hidden;
         }
 
-        internal void ShowCategoriesSearch()
+        public void ShowCategoriesSearch()
         {
             _window.ChbCategoryNazwa.Visibility = Visibility.Visible;
 
@@ -237,7 +235,7 @@ namespace Client.Controller
             _window.BtnCategoryUsun.Visibility = Visibility.Hidden;
         }
 
-        internal void ShowCategoriesDelete()
+        public void ShowCategoriesDelete()
         {
             _window.ChbCategoryNazwa.Visibility = Visibility.Hidden;
 
@@ -254,7 +252,7 @@ namespace Client.Controller
             _window.BtnCategoryUsun.Visibility = Visibility.Visible;
         }
 
-        internal void ShowCategoriesModify()
+        public void ShowCategoriesModify()
         {
             _window.ChbCategoryNazwa.Visibility = Visibility.Hidden;
 
@@ -271,7 +269,7 @@ namespace Client.Controller
             _window.BtnCategoryUsun.Visibility = Visibility.Hidden;
         }
 
-        internal void CategoriesAdd()
+        public void SetCategoryData()
         {
             if (_window.TxbCategoryNazwa.Text.Length > 5)
             {
@@ -282,7 +280,7 @@ namespace Client.Controller
             }
         }
 
-        internal void CategoriesModify()
+        public void ChangeCategoryData()
         {
             if (_window.TxbCategoryNazwa.Text.Length > 5)
             {
@@ -297,13 +295,13 @@ namespace Client.Controller
             }
         }
 
-        internal void CategoriesDelete()
+        public void CategoriesDelete()
         {
             //TODO
             throw new NotImplementedException();
         }
 
-        internal void CategoriesSearch()
+        public void CategoriesSearch()
         {
             List<Kategoria> list = new List<Kategoria>();
             for (int i = 0; i < _window.DgCategoryLista.Items.Count; i++)
@@ -322,7 +320,7 @@ namespace Client.Controller
         }
 
         //Items
-        internal void ShowItemsSearch()
+        public void ShowItemsSearch()
         {
             _window.ChbItemCena.Visibility = Visibility.Visible;
             _window.ChbItemIlosc.Visibility = Visibility.Visible;
@@ -346,7 +344,7 @@ namespace Client.Controller
             _window.BtnItemSzukaj.Visibility = Visibility.Visible;
         }
 
-        internal void ShowItemsModify()
+        public void ShowItemsModify()
         {
             _window.ChbItemCena.Visibility = Visibility.Hidden;
             _window.ChbItemIlosc.Visibility = Visibility.Hidden;
@@ -370,7 +368,7 @@ namespace Client.Controller
             _window.BtnItemSzukaj.Visibility = Visibility.Hidden;
         }
 
-        internal void ShowItemsAdd()
+        public void ShowItemsAdd()
         {
             _window.ChbItemCena.Visibility = Visibility.Hidden;
             _window.ChbItemIlosc.Visibility = Visibility.Hidden;
@@ -394,7 +392,7 @@ namespace Client.Controller
             _window.BtnItemSzukaj.Visibility = Visibility.Hidden;
         }
 
-        internal void ShowItemsAll()
+        public void ShowItemsAll()
         {
             _window.ChbItemCena.Visibility = Visibility.Hidden;
             _window.ChbItemIlosc.Visibility = Visibility.Hidden;
@@ -429,14 +427,14 @@ namespace Client.Controller
                 Decimal.TryParse(_window.TxbItemCenaMin.Text, out price) &&
                 _window.CmbItemKategoria.SelectedIndex > 0)
             {
-                if (_comm.ChangeItem(new Artykul() { idArtykulu = id, Cena = price, Ilosc = quantity, Nazwa = _window.TxbItemINazwa.Text, idKategorii = (int)((ComboBoxItem)_window.CmbItemKategoria.SelectedItem).Tag, Kategorie = new Kategoria() { idKategorii = (int)((ComboBoxItem)_window.CmbItemKategoria.SelectedItem).Tag, Nazwa = (String)((ComboBoxItem)_window.CmbItemKategoria.SelectedItem).Content }))
+                if (_comm.ChangeItem(new Artykul() { idArtykulu = id, Cena = price, Ilosc = quantity, Nazwa = _window.TxbItemINazwa.Text, idKategorii = (int)((ComboBoxItem)_window.CmbItemKategoria.SelectedItem).Tag, Kategorie = new Kategoria() { idKategorii = (int)((ComboBoxItem)_window.CmbItemKategoria.SelectedItem).Tag, Nazwa = (String)((ComboBoxItem)_window.CmbItemKategoria.SelectedItem).Content } }))
                 {
                     GetItemData();
                 }
             }
         }
 
-        internal void ItemsAdd()
+        public void SetItemData()
         {
             int quantity;
             decimal price;
@@ -445,44 +443,60 @@ namespace Client.Controller
                  Decimal.TryParse(_window.TxbItemCenaMin.Text, out price) &&
                  _window.CmbItemKategoria.SelectedIndex > 0)
             {
-                if (_comm.RegisterItem(new Artykul() {  Cena = price, Ilosc = quantity, Nazwa = _window.TxbItemINazwa.Text, idKategorii = (int)((ComboBoxItem)_window.CmbItemKategoria.SelectedItem).Tag, Kategorie = new Kategoria() { idKategorii = (int)((ComboBoxItem)_window.CmbItemKategoria.SelectedItem).Tag, Nazwa = (String)((ComboBoxItem)_window.CmbItemKategoria.SelectedItem).Content }))
+                if (_comm.RegisterItem(new Artykul() { Cena = price, Ilosc = quantity, Nazwa = _window.TxbItemINazwa.Text, idKategorii = (int)((ComboBoxItem)_window.CmbItemKategoria.SelectedItem).Tag, Kategorie = new Kategoria() { idKategorii = (int)((ComboBoxItem)_window.CmbItemKategoria.SelectedItem).Tag, Nazwa = (String)((ComboBoxItem)_window.CmbItemKategoria.SelectedItem).Content } }))
                 {
                     GetItemData();
                 }
             }
         }
 
-        internal void SearchItems()
+        public void SearchItems()
         {
-            throw new NotImplementedException();
+            List<Artykul> list = new List<Artykul>();
+            for (int i = 0; i < _window.DgItemLista.Items.Count; i++)
+                list.Add((Artykul)_window.DgItemLista.Items.GetItemAt(i));
+            _window.DgItemLista.Items.Clear();
+            //1
+            if (_window.ChbItemCena.IsChecked == true)
+            {
+                for (int i = 0; i < list.Count; i++)
+                {
+                    if (list[i].Cena < Decimal.Parse(_window.TxbItemCenaMin.Text) || list[i].Cena > Decimal.Parse(_window.TxbItemCenaMax.Text))
+                        list.Remove(list[i]);
+                }
+            }
+            //2
+            if (_window.ChbItemIlosc.IsChecked == true)
+            {
+                for (int i = 0; i < list.Count; i++)
+                {
+                    if (list[i].Ilosc > Int32.Parse(_window.TxbItemIlosc.Text))
+                        list.Remove(list[i]);
+                }
+            }
+            //3
+            if (_window.ChbItemKategoria.IsChecked == true)
+            {
+
+                for (int i = 0; i < list.Count; i++)
+                {
+                    //TODO
+                    if (list[i].idKategorii != (int)((ComboBoxItem)_window.CmbItemKategoria.SelectedItem).Tag)
+                        list.Remove(list[i]);
+                }
+
+            }
+            //4
+            if (_window.ChbItemNazwa.IsChecked == true)
+            {
+                for (int i = 0; i < list.Count; i++)
+                {
+                    if (!(list[i].Nazwa.ToLower().Contains(_window.TxbItemINazwa.Text.ToLower())))
+                        list.Remove(list[i]);
+                }
+            }
+            ShowItemData(list);
         }
-
-        //OTHERS TODO
-
-        public void ChangeCategoryData()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ChangeClientData()
-        {
-            throw new NotImplementedException();
-        }
-
-
-
-
-
-        public void GetClientData()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void GetClientTransactionData()
-        {
-            throw new NotImplementedException();
-        }
-
         public void GetItemData()
         {
             Task<IEnumerable<Artykul>>.Factory.StartNew(() =>
@@ -492,12 +506,12 @@ namespace Client.Controller
             {
                 Task.Factory.StartNew(() =>
                 {
-                    ShowItemsData(x.Result);
+                    ShowItemData(x.Result);
                 });
             });
         }
 
-        private void ShowItemsData(IEnumerable<Artykul> categories)
+        public void ShowItemData(IEnumerable<Artykul> categories)
         {
             _window.Dispatcher.BeginInvoke(new Action(() =>
             {
@@ -506,54 +520,45 @@ namespace Client.Controller
 
             }));
         }
+        //OTHERS TODO
 
-
-
-
-
-        public void SetCategoryData()
+        //Client
+        public void ChangeClientData()
         {
             throw new NotImplementedException();
         }
 
+        public void ShowClientData()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void GetClientData()
+        {
+            throw new NotImplementedException();
+        }
+
+       
+        
         public void SetClientData()
         {
             throw new NotImplementedException();
         }
 
+        //Transactions
+
+        public void GetClientTransactionData()
+        {
+            throw new NotImplementedException();
+        }
         public void SetClientTransactionData()
         {
             throw new NotImplementedException();
-        }
-
-        public void SetItemData()
+        }   
+        public void ShowClientTransactionData()
         {
             throw new NotImplementedException();
-        }
+        }        
 
-        public void UpdateCategoryData()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void UpdateClientData()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void UpdateClientTransactionData()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void UpdateItemData()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void UpdateMagazineState()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

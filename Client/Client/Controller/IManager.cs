@@ -1,18 +1,15 @@
-﻿using System;
+﻿using Client.Model;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Client.Controller
 {
     interface IManager
     {
-        void UpdateClientData();
-        void UpdateMagazineState();
-        void UpdateCategoryData();
-        void UpdateClientTransactionData();
-        void UpdateItemData();
+        void ShowClientData();
+        void ShowMagazineStateData(IEnumerable<Artykul> categories);
+        void ShowCategoryData(IEnumerable<Kategoria> categories);
+        void ShowClientTransactionData();
+        void ShowItemData(IEnumerable<Artykul> categories);
         void GetClientData();
         void GetMagazineState();
         void GetCategoryData();

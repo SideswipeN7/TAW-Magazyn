@@ -1,13 +1,4 @@
 ﻿using System.Windows;
-using System;
-using System.IO;
-using System.Reflection;
-using PluginExecutor;
-using System.Collections;
-using Client.Model;
-using System.Collections.Generic;
-using System.Threading;
-using System.Data;
 using Client.Controller;
 
 namespace Client
@@ -71,12 +62,12 @@ namespace Client
 
         private void BtnCategoryDodaj_Click(object sender, RoutedEventArgs e)
         {
-            _controller.CategoriesAdd();
+            _controller.SetCategoryData();
         }
 
         private void BtnCategoryModyfikuj_Click(object sender, RoutedEventArgs e)
         {
-            _controller.CategoriesModify();
+            _controller.ChangeCategoryData();
         }
 
         private void BtnCategoryUsun_Click(object sender, RoutedEventArgs e)
@@ -116,7 +107,7 @@ namespace Client
 
         private void BtnItemDodaj_Click(object sender, RoutedEventArgs e)
         {
-            _controller.ItemsAdd();
+            _controller.SetItemData();
         }
 
         private void BtnItemSzukaj_Click(object sender, RoutedEventArgs e)
