@@ -14,7 +14,7 @@ namespace Client.Communication
         {
             if (_instance == null)
             {
-                return _instance = new Communicator();
+                _instance = new Communicator();
             }
             return _instance;
         }
