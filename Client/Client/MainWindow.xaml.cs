@@ -19,6 +19,7 @@ namespace Client
         public MainWindow()
         {
             InitializeComponent();
+<<<<<<< HEAD
             lblid.Visibility = Visibility.Collapsed;
             lblnazwa.Visibility = Visibility.Collapsed;
             btndodaj.Visibility = Visibility.Collapsed;
@@ -70,6 +71,15 @@ namespace Client
             cb_kat_id.Visibility = Visibility.Visible;
             btndodaj.Visibility = Visibility.Collapsed;
             btnmodyfikuj.Visibility = Visibility.Collapsed;
+=======
+
+        }
+
+
+        private void btnDodajArtykuly_Click(object sender, RoutedEventArgs e)
+        {
+
+>>>>>>> origin/TabItem_Stan_Magazynu
         }
     }
 }
