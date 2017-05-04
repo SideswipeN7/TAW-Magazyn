@@ -75,25 +75,24 @@
                     </DataGrid>
                     <Button x:Name="BtnItemDodaj" Content="Dodaj" Canvas.Left="480" Canvas.Top="219" Width="75" />
                     <Button x:Name="BtnItemModyfikuj" Content="Modyfikuj" Canvas.Left="369" Canvas.Top="175" Width="75" />
-                    <Button x:Name="BtnItemsun" Content="Usuń" Canvas.Left="369" Canvas.Top="100" Width="75"  />
-                    <TextBox x:Name="TxbitemIlosc" Height="23" TextWrapping="Wrap" Width="120" Canvas.Left="369" Canvas.Top="133"/>
-                    <TextBox x:Name="TxbItemNazwa" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Canvas.Left="369" Canvas.Top="100"/>
-                    <ComboBox x:Name="CbmItemKategoria" Canvas.Left="369" Canvas.Top="35" Width="120"/>
+                    <TextBox x:Name="TxbItemIlosc" Height="23" TextWrapping="Wrap" Width="120" Canvas.Left="369" Canvas.Top="133"/>
+                    <TextBox x:Name="TxbItemCenaMin" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Canvas.Left="369" Canvas.Top="100"/>
+                    <ComboBox x:Name="CmbItemKategoria" Canvas.Left="369" Canvas.Top="35" Width="120"/>
                     <Label x:Name="LblItemKategoria" Content="Kategoria" Height="27" Width="62" Canvas.Left="307" Canvas.Top="33"/>
                     <Label x:Name="LblItemNazwa" Content="Nazwa" Height="28" Width="57" Canvas.Left="307" Canvas.Top="65"/>
                     <Label x:Name="LblItemIlosc" Content="Ilość" Height="28" Width="57" Canvas.Left="307" Canvas.Top="128"/>
                     <Label x:Name="LblItemCena" Content="Cena" Height="28" Width="57" Canvas.Left="307" Canvas.Top="95"/>
-                    <TextBox x:Name="TxbitemINazwa" Height="23" TextWrapping="Wrap" Width="120" Canvas.Left="369" Canvas.Top="70"/>
-                    <Button x:Name="BtnItemUsun" Content="Usuń" Canvas.Left="480" Canvas.Top="175" Width="75" />
-                    <RadioButton x:Name="RbitemWszystko" GroupName="gn" Content="Wszystko" Canvas.Left="10" Canvas.Top="10" />
-                    <RadioButton x:Name="RbItemSzukaj" GroupName="gn" Content="Szukaj" Canvas.Left="102" Canvas.Top="10" />
-                    <RadioButton x:Name="RbItemModyfikuj" GroupName="gn" Content="Modyfikuj" Canvas.Left="175" Canvas.Top="10" />
-                    <RadioButton x:Name="RbItemDodaj" GroupName="gn" Content="Dodaj" Canvas.Left="266" Canvas.Top="10" />
+                    <TextBox x:Name="TxbItemINazwa" Height="23" TextWrapping="Wrap" Width="120" Canvas.Left="369" Canvas.Top="70"/>
+                    <RadioButton x:Name="RbItemWszystko" GroupName="gn" Content="Wszystko" Canvas.Left="10" Canvas.Top="10" Checked="RbItemWszystko_Checked" />
+                    <RadioButton x:Name="RbItemSzukaj" GroupName="gn" Content="Szukaj" Canvas.Left="102" Canvas.Top="10" Checked="RbItemSzukaj_Checked" />
+                    <RadioButton x:Name="RbItemModyfikuj" GroupName="gn" Content="Modyfikuj" Canvas.Left="175" Canvas.Top="10" Checked="RbItemModyfikuj_Checked" />
+                    <RadioButton x:Name="RbItemDodaj" GroupName="gn" Content="Dodaj" Canvas.Left="266" Canvas.Top="10" Checked="RbItemDodaj_Checked" />
                     <Button x:Name="BtnItemSzukaj" Content="Szukaj" Canvas.Left="369" Canvas.Top="214" Width="75" />
                     <CheckBox x:Name="ChbItemKategoria" Content="" Canvas.Left="504" Canvas.Top="42" RenderTransformOrigin="0.5,0.467"/>
-                    <CheckBox x:Name="ChbItemCena" Content="" Canvas.Left="504" Canvas.Top="100"/>
+                    <CheckBox x:Name="ChbItemCena" Content="" Canvas.Left="636" Canvas.Top="105"/>
                     <CheckBox x:Name="ChbItemIlosc" Content="" Canvas.Left="504" Canvas.Top="133"/>
                     <CheckBox x:Name="ChbItemNazwa" Content="" Canvas.Left="504" Canvas.Top="70" RenderTransformOrigin="0.4,0.6"/>
+                    <TextBox x:Name="TxbItemCenaMax" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Canvas.Left="504" Canvas.Top="100"/>
 
                 </Canvas>
             </TabItem>

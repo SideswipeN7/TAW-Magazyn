@@ -88,5 +88,25 @@ namespace Client
         {
             _controller.CategoriesSearch();
         }
+        //Items
+        private void RbItemWszystko_Checked(object sender, RoutedEventArgs e)
+        {
+            _controller.ShowItemsAll();
+        }
+
+        private void RbItemSzukaj_Checked(object sender, RoutedEventArgs e)
+        {
+            _controller.ShowItemsSearch();
+        }
+
+        private void RbItemModyfikuj_Checked(object sender, RoutedEventArgs e)
+        {
+            _controller.ShowItemsModify();
+        }
+
+        private void RbItemDodaj_Checked(object sender, RoutedEventArgs e)
+        {
+            _controller.ShowItemsAdd();
+        }
     }
 }

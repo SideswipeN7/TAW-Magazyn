@@ -95,7 +95,6 @@ namespace Client.Controller
 
         }
 
-
         internal void ShowMagazineStateAll()
         {
             _window.ChbStateCena.Visibility = Visibility.Hidden;
@@ -286,9 +285,9 @@ namespace Client.Controller
         {
             if (_window.TxbCategoryNazwa.Text.Length > 5)
             {
-                if (_window.CmbCategoryId.SelectedIndex>0)
+                if (_window.CmbCategoryId.SelectedIndex > 0)
                 {
-                    if(_comm.ChangeCategory(new Kategoria() { idKategorii = (int)_window.CmbCategoryId.SelectedItem, Nazwa = _window.TxbCategoryNazwa.Text }))
+                    if (_comm.ChangeCategory(new Kategoria() { idKategorii = (int)_window.CmbCategoryId.SelectedItem, Nazwa = _window.TxbCategoryNazwa.Text }))
                     {
                         GetCategoryData();
                     }
@@ -319,6 +318,104 @@ namespace Client.Controller
                 }
                 GetCategoryData();
             }
+        }
+
+        //Items
+        internal void ShowItemsSearch()
+        {
+            _window.ChbItemCena.Visibility = Visibility.Visible;
+            _window.ChbItemIlosc.Visibility = Visibility.Visible;
+            _window.ChbItemKategoria.Visibility = Visibility.Visible;
+            _window.ChbItemNazwa.Visibility = Visibility.Visible;
+
+            _window.LblItemCena.Visibility = Visibility.Visible;
+            _window.LblItemIlosc.Visibility = Visibility.Visible;
+            _window.LblItemKategoria.Visibility = Visibility.Visible;
+            _window.LblItemNazwa.Visibility = Visibility.Visible;
+
+            _window.TxbItemCenaMax.Visibility = Visibility.Visible;
+            _window.TxbItemCenaMin.Visibility = Visibility.Visible;
+            _window.TxbItemIlosc.Visibility = Visibility.Visible;
+            _window.TxbItemINazwa.Visibility = Visibility.Visible;
+
+            _window.CmbItemKategoria.Visibility = Visibility.Visible;
+
+            _window.BtnItemDodaj.Visibility = Visibility.Hidden;
+            _window.BtnItemModyfikuj.Visibility = Visibility.Hidden;
+            _window.BtnItemSzukaj.Visibility = Visibility.Visible;
+        }
+
+        internal void ShowItemsModify()
+        {
+            _window.ChbItemCena.Visibility = Visibility.Hidden;
+            _window.ChbItemIlosc.Visibility = Visibility.Hidden;
+            _window.ChbItemKategoria.Visibility = Visibility.Hidden;
+            _window.ChbItemNazwa.Visibility = Visibility.Hidden;
+
+            _window.LblItemCena.Visibility = Visibility.Visible;
+            _window.LblItemIlosc.Visibility = Visibility.Visible;
+            _window.LblItemKategoria.Visibility = Visibility.Visible;
+            _window.LblItemNazwa.Visibility = Visibility.Visible;
+
+            _window.TxbItemCenaMax.Visibility = Visibility.Hidden;
+            _window.TxbItemCenaMin.Visibility = Visibility.Visible;
+            _window.TxbItemIlosc.Visibility = Visibility.Visible;
+            _window.TxbItemINazwa.Visibility = Visibility.Visible;
+
+            _window.CmbItemKategoria.Visibility = Visibility.Visible;
+
+            _window.BtnItemDodaj.Visibility = Visibility.Hidden;
+            _window.BtnItemModyfikuj.Visibility = Visibility.Visible;
+            _window.BtnItemSzukaj.Visibility = Visibility.Hidden;
+        }
+
+        internal void ShowItemsAdd()
+        {
+            _window.ChbItemCena.Visibility = Visibility.Hidden;
+            _window.ChbItemIlosc.Visibility = Visibility.Hidden;
+            _window.ChbItemKategoria.Visibility = Visibility.Hidden;
+            _window.ChbItemNazwa.Visibility = Visibility.Hidden;
+
+            _window.LblItemCena.Visibility = Visibility.Visible;
+            _window.LblItemIlosc.Visibility = Visibility.Visible;
+            _window.LblItemKategoria.Visibility = Visibility.Visible;
+            _window.LblItemNazwa.Visibility = Visibility.Visible;
+
+            _window.TxbItemCenaMax.Visibility = Visibility.Hidden;
+            _window.TxbItemCenaMin.Visibility = Visibility.Visible; 
+            _window.TxbItemIlosc.Visibility = Visibility.Visible;
+            _window.TxbItemINazwa.Visibility = Visibility.Visible;
+
+            _window.CmbItemKategoria.Visibility = Visibility.Visible;
+
+            _window.BtnItemDodaj.Visibility = Visibility.Visible;
+            _window.BtnItemModyfikuj.Visibility = Visibility.Hidden;
+            _window.BtnItemSzukaj.Visibility = Visibility.Hidden;
+        }
+
+        internal void ShowItemsAll()
+        {
+            _window.ChbItemCena.Visibility = Visibility.Hidden;
+            _window.ChbItemIlosc.Visibility = Visibility.Hidden;
+            _window.ChbItemKategoria.Visibility = Visibility.Hidden;
+            _window.ChbItemNazwa.Visibility = Visibility.Hidden;
+
+            _window.LblItemCena.Visibility = Visibility.Hidden;
+            _window.LblItemIlosc.Visibility = Visibility.Hidden;
+            _window.LblItemKategoria.Visibility = Visibility.Hidden;
+            _window.LblItemNazwa.Visibility = Visibility.Hidden;
+
+            _window.TxbItemCenaMax.Visibility = Visibility.Hidden;
+            _window.TxbItemCenaMin.Visibility = Visibility.Hidden; _window.TxbItemCenaMax.Visibility = Visibility.Hidden;
+            _window.TxbItemIlosc.Visibility = Visibility.Hidden;
+            _window.TxbItemINazwa.Visibility = Visibility.Hidden;
+
+            _window.CmbItemKategoria.Visibility = Visibility.Hidden;
+
+            _window.BtnItemDodaj.Visibility = Visibility.Hidden;
+            _window.BtnItemModyfikuj.Visibility = Visibility.Hidden;
+            _window.BtnItemSzukaj.Visibility = Visibility.Hidden;
+            
         }
 
         //OTHERS TODO
