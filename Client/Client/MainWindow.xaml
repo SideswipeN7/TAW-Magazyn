@@ -10,9 +10,9 @@
         <TabControl x:Name="MainTab">
             <TabItem x:Name="TabState" Header="Stan Magazynu">
                 <Canvas>
-                    <RadioButton Content="Dodaj" Height="18" Width="100" Name="rbDodaj" Canvas.Left="85" Canvas.Top="5"/>
-                    <RadioButton Content="Szukaj" Height="18" Width="100" Name="rbSzukaj" Canvas.Left="190" Canvas.Top="5"/>
-                    <DataGrid x:Name="dg_st" IsReadOnly="True" HorizontalAlignment="Left" VerticalAlignment="Top" Height="259" Width="322" Canvas.Left="10" Canvas.Top="28"  >
+                    <RadioButton Content="Dodaj" Height="18" Width="100" x:Name="RbStateDodaj" Canvas.Left="85" Canvas.Top="5"/>
+                    <RadioButton Content="Szukaj" Height="18" Width="100" x:Name="RbStateSzukaj" Canvas.Left="190" Canvas.Top="5"/>
+                    <DataGrid x:Name="DgStateLista" IsReadOnly="True" HorizontalAlignment="Left" VerticalAlignment="Top" Height="259" Width="322" Canvas.Left="10" Canvas.Top="28"  >
                         <DataGrid.Columns>
                             <DataGridTextColumn   Header="Nazwa artykułu" Width="100" Binding="{Binding NazwaArtykulu}" />
                             <DataGridTextColumn   Header="Ilość" Width="80" Binding="{Binding Ilosc}"/>
@@ -20,39 +20,27 @@
                             <DataGridTextColumn   Header="Cena" Width="*" Binding="{Binding Cena}"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <TextBox x:Name="txbNazwaArtykulu" Height="23" Canvas.Left="461" TextWrapping="Wrap" Text="" Canvas.Top="66" Width="127" RenderTransformOrigin="-0.096,0.011"/>
-                    <Label x:Name="lblNazwaArtykulu" Content="Nazwa artykułu" Canvas.Left="337" Canvas.Top="62"/>
-                    <TextBox x:Name="txbIlosc" Height="23" Canvas.Left="461" TextWrapping="Wrap" Text="" Canvas.Top="93" Width="127" RenderTransformOrigin="-0.096,0.011"/>
-                    <Label x:Name="lblIlosc" Content="Ilość artykułu" Canvas.Left="337" Canvas.Top="93"/>
-                    <TextBox x:Name="txbCena" Height="23" Canvas.Left="461" TextWrapping="Wrap" Text="" Canvas.Top="121" Width="127" RenderTransformOrigin="-0.096,0.011"/>
-                    <Label x:Name="lblCena" Content="Cena" Canvas.Left="337" Canvas.Top="119"/>
-                    <Label x:Name="lblKategoria" Content="Kategoria" Canvas.Left="337" Canvas.Top="149"/>
-                    <ComboBox Height="26" Width="127" Canvas.Left="461" Canvas.Top="149" Name="cmbCategory"/>
-                    <Button x:Name="btnDodajArtykuly" Content="Dodaj" Canvas.Left="487" Canvas.Top="180" Width="75" Click="btnDodajArtykuly_Click" RenderTransformOrigin="0.982,1.97"/>
+                    <TextBox x:Name="TxbStateNazwa" Height="23" Canvas.Left="461" TextWrapping="Wrap" Text="" Canvas.Top="66" Width="127" RenderTransformOrigin="-0.096,0.011"/>
+                    <Label x:Name="LblStateNazwaArt" Content="Nazwa artykułu" Canvas.Left="337" Canvas.Top="62"/>
+                    <TextBox x:Name="TxbStateNazwa1" Height="23" Canvas.Left="461" TextWrapping="Wrap" Text="" Canvas.Top="93" Width="127" RenderTransformOrigin="-0.096,0.011"/>
+                    <Label x:Name="LblStateNazwa" Content="Ilość artykułu" Canvas.Left="337" Canvas.Top="93"/>
+                    <TextBox x:Name="TxbStateNazwa2" Height="23" Canvas.Left="461" TextWrapping="Wrap" Text="" Canvas.Top="121" Width="127" RenderTransformOrigin="-0.096,0.011"/>
+                    <Label x:Name="LblStateCena" Content="Cena" Canvas.Left="337" Canvas.Top="119"/>
+                    <Label x:Name="LblStateKategoria" Content="Kategoria" Canvas.Left="337" Canvas.Top="149"/>
+                    <ComboBox Height="26" Width="127" Canvas.Left="461" Canvas.Top="149" x:Name="CmbStateKategoria"/>
+                    <Button x:Name="BtnSateSzukaj" Content="Szukaj" Canvas.Left="483" Canvas.Top="194" Width="75" RenderTransformOrigin="0.982,1.97"/>
+                    <CheckBox x:Name="ChbStateNazwa" Content="" Canvas.Left="593" Canvas.Top="68"/>
+                    <CheckBox x:Name="ChbStateIlosc" Content="" Canvas.Left="593" Canvas.Top="101"/>
+                    <CheckBox x:Name="ChbStateCena" Content="" Canvas.Left="593" Canvas.Top="129" RenderTransformOrigin="1.85,4.467"/>
+                    <CheckBox x:Name="ChbStateKategoria" Content="" Canvas.Left="593" Canvas.Top="160" RenderTransformOrigin="0.55,6.933"/>
                 </Canvas>
             </TabItem>
 
             <TabItem x:Name="TabTransactions" Header="Transakcje" />
             <TabItem x:Name="TabClients" Header="Klienci" />
-<<<<<<< HEAD
-            <TabItem x:Name="TabItems" Header="Artykuł" >
-                <Canvas>
-                    <DataGrid x:Name="dg_art" HorizontalAlignment="Left" VerticalAlignment="Top" Height="211" Width="265"  IsReadOnly="True" Canvas.Left="10" Canvas.Top="40">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn   Header="Nazwa" Width="*" Binding="{Binding Nazwa}"/>
-                            <DataGridTextColumn   Header="Ilość" Width="*" Binding="{Binding Ilosc}"/>
-                            <DataGridTextColumn   Header="Cena" Width="*" Binding="{Binding Cena}"/>
-                            <DataGridTextColumn   Header="Kategoria" Width="*" Binding="{Binding Kategoria}"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
-                    <Button x:Name="btndodaj" Content="Dodaj" Canvas.Left="369" Canvas.Top="175" Width="75" />
-                    <Button x:Name="btnmodyfikuj" Content="Modyfikuj" Canvas.Left="369" Canvas.Top="175" Width="75" />
-                    <Button x:Name="btnusun" Content="Usuń" Canvas.Left="369" Canvas.Top="100" Width="75"  />
-=======
-            <TabItem x:Name="TabItems" Header="Artykuł" />
             <TabItem x:Name="TabCategory" Header="Kategorie" >
                 <Canvas>
-                    <DataGrid x:Name="dg_kat" HorizontalAlignment="Left" VerticalAlignment="Top" Height="211" Width="265"  IsReadOnly="True" Canvas.Left="10" Canvas.Top="40">
+                    <DataGrid x:Name="DgCategoryLista" HorizontalAlignment="Left" VerticalAlignment="Top" Height="211" Width="265"  IsReadOnly="True" Canvas.Left="10" Canvas.Top="40">
                         <DataGrid.Columns>
                             <DataGridTextColumn   Header="ID" Width="110" Binding="{Binding idKategorii}" />
                             <DataGridTextColumn   Header="Nazwa" Width="*" Binding="{Binding Nazwa}"/>
@@ -60,37 +48,57 @@
                     </DataGrid>
                     <Button x:Name="btndodaj" Content="Dodaj" Canvas.Left="369" Canvas.Top="95" Width="75" />
                     <Button x:Name="btnmodyfikuj" Content="Modyfikuj" Canvas.Left="369" Canvas.Top="95" Width="75" />
-                    <Button x:Name="btnusun" Content="Usuń" Canvas.Left="369" Canvas.Top="95" Width="75"  />
->>>>>>> origin/TabItem-Kategorie
-                    <RadioButton Name="rb_kat_wszystko" GroupName="gn" Content="Wszystko" Canvas.Left="10" Canvas.Top="10"  Checked="rb_kat_wszystko_Checked" />
-                    <RadioButton Name="rb_kat_dodaj" GroupName="gn" Content="Dodaj" Canvas.Left="96" Canvas.Top="10" Checked="rb_kat_dodaj_Checked"/>
-                    <RadioButton Name="rb_kat_modyfikuj" GroupName="gn" Content="Modyfikuj" Canvas.Left="168" Canvas.Top="10" Checked="rb_kat_modyfikuj_Checked" />
-                    <RadioButton Name="rb_kat_usun" GroupName="gn" Content="Usuń" Canvas.Left="260" Canvas.Top="10" Checked="rb_kat_usun_Checked"/>
-                    <TextBox x:Name="txt_nazwa" Height="23" Canvas.Left="369" TextWrapping="Wrap" Canvas.Top="67" Width="120" RenderTransformOrigin="0.115,0.691"/>
-<<<<<<< HEAD
-                    <TextBox x:Name="txt_ilosc" Height="23" TextWrapping="Wrap" Width="120" Canvas.Left="369" Canvas.Top="133"/>
-                    <TextBox x:Name="txt_cena" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Canvas.Left="369" Canvas.Top="100"/>
-
-                    <ComboBox x:Name="cb_nazwakat" Canvas.Left="369" Canvas.Top="35" Width="120"/>
-                    <Label x:Name="lblkategoria" Content="Kategoria" Height="27" Width="62" Canvas.Left="307" Canvas.Top="33"/>
-                    <Label x:Name="lblnazwa" Content="Nazwa" Height="28" Width="57" Canvas.Left="307" Canvas.Top="65"/>
-                    <Label x:Name="lblcena" Content="Ilość" Height="28" Width="57" Canvas.Left="307" Canvas.Top="128"/>
-                    <Label x:Name="lblilosc" Content="Cena" Height="28" Width="57" Canvas.Left="307" Canvas.Top="95"/>
+                    <Button x:Name="BtnCategoryUsun" Content="Usuń" Canvas.Left="369" Canvas.Top="95" Width="75"  />
+                    <RadioButton x:Name="RbCategoryWszystko" GroupName="gn" Content="Wszystko" Canvas.Left="10" Canvas.Top="10" />
+                    <RadioButton x:Name="RbCategoryDodaj" GroupName="gn" Content="Dodaj" Canvas.Left="96" Canvas.Top="10"/>
+                    <RadioButton x:Name="RbCategoryModyfikuj" GroupName="gn" Content="Modyfikuj" Canvas.Left="168" Canvas.Top="10" />
+                    <RadioButton x:Name="RbCategoryUsun" GroupName="gn" Content="Usuń" Canvas.Left="260" Canvas.Top="10"/>
+                    <TextBox x:Name="TxbCategoryNazwa" Height="23" Canvas.Left="369" TextWrapping="Wrap" Canvas.Top="67" Width="120" RenderTransformOrigin="0.115,0.691"/>
+                    <ComboBox x:Name="CmbCategoryId" Canvas.Left="369" Canvas.Top="40" Width="120"/>
+                    <Label x:Name="LblCategoryId" Content="Id" Height="27" Width="57" Canvas.Left="312" Canvas.Top="35"/>
+                    <Button x:Name="BtnCategoryDodaj" Content="Dodaj" Canvas.Left="369" Canvas.Top="140" Width="75"  />
+                    <Button x:Name="BtnCategoryModyfikuj" Content="Modyfikuj" Width="75" Canvas.Left="369" Canvas.Top="175"  />
+                    <Label x:Name="LblCategoryNazwa" Content="Nazwa" Height="28" Width="57" Canvas.Left="312" Canvas.Top="62"/>
+                    <RadioButton x:Name="RbCategorySzukaj" GroupName="gn" Content="Szukaj" Canvas.Left="323" Canvas.Top="10"/>
+                    <Button x:Name="BtnCategorySzukaj" Content="Szukaj" Canvas.Left="461" Canvas.Top="175" Width="75"  />
+                    <CheckBox x:Name="ChbCategoryNazwa" Content="" Canvas.Left="506" Canvas.Top="67"/>
+                </Canvas>
+            </TabItem>
+            <TabItem x:Name="TabItems" Header="Artykuł" >
+                <Canvas>
+                    <DataGrid x:Name="DgItemLista" HorizontalAlignment="Left" VerticalAlignment="Top" Height="211" Width="265"  IsReadOnly="True" Canvas.Left="10" Canvas.Top="65">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn   Header="Nazwa" Width="*" Binding="{Binding Nazwa}"/>
+                            <DataGridTextColumn   Header="Ilość" Width="*" Binding="{Binding Ilosc}"/>
+                            <DataGridTextColumn   Header="Cena" Width="*" Binding="{Binding Cena}"/>
+                            <DataGridTextColumn   Header="Kategoria" Width="*" Binding="{Binding Kategoria}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button x:Name="BtnItemDodaj" Content="Dodaj" Canvas.Left="480" Canvas.Top="219" Width="75" />
+                    <Button x:Name="BtnItemModyfikuj" Content="Modyfikuj" Canvas.Left="369" Canvas.Top="175" Width="75" />
+                    <Button x:Name="BtnItemsun" Content="Usuń" Canvas.Left="369" Canvas.Top="100" Width="75"  />
+                    <TextBox x:Name="TxbitemIlosc" Height="23" TextWrapping="Wrap" Width="120" Canvas.Left="369" Canvas.Top="133"/>
+                    <TextBox x:Name="TxbItemNazwa" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Canvas.Left="369" Canvas.Top="100"/>
+                    <ComboBox x:Name="CbmItemKategoria" Canvas.Left="369" Canvas.Top="35" Width="120"/>
+                    <Label x:Name="LblItemKategoria" Content="Kategoria" Height="27" Width="62" Canvas.Left="307" Canvas.Top="33"/>
+                    <Label x:Name="LblItemNazwa" Content="Nazwa" Height="28" Width="57" Canvas.Left="307" Canvas.Top="65"/>
+                    <Label x:Name="LblItemIlosc" Content="Ilość" Height="28" Width="57" Canvas.Left="307" Canvas.Top="128"/>
+                    <Label x:Name="LblItemCena" Content="Cena" Height="28" Width="57" Canvas.Left="307" Canvas.Top="95"/>
+                    <TextBox x:Name="TxbitemINazwa" Height="23" TextWrapping="Wrap" Width="120" Canvas.Left="369" Canvas.Top="70"/>
+                    <Button x:Name="BtnItemUsun" Content="Usuń" Canvas.Left="480" Canvas.Top="175" Width="75" />
+                    <RadioButton x:Name="RbitemWszystko" GroupName="gn" Content="Wszystko" Canvas.Left="10" Canvas.Top="10" />
+                    <RadioButton x:Name="RbItemSzukaj" GroupName="gn" Content="Szukaj" Canvas.Left="102" Canvas.Top="10" />
+                    <RadioButton x:Name="RbItemModyfikuj" GroupName="gn" Content="Modyfikuj" Canvas.Left="175" Canvas.Top="10" />
+                    <RadioButton x:Name="RbItemDodaj" GroupName="gn" Content="Dodaj" Canvas.Left="266" Canvas.Top="10" />
+                    <Button x:Name="BtnItemSzukaj" Content="Szukaj" Canvas.Left="369" Canvas.Top="214" Width="75" />
+                    <CheckBox x:Name="ChbItemKategoria" Content="" Canvas.Left="504" Canvas.Top="42" RenderTransformOrigin="0.5,0.467"/>
+                    <CheckBox x:Name="ChbItemCena" Content="" Canvas.Left="504" Canvas.Top="100"/>
+                    <CheckBox x:Name="ChbItemIlosc" Content="" Canvas.Left="504" Canvas.Top="133"/>
+                    <CheckBox x:Name="ChbItemNazwa" Content="" Canvas.Left="504" Canvas.Top="70" RenderTransformOrigin="0.4,0.6"/>
 
                 </Canvas>
             </TabItem>
-            <TabItem x:Name="TabCategory" Header="Kategorie" />
 
-
-
-
-=======
-                    <ComboBox x:Name="cb_kat_id" Canvas.Left="369" Canvas.Top="40" Width="120"/>
-                    <Label x:Name="lblid" Content="Id" Height="27" Width="57" Canvas.Left="312" Canvas.Top="35"/>
-                    <Label x:Name="lblnazwa" Content="Nazwa" Height="28" Width="57" Canvas.Left="312" Canvas.Top="62"/>
-                </Canvas>
-            </TabItem>
->>>>>>> origin/TabItem-Kategorie
         </TabControl>
     </Grid>
 </Window>
