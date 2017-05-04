@@ -75,6 +75,8 @@
     </Compile>
     <Compile Include="Communication\Communicator.cs" />
     <Compile Include="Communication\ICommunication.cs" />
+    <Compile Include="Controller\IManager.cs" />
+    <Compile Include="Controller\Manager.cs" />
     <Compile Include="LoginWIndow.xaml.cs">
       <DependentUpon>LoginWIndow.xaml</DependentUpon>
     </Compile>
