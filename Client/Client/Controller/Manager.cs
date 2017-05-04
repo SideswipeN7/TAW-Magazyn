@@ -5,11 +5,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace Client.Controller
 {
-    public sealed class Manager :IManager
+    public sealed class Manager : IManager
     {
         private static Manager _instance;
         private MainWindow _window;
@@ -39,12 +40,13 @@ namespace Client.Controller
             foreach (Kategoria r in list)
             {
                 _window.CmbStateKategoria.Items.Add(new ComboBoxItem() { Content = r.Nazwa, Tag = r.idKategorii });
-                
+
             }
         }
 
 
-        internal void SearchMagazineSate()
+
+        internal void SearchCategoriesSate()
         {
             List<Artykul> list = new List<Artykul>();
             for (int i = 0; i < _window.DgStateLista.Items.Count; i++)
@@ -71,8 +73,8 @@ namespace Client.Controller
             //3
             if (_window.ChbStateKategoria.IsChecked == true)
             {
-               
-                for(int i =0;i< list.Count;i++)
+
+                for (int i = 0; i < list.Count; i++)
                 {
                     //TODO
                     if (list[i].idKategorii != (int)((ComboBoxItem)_window.CmbStateKategoria.SelectedItem).Tag)
@@ -92,6 +94,51 @@ namespace Client.Controller
             ShowMagazineStateData(list);
 
         }
+
+
+        internal void ShowMagazineStateAll()
+        {
+            _window.ChbStateCena.Visibility = Visibility.Hidden;
+            _window.ChbStateIlosc.Visibility = Visibility.Hidden;
+            _window.ChbStateKategoria.Visibility = Visibility.Hidden;
+            _window.ChbStateNazwa.Visibility = Visibility.Hidden;
+
+            _window.LblStateCena.Visibility = Visibility.Hidden;
+            _window.LblStateIlosc.Visibility = Visibility.Hidden;
+            _window.LblStateKategoria.Visibility = Visibility.Hidden;
+            _window.LblStateNazwa.Visibility = Visibility.Hidden;
+
+            _window.TxbStateCenaMin.Visibility = Visibility.Hidden;
+            _window.TxbStateCenaMax.Visibility = Visibility.Hidden;
+            _window.TxbStateIlosc.Visibility = Visibility.Hidden;
+            _window.TxbStateNazwa.Visibility = Visibility.Hidden;
+            _window.CmbStateKategoria.Visibility = Visibility.Hidden;
+
+            _window.BtnSateSzukaj.Visibility = Visibility.Hidden;
+
+            GetMagazineState();
+        }
+        internal void ShowMagazineStateSearch()
+        {
+            _window.ChbStateCena.Visibility = Visibility.Visible;
+            _window.ChbStateIlosc.Visibility = Visibility.Visible;
+            _window.ChbStateKategoria.Visibility = Visibility.Visible;
+            _window.ChbStateNazwa.Visibility = Visibility.Visible;
+
+            _window.LblStateCena.Visibility = Visibility.Visible;
+            _window.LblStateIlosc.Visibility = Visibility.Visible;
+            _window.LblStateKategoria.Visibility = Visibility.Visible;
+            _window.LblStateNazwa.Visibility = Visibility.Visible;
+
+            _window.TxbStateCenaMin.Visibility = Visibility.Visible;
+            _window.TxbStateCenaMax.Visibility = Visibility.Visible;
+            _window.TxbStateIlosc.Visibility = Visibility.Visible;
+            _window.TxbStateNazwa.Visibility = Visibility.Visible;
+            _window.CmbStateKategoria.Visibility = Visibility.Visible;
+
+            _window.BtnSateSzukaj.Visibility = Visibility.Visible;
+        }
+
         public void GetMagazineState()
         {
             _window.DgStateLista.Items.Clear();
@@ -116,12 +163,165 @@ namespace Client.Controller
             }));
         }
         //Categories
+        public void GetCategoryData()
+        {
+            Task<IEnumerable<Kategoria>>.Factory.StartNew(() =>
+            {
+                return _comm.GetCategories();
+            }).ContinueWith(x =>
+            {
+                Task.Factory.StartNew(() =>
+                {
+                    ShowCategoryData(x.Result);
+                });
+            });
+        }
+        private void ShowCategoryData(IEnumerable<Kategoria> categories)
+        {
+            _window.Dispatcher.BeginInvoke(new Action(() =>
+            {
+                foreach (Kategoria r in categories)
+                    _window.DgCategoryLista.Items.Add(r);
 
+            }));
+        }
 
+        internal void ShowCategoriesSate()
+        {
+            _window.ChbCategoryNazwa.Visibility = Visibility.Hidden;
 
+            _window.LblCategoryId.Visibility = Visibility.Hidden;
+            _window.LblCategoryNazwa.Visibility = Visibility.Hidden;
 
+            _window.TxbCategoryNazwa.Visibility = Visibility.Hidden;
 
+            _window.CmbCategoryId.Visibility = Visibility.Hidden;
 
+            _window.BtnCategoryDodaj.Visibility = Visibility.Hidden;
+            _window.BtnCategoryModyfikuj.Visibility = Visibility.Hidden;
+            _window.BtnCategorySzukaj.Visibility = Visibility.Hidden;
+            _window.BtnCategoryUsun.Visibility = Visibility.Hidden;
+        }
+
+        internal void ShowCategoriesAdd()
+        {
+            _window.ChbCategoryNazwa.Visibility = Visibility.Hidden;
+
+            _window.LblCategoryId.Visibility = Visibility.Hidden;
+            _window.LblCategoryNazwa.Visibility = Visibility.Visible;
+
+            _window.TxbCategoryNazwa.Visibility = Visibility.Visible;
+
+            _window.CmbCategoryId.Visibility = Visibility.Hidden;
+
+            _window.BtnCategoryDodaj.Visibility = Visibility.Visible;
+            _window.BtnCategoryModyfikuj.Visibility = Visibility.Hidden;
+            _window.BtnCategorySzukaj.Visibility = Visibility.Hidden;
+            _window.BtnCategoryUsun.Visibility = Visibility.Hidden;
+        }
+
+        internal void ShowCategoriesSearch()
+        {
+            _window.ChbCategoryNazwa.Visibility = Visibility.Visible;
+
+            _window.LblCategoryId.Visibility = Visibility.Visible;
+            _window.LblCategoryNazwa.Visibility = Visibility.Visible;
+
+            _window.TxbCategoryNazwa.Visibility = Visibility.Visible;
+
+            _window.CmbCategoryId.Visibility = Visibility.Visible;
+
+            _window.BtnCategoryDodaj.Visibility = Visibility.Hidden;
+            _window.BtnCategoryModyfikuj.Visibility = Visibility.Hidden;
+            _window.BtnCategorySzukaj.Visibility = Visibility.Visible;
+            _window.BtnCategoryUsun.Visibility = Visibility.Hidden;
+        }
+
+        internal void ShowCategoriesDelete()
+        {
+            _window.ChbCategoryNazwa.Visibility = Visibility.Hidden;
+
+            _window.LblCategoryId.Visibility = Visibility.Visible;
+            _window.LblCategoryNazwa.Visibility = Visibility.Visible;
+
+            _window.TxbCategoryNazwa.Visibility = Visibility.Visible;
+
+            _window.CmbCategoryId.Visibility = Visibility.Visible;
+
+            _window.BtnCategoryDodaj.Visibility = Visibility.Hidden;
+            _window.BtnCategoryModyfikuj.Visibility = Visibility.Hidden;
+            _window.BtnCategorySzukaj.Visibility = Visibility.Hidden;
+            _window.BtnCategoryUsun.Visibility = Visibility.Visible;
+        }
+
+        internal void ShowCategoriesModify()
+        {
+            _window.ChbCategoryNazwa.Visibility = Visibility.Hidden;
+
+            _window.LblCategoryId.Visibility = Visibility.Visible;
+            _window.LblCategoryNazwa.Visibility = Visibility.Visible;
+
+            _window.TxbCategoryNazwa.Visibility = Visibility.Visible;
+
+            _window.CmbCategoryId.Visibility = Visibility.Visible;
+
+            _window.BtnCategoryDodaj.Visibility = Visibility.Hidden;
+            _window.BtnCategoryModyfikuj.Visibility = Visibility.Visible;
+            _window.BtnCategorySzukaj.Visibility = Visibility.Hidden;
+            _window.BtnCategoryUsun.Visibility = Visibility.Hidden;
+        }
+
+        internal void CategoriesAdd()
+        {
+            if (_window.TxbCategoryNazwa.Text.Length > 5)
+            {
+                if (_comm.RegisterCategory(new Kategoria() { Nazwa = _window.TxbCategoryNazwa.Text }))
+                {
+                    GetCategoryData();
+                }
+            }
+        }
+
+        internal void CategoriesModify()
+        {
+            if (_window.TxbCategoryNazwa.Text.Length > 5)
+            {
+                if (_window.CmbCategoryId.SelectedIndex>0)
+                {
+                    if(_comm.ChangeCategory(new Kategoria() { idKategorii = (int)_window.CmbCategoryId.SelectedItem, Nazwa = _window.TxbCategoryNazwa.Text }))
+                    {
+                        GetCategoryData();
+                    }
+
+                }
+            }
+        }
+
+        internal void CategoriesDelete()
+        {
+            //TODO
+            throw new NotImplementedException();
+        }
+
+        internal void CategoriesSearch()
+        {
+            List<Kategoria> list = new List<Kategoria>();
+            for (int i = 0; i < _window.DgCategoryLista.Items.Count; i++)
+                list.Add((Kategoria)_window.DgCategoryLista.Items.GetItemAt(i));
+            _window.DgCategoryLista.Items.Clear();
+            //1
+            if (_window.ChbCategoryNazwa.IsChecked == true)
+            {
+                for (int i = 0; i < list.Count; i++)
+                {
+                    if (list[i].Nazwa.ToLower().Contains(_window.TxbCategoryNazwa.Text.ToLower()))
+                        list.Remove(list[i]);
+                }
+                GetCategoryData();
+            }
+        }
+
+        //OTHERS TODO
 
         public void ChangeCategoryData()
         {
@@ -138,28 +338,7 @@ namespace Client.Controller
             throw new NotImplementedException();
         }
 
-        public void GetCategoryData()
-        {
-            Task<IEnumerable<Kategoria>>.Factory.StartNew(() =>
-            {
-                return _comm.GetCategories();                
-            }).ContinueWith(x =>
-            {
-                Task.Factory.StartNew(() =>
-                {                  
-                    ShowCategoryData(x.Result);
-                });
-            });
-        }
-        private void ShowCategoryData(IEnumerable<Kategoria> categories)
-        {
-            _window.Dispatcher.BeginInvoke(new Action(() =>
-            {               
-                foreach (Kategoria r in categories)
-                    _window.DgCategoryLista.Items.Add(r);
 
-            }));
-        }
 
         public void GetClientData()
         {
@@ -195,9 +374,9 @@ namespace Client.Controller
             }));
         }
 
-        
 
-       
+
+
 
         public void SetCategoryData()
         {

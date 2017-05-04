@@ -33,51 +33,60 @@ namespace Client
         //Magazine State
         private void RbStateSzukaj_Checked(object sender, RoutedEventArgs e)
         {
-            ChbStateCena.Visibility = Visibility.Visible;
-            ChbStateIlosc.Visibility = Visibility.Visible;
-            ChbStateKategoria.Visibility = Visibility.Visible;
-            ChbStateNazwa.Visibility = Visibility.Visible;
-
-            LblStateCena.Visibility = Visibility.Visible;
-            LblStateIlosc.Visibility = Visibility.Visible;
-            LblStateKategoria.Visibility = Visibility.Visible;
-            LblStateNazwa.Visibility = Visibility.Visible;
-
-            TxbStateCenaMin.Visibility = Visibility.Visible;
-            TxbStateCenaMax.Visibility = Visibility.Visible;
-            TxbStateIlosc.Visibility = Visibility.Visible;
-            TxbStateNazwa.Visibility = Visibility.Visible;
-            CmbStateKategoria.Visibility = Visibility.Visible;
-
-            BtnSateSzukaj.Visibility = Visibility.Visible;
+            _controller.ShowMagazineStateSearch();
         }
         private void RbStateWszystko_Checked(object sender, RoutedEventArgs e)
         {
-            ChbStateCena.Visibility = Visibility.Hidden;
-            ChbStateIlosc.Visibility = Visibility.Hidden;
-            ChbStateKategoria.Visibility = Visibility.Hidden;
-            ChbStateNazwa.Visibility = Visibility.Hidden;
-
-            LblStateCena.Visibility = Visibility.Hidden;
-            LblStateIlosc.Visibility = Visibility.Hidden;
-            LblStateKategoria.Visibility = Visibility.Hidden;
-            LblStateNazwa.Visibility = Visibility.Hidden;
-
-            TxbStateCenaMin.Visibility = Visibility.Hidden;
-            TxbStateCenaMax.Visibility = Visibility.Hidden;
-            TxbStateIlosc.Visibility = Visibility.Hidden;
-            TxbStateNazwa.Visibility = Visibility.Hidden;
-            CmbStateKategoria.Visibility = Visibility.Hidden;
-
-            BtnSateSzukaj.Visibility = Visibility.Hidden;
-
-            _controller.GetMagazineState();
+            _controller.ShowMagazineStateAll();
         }
         private void BtnSateSzukaj_Click(object sender, RoutedEventArgs e)
         {
-            _controller.SearchMagazineSate();
+            _controller.SearchCategoriesSate();
+        }
+        //Categories
+        private void RbCategoryWszystko_Checked(object sender, RoutedEventArgs e)
+        {
+            _controller.ShowCategoriesSate();
         }
 
-       
+        private void RbCategoryDodaj_Checked(object sender, RoutedEventArgs e)
+        {
+            _controller.ShowCategoriesAdd();
+        }
+
+        private void RbCategoryModyfikuj_Checked(object sender, RoutedEventArgs e)
+        {
+            _controller.ShowCategoriesModify();
+        }
+
+        private void RbCategoryUsun_Checked(object sender, RoutedEventArgs e)
+        {
+            _controller.ShowCategoriesDelete();
+        }
+
+        private void RbCategorySzukaj_Checked(object sender, RoutedEventArgs e)
+        {
+            _controller.ShowCategoriesSearch();
+        }
+
+        private void BtnCategoryDodaj_Click(object sender, RoutedEventArgs e)
+        {
+            _controller.CategoriesAdd();
+        }
+
+        private void BtnCategoryModyfikuj_Click(object sender, RoutedEventArgs e)
+        {
+            _controller.CategoriesModify();
+        }
+
+        private void BtnCategoryUsun_Click(object sender, RoutedEventArgs e)
+        {
+            _controller.CategoriesDelete();
+        }
+
+        private void BtnCategorySzukaj_Click(object sender, RoutedEventArgs e)
+        {
+            _controller.CategoriesSearch();
+        }
     }
 }

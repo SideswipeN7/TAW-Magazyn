@@ -47,21 +47,19 @@
                             <DataGridTextColumn   Header="Nazwa" Width="*" Binding="{Binding Nazwa}"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Button x:Name="btndodaj" Content="Dodaj" Canvas.Left="369" Canvas.Top="95" Width="75" />
-                    <Button x:Name="btnmodyfikuj" Content="Modyfikuj" Canvas.Left="369" Canvas.Top="95" Width="75" />
-                    <Button x:Name="BtnCategoryUsun" Content="Usuń" Canvas.Left="369" Canvas.Top="95" Width="75"  />
-                    <RadioButton x:Name="RbCategoryWszystko" GroupName="gn" Content="Wszystko" Canvas.Left="10" Canvas.Top="10" />
-                    <RadioButton x:Name="RbCategoryDodaj" GroupName="gn" Content="Dodaj" Canvas.Left="96" Canvas.Top="10"/>
-                    <RadioButton x:Name="RbCategoryModyfikuj" GroupName="gn" Content="Modyfikuj" Canvas.Left="168" Canvas.Top="10" />
-                    <RadioButton x:Name="RbCategoryUsun" GroupName="gn" Content="Usuń" Canvas.Left="260" Canvas.Top="10"/>
+                    <Button x:Name="BtnCategoryUsun" Content="Usuń" Canvas.Left="461" Canvas.Top="140" Width="75" Click="BtnCategoryUsun_Click"  />
+                    <RadioButton x:Name="RbCategoryWszystko" GroupName="gn" Content="Wszystko" Canvas.Left="10" Canvas.Top="10" Checked="RbCategoryWszystko_Checked" />
+                    <RadioButton x:Name="RbCategoryDodaj" GroupName="gn" Content="Dodaj" Canvas.Left="96" Canvas.Top="10" Checked="RbCategoryDodaj_Checked"/>
+                    <RadioButton x:Name="RbCategoryModyfikuj" GroupName="gn" Content="Modyfikuj" Canvas.Left="168" Canvas.Top="10" Checked="RbCategoryModyfikuj_Checked" />
+                    <RadioButton x:Name="RbCategoryUsun" GroupName="gn" Content="Usuń" Canvas.Left="260" Canvas.Top="10" Checked="RbCategoryUsun_Checked"/>
                     <TextBox x:Name="TxbCategoryNazwa" Height="23" Canvas.Left="369" TextWrapping="Wrap" Canvas.Top="67" Width="120" RenderTransformOrigin="0.115,0.691"/>
                     <ComboBox x:Name="CmbCategoryId" Canvas.Left="369" Canvas.Top="40" Width="120"/>
                     <Label x:Name="LblCategoryId" Content="Id" Height="27" Width="57" Canvas.Left="312" Canvas.Top="35"/>
-                    <Button x:Name="BtnCategoryDodaj" Content="Dodaj" Canvas.Left="369" Canvas.Top="140" Width="75"  />
-                    <Button x:Name="BtnCategoryModyfikuj" Content="Modyfikuj" Width="75" Canvas.Left="369" Canvas.Top="175"  />
+                    <Button x:Name="BtnCategoryDodaj" Content="Dodaj" Canvas.Left="369" Canvas.Top="140" Width="75" Click="BtnCategoryDodaj_Click"  />
+                    <Button x:Name="BtnCategoryModyfikuj" Content="Modyfikuj" Width="75" Canvas.Left="369" Canvas.Top="175" Click="BtnCategoryModyfikuj_Click"  />
                     <Label x:Name="LblCategoryNazwa" Content="Nazwa" Height="28" Width="57" Canvas.Left="312" Canvas.Top="62"/>
-                    <RadioButton x:Name="RbCategorySzukaj" GroupName="gn" Content="Szukaj" Canvas.Left="323" Canvas.Top="10"/>
-                    <Button x:Name="BtnCategorySzukaj" Content="Szukaj" Canvas.Left="461" Canvas.Top="175" Width="75"  />
+                    <RadioButton x:Name="RbCategorySzukaj" GroupName="gn" Content="Szukaj" Canvas.Left="323" Canvas.Top="10" Checked="RbCategorySzukaj_Checked"/>
+                    <Button x:Name="BtnCategorySzukaj" Content="Szukaj" Canvas.Left="461" Canvas.Top="175" Width="75" Click="BtnCategorySzukaj_Click"  />
                     <CheckBox x:Name="ChbCategoryNazwa" Content="" Canvas.Left="506" Canvas.Top="67"/>
                 </Canvas>
             </TabItem>
