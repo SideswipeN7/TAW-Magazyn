@@ -34,6 +34,7 @@
 
             <TabItem x:Name="TabTransactions" Header="Transakcje" />
             <TabItem x:Name="TabClients" Header="Klienci" />
+<<<<<<< HEAD
             <TabItem x:Name="TabItems" Header="Artykuł" />
 <<<<<<< HEAD
             <TabItem x:Name="TabCategory" Header="Kategorie" >
@@ -47,17 +48,46 @@
                     <Button x:Name="btndodaj" Content="Dodaj" Canvas.Left="369" Canvas.Top="95" Width="75" />
                     <Button x:Name="btnmodyfikuj" Content="Modyfikuj" Canvas.Left="369" Canvas.Top="95" Width="75" />
                     <Button x:Name="btnusun" Content="Usuń" Canvas.Left="369" Canvas.Top="95" Width="75"  />
+=======
+            <TabItem x:Name="TabItems" Header="Artykuł" >
+                <Canvas>
+                    <DataGrid x:Name="dg_art" HorizontalAlignment="Left" VerticalAlignment="Top" Height="211" Width="265"  IsReadOnly="True" Canvas.Left="10" Canvas.Top="40">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn   Header="Nazwa" Width="*" Binding="{Binding Nazwa}"/>
+                            <DataGridTextColumn   Header="Ilość" Width="*" Binding="{Binding Ilosc}"/>
+                            <DataGridTextColumn   Header="Cena" Width="*" Binding="{Binding Cena}"/>
+                            <DataGridTextColumn   Header="Kategoria" Width="*" Binding="{Binding Kategoria}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button x:Name="btndodaj" Content="Dodaj" Canvas.Left="369" Canvas.Top="175" Width="75" />
+                    <Button x:Name="btnmodyfikuj" Content="Modyfikuj" Canvas.Left="369" Canvas.Top="175" Width="75" />
+                    <Button x:Name="btnusun" Content="Usuń" Canvas.Left="369" Canvas.Top="100" Width="75"  />
+>>>>>>> origin/TabItem-Artykul
                     <RadioButton Name="rb_kat_wszystko" GroupName="gn" Content="Wszystko" Canvas.Left="10" Canvas.Top="10"  Checked="rb_kat_wszystko_Checked" />
                     <RadioButton Name="rb_kat_dodaj" GroupName="gn" Content="Dodaj" Canvas.Left="96" Canvas.Top="10" Checked="rb_kat_dodaj_Checked"/>
                     <RadioButton Name="rb_kat_modyfikuj" GroupName="gn" Content="Modyfikuj" Canvas.Left="168" Canvas.Top="10" Checked="rb_kat_modyfikuj_Checked" />
                     <RadioButton Name="rb_kat_usun" GroupName="gn" Content="Usuń" Canvas.Left="260" Canvas.Top="10" Checked="rb_kat_usun_Checked"/>
                     <TextBox x:Name="txt_nazwa" Height="23" Canvas.Left="369" TextWrapping="Wrap" Canvas.Top="67" Width="120" RenderTransformOrigin="0.115,0.691"/>
+<<<<<<< HEAD
                     <ComboBox x:Name="cb_kat_id" Canvas.Left="369" Canvas.Top="40" Width="120"/>
                     <Label x:Name="lblid" Content="Id" Height="27" Width="57" Canvas.Left="312" Canvas.Top="35"/>
                     <Label x:Name="lblnazwa" Content="Nazwa" Height="28" Width="57" Canvas.Left="312" Canvas.Top="62"/>
                 </Canvas>
             </TabItem>
 =======
+=======
+                    <TextBox x:Name="txt_ilosc" Height="23" TextWrapping="Wrap" Width="120" Canvas.Left="369" Canvas.Top="133"/>
+                    <TextBox x:Name="txt_cena" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Canvas.Left="369" Canvas.Top="100"/>
+
+                    <ComboBox x:Name="cb_nazwakat" Canvas.Left="369" Canvas.Top="35" Width="120"/>
+                    <Label x:Name="lblkategoria" Content="Kategoria" Height="27" Width="62" Canvas.Left="307" Canvas.Top="33"/>
+                    <Label x:Name="lblnazwa" Content="Nazwa" Height="28" Width="57" Canvas.Left="307" Canvas.Top="65"/>
+                    <Label x:Name="lblcena" Content="Ilość" Height="28" Width="57" Canvas.Left="307" Canvas.Top="128"/>
+                    <Label x:Name="lblilosc" Content="Cena" Height="28" Width="57" Canvas.Left="307" Canvas.Top="95"/>
+
+                </Canvas>
+            </TabItem>
+>>>>>>> origin/TabItem-Artykul
             <TabItem x:Name="TabCategory" Header="Kategorie" />
 
 
