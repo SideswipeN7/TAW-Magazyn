@@ -12,14 +12,14 @@ namespace Client.Communication
         private Communicator() { }
         public static Communicator GetInstance()
         {
-            if(_instance == null)
+            if (_instance == null)
             {
-                return _instance=new Communicator();
+                return _instance = new Communicator();
             }
             return _instance;
         }
 
-       
+
         string urlAddress;
         public void SetUrlAddress(string URL)
         {
@@ -76,9 +76,9 @@ namespace Client.Communication
             string baseUrl = $"{urlAddress}/api/Item";
             var client = new RestClient(baseUrl);
             var request = new RestRequest(Method.PUT);
-           
+
             request.AddHeader("cache-control", "no-cache");
-            request.AddHeader("content-type", "application/json");            
+            request.AddHeader("content-type", "application/json");
             request.AddJsonBody(artykul);
             var response = client.Execute(request);
             if (response.StatusCode.Equals(HttpStatusCode.OK)) return true;
@@ -103,7 +103,7 @@ namespace Client.Communication
 
         public Adres GetAddress(int id)
         {
-            string baseUrl = $"{urlAddress}/api/Adresss/"+id;
+            string baseUrl = $"{urlAddress}/api/Adresss/" + id;
             var client = new RestClient(baseUrl);
             var request = new RestRequest(Method.GET);
             request.AddHeader("cache-control", "no-cache");
@@ -113,7 +113,7 @@ namespace Client.Communication
         }
 
         public IEnumerable<Kategoria> GetCategories()
-        {           
+        {
             string baseUrl = $"{urlAddress}/api/Category";
             var client = new RestClient(baseUrl);
             var request = new RestRequest(Method.GET);
@@ -225,7 +225,7 @@ namespace Client.Communication
             request.AddJsonBody(klient);
             request.AddJsonBody(adres);
             IRestResponse response = client.Execute(request);
-            if (response.StatusCode.Equals(HttpStatusCode.Created )) return true;
+            if (response.StatusCode.Equals(HttpStatusCode.Created)) return true;
             if (response.StatusCode.Equals(HttpStatusCode.Conflict)) return false;
             throw new Exception("Exception in RegisterClient");
         }
@@ -298,6 +298,6 @@ namespace Client.Communication
             if (response.StatusCode.Equals(HttpStatusCode.Conflict)) return false;
             throw new Exception("Exception in RegisterTransItems");
         }
-        
+
     }
 }

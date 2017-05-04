@@ -34,6 +34,7 @@
 
             <TabItem x:Name="TabTransactions" Header="Transakcje" />
             <TabItem x:Name="TabClients" Header="Klienci" />
+<<<<<<< HEAD
             <TabItem x:Name="TabItems" Header="Artykuł" >
                 <Canvas>
                     <DataGrid x:Name="dg_art" HorizontalAlignment="Left" VerticalAlignment="Top" Height="211" Width="265"  IsReadOnly="True" Canvas.Left="10" Canvas.Top="40">
@@ -47,11 +48,26 @@
                     <Button x:Name="btndodaj" Content="Dodaj" Canvas.Left="369" Canvas.Top="175" Width="75" />
                     <Button x:Name="btnmodyfikuj" Content="Modyfikuj" Canvas.Left="369" Canvas.Top="175" Width="75" />
                     <Button x:Name="btnusun" Content="Usuń" Canvas.Left="369" Canvas.Top="100" Width="75"  />
+=======
+            <TabItem x:Name="TabItems" Header="Artykuł" />
+            <TabItem x:Name="TabCategory" Header="Kategorie" >
+                <Canvas>
+                    <DataGrid x:Name="dg_kat" HorizontalAlignment="Left" VerticalAlignment="Top" Height="211" Width="265"  IsReadOnly="True" Canvas.Left="10" Canvas.Top="40">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn   Header="ID" Width="110" Binding="{Binding idKategorii}" />
+                            <DataGridTextColumn   Header="Nazwa" Width="*" Binding="{Binding Nazwa}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button x:Name="btndodaj" Content="Dodaj" Canvas.Left="369" Canvas.Top="95" Width="75" />
+                    <Button x:Name="btnmodyfikuj" Content="Modyfikuj" Canvas.Left="369" Canvas.Top="95" Width="75" />
+                    <Button x:Name="btnusun" Content="Usuń" Canvas.Left="369" Canvas.Top="95" Width="75"  />
+>>>>>>> origin/TabItem-Kategorie
                     <RadioButton Name="rb_kat_wszystko" GroupName="gn" Content="Wszystko" Canvas.Left="10" Canvas.Top="10"  Checked="rb_kat_wszystko_Checked" />
                     <RadioButton Name="rb_kat_dodaj" GroupName="gn" Content="Dodaj" Canvas.Left="96" Canvas.Top="10" Checked="rb_kat_dodaj_Checked"/>
                     <RadioButton Name="rb_kat_modyfikuj" GroupName="gn" Content="Modyfikuj" Canvas.Left="168" Canvas.Top="10" Checked="rb_kat_modyfikuj_Checked" />
                     <RadioButton Name="rb_kat_usun" GroupName="gn" Content="Usuń" Canvas.Left="260" Canvas.Top="10" Checked="rb_kat_usun_Checked"/>
                     <TextBox x:Name="txt_nazwa" Height="23" Canvas.Left="369" TextWrapping="Wrap" Canvas.Top="67" Width="120" RenderTransformOrigin="0.115,0.691"/>
+<<<<<<< HEAD
                     <TextBox x:Name="txt_ilosc" Height="23" TextWrapping="Wrap" Width="120" Canvas.Left="369" Canvas.Top="133"/>
                     <TextBox x:Name="txt_cena" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Canvas.Left="369" Canvas.Top="100"/>
 
@@ -68,6 +84,13 @@
 
 
 
+=======
+                    <ComboBox x:Name="cb_kat_id" Canvas.Left="369" Canvas.Top="40" Width="120"/>
+                    <Label x:Name="lblid" Content="Id" Height="27" Width="57" Canvas.Left="312" Canvas.Top="35"/>
+                    <Label x:Name="lblnazwa" Content="Nazwa" Height="28" Width="57" Canvas.Left="312" Canvas.Top="62"/>
+                </Canvas>
+            </TabItem>
+>>>>>>> origin/TabItem-Kategorie
         </TabControl>
     </Grid>
 </Window>
