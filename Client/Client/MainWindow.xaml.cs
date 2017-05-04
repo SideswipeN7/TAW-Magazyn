@@ -108,5 +108,20 @@ namespace Client
         {
             _controller.ShowItemsAdd();
         }
+
+        private void BtnItemModyfikuj_Click(object sender, RoutedEventArgs e)
+        {
+            _controller.ChangeItemData();
+        }
+
+        private void BtnItemDodaj_Click(object sender, RoutedEventArgs e)
+        {
+            _controller.ItemsAdd();
+        }
+
+        private void BtnItemSzukaj_Click(object sender, RoutedEventArgs e)
+        {
+            _controller.SearchItems();
+        }
     }
 }

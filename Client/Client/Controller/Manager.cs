@@ -117,6 +117,7 @@ namespace Client.Controller
 
             GetMagazineState();
         }
+
         internal void ShowMagazineStateSearch()
         {
             _window.ChbStateCena.Visibility = Visibility.Visible;
@@ -382,7 +383,7 @@ namespace Client.Controller
             _window.LblItemNazwa.Visibility = Visibility.Visible;
 
             _window.TxbItemCenaMax.Visibility = Visibility.Hidden;
-            _window.TxbItemCenaMin.Visibility = Visibility.Visible; 
+            _window.TxbItemCenaMin.Visibility = Visibility.Visible;
             _window.TxbItemIlosc.Visibility = Visibility.Visible;
             _window.TxbItemINazwa.Visibility = Visibility.Visible;
 
@@ -415,7 +416,45 @@ namespace Client.Controller
             _window.BtnItemDodaj.Visibility = Visibility.Hidden;
             _window.BtnItemModyfikuj.Visibility = Visibility.Hidden;
             _window.BtnItemSzukaj.Visibility = Visibility.Hidden;
-            
+
+        }
+
+        public void ChangeItemData()
+        {
+            int quantity;
+            decimal price;
+            int id = ((Artykul)_window.DgItemLista.SelectedItem).idArtykulu;
+            if (_window.TxbItemINazwa.Text.Length > 5 &&
+                Int32.TryParse(_window.TxbItemIlosc.Text, out quantity) &&
+                Decimal.TryParse(_window.TxbItemCenaMin.Text, out price) &&
+                _window.CmbItemKategoria.SelectedIndex > 0)
+            {
+                if (_comm.ChangeItem(new Artykul() { idArtykulu = id, Cena = price, Ilosc = quantity, Nazwa = _window.TxbItemINazwa.Text, idKategorii = (int)((ComboBoxItem)_window.CmbItemKategoria.SelectedItem).Tag, Kategorie = new Kategoria() { idKategorii = (int)((ComboBoxItem)_window.CmbItemKategoria.SelectedItem).Tag, Nazwa = (String)((ComboBoxItem)_window.CmbItemKategoria.SelectedItem).Content }))
+                {
+                    GetItemData();
+                }
+            }
+        }
+
+        internal void ItemsAdd()
+        {
+            int quantity;
+            decimal price;
+            if (_window.TxbItemINazwa.Text.Length > 5 &&
+                 Int32.TryParse(_window.TxbItemIlosc.Text, out quantity) &&
+                 Decimal.TryParse(_window.TxbItemCenaMin.Text, out price) &&
+                 _window.CmbItemKategoria.SelectedIndex > 0)
+            {
+                if (_comm.RegisterItem(new Artykul() {  Cena = price, Ilosc = quantity, Nazwa = _window.TxbItemINazwa.Text, idKategorii = (int)((ComboBoxItem)_window.CmbItemKategoria.SelectedItem).Tag, Kategorie = new Kategoria() { idKategorii = (int)((ComboBoxItem)_window.CmbItemKategoria.SelectedItem).Tag, Nazwa = (String)((ComboBoxItem)_window.CmbItemKategoria.SelectedItem).Content }))
+                {
+                    GetItemData();
+                }
+            }
+        }
+
+        internal void SearchItems()
+        {
+            throw new NotImplementedException();
         }
 
         //OTHERS TODO
@@ -430,10 +469,7 @@ namespace Client.Controller
             throw new NotImplementedException();
         }
 
-        public void ChangeItemData()
-        {
-            throw new NotImplementedException();
-        }
+
 
 
 
