@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace Client.Controller
 {
@@ -28,6 +29,98 @@ namespace Client.Controller
             _instance._window = window;
             return _instance;
         }
+
+
+        //Magazine State
+        public void LoadCategoriesMagazineSate()
+        {
+            IEnumerable<Kategoria> list = _comm.GetCategories();
+
+            foreach (Kategoria r in list)
+            {
+                _window.CmbStateKategoria.Items.Add(new ComboBoxItem() { Content = r.Nazwa, Tag = r.idKategorii });
+                
+            }
+        }
+
+
+        internal void SearchMagazineSate()
+        {
+            List<Artykul> list = new List<Artykul>();
+            for (int i = 0; i < _window.DgStateLista.Items.Count; i++)
+                list.Add((Artykul)_window.DgStateLista.Items.GetItemAt(i));
+            _window.DgStateLista.Items.Clear();
+            //1
+            if (_window.ChbStateCena.IsChecked == true)
+            {
+                for (int i = 0; i < list.Count; i++)
+                {
+                    if (list[i].Cena < Decimal.Parse(_window.TxbStateCenaMin.Text) || list[i].Cena > Decimal.Parse(_window.TxbStateCenaMax.Text))
+                        list.Remove(list[i]);
+                }
+            }
+            //2
+            if (_window.ChbStateIlosc.IsChecked == true)
+            {
+                for (int i = 0; i < list.Count; i++)
+                {
+                    if (list[i].Ilosc > Int32.Parse(_window.TxbStateIlosc.Text))
+                        list.Remove(list[i]);
+                }
+            }
+            //3
+            if (_window.ChbStateKategoria.IsChecked == true)
+            {
+               
+                for(int i =0;i< list.Count;i++)
+                {
+                    //TODO
+                    if (list[i].idKategorii != (int)((ComboBoxItem)_window.CmbStateKategoria.SelectedItem).Tag)
+                        list.Remove(list[i]);
+                }
+
+            }
+            //4
+            if (_window.ChbStateNazwa.IsChecked == true)
+            {
+                for (int i = 0; i < list.Count; i++)
+                {
+                    if (!(list[i].Nazwa.ToLower().Contains(_window.TxbStateNazwa.Text.ToLower())))
+                        list.Remove(list[i]);
+                }
+            }
+            ShowMagazineStateData(list);
+
+        }
+        public void GetMagazineState()
+        {
+            _window.DgStateLista.Items.Clear();
+            Task<IEnumerable<Artykul>>.Factory.StartNew(() =>
+            {
+                return _comm.GetItems();
+            }).ContinueWith(x =>
+            {
+                Task.Factory.StartNew(() =>
+                {
+                    ShowMagazineStateData(x.Result);
+                });
+            });
+        }
+        private void ShowMagazineStateData(IEnumerable<Artykul> categories)
+        {
+            _window.Dispatcher.BeginInvoke(new Action(() =>
+            {
+                foreach (Artykul r in categories)
+                    _window.DgStateLista.Items.Add(r);
+
+            }));
+        }
+        //Categories
+
+
+
+
+
 
 
         public void ChangeCategoryData()
@@ -102,28 +195,9 @@ namespace Client.Controller
             }));
         }
 
-        public void GetMagazineState()
-        {
-            Task<IEnumerable<Artykul>>.Factory.StartNew(() =>
-            {
-                return _comm.GetItems();
-            }).ContinueWith(x =>
-            {
-                Task.Factory.StartNew(() =>
-                {
-                    ShowMagazineStateData(x.Result);
-                });
-            });
-        }
-        private void ShowMagazineStateData(IEnumerable<Artykul> categories)
-        {
-            _window.Dispatcher.BeginInvoke(new Action(() =>
-            {
-                foreach (Artykul r in categories)
-                    _window.DgStateLista.Items.Add(r);
+        
 
-            }));
-        }
+       
 
         public void SetCategoryData()
         {

@@ -26,6 +26,8 @@ namespace Client
             _controller.GetCategoryData();
             _controller.GetMagazineState();
             _controller.GetItemData();
+            //LoadData
+            _controller.LoadCategoriesMagazineSate();
         }
 
         //Magazine State
@@ -41,15 +43,15 @@ namespace Client
             LblStateKategoria.Visibility = Visibility.Visible;
             LblStateNazwa.Visibility = Visibility.Visible;
 
-            TxbStateCena.Visibility = Visibility.Visible;
+            TxbStateCenaMin.Visibility = Visibility.Visible;
+            TxbStateCenaMax.Visibility = Visibility.Visible;
             TxbStateIlosc.Visibility = Visibility.Visible;
             TxbStateNazwa.Visibility = Visibility.Visible;
             CmbStateKategoria.Visibility = Visibility.Visible;
 
             BtnSateSzukaj.Visibility = Visibility.Visible;
         }
-
-        private void RbStateDodaj_Checked(object sender, RoutedEventArgs e)
+        private void RbStateWszystko_Checked(object sender, RoutedEventArgs e)
         {
             ChbStateCena.Visibility = Visibility.Hidden;
             ChbStateIlosc.Visibility = Visibility.Hidden;
@@ -61,12 +63,21 @@ namespace Client
             LblStateKategoria.Visibility = Visibility.Hidden;
             LblStateNazwa.Visibility = Visibility.Hidden;
 
-            TxbStateCena.Visibility = Visibility.Hidden;
+            TxbStateCenaMin.Visibility = Visibility.Hidden;
+            TxbStateCenaMax.Visibility = Visibility.Hidden;
             TxbStateIlosc.Visibility = Visibility.Hidden;
             TxbStateNazwa.Visibility = Visibility.Hidden;
             CmbStateKategoria.Visibility = Visibility.Hidden;
 
             BtnSateSzukaj.Visibility = Visibility.Hidden;
+
+            _controller.GetMagazineState();
         }
+        private void BtnSateSzukaj_Click(object sender, RoutedEventArgs e)
+        {
+            _controller.SearchMagazineSate();
+        }
+
+       
     }
 }

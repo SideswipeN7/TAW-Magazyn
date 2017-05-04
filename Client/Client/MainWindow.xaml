@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Client"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="665.731">
+        Title="MainWindow" Height="350" Width="1001.631">
     <Grid>
         <TabControl x:Name="MainTab">
             <TabItem x:Name="TabState" Header="Stan Magazynu">
                 <Canvas>
-                    <RadioButton Content="Dodaj" Height="18" Width="100" x:Name="RbStateDodaj" Canvas.Left="85" Canvas.Top="5" Checked="RbStateDodaj_Checked"/>
+                    <RadioButton Content="Wszystko" Height="18" Width="100" x:Name="RbStateWszystko" Canvas.Left="85" Canvas.Top="5" Checked="RbStateWszystko_Checked"/>
                     <RadioButton Content="Szukaj" Height="18" Width="100" x:Name="RbStateSzukaj" Canvas.Left="190" Canvas.Top="5" Checked="RbStateSzukaj_Checked"/>
                     <DataGrid x:Name="DgStateLista" IsReadOnly="True" HorizontalAlignment="Left" VerticalAlignment="Top" Height="259" Width="322" Canvas.Left="10" Canvas.Top="28"  >
                         <DataGrid.Columns>
@@ -24,15 +24,16 @@
                     <Label x:Name="LblStateNazwa" Content="Nazwa artykułu" Canvas.Left="337" Canvas.Top="62"/>
                     <TextBox x:Name="TxbStateIlosc" Height="23" Canvas.Left="461" TextWrapping="Wrap" Text="" Canvas.Top="93" Width="127" RenderTransformOrigin="-0.096,0.011"/>
                     <Label x:Name="LblStateIlosc" Content="Ilość artykułu" Canvas.Left="337" Canvas.Top="93"/>
-                    <TextBox x:Name="TxbStateCena" Height="23" Canvas.Left="461" TextWrapping="Wrap" Text="" Canvas.Top="121" Width="127" RenderTransformOrigin="-0.096,0.011"/>
+                    <TextBox x:Name="TxbStateCenaMin" Height="23" Canvas.Left="461" TextWrapping="Wrap" Text="" Canvas.Top="121" Width="127" RenderTransformOrigin="-0.096,0.011"/>
                     <Label x:Name="LblStateCena" Content="Cena" Canvas.Left="337" Canvas.Top="119"/>
                     <Label x:Name="LblStateKategoria" Content="Kategoria" Canvas.Left="337" Canvas.Top="149"/>
                     <ComboBox Height="26" Width="127" Canvas.Left="461" Canvas.Top="149" x:Name="CmbStateKategoria"/>
-                    <Button x:Name="BtnSateSzukaj" Content="Szukaj" Canvas.Left="483" Canvas.Top="194" Width="75" RenderTransformOrigin="0.982,1.97"/>
+                    <Button x:Name="BtnSateSzukaj" Content="Szukaj" Canvas.Left="483" Canvas.Top="194" Width="75" RenderTransformOrigin="0.982,1.97" Click="BtnSateSzukaj_Click"/>
                     <CheckBox x:Name="ChbStateNazwa" Content="" Canvas.Left="593" Canvas.Top="68"/>
                     <CheckBox x:Name="ChbStateIlosc" Content="" Canvas.Left="593" Canvas.Top="101"/>
-                    <CheckBox x:Name="ChbStateCena" Content="" Canvas.Left="593" Canvas.Top="129" RenderTransformOrigin="1.85,4.467"/>
+                    <CheckBox x:Name="ChbStateCena" Content="" Canvas.Left="762" Canvas.Top="129" RenderTransformOrigin="0.4,0.6"/>
                     <CheckBox x:Name="ChbStateKategoria" Content="" Canvas.Left="593" Canvas.Top="160" RenderTransformOrigin="0.55,6.933"/>
+                    <TextBox x:Name="TxbStateCenaMax" Height="23" Canvas.Left="618" TextWrapping="Wrap" Text="" Canvas.Top="122" Width="127" RenderTransformOrigin="-0.096,0.011"/>
                 </Canvas>
             </TabItem>
 
