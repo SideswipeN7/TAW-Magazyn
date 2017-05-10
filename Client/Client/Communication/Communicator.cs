@@ -15,9 +15,10 @@ namespace Client.Communication
         private Communicator() { }
         public static Communicator GetInstance()
         {
-            if(_instance == null)
+            if (_instance == null)
             {
-                return new Communicator();
+                _instance = new Communicator();
+                return _instance;
             }
             return _instance;
         }
