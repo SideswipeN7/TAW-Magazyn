@@ -35,7 +35,7 @@
                     <CheckBox x:Name="ChbStateKategoria" Content="" Canvas.Left="593" Canvas.Top="160" RenderTransformOrigin="0.55,6.933"/>
                 </Canvas>
             </TabItem>
-<<<<<<< HEAD
+
             <TabItem x:Name="TabTransactions" Header="Transakcje">
                 <Grid>
                     <TabControl x:Name="TabCtrlTransactions" Margin="-10,0,10,0">
@@ -145,10 +145,6 @@
                     </TabControl>
                 </Grid>
             </TabItem>
-            <TabItem x:Name="TabClients" Header="Klienci" />
-=======
-
-            <TabItem x:Name="TabTransactions" Header="Transakcje" />
             <TabItem x:Name="TabClients" Header="Klienci" >
                 <Canvas>
                     <DataGrid x:Name="DgClientsLista" IsReadOnly="True" HorizontalAlignment="Left" VerticalAlignment="Top" Height="249" Width="177" Canvas.Left="10" Canvas.Top="38"  >
@@ -180,7 +176,7 @@
                     <Button x:Name="BtnClientsSzukaj" Content="Szukaj" Canvas.Left="494" Canvas.Top="166" Width="75" />
                 </Canvas>
             </TabItem>
->>>>>>> origin/TabItem_-_Klienci
+
             <TabItem x:Name="TabCategory" Header="Kategorie" >
                 <Canvas>
                     <DataGrid x:Name="DgCategoryLista" HorizontalAlignment="Left" VerticalAlignment="Top" Height="211" Width="265"  IsReadOnly="True" Canvas.Left="10" Canvas.Top="40">
