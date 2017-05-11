@@ -17,8 +17,14 @@ namespace Client
             _controller.GetCategoryData();
             _controller.GetMagazineState();
             _controller.GetItemData();
+            _controller.GetClientData();
+            _controller.GetClientTransactionData();
             //LoadData
             _controller.LoadCategoriesMagazineSate();
+           _controller.LoadClients();//ERROR
+            _controller.LoadTransactionsDoProducts();//ERROR
+            _controller.LoadTransactionsDoStates();
+            _controller.LoadTransactionsDoSupplier();//ERROR
         }
 
         //Magazine State
@@ -158,6 +164,56 @@ namespace Client
         private void BtnClientsDodaj_Click(object sender, RoutedEventArgs e)
         {
             _controller.SetClientData();
+        }
+
+        private void RbDoGridOneNowyKlient_Checked(object sender, RoutedEventArgs e)
+        {
+            _controller.TransactionNewSelcted();
+        }
+
+        private void RbDoGridOneStalyKlient_Checked(object sender, RoutedEventArgs e)
+        {
+            _controller.TransactionOldSelcted();
+        }
+
+        private void CmbDoGridTwoNazwisko_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            _controller.SelectClientDoTransactionSurname();
+        }
+
+        private void CmbDoGridTwoFirma_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            _controller.SelectClientDoTransactionFirm();
+        }
+
+        private void BtnDoGridThreeDodajProdukty_Click(object sender, RoutedEventArgs e)
+        {
+            _controller.AddToCart();
+        }
+
+        private void BtnDoGridFiveUsun_Click(object sender, RoutedEventArgs e)
+        {
+            _controller.DeleteFormCart();
+        }
+
+        private void DgOverviewGridOne_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            _controller.ShowClientData();
+        }
+
+        private void RbOverviewGridOneWszystkie_Checked(object sender, RoutedEventArgs e)
+        {
+            _controller.ShowTransactionsAll();
+        }
+
+        private void RbOverviewGridOneSzukaj_Checked(object sender, RoutedEventArgs e)
+        {
+            _controller.ShowTransactionsSearch();
+        }
+
+        private void BtnOverviewGridTwoSzukaj_Click(object sender, RoutedEventArgs e)
+        {
+            _controller.TransactionsSearch();
         }
     }
 }

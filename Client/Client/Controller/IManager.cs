@@ -21,5 +21,7 @@ namespace Client.Controller
         void ChangeClientData();
         void ChangeCategoryData();
         void ChangeItemData();
+        void SelectClientDoTransactionSurname();
+        void SelectClientDoTransactionFirm();
     }
 }

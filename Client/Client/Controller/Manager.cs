@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace Client.Controller
 {
@@ -138,6 +139,8 @@ namespace Client.Controller
             _window.BtnSateSzukaj.Visibility = Visibility.Visible;
         }
 
+
+
         public void GetMagazineState()
         {
             _window.DgStateLista.Items.Clear();
@@ -175,6 +178,9 @@ namespace Client.Controller
                 });
             });
         }
+
+
+
         public void ShowCategoryData(IEnumerable<Kategoria> categories)
         {
             _window.Dispatcher.BeginInvoke(new Action(() =>
@@ -710,7 +716,7 @@ namespace Client.Controller
         {
             _window.CmbDoGridOneWojewodztwo.Items.Clear();
             _window.CmbDoGridTwoWojewodztwo.Items.Clear();
-            foreach (String r in states)
+            foreach (string r in states)
             {
                 _window.CmbDoGridOneWojewodztwo.Items.Add(r);
                 _window.CmbDoGridTwoWojewodztwo.Items.Add(r);
@@ -719,41 +725,64 @@ namespace Client.Controller
 
         public void LoadTransactionsDoSupplier()
         {
-            _window.CmbDoGridOneWojewodztwo.Items.Clear();
-            _window.CmbDoGridTwoWojewodztwo.Items.Clear();
+            if (_window.CmbDoGridOneWojewodztwo.Items.Count > 0)
+                _window.CmbDoGridOneWojewodztwo.Items.Clear();
+            if (_window.CmbDoGridTwoWojewodztwo.Items.Count > 0)
+                _window.CmbDoGridTwoWojewodztwo.Items.Clear();
             IEnumerable<Dostawca> list = _comm.GetSuppliers();
-            foreach (Dostawca r in list)
+            try
             {
-                _window.CmbDoGridOneWojewodztwo.Items.Add(new ComboBoxItem() { Name = r.Nazwa, Tag = r.idDostawcy });
-                _window.CmbDoGridTwoWojewodztwo.Items.Add(new ComboBoxItem() { Name = r.Nazwa, Tag = r.idDostawcy });
+                foreach (Dostawca r in list)
+                {
+                    _window.CmbDoGridOneWojewodztwo.Items.Add(new ComboBoxItem() { Name = r.Nazwa, Tag = r.idDostawcy });
+                    _window.CmbDoGridTwoWojewodztwo.Items.Add(new ComboBoxItem() { Name = r.Nazwa, Tag = r.idDostawcy });
+                }
             }
+            catch (Exception ex)
+            { System.Diagnostics.Debug.WriteLine($"ERROR {ex}"); }
+
         }
         public void LoadTransactionsDoProducts()
         {
             _window.CmbDoGridThreeNazwa.Items.Clear();
             IEnumerable<Artykul> list = _comm.GetItems();
-            foreach (Artykul r in list)
+            try
             {
-                _window.CmbDoGridThreeNazwa.Items.Add(new ComboBoxItem() { Name = r.Nazwa, Tag = r });
+                foreach (Artykul r in list)
+                {
+                    _window.CmbDoGridThreeNazwa.Items.Add(new ComboBoxItem() { Name = $"{r.Nazwa}", Tag = r });
+                }
             }
+            catch (Exception ex)
+            { System.Diagnostics.Debug.WriteLine($"ERROR {ex}"); }
         }
         public void LoadClients()
         {
-            LoadClientsToCmb(_comm.GetClients());
+            try
+            {
+                LoadClientsToCmb(_comm.GetClients());
+            }
+            catch (Exception ex)
+            { System.Diagnostics.Debug.WriteLine($"ERROR {ex}"); }
         }
         private void LoadClientsToCmb(IEnumerable<Klient> clients)
         {
-            _window.CmbDoGridTwoNazwisko.Items.Clear();
-            _window.CmbDoGridTwoFirma.Items.Clear();
-            _window.CmbDoGridTwoFirma.Items.Add(new ComboBoxItem() { Name = "" });
-            foreach (Klient r in clients)
+            try
             {
-                _window.CmbDoGridTwoNazwisko.Items.Add(new ComboBoxItem() { Name = r.Nazwisko, Tag = r });
-                if (r.Nazwa_firmy.Length > 0)
+                _window.CmbDoGridTwoNazwisko.Items.Clear();
+                _window.CmbDoGridTwoFirma.Items.Clear();
+                _window.CmbDoGridTwoFirma.Items.Add(new ComboBoxItem() { Name = "" });
+                foreach (Klient r in clients)
                 {
-                    _window.CmbDoGridTwoFirma.Items.Add(new ComboBoxItem() { Name = r.Nazwa_firmy, Tag = r });
+                    _window.CmbDoGridTwoNazwisko.Items.Add(new ComboBoxItem() { Name = r.Nazwisko, Tag = r });
+                    if (r.Nazwa_firmy.Length > 0)
+                    {
+                        _window.CmbDoGridTwoFirma.Items.Add(new ComboBoxItem() { Name = r.Nazwa_firmy, Tag = r });
+                    }
                 }
             }
+            catch (Exception ex)
+            { System.Diagnostics.Debug.WriteLine($"ERROR {ex}"); }
         }
 
         public void AddToCart()
@@ -932,6 +961,23 @@ namespace Client.Controller
             }
         }
 
+
+        internal void TransactionNewSelcted()
+        {
+            _window.GridDoTwo.IsEnabled = false;
+            _window.GridTransactionsDoOne.IsEnabled = true;
+            //_window.GridDoTwo.Background = new SolidColorBrush(Color.FromRgb(220, 220, 220));
+            // _window.GridTransactionsDoOne.Background = new SolidColorBrush(Color.FromRgb(255, 255, 255));
+        }
+
+        internal void TransactionOldSelcted()
+        {
+            _window.GridDoTwo.IsEnabled = true;
+            _window.GridTransactionsDoOne.IsEnabled = false;
+            // _window.GridDoTwo.Background = new SolidColorBrush(Color.FromRgb(255, 255, 255));            
+            // _window.GridTransactionsDoOne.Background = new SolidColorBrush(Color.FromRgb(220, 220, 220));
+        }
+
         //DONE
         public void GetClientTransactionData()
         {
@@ -946,7 +992,7 @@ namespace Client.Controller
                 });
             });
         }
-        
+
         public void ShowClientTransactionData(IEnumerable<Transakcja> transactions)
         {
             _window.Dispatcher.BeginInvoke(new Action(() =>
@@ -971,7 +1017,7 @@ namespace Client.Controller
                 _window.LblOverviewGridTwoWojewodztwo.Content = $"Województwo: {t.Klienci.Ksiazka_adresow.Wojewodztwo}";
                 //TODO                _window.LblOverviewGridTwoTransakcja.Content = $"Transakcja: {t.Nazwa}";
                 int quantity = t.Artykuly_w_transakcji.Count;
-                decimal cost = 0m;                               
+                decimal cost = 0m;
                 foreach (Artykul_w_transakcji r in t.Artykuly_w_transakcji)
                 {
                     cost += r.Cena;
@@ -1026,24 +1072,27 @@ namespace Client.Controller
             {
 
                 for (int i = 0; i < list.Count; i++)
-                {                   
+                {
                     if (!list[i].Klienci.Nazwisko.ToLower().Equals(_window.TxbOverviewGridTwoNazwisko.Text.ToLower()))
                         list.Remove(list[i]);
                 }
 
-            }           
+            }
             ShowClientTransactionData(list);
 
         }
-
-        public void ShowClientTransactionData()
+        internal void ShowTransactionsAll()
         {
-            throw new NotImplementedException();
+            _window.GridOverviewTwo.Visibility = Visibility.Hidden;
+        }
+
+        internal void ShowTransactionsSearch()
+        {
+            _window.GridOverviewTwo.Visibility = Visibility.Visible;
         }
 
 
         //Lists
-        private IEnumerable<Klient> clients;
 
         private static List<string> states = new List<string>()
         {"Dolonośląskie","Kujawsko-Pomorskie","Lubelskie","Lubuskie","Łódzkie","Małopolskie","Mazowieckie", "Opolskie","Podkarpackie","Podlaskie","Pomorskie","Śląskie","Świętokrzyskie","Warmińsko-Mazurskie","Wielkopolskie","Zachodniopomorskie"};
