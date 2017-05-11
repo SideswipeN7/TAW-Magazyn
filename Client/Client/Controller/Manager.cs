@@ -115,7 +115,7 @@ namespace Client.Controller
 
             GetMagazineState();
         }
-
+               
         public void ShowMagazineStateSearch()
         {
             _window.ChbStateCena.Visibility = Visibility.Visible;
@@ -520,9 +520,53 @@ namespace Client.Controller
 
             }));
         }
-        //OTHERS TODO
-
         //Client
+        internal void ShowClitentsAdd()
+        {
+            _window.GridClientsSearch.Visibility = Visibility.Hidden;
+            _window.BtnClientsModyfikuj.Visibility = Visibility.Hidden;
+            _window.BtnClientsSzukaj.Visibility = Visibility.Hidden;
+            _window.BtnClientsUsun.Visibility = Visibility.Hidden;
+            _window.BtnClientsDodaj.Visibility = Visibility.Visible;
+        }
+
+        internal void ShowClitentsModify()
+        {
+            _window.GridClientsSearch.Visibility = Visibility.Hidden;
+            _window.BtnClientsModyfikuj.Visibility = Visibility.Visible;
+            _window.BtnClientsSzukaj.Visibility = Visibility.Hidden;
+            _window.BtnClientsUsun.Visibility = Visibility.Hidden;
+            _window.BtnClientsDodaj.Visibility = Visibility.Hidden;
+        }
+
+        internal void ShowClitentsDelete()
+        {
+            _window.GridClientsSearch.Visibility = Visibility.Hidden;
+            _window.BtnClientsModyfikuj.Visibility = Visibility.Hidden;
+            _window.BtnClientsSzukaj.Visibility = Visibility.Hidden;
+            _window.BtnClientsUsun.Visibility = Visibility.Visible;
+            _window.BtnClientsDodaj.Visibility = Visibility.Hidden;
+        }
+
+        internal void ShowClitentsSearch()
+        {
+            _window.GridClientsSearch.Visibility = Visibility.Visible;
+            _window.BtnClientsModyfikuj.Visibility = Visibility.Hidden;
+            _window.BtnClientsSzukaj.Visibility = Visibility.Visible;
+            _window.BtnClientsUsun.Visibility = Visibility.Hidden;
+            _window.BtnClientsDodaj.Visibility = Visibility.Hidden;
+        }
+
+        internal void ShowClitentsAll()
+        {
+            _window.GridClientsSearch.Visibility = Visibility.Hidden;
+            _window.BtnClientsModyfikuj.Visibility = Visibility.Hidden;
+            _window.BtnClientsSzukaj.Visibility = Visibility.Hidden;
+            _window.BtnClientsUsun.Visibility = Visibility.Hidden;
+            _window.BtnClientsDodaj.Visibility = Visibility.Hidden;
+        }
+
+
         public void ChangeClientData()
         {
             int id = ((Klient)_window.DgClientsLista.SelectedItem).idKlienta;
@@ -603,6 +647,59 @@ namespace Client.Controller
                         GetClientData();
                     }
             }
+        }
+
+        public void ClientDelete()
+        {
+            //TODO
+            throw new NotImplementedException();
+        }
+
+        public void SearchClients()
+        {
+            List<Klient> list = new List<Klient>();
+            for (int i = 0; i < _window.DgClientsLista.Items.Count; i++)
+                list.Add((Klient)_window.DgClientsLista.Items.GetItemAt(i));
+            _window.DgClientsLista.Items.Clear();
+            //1
+            if (_window.ChbClientsImie.IsChecked == true)
+            {
+                for (int i = 0; i < list.Count; i++)
+                {
+                    if (!list[i].Imie.ToLower().Equals(_window.TxbClientsImieSearch.Text.ToLower())) 
+                        list.Remove(list[i]);
+                }
+            }
+            //2
+            if (_window.ChbClientsKodPocztowy.IsChecked == true)
+            {
+                for (int i = 0; i < list.Count; i++)
+                {
+                    if (!list[i].Ksiazka_adresow.Kod_pocztowy.Equals(_window.TxbClientsKodPocztowySearch.Text))
+                        list.Remove(list[i]);
+                }
+            }
+            //3
+            if (_window.ChbClientsMiejscowosc.IsChecked == true)
+            {
+
+                for (int i = 0; i < list.Count; i++)
+                {                   
+                    if (!list[i].Ksiazka_adresow.Miejscowosc.ToLower().Equals(_window.TxbClientsMiejscowoscSearch.Text.ToLower()))
+                        list.Remove(list[i]);
+                }
+
+            }
+            //4
+            if (_window.ChbClientsWojewodztwo.IsChecked == true)
+            {
+                for (int i = 0; i < list.Count; i++)
+                {
+                    if (!list[i].Ksiazka_adresow.Wojewodztwo.ToLower().Equals(_window.TxbClientsWojewodztwoSearch.Text.ToLower()))
+                        list.Remove(list[i]);
+                }
+            }
+            ShowClientData(list);
         }
 
         //Transactions

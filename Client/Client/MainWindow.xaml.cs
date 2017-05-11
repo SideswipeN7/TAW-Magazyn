@@ -114,5 +114,50 @@ namespace Client
         {
             _controller.SearchItems();
         }
+        //Clients
+        private void RbClientsWszyscy_Checked(object sender, RoutedEventArgs e)
+        {
+            _controller.ShowClitentsAll();
+        }
+
+        private void RbClientsSzukaj_Checked(object sender, RoutedEventArgs e)
+        {
+            _controller.ShowClitentsSearch();
+        }
+
+        private void RbClientsDodaj_Checked(object sender, RoutedEventArgs e)
+        {
+            _controller.ShowClitentsAdd();
+        }
+
+        private void RbClientsModyfikuj_Checked(object sender, RoutedEventArgs e)
+        {
+            _controller.ShowClitentsModify();
+        }
+
+        private void RbClientsUsun_Checked(object sender, RoutedEventArgs e)
+        {
+            _controller.ShowClitentsDelete();
+        }
+
+        private void BtnClientsSzukaj_Click(object sender, RoutedEventArgs e)
+        {
+            _controller.SearchClients();
+        }
+
+        private void BtnClientsModyfikuj_Click(object sender, RoutedEventArgs e)
+        {
+            _controller.ChangeClientData();
+        }
+
+        private void BtnClientsUsun_Click(object sender, RoutedEventArgs e)
+        {
+            _controller.ClientDelete();
+        }
+
+        private void BtnClientsDodaj_Click(object sender, RoutedEventArgs e)
+        {
+            _controller.SetClientData();
+        }
     }
 }

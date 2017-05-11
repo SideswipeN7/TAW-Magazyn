@@ -53,6 +53,7 @@ namespace Client.Communication
         IEnumerable<Transakcja> GetTransactions();
 
         Transakcja GetTransaction(int id);
+        IEnumerable<Klient> GetClients();
     }
 }
 
