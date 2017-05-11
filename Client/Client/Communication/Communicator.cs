@@ -14,7 +14,12 @@ namespace Client.Communication
         {
             if (_instance == null)
             {
+<<<<<<< HEAD
                 return _instance = new Communicator();
+=======
+                _instance = new Communicator();
+                return _instance;
+>>>>>>> origin/Singletone_Connector
             }
             return _instance;
         }
