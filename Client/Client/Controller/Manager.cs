@@ -725,36 +725,38 @@ namespace Client.Controller
 
         public void LoadTransactionsDoSupplier()
         {
-            if (_window.CmbDoGridOneWojewodztwo.Items.Count > 0)
-                _window.CmbDoGridOneWojewodztwo.Items.Clear();
-            if (_window.CmbDoGridTwoWojewodztwo.Items.Count > 0)
-                _window.CmbDoGridTwoWojewodztwo.Items.Clear();
+            if (_window.CmbDoGridOneDostawca.Items.Count > 0)
+                _window.CmbDoGridOneDostawca.Items.Clear();
+            if (_window.CmbDoGridTwoDostawca.Items.Count > 0)
+                _window.CmbDoGridTwoDostawca.Items.Clear();
             IEnumerable<Dostawca> list = _comm.GetSuppliers();
             try
             {
                 foreach (Dostawca r in list)
                 {
-                    _window.CmbDoGridOneWojewodztwo.Items.Add(new ComboBoxItem() { Name = r.Nazwa, Tag = r.idDostawcy });
-                    _window.CmbDoGridTwoWojewodztwo.Items.Add(new ComboBoxItem() { Name = r.Nazwa, Tag = r.idDostawcy });
+                    _window.CmbDoGridOneDostawca.Items.Add(new ComboBoxItem() { Content = r.Nazwa.ToString(), Tag = r.idDostawcy });
+                    _window.CmbDoGridTwoDostawca.Items.Add(new ComboBoxItem() { Content = r.Nazwa.ToString(), Tag = r.idDostawcy });
                 }
             }
             catch (Exception ex)
-            { System.Diagnostics.Debug.WriteLine($"ERROR {ex}"); }
+            { System.Diagnostics.Debug.WriteLine($"\nERROR {ex}"); }
 
         }
         public void LoadTransactionsDoProducts()
         {
             _window.CmbDoGridThreeNazwa.Items.Clear();
-            IEnumerable<Artykul> list = _comm.GetItems();
+            IEnumerable<Artykul> list = _comm.GetItems();            
             try
-            {
+            {          
+                
                 foreach (Artykul r in list)
-                {
-                    _window.CmbDoGridThreeNazwa.Items.Add(new ComboBoxItem() { Name = $"{r.Nazwa}", Tag = r });
+                {                   
+                    
+                         _window.CmbDoGridThreeNazwa.Items.Add(new ComboBoxItem() { Content =r.Nazwa, Tag = r });                    
                 }
             }
             catch (Exception ex)
-            { System.Diagnostics.Debug.WriteLine($"ERROR {ex}"); }
+            { System.Diagnostics.Debug.WriteLine($"\nERROR {ex}"); }
         }
         public void LoadClients()
         {
@@ -763,7 +765,7 @@ namespace Client.Controller
                 LoadClientsToCmb(_comm.GetClients());
             }
             catch (Exception ex)
-            { System.Diagnostics.Debug.WriteLine($"ERROR {ex}"); }
+            { System.Diagnostics.Debug.WriteLine($"\nERROR {ex}"); }
         }
         private void LoadClientsToCmb(IEnumerable<Klient> clients)
         {
@@ -771,13 +773,13 @@ namespace Client.Controller
             {
                 _window.CmbDoGridTwoNazwisko.Items.Clear();
                 _window.CmbDoGridTwoFirma.Items.Clear();
-                _window.CmbDoGridTwoFirma.Items.Add(new ComboBoxItem() { Name = "" });
+                _window.CmbDoGridTwoFirma.Items.Add(new ComboBoxItem() { Content = "" });
                 foreach (Klient r in clients)
                 {
-                    _window.CmbDoGridTwoNazwisko.Items.Add(new ComboBoxItem() { Name = r.Nazwisko, Tag = r });
+                    _window.CmbDoGridTwoNazwisko.Items.Add(new ComboBoxItem() { Content = r.Nazwisko, Tag = r });
                     if (r.Nazwa_firmy.Length > 0)
                     {
-                        _window.CmbDoGridTwoFirma.Items.Add(new ComboBoxItem() { Name = r.Nazwa_firmy, Tag = r });
+                        _window.CmbDoGridTwoFirma.Items.Add(new ComboBoxItem() { Content = r.Nazwa_firmy, Tag = r });
                     }
                 }
             }

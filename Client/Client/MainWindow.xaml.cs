@@ -21,10 +21,10 @@ namespace Client
             _controller.GetClientTransactionData();
             //LoadData
             _controller.LoadCategoriesMagazineSate();
-           _controller.LoadClients();//ERROR
-            _controller.LoadTransactionsDoProducts();//ERROR
+            _controller.LoadClients();//ERROR
+            _controller.LoadTransactionsDoProducts();
             _controller.LoadTransactionsDoStates();
-            _controller.LoadTransactionsDoSupplier();//ERROR
+            _controller.LoadTransactionsDoSupplier();
         }
 
         //Magazine State

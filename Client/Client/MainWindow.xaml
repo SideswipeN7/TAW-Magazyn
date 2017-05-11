@@ -85,7 +85,7 @@
                                     <Label x:Name="LblDoGridThreeProdukty" Content="Produkty" HorizontalAlignment="Left" Margin="112,10,0,0" VerticalAlignment="Top"/>
                                     <Label x:Name="LblDoGridThreeNazwa" Content="Nazwa:" HorizontalAlignment="Left" Margin="36,62,0,0" VerticalAlignment="Top"/>
                                     <Label x:Name="LblDoGridThreeIlosc" Content="Ilość:" HorizontalAlignment="Left" Margin="36,112,0,0" VerticalAlignment="Top"/>
-                                    <ComboBox x:Name="CmbDoGridThreeNazwa" HorizontalAlignment="Left" Margin="127,66,0,0" VerticalAlignment="Top" Width="120"/>
+                                    <ComboBox  x:Name="CmbDoGridThreeNazwa" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="120" Height="23" Margin="127,66,0,0"/>
                                     <TextBox x:Name="TxbDoGridThreeIlosc" HorizontalAlignment="Left" Height="23" Margin="127,116,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
                                     <Button x:Name="BtnDoGridThreeDodajProdukty" Content="Dodaj Produkty" HorizontalAlignment="Left" Margin="127,165,0,0" VerticalAlignment="Top" Width="120" Click="BtnDoGridThreeDodajProdukty_Click"/>
                                 </Grid>
@@ -119,8 +119,8 @@
                                     <RadioButton x:Name="RbOverviewGridOneSzukaj" Content="Szukaj" HorizontalAlignment="Left" Margin="188,10,0,0" VerticalAlignment="Top" Checked="RbOverviewGridOneSzukaj_Checked"/>
                                     <DataGrid x:Name="DgOverviewGridOne" HorizontalAlignment="Left" Height="549" Margin="10,44,0,0" VerticalAlignment="Top" Width="307" SelectionChanged="DgOverviewGridOne_SelectionChanged">
                                         <DataGrid.Columns>
-                                            <DataGridTextColumn   Header="Data Transakcji Data" Width="*" Binding="{Binding DataTransakcjiData}"/>
-                                            <DataGridTextColumn   Header="Data" Width="*" Binding="{Binding Data}"/>
+                                            <DataGridTextColumn   Header="Transakcja" Width="*" Binding="{Binding Transakcja}"/>
+                                            <DataGridTextColumn   Header="Data Transakcji Data" Width="*" Binding="{Binding Data}"/>
                                         </DataGrid.Columns>
                                     </DataGrid>
                                 </Grid>
