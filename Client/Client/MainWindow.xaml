@@ -54,47 +54,47 @@
                                     </Label>
                                     <Label x:Name="LblDoGridOneKodPocztowy" Content="Kod Pocztowy:" HorizontalAlignment="Left" Margin="19,188,0,0" VerticalAlignment="Top" Width="91"/>
                                     <Label x:Name="LblDoGridOneWojewodztwo" Content="Województwo:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="19,224,0,0" Width="91"/>
-                                    <TextBox x:Name="TxtDoGridOneNazwisko" HorizontalAlignment="Left" Height="23" Margin="132,67,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                                    <TextBox x:Name="TxtDoGridOneFirma" HorizontalAlignment="Left" Height="23" Margin="132,95,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                                    <TextBox x:Name="TxtDoGridOneMiejscowosc" HorizontalAlignment="Left" Height="23" Margin="132,157,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                                    <TextBox x:Name="TxtDoGridOneKodPocztowy" HorizontalAlignment="Left" Height="23" Margin="132,191,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                                    <TextBox x:Name="TxbDoGridOneNazwisko" HorizontalAlignment="Left" Height="23" Margin="132,67,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                                    <TextBox x:Name="TxbDoGridOneFirma" HorizontalAlignment="Left" Height="23" Margin="132,95,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                                    <TextBox x:Name="TxbDoGridOneMiejscowosc" HorizontalAlignment="Left" Height="23" Margin="132,157,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                                    <TextBox x:Name="TxbDoGridOneKodPocztowy" HorizontalAlignment="Left" Height="23" Margin="132,191,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
                                     <ComboBox x:Name="CmbDoGridOneDostawca" Height="23" Width="120" Margin="132,127,75,116" />
                                     <ComboBox x:Name="CmbDoGridOneWojewodztwo" Height="23" Width="120" Margin="132,227,75,16" />
                                     <Label x:Name="LblDoGridOneImie" Content="Imię:" HorizontalAlignment="Left" Margin="22,41,0,0" VerticalAlignment="Top" Width="91"/>
-                                    <TextBox x:Name="TxtDoGridOneImie" HorizontalAlignment="Left" Height="23" Margin="132,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                                    <TextBox x:Name="TxbDoGridOneImie" HorizontalAlignment="Left" Height="23" Margin="132,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
                                 </Grid>
                                 <Grid x:Name="GridDoTwo" Margin="0,300,791,0">
-                                    <RadioButton Content="Stały Klient" HorizontalAlignment="Left" Margin="26,23,0,0" VerticalAlignment="Top"/>
+                                    <RadioButton x:Name="RbDoGridOneStalyKlient" Content="Stały Klient" HorizontalAlignment="Left" Margin="26,23,0,0" VerticalAlignment="Top"/>
                                     <Label x:Name="LblDoGridTwoNazwisko" Content="Nazwisko:" HorizontalAlignment="Left" Margin="21,94,0,0" VerticalAlignment="Top" Width="92"/>
                                     <Label x:Name="LblDoGridTwoFirma" Content="Firma:" HorizontalAlignment="Left" Margin="21,125,0,0" VerticalAlignment="Top" Width="92"/>
                                     <Label x:Name="LblDoGridTwoDostawca" Content="Dostwaca:" HorizontalAlignment="Left" Margin="21,156,0,0" VerticalAlignment="Top" Width="92"/>
                                     <Label x:Name="LblDoGridTwoMiejscowosc" Content="Miejscowość:" HorizontalAlignment="Left" Margin="21,187,0,0" VerticalAlignment="Top" Width="92"/>
                                     <Label x:Name="LblDoGridTwoKodPocztowy" Content="Kod Pocztowy:" HorizontalAlignment="Left" Margin="21,218,0,0" VerticalAlignment="Top" Width="92"/>
                                     <Label x:Name="LblDoGridTwoWojewodztwo" Content="Województwo:" HorizontalAlignment="Left" Margin="21,246,0,0" VerticalAlignment="Top" Width="92"/>
-                                    <TextBox x:Name="TxtDoGridTwoMiejscowosc" HorizontalAlignment="Left" Height="23" Margin="135,187,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                                    <TextBox x:Name="TxtDoGridTwoKodPocztowy" HorizontalAlignment="Left" Height="23" Margin="135,218,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                                    <TextBox x:Name="TxbDoGridTwoMiejscowosc" HorizontalAlignment="Left" Height="23" Margin="135,190,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                                    <TextBox x:Name="TxbDoGridTwoKodPocztowy" HorizontalAlignment="Left" Height="23" Margin="135,218,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
                                     <ComboBox x:Name="CmbDoGridTwoNazwisko" HorizontalAlignment="Left" Margin="135,94,0,0" VerticalAlignment="Top" Width="120"/>
                                     <ComboBox x:Name="CmbDoGridTwoFirma" HorizontalAlignment="Left" Margin="135,125,0,0" VerticalAlignment="Top" Width="120"/>
                                     <ComboBox x:Name="CmbDoGridTwoDostawca" HorizontalAlignment="Left" Margin="135,156,0,0" VerticalAlignment="Top" Width="120"/>
                                     <ComboBox x:Name="CmbDoGridTwoWojewodztwo" HorizontalAlignment="Left" Margin="135,250,0,0" VerticalAlignment="Top" Width="120"/>
                                     <Label x:Name="LblDoGridTwoImie" Content="Imię:" HorizontalAlignment="Left" Margin="21,63,0,0" VerticalAlignment="Top" Width="92"/>
-                                    <TextBox x:Name="TxtDoGridTwoImie" HorizontalAlignment="Left" Height="23" Margin="135,63,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                                    <TextBox x:Name="TxbDoGridTwoImie" HorizontalAlignment="Left" Height="23" Margin="135,63,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
                                 </Grid>
                                 <Grid x:Name="GridDoThree" Margin="300,0,518,300">
                                     <Label x:Name="LblDoGridThreeProdukty" Content="Produkty" HorizontalAlignment="Left" Margin="112,10,0,0" VerticalAlignment="Top"/>
                                     <Label x:Name="LblDoGridThreeNazwa" Content="Nazwa:" HorizontalAlignment="Left" Margin="36,62,0,0" VerticalAlignment="Top"/>
                                     <Label x:Name="LblDoGridThreeIlosc" Content="Ilość:" HorizontalAlignment="Left" Margin="36,112,0,0" VerticalAlignment="Top"/>
                                     <ComboBox x:Name="CmbDoGridThreeNazwa" HorizontalAlignment="Left" Margin="127,66,0,0" VerticalAlignment="Top" Width="120"/>
-                                    <TextBox x:Name="TxtDoGridThreeIlosc" HorizontalAlignment="Left" Height="23" Margin="127,116,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                                    <TextBox x:Name="TxbDoGridThreeIlosc" HorizontalAlignment="Left" Height="23" Margin="127,116,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
                                     <Button x:Name="BtnDoGridThreeDodajProdukty" Content="Dodaj Produkty" HorizontalAlignment="Left" Margin="127,165,0,0" VerticalAlignment="Top" Width="120"/>
                                 </Grid>
                                 <Grid x:Name="GridDoFour" Margin="300,300,518,0">
                                     <Label x:Name="LblDoGridFourPodsumowanie" Content="Podsumowanie" HorizontalAlignment="Left" Margin="98,10,0,0" VerticalAlignment="Top"/>
                                     <Label x:Name="LblDoGridFourNazwaTransakcji" Content="Nazwa Transakcji:" HorizontalAlignment="Left" Margin="36,62,0,0" VerticalAlignment="Top"/>
-                                    <Label Content="Cena:" HorizontalAlignment="Left" Margin="98,112,0,0" VerticalAlignment="Top"/>
-                                    <TextBox x:Name="TxtDoGridFourNazwaTransakcji" HorizontalAlignment="Left" Height="23" Margin="156,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                                    <Label x:Name="LblDoFourCena" Content="Cena:" HorizontalAlignment="Left" Margin="98,112,0,0" VerticalAlignment="Top" Width="178"/>
+                                    <TextBox x:Name="TxbDoGridFourNazwaTransakcji" HorizontalAlignment="Left" Height="23" Margin="156,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
                                     <Button x:Name="BtnDoGridFourRealizujZamowienie" Content="Realizuj Zamówienie" HorizontalAlignment="Left" Margin="156,165,0,0" VerticalAlignment="Top" Width="120"/>
-                                    <Label x:Name="LblDoGridFourCena" Content="" HorizontalAlignment="Left" Margin="156,112,0,0" VerticalAlignment="Top" Width="120"/>
+                                    
                                 </Grid>
                                 <Grid x:Name="GridDoFive" Margin="600,0,0,0">
                                     <DataGrid x:Name="DgDoGridFive" HorizontalAlignment="Left" Height="583" Margin="10,16,0,0" VerticalAlignment="Top" Width="405">
@@ -136,8 +136,8 @@
                                     <CheckBox x:Name="ChbOverviewGridTwoNazwisko" Content="Nazwisko" HorizontalAlignment="Left" Margin="10,450,0,0" VerticalAlignment="Top"/>
                                     <CheckBox x:Name="ChbOverviewGridTwoFirma" Content="Firma" HorizontalAlignment="Left" Margin="10,500,0,0" VerticalAlignment="Top"/>
                                     <DatePicker x:Name="DpOverviewGridTwoDataPicker" HorizontalAlignment="Left" Margin="132,395,0,0" VerticalAlignment="Top" Width="120"/>
-                                    <TextBox x:Name="TxtOverviewGridTwoNazwisko" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="132,445,0,0"/>
-                                    <TextBox x:Name="TxtOverviewGridTwoFirma" HorizontalAlignment="Left" Height="23" Margin="132,495,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                                    <TextBox x:Name="TxbOverviewGridTwoNazwisko" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="132,445,0,0"/>
+                                    <TextBox x:Name="TxbOverviewGridTwoFirma" HorizontalAlignment="Left" Height="23" Margin="132,495,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
                                     <Button x:Name="BtnOverviewGridTwoSzukaj" Content="Szukaj" HorizontalAlignment="Left" Margin="72,555,0,0" VerticalAlignment="Top" Width="121"/>
                                 </Grid>
                                 <Grid x:Name="GridOverviewThree" Margin="634,0,10,0">

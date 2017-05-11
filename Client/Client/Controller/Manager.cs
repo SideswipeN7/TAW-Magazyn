@@ -115,7 +115,7 @@ namespace Client.Controller
 
             GetMagazineState();
         }
-               
+
         public void ShowMagazineStateSearch()
         {
             _window.ChbStateCena.Visibility = Visibility.Visible;
@@ -639,7 +639,7 @@ namespace Client.Controller
 
                         Nazwa_firmy = _window.TxbClientsFirma.Text,
                         Imie = _window.TxbClientsImie.Text,
-                        Nazwisko = _window.TxbClientsNazwisko.Text,                        
+                        Nazwisko = _window.TxbClientsNazwisko.Text,
                         idAdresu = id,
                         Ksiazka_adresow = _comm.GetAddress(id)
                     }))
@@ -666,7 +666,7 @@ namespace Client.Controller
             {
                 for (int i = 0; i < list.Count; i++)
                 {
-                    if (!list[i].Imie.ToLower().Equals(_window.TxbClientsImieSearch.Text.ToLower())) 
+                    if (!list[i].Imie.ToLower().Equals(_window.TxbClientsImieSearch.Text.ToLower()))
                         list.Remove(list[i]);
                 }
             }
@@ -684,7 +684,7 @@ namespace Client.Controller
             {
 
                 for (int i = 0; i < list.Count; i++)
-                {                   
+                {
                     if (!list[i].Ksiazka_adresow.Miejscowosc.ToLower().Equals(_window.TxbClientsMiejscowoscSearch.Text.ToLower()))
                         list.Remove(list[i]);
                 }
@@ -721,5 +721,178 @@ namespace Client.Controller
         {
             throw new NotImplementedException();
         }
+        //DO
+        public void LoadTransactionsDoStates()
+        {
+            _window.CmbDoGridOneWojewodztwo.Items.Clear();
+            _window.CmbDoGridTwoWojewodztwo.Items.Clear();
+            foreach (String r in states)
+            {
+                _window.CmbDoGridOneWojewodztwo.Items.Add(r);
+                _window.CmbDoGridTwoWojewodztwo.Items.Add(r);
+            }
+        }
+
+        public void LoadTransactionsDoSupplier()
+        {
+            _window.CmbDoGridOneWojewodztwo.Items.Clear();
+            _window.CmbDoGridTwoWojewodztwo.Items.Clear();
+            IEnumerable<Dostawca> list = _comm.GetSuppliers();
+            foreach (Dostawca r in list)
+            {
+                _window.CmbDoGridOneWojewodztwo.Items.Add(new ComboBoxItem() { Name = r.Nazwa, Tag = r.idDostawcy });
+                _window.CmbDoGridTwoWojewodztwo.Items.Add(new ComboBoxItem() { Name = r.Nazwa, Tag = r.idDostawcy });
+            }
+        }
+        public void LoadTransactionsDoProducts()
+        {
+            _window.CmbDoGridThreeNazwa.Items.Clear();
+            IEnumerable<Artykul> list = _comm.GetItems();
+            foreach (Artykul r in list)
+            {
+                _window.CmbDoGridThreeNazwa.Items.Add(new ComboBoxItem() { Name = r.Nazwa, Tag = r });
+            }
+        }
+        public void LoadClients()
+        {
+            LoadClientsToCmb(_comm.GetClients());
+        }
+        private void LoadClientsToCmb(IEnumerable<Klient> clients)
+        {
+            _window.CmbDoGridTwoNazwisko.Items.Clear();
+            _window.CmbDoGridTwoFirma.Items.Clear();
+            _window.CmbDoGridTwoFirma.Items.Add(new ComboBoxItem() { Name = "" });
+            foreach (Klient r in clients)
+            {
+                _window.CmbDoGridTwoNazwisko.Items.Add(new ComboBoxItem() { Name = r.Nazwisko, Tag = r });
+                if (r.Nazwa_firmy.Length > 0)
+                {
+                    _window.CmbDoGridTwoFirma.Items.Add(new ComboBoxItem() { Name = r.Nazwa_firmy, Tag = r });
+                }
+            }
+        }
+
+        public void AddToCart()
+        {
+            if (_window.CmbDoGridThreeNazwa.SelectedIndex > 1)
+            {
+                int quantity = ((Artykul)((ComboBoxItem)_window.CmbDoGridThreeNazwa.SelectedItem).Tag).Ilosc;
+                int selQuan;
+                if (Int32.TryParse(_window.TxbDoGridThreeIlosc.Text, out selQuan))
+                    if (selQuan <= quantity && selQuan > 0)
+                    {
+                        _window.DgDoGridFive.Items.Add(new Artykul_w_Koszyku() { Artykul = (Artykul)((ComboBoxItem)_window.CmbDoGridThreeNazwa.SelectedItem).Tag, CenaCalosciowa = ((Artykul)((ComboBoxItem)_window.CmbDoGridThreeNazwa.SelectedItem).Tag).Cena * selQuan, Cena = ((Artykul)((ComboBoxItem)_window.CmbDoGridThreeNazwa.SelectedItem).Tag).Cena, Ilosc = selQuan });
+                        UpadtePrice();
+                    }
+            }
+        }
+        private void UpadtePrice()
+        {
+            decimal price = 0m;
+            foreach (Artykul_w_Koszyku r in _window.DgDoGridFive.Items)
+            {
+                price += r.CenaCalosciowa;
+            }
+            _window.LblDoFourCena.Content = $"Cena: {price:2f}zł";
+        }
+
+        public void DeleteFormCart()
+        {
+            if (_window.DgDoGridFive.SelectedIndex > 0)
+            {
+                _window.DgDoGridFive.Items.RemoveAt(_window.DgDoGridFive.SelectedIndex);
+                UpadtePrice();
+            }
+        }
+
+        public void SelectClientDoTransactionFirm()
+        {
+            if (_window.CmbDoGridTwoFirma.SelectedIndex > 0)
+            {
+                Klient k = ((Klient)((ComboBoxItem)_window.CmbDoGridTwoFirma.SelectedItem).Tag);
+                _window.TxbDoGridTwoImie.Text = k.Imie;
+                _window.TxbDoGridTwoKodPocztowy.Text = k.Ksiazka_adresow.Kod_pocztowy;
+                _window.TxbDoGridTwoMiejscowosc.Text = k.Ksiazka_adresow.Miejscowosc;
+                _window.CmbDoGridTwoFirma.SelectedIndex = 1;
+                for (int i=0;i< _window.CmbDoGridTwoWojewodztwo.Items.Count;i++)
+                {
+                    if (_window.CmbDoGridTwoWojewodztwo.Items.GetItemAt(i).Equals(k.Ksiazka_adresow.Wojewodztwo))
+                        {
+                        _window.CmbDoGridTwoWojewodztwo.SelectedItem = i;
+                            }
+                }
+                for (int i = 0; i < _window.CmbDoGridTwoNazwisko.Items.Count; i++)
+                {
+                    if (((ComboBoxItem)_window.CmbDoGridTwoNazwisko.Items.GetItemAt(i)).Name.Equals(k.Nazwisko))
+                    {
+                        _window.CmbDoGridTwoNazwisko.SelectedItem = i;
+                    }
+                }
+            }
+        }
+        public void SelectClientDoTransactionSurname()
+        {
+            if (_window.CmbDoGridTwoNazwisko.SelectedIndex > 0)
+            {
+                Klient k = ((Klient)((ComboBoxItem)_window.CmbDoGridTwoNazwisko.SelectedItem).Tag);
+                _window.TxbDoGridTwoImie.Text = k.Imie;
+                _window.TxbDoGridTwoKodPocztowy.Text = k.Ksiazka_adresow.Kod_pocztowy;
+                _window.TxbDoGridTwoMiejscowosc.Text = k.Ksiazka_adresow.Miejscowosc;
+                _window.CmbDoGridTwoFirma.SelectedIndex = 1;
+                for (int i = 0; i < _window.CmbDoGridTwoWojewodztwo.Items.Count; i++)
+                {
+                    if (_window.CmbDoGridTwoWojewodztwo.Items.GetItemAt(i).Equals(k.Ksiazka_adresow.Wojewodztwo))
+                    {
+                        _window.CmbDoGridTwoWojewodztwo.SelectedItem = i;
+                    }
+                }
+                for (int i = 0; i < _window.CmbDoGridTwoFirma.Items.Count; i++)
+                {
+                    if (((ComboBoxItem)_window.CmbDoGridTwoWojewodztwo.Items.GetItemAt(i)).Name.Equals(k.Nazwa_firmy))
+                    {
+                        _window.CmbDoGridTwoFirma.SelectedItem = i;
+                    }
+                }
+            }
+        }
+
+        public void RegisterTransaction()
+        {
+            if (_window.DgDoGridFive.Items.Count > 0)
+            {
+                List<Artykul_w_Koszyku> cart = new List<Artykul_w_Koszyku>();
+                foreach (Artykul_w_Koszyku r in _window.DgDoGridFive.Items)
+                    cart.Add(r);
+                if (_window.RbDoGridOneNowyKlient.IsChecked == true)
+                {
+                    TransactionNew(cart);
+                }
+                if (_window.RbDoGridOneStalyKlient.IsChecked == true)
+                {
+                    TransactionOld(cart);
+                }
+            }
+        }
+
+        private void TransactionOld(List<Artykul_w_Koszyku> cart)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void TransactionNew(List<Artykul_w_Koszyku> cart)
+        {
+            throw new NotImplementedException();
+        }
+
+        //DONE
+
+
+
+
+        //Lists
+        private IEnumerable<Klient> clients;
+
+        private static List<string> states = new List<string>()
+        {"Dolonośląskie","Kujawsko-Pomorskie","Lubelskie","Lubuskie","Łódzkie","Małopolskie","Mazowieckie", "Opolskie","Podkarpackie","Podlaskie","Pomorskie","Śląskie","Świętokrzyskie","Warmińsko-Mazurskie","Wielkopolskie","Zachodniopomorskie"};
     }
 }

@@ -88,6 +88,7 @@
   <ItemGroup>
     <Compile Include="Model\Adres.cs" />
     <Compile Include="Model\Artykul.cs" />
+    <Compile Include="Model\Artykul_w_Koszyku.cs" />
     <Compile Include="Model\Artykul_w_transakcji.cs" />
     <Compile Include="Model\Dostawca.cs" />
     <Compile Include="Model\Kategoria.cs" />
