@@ -303,5 +303,10 @@ namespace Client.Communication
         {
             throw new NotImplementedException();
         }
+
+        public int GetClientByData(Klient k)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

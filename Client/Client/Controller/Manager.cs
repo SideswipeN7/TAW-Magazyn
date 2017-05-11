@@ -946,10 +946,7 @@ namespace Client.Controller
                 });
             });
         }
-        public void SetClientTransactionData()
-        {
-            throw new NotImplementedException();
-        }
+        
         public void ShowClientTransactionData(IEnumerable<Transakcja> transactions)
         {
             _window.Dispatcher.BeginInvoke(new Action(() =>
@@ -968,14 +965,81 @@ namespace Client.Controller
                 _window.LblOverviewGridTwoNazwisko.Content = $"Nazwisko: {t.Klienci.Nazwisko}";
                 _window.LblOverviewGridTwoNazwaFirmy.Content = $"Nazwa Firmy: {t.Klienci.Nazwa_firmy}";
                 _window.LblOverviewGridTwoDostawca.Content = $"Dostawca: {t.Dostawcy.Nazwa}";
-                _window.LblOverviewGridTwoNazwisko.Content = $"Nazwisko: {t.Klienci.Nazwisko}";
-                _window.LblOverviewGridTwoNazwisko.Content = $"Nazwisko: {t.Klienci.Nazwisko}";
-                _window.LblOverviewGridTwoNazwisko.Content = $"Nazwisko: {t.Klienci.Nazwisko}";
-                _window.LblOverviewGridTwoNazwisko.Content = $"Nazwisko: {t.Klienci.Nazwisko}";
+                _window.LblOverviewGridTwoData.Content = $"Data: {t.Data}";
+                _window.LblOverviewGridTwoMiejscowosc.Content = $"Miejscowość: {t.Klienci.Ksiazka_adresow.Miejscowosc}";
+                _window.LblOverviewGridTwoKodPocztowy.Content = $"Kod Pocztowy: {t.Klienci.Ksiazka_adresow.Kod_pocztowy}";
+                _window.LblOverviewGridTwoWojewodztwo.Content = $"Województwo: {t.Klienci.Ksiazka_adresow.Wojewodztwo}";
+                //TODO                _window.LblOverviewGridTwoTransakcja.Content = $"Transakcja: {t.Nazwa}";
+                int quantity = t.Artykuly_w_transakcji.Count;
+                decimal cost = 0m;                               
+                foreach (Artykul_w_transakcji r in t.Artykuly_w_transakcji)
+                {
+                    cost += r.Cena;
 
+                    if (_window.DgOverviewGridThree.Items.Count == 0)
+                    {
+                        _window.DgOverviewGridThree.Items.Add(r.Artykuly);
+                    }
+
+                    if (_window.DgOverviewGridThree.Items.Count > 0)
+                    {
+                        foreach (Artykul a in _window.DgOverviewGridThree.Items)
+                        {
+                            if (!r.Artykuly.Equals(a))
+                            {
+                                _window.DgOverviewGridThree.Items.Add(r.Artykuly);
+                            }
+                        }
+                    }
+                }
+                _window.LblOverviewGridTwoCena.Content = $"Cena: {cost:2f}zł";
+                _window.LblOverviewGridTwoIloscProduktow.Content = $"Ilość Produktów: {quantity}";
             }
         }
 
+        public void TransactionsSearch()
+        {
+            List<Transakcja> list = new List<Transakcja>();
+            for (int i = 0; i < _window.DgOverviewGridOne.Items.Count; i++)
+                list.Add((Transakcja)_window.DgOverviewGridOne.Items.GetItemAt(i));
+            _window.DgOverviewGridOne.Items.Clear();
+            //1
+            if (_window.ChbOverviewGridTwoData.IsChecked == true)
+            {
+                for (int i = 0; i < list.Count; i++)
+                {
+                    if (list[i].Data != _window.DpOverviewGridTwoDataPicker.SelectedDate)
+                        list.Remove(list[i]);
+                }
+            }
+            //2
+            if (_window.ChbOverviewGridTwoFirma.IsChecked == true)
+            {
+                for (int i = 0; i < list.Count; i++)
+                {
+                    if (!list[i].Klienci.Nazwa_firmy.ToLower().Equals(_window.TxbOverviewGridTwoFirma.Text.ToLower()))
+                        list.Remove(list[i]);
+                }
+            }
+            //3
+            if (_window.ChbOverviewGridTwoNazwisko.IsChecked == true)
+            {
+
+                for (int i = 0; i < list.Count; i++)
+                {                   
+                    if (!list[i].Klienci.Nazwisko.ToLower().Equals(_window.TxbOverviewGridTwoNazwisko.Text.ToLower()))
+                        list.Remove(list[i]);
+                }
+
+            }           
+            ShowClientTransactionData(list);
+
+        }
+
+        public void ShowClientTransactionData()
+        {
+            throw new NotImplementedException();
+        }
 
 
         //Lists

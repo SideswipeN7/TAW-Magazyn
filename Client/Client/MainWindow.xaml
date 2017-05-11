@@ -144,7 +144,7 @@
                                     <Label x:Name="LblOverviewGridThreeProdukty" Content="Produkty" FontSize="14" HorizontalAlignment="Left" Margin="203,10,0,0" VerticalAlignment="Top"/>
                                     <DataGrid x:Name="DgOverviewGridThree" HorizontalAlignment="Left" Height="517" Margin="40,60,0,0" VerticalAlignment="Top" Width="407">
                                         <DataGrid.Columns>
-                                            <DataGridTextColumn   Header="Produkt" Width="*" Binding="{Binding Produkt}"/>
+                                            <DataGridTextColumn   Header="Produkt" Width="*" Binding="{Binding Nazwa}"/>
                                             <DataGridTextColumn   Header="Cena" Width="*" Binding="{Binding Cena}"/>
                                         </DataGrid.Columns>
                                     </DataGrid>

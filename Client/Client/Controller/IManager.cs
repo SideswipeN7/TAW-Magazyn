@@ -8,7 +8,7 @@ namespace Client.Controller
         void ShowClientData();
         void ShowMagazineStateData(IEnumerable<Artykul> categories);
         void ShowCategoryData(IEnumerable<Kategoria> categories);
-        void ShowClientTransactionData();
+        void ShowClientTransactionData(IEnumerable<Transakcja> transactions);
         void ShowItemData(IEnumerable<Artykul> categories);
         void GetClientData();
         void GetMagazineState();
@@ -16,8 +16,7 @@ namespace Client.Controller
         void GetClientTransactionData();
         void GetItemData();
         void SetClientData();
-        void SetCategoryData();
-        void SetClientTransactionData();
+        void SetCategoryData();       
         void SetItemData();
         void ChangeClientData();
         void ChangeCategoryData();
