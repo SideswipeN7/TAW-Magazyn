@@ -299,5 +299,9 @@ namespace Client.Communication
             throw new Exception("Exception in RegisterTransItems");
         }
 
+        public IEnumerable<Klient> GetClients()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

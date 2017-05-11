@@ -717,5 +717,9 @@ namespace Client.Controller
             throw new NotImplementedException();
         }
 
+        public void ShowClientData()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

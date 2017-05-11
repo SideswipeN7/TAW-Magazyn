@@ -45,9 +45,27 @@
                                 <Grid x:Name="GridTransactionsDoOne" Margin="0,0,791,337">
                                     <RadioButton x:Name="RbDoGridOneNowyKlient" Content="Nowy Klient" HorizontalAlignment="Left" Margin="22,21,0,0" VerticalAlignment="Top"/>
                                     <Label x:Name="LblDoGridOneNazwisko" Content="Nazwisko" HorizontalAlignment="Left" Margin="22,51,0,0" VerticalAlignment="Top"/>
-                                    <Label x:Name="LblDoGridOneFirma" Content="Firma" HorizontalAlignment="Left" Margin="22,82,0,0" VerticalAlignment="Top"/>
+                                    <Label x:Name="LblDoGridOneFirma" Content="Firma" HorizontalAlignment="Left" Margin="22,51,0,-82" VerticalAlignment="Top" Height="31" RenderTransformOrigin="0.5,0.5">
+                                        <Label.RenderTransform>
+                                            <TransformGroup>
+                                                <ScaleTransform ScaleY="-1"/>
+                                                <SkewTransform/>
+                                                <RotateTransform/>
+                                                <TranslateTransform/>
+                                            </TransformGroup>
+                                        </Label.RenderTransform>
+                                    </Label>
                                     <Label x:Name="LblDoGridOneDostawca" Content="Dostawca" HorizontalAlignment="Left" Margin="22,113,0,0" VerticalAlignment="Top"/>
-                                    <Label x:Name="LblDoGridOneMiejscowosc" Content="Miejscowość" HorizontalAlignment="Left" Margin="22,144,0,0" VerticalAlignment="Top"/>
+                                    <Label x:Name="LblDoGridOneMiejscowosc" Content="Miejscowość" HorizontalAlignment="Left" Margin="22,110,0,-144" VerticalAlignment="Top" Height="34" RenderTransformOrigin="0.5,0.5" Width="98">
+                                        <Label.RenderTransform>
+                                            <TransformGroup>
+                                                <ScaleTransform ScaleY="-1"/>
+                                                <SkewTransform/>
+                                                <RotateTransform/>
+                                                <TranslateTransform/>
+                                            </TransformGroup>
+                                        </Label.RenderTransform>
+                                    </Label>
                                     <Label x:Name="LblDoGridOneKodPocztowy" Content="Kod Pocztowy" HorizontalAlignment="Left" Margin="22,175,0,0" VerticalAlignment="Top"/>
                                     <Label x:Name="LblDoGridOneWojewodztwo" Content="Województwo" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="22,206,0,0"/>
                                     <TextBox x:Name="TxtDoGridOneNazwisko" HorizontalAlignment="Left" Height="23" Margin="132,54,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
@@ -161,7 +179,7 @@
                         <CheckBox x:Name="ChbClientsMiejscowosc" Content="" Margin="238,42,11,100"/>
                         <CheckBox x:Name="ChbClientsKodPocztowy" Content="" Margin="238,78,11,64"/>
                         <CheckBox x:Name="ChbClientsWojewodztwo" Content="" Margin="239,111,10,31"/>
-                        <Button x:Name="BtnClientsSzukaj" Content="Szukaj" RenderTransformOrigin="0.449,0.517" Margin="127,145,74,0" />
+                        <Button x:Name="BtnClientsSzukaj" Content="Szukaj" RenderTransformOrigin="0.449,0.517" Margin="127,145,74,0" Click="BtnClientsSzukaj_Click" />
                     </Grid>
                     <DataGrid x:Name="DgClientsLista" IsReadOnly="True" HorizontalAlignment="Left" VerticalAlignment="Top" Height="249" Width="177" Canvas.Left="10" Canvas.Top="38"  >
                         <DataGrid.Columns>
@@ -185,9 +203,9 @@
                     <TextBox x:Name="TxbClientsMiejscowosc" Height="23" Canvas.Left="317" TextWrapping="Wrap" Canvas.Top="140" Width="120" RenderTransformOrigin="0.115,0.691"/>
                     <TextBox x:Name="TxbClientsKodPocztowy" Height="23" Canvas.Left="317" TextWrapping="Wrap" Canvas.Top="172" Width="120" RenderTransformOrigin="0.115,0.691"/>
                     <TextBox x:Name="TxbClientsWojewodztwo" Height="23" Canvas.Left="317" TextWrapping="Wrap" Canvas.Top="204" Width="120" RenderTransformOrigin="0.115,0.691"/>
-                    <Button x:Name="BtnClientsModyfikuj" Content="Modyfikuj" Canvas.Left="852" Canvas.Top="38" Width="75" />
-                    <Button x:Name="BtnClientsUsun" Content="Usuń" Canvas.Left="852" Canvas.Top="79" Width="75" />
-                    <Button x:Name="BtnClientsDodaj" Content="Dodaj" Canvas.Left="852" Canvas.Top="120" Width="75" />
+                    <Button x:Name="BtnClientsModyfikuj" Content="Modyfikuj" Canvas.Left="852" Canvas.Top="38" Width="75" Click="BtnClientsModyfikuj_Click" />
+                    <Button x:Name="BtnClientsUsun" Content="Usuń" Canvas.Left="852" Canvas.Top="79" Width="75" Click="BtnClientsUsun_Click" />
+                    <Button x:Name="BtnClientsDodaj" Content="Dodaj" Canvas.Left="852" Canvas.Top="120" Width="75" Click="BtnClientsDodaj_Click" />
                     <Label x:Name="LblClientsImie" Content="Imię:" Height="27" Width="100" Canvas.Left="212" Canvas.Top="37"/>
                     <TextBox x:Name="TxbClientsImie" Height="23" Canvas.Left="317" TextWrapping="Wrap" Canvas.Top="41" Width="120" RenderTransformOrigin="0.115,0.691"/>
                 </Canvas>
