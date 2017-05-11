@@ -525,24 +525,84 @@ namespace Client.Controller
         //Client
         public void ChangeClientData()
         {
-            throw new NotImplementedException();
+            int id = ((Klient)_window.DgClientsLista.SelectedItem).idKlienta;
+            if (_window.TxbClientsImie.Text.Length > 5 &&
+                _window.TxbClientsNazwisko.Text.Length > 5 &&
+                (_window.TxbClientsFirma.Text.Length > 5 || _window.TxbClientsFirma.Text.Length == 0) &&
+               _window.TxbClientsWojewodztwo.Text.Length > 5 &&
+                _window.TxbClientsKodPocztowy.Text.Length == 6)
+            {
+                if (_comm.ChangeClient(new Klient()
+                {
+                    idKlienta = id,
+                    Nazwa_firmy = _window.TxbClientsFirma.Text,
+                    Imie = _window.TxbClientsImie.Text,
+                    Nazwisko = _window.TxbClientsNazwisko.Text,
+                    Transakcje = ((Klient)_window.DgClientsLista.SelectedItem).Transakcje,
+                    idAdresu = ((Klient)_window.DgClientsLista.SelectedItem).idAdresu,
+                    Ksiazka_adresow = ((Klient)_window.DgClientsLista.SelectedItem).Ksiazka_adresow
+                }))
+                {
+                    GetClientData();
+                }
+            }
         }
 
-        public void ShowClientData()
+        public void ShowClientData(IEnumerable<Klient> clients)
         {
-            throw new NotImplementedException();
+
+            _window.Dispatcher.BeginInvoke(new Action(() =>
+            {
+                foreach (Klient r in clients)
+                    _window.DgClientsLista.Items.Add(r);
+            }));
         }
 
         public void GetClientData()
         {
-            throw new NotImplementedException();
+            Task<IEnumerable<Klient>>.Factory.StartNew(() =>
+            {
+                return _comm.GetClients();
+            }).ContinueWith(x =>
+            {
+                Task.Factory.StartNew(() =>
+                {
+                    ShowClientData(x.Result);
+                });
+            });
         }
 
-       
-        
+
+
         public void SetClientData()
         {
-            throw new NotImplementedException();
+            if (_window.TxbClientsImie.Text.Length > 5 &&
+              _window.TxbClientsNazwisko.Text.Length > 5 &&
+              (_window.TxbClientsFirma.Text.Length > 5 || _window.TxbClientsFirma.Text.Length == 0) &&
+             _window.TxbClientsWojewodztwo.Text.Length > 5 &&
+              _window.TxbClientsKodPocztowy.Text.Length == 6 &&
+              _window.TxbClientsMiejscowosc.Text.Length > 5)
+            {
+                int id = _comm.RegisterAddress(new Adres()
+                {
+                    Kod_pocztowy = _window.TxbClientsKodPocztowy.Text,
+                    Miejscowosc = _window.TxbClientsMiejscowosc.Text,
+                    Wojewodztwo = _window.TxbClientsWojewodztwo.Text
+                });
+                if (id > 0)
+                    if (_comm.ChangeClient(new Klient()
+                    {
+
+                        Nazwa_firmy = _window.TxbClientsFirma.Text,
+                        Imie = _window.TxbClientsImie.Text,
+                        Nazwisko = _window.TxbClientsNazwisko.Text,                        
+                        idAdresu = id,
+                        Ksiazka_adresow = _comm.GetAddress(id)
+                    }))
+                    {
+                        GetClientData();
+                    }
+            }
         }
 
         //Transactions
@@ -554,11 +614,11 @@ namespace Client.Controller
         public void SetClientTransactionData()
         {
             throw new NotImplementedException();
-        }   
+        }
         public void ShowClientTransactionData()
         {
             throw new NotImplementedException();
-        }        
+        }
 
     }
 }

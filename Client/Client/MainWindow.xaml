@@ -37,8 +37,147 @@
                 </Canvas>
             </TabItem>
 
-            <TabItem x:Name="TabTransactions" Header="Transakcje" />
-            <TabItem x:Name="TabClients" Header="Klienci" />
+            <TabItem x:Name="TabTransactions" Header="Transakcje">
+                <Grid>
+                    <TabControl x:Name="TabCtrlTransactions" Margin="-10,0,10,0">
+                        <TabItem x:Name="TabTransactionsDo" Header="Wykonaj">
+                            <Grid x:Name="GridTransactionsDoMain" Margin="0,-15,0,15">
+                                <Grid x:Name="GridTransactionsDoOne" Margin="0,0,791,337">
+                                    <RadioButton x:Name="RbDoGridOneNowyKlient" Content="Nowy Klient" HorizontalAlignment="Left" Margin="22,21,0,0" VerticalAlignment="Top"/>
+                                    <Label x:Name="LblDoGridOneNazwisko" Content="Nazwisko" HorizontalAlignment="Left" Margin="22,51,0,0" VerticalAlignment="Top"/>
+                                    <Label x:Name="LblDoGridOneFirma" Content="Firma" HorizontalAlignment="Left" Margin="22,82,0,0" VerticalAlignment="Top"/>
+                                    <Label x:Name="LblDoGridOneDostawca" Content="Dostawca" HorizontalAlignment="Left" Margin="22,113,0,0" VerticalAlignment="Top"/>
+                                    <Label x:Name="LblDoGridOneMiejscowosc" Content="Miejscowość" HorizontalAlignment="Left" Margin="22,144,0,0" VerticalAlignment="Top"/>
+                                    <Label x:Name="LblDoGridOneKodPocztowy" Content="Kod Pocztowy" HorizontalAlignment="Left" Margin="22,175,0,0" VerticalAlignment="Top"/>
+                                    <Label x:Name="LblDoGridOneWojewodztwo" Content="Województwo" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="22,206,0,0"/>
+                                    <TextBox x:Name="TxtDoGridOneNazwisko" HorizontalAlignment="Left" Height="23" Margin="132,54,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                                    <TextBox x:Name="TxtDoGridOneFirma" HorizontalAlignment="Left" Height="23" Margin="132,82,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                                    <TextBox x:Name="TxtDoGridOneMiejscowosc" HorizontalAlignment="Left" Height="23" Margin="132,144,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                                    <TextBox x:Name="TxtDoGridOneKodPocztowy" HorizontalAlignment="Left" Height="23" Margin="132,175,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                                    <ComboBox x:Name="CmbDoGridOneDostawca" Height="23" Width="120" Margin="132,116,75,127" />
+                                    <ComboBox x:Name="CmbDoGridOneWojewodztwo" Height="23" Width="120" Margin="132,206,75,37" />
+                                </Grid>
+                                <Grid x:Name="GridDoTwo" Margin="0,300,791,0">
+                                    <RadioButton Content="Stały Klient" HorizontalAlignment="Left" Margin="26,23,0,0" VerticalAlignment="Top"/>
+                                    <Label x:Name="LblDoGridTwoNazwisko" Content="Nazwisko" HorizontalAlignment="Left" Margin="21,65,0,0" VerticalAlignment="Top"/>
+                                    <Label x:Name="LblDoGridTwoFirma" Content="Firma" HorizontalAlignment="Left" Margin="21,96,0,0" VerticalAlignment="Top"/>
+                                    <Label x:Name="LblDoGridTwoDostawca" Content="Dostwaca" HorizontalAlignment="Left" Margin="20,127,0,0" VerticalAlignment="Top"/>
+                                    <Label x:Name="LblDoGridTwoMiejscowosc" Content="Miejscowość" HorizontalAlignment="Left" Margin="21,158,0,0" VerticalAlignment="Top"/>
+                                    <Label x:Name="LblDoGridTwoKodPocztowy" Content="Kod Pocztowy" HorizontalAlignment="Left" Margin="21,189,0,0" VerticalAlignment="Top"/>
+                                    <Label x:Name="LblDoGridTwoWojewodztwo" Content="Województwo" HorizontalAlignment="Left" Margin="21,220,0,0" VerticalAlignment="Top"/>
+                                    <TextBox x:Name="TxtDoGridTwoMiejscowosc" HorizontalAlignment="Left" Height="23" Margin="135,162,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+                                    <TextBox x:Name="TxtDoGridTwoKodPocztowy" HorizontalAlignment="Left" Height="23" Margin="135,192,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+                                    <ComboBox x:Name="CmbDoGridTwoNazwisko" HorizontalAlignment="Left" Margin="135,69,0,0" VerticalAlignment="Top" Width="120"/>
+                                    <ComboBox x:Name="CmbDoGridTwoFirma" HorizontalAlignment="Left" Margin="135,100,0,0" VerticalAlignment="Top" Width="120"/>
+                                    <ComboBox x:Name="CmbDoGridTwoDostawca" HorizontalAlignment="Left" Margin="135,131,0,0" VerticalAlignment="Top" Width="120"/>
+                                    <ComboBox x:Name="CmbDoGridTwoWojewodztwo" HorizontalAlignment="Left" Margin="135,224,0,0" VerticalAlignment="Top" Width="120"/>
+                                </Grid>
+                                <Grid x:Name="GridDoThree" Margin="300,0,518,300">
+                                    <Label x:Name="LblDoGridThreeProdukty" Content="Produkty" HorizontalAlignment="Left" Margin="112,10,0,0" VerticalAlignment="Top"/>
+                                    <Label x:Name="LblDoGridThreeNazwa" Content="Nazwa" HorizontalAlignment="Left" Margin="36,62,0,0" VerticalAlignment="Top"/>
+                                    <Label x:Name="LblDoGridThreeIlosc" Content="Ilość" HorizontalAlignment="Left" Margin="36,112,0,0" VerticalAlignment="Top"/>
+                                    <ComboBox x:Name="CmbDoGridThreeNazwa" HorizontalAlignment="Left" Margin="127,66,0,0" VerticalAlignment="Top" Width="120"/>
+                                    <TextBox x:Name="TxtDoGridThreeIlosc" HorizontalAlignment="Left" Height="23" Margin="127,116,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+                                    <Button x:Name="BtnDoGridThreeDodajProdukty" Content="Dodaj Produkty" HorizontalAlignment="Left" Margin="127,165,0,0" VerticalAlignment="Top" Width="120"/>
+                                </Grid>
+                                <Grid x:Name="GridDoFour" Margin="300,300,518,0">
+                                    <Label x:Name="LblDoGridFourPodsumowanie" Content="Podsumowanie" HorizontalAlignment="Left" Margin="98,10,0,0" VerticalAlignment="Top"/>
+                                    <Label x:Name="LblDoGridFourNazwaTransakcji" Content="Nazwa Transakcji" HorizontalAlignment="Left" Margin="36,62,0,0" VerticalAlignment="Top"/>
+                                    <Label Content="Cena" HorizontalAlignment="Left" Margin="98,112,0,0" VerticalAlignment="Top"/>
+                                    <TextBox x:Name="TxtDoGridFourNazwaTransakcji" HorizontalAlignment="Left" Height="23" Margin="156,66,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+                                    <Button x:Name="BtnDoGridFourRealizujZamowienie" Content="Realizuj Zamówienie" HorizontalAlignment="Left" Margin="156,165,0,0" VerticalAlignment="Top" Width="120"/>
+                                    <Label x:Name="LblDoGridFourCena" Content="Label" HorizontalAlignment="Left" Margin="156,112,0,0" VerticalAlignment="Top"/>
+                                </Grid>
+                                <Grid x:Name="GridDoFive" Margin="600,0,0,0">
+                                    <DataGrid x:Name="DgDoGridFive" HorizontalAlignment="Left" Height="583" Margin="10,16,0,0" VerticalAlignment="Top" Width="405">
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn   Header="Artykuł" Width="100"  Binding="{Binding Artykul}"/>
+                                            <DataGridTextColumn   Header="Ilość" Width="100" Binding="{Binding Ilosc}"/>
+                                            <DataGridTextColumn   Header="Cena" Width="100"  Binding="{Binding Cena}"/>
+                                            <DataGridTextColumn   Header="Cena Całościowa" Width="*" Binding="{Binding CenaCalosciowa}"/>
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                    <Button x:Name="BtnDoGridFiveUsun" Content="Usuń" HorizontalAlignment="Left" Margin="433,19,0,0" VerticalAlignment="Top" Width="75"/>
+                                </Grid>
+                            </Grid>
+                        </TabItem>
+                        <TabItem x:Name="TabOverview" Header="Przeglad">
+                            <Grid>
+                                <Grid x:Name="GridOverviewOne" Margin="0,0,791,0">
+                                    <RadioButton x:Name="RbOverviewGridOneWszystkie" Content="Wszystkie" HorizontalAlignment="Left" Margin="48,10,0,0" VerticalAlignment="Top"/>
+                                    <RadioButton x:Name="RbOverviewGridOneSzukaj" Content="Szukaj" HorizontalAlignment="Left" Margin="188,10,0,0" VerticalAlignment="Top"/>
+                                    <DataGrid x:Name="DgOverviewGridOne" HorizontalAlignment="Left" Height="549" Margin="10,44,0,0" VerticalAlignment="Top" Width="307">
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn   Header="Data Transakcji Data" Width="*" Binding="{Binding DataTransakcjiData}"/>
+                                            <DataGridTextColumn   Header="Data" Width="*" Binding="{Binding Data}"/>
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                </Grid>
+                                <Grid x:Name="GridOverviewTwo" Margin="350,0,506,0">
+                                    <Label x:Name="LblOverviewGridTwoNazwisko" Content="Nazwisko" HorizontalAlignment="Left" Margin="10,40,0,0" VerticalAlignment="Top"/>
+                                    <Label x:Name="LblOverviewGridTwoNazwaFirmy" Content="Nazwa Firmy" HorizontalAlignment="Left" Margin="10,71,0,0" VerticalAlignment="Top"/>
+                                    <Label x:Name="LblOverviewGridTwoDostawca" Content="Dostawca" HorizontalAlignment="Left" Margin="10,102,0,0" VerticalAlignment="Top"/>
+                                    <Label x:Name="LblOverviewGridTwoData" Content="Data" HorizontalAlignment="Left" Margin="10,133,0,0" VerticalAlignment="Top"/>
+                                    <Label x:Name="LblOverviewGridTwoMiejscowosc" Content="Miejscowość" HorizontalAlignment="Left" Margin="10,164,0,0" VerticalAlignment="Top"/>
+                                    <Label x:Name="LblOverviewGridTwoKodPocztowy" Content="Kod Pocztowy" HorizontalAlignment="Left" Margin="10,195,0,0" VerticalAlignment="Top"/>
+                                    <Label x:Name="LblOverviewGridTwoWojewodztwo" Content="Województwo" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,226,0,0"/>
+                                    <Label x:Name="LblOverviewGridTwoTransakcja" Content="Transakcja" HorizontalAlignment="Left" Margin="10,257,0,0" VerticalAlignment="Top"/>
+                                    <Label x:Name="LblOverviewGridTwoIloscProduktow" Content="Ilość Produktów" HorizontalAlignment="Left" Margin="10,288,0,0" VerticalAlignment="Top"/>
+                                    <Label x:Name="LblOverviewGridTwoCena" Content="Cena" HorizontalAlignment="Left" Margin="10,319,0,0" VerticalAlignment="Top"/>
+                                    <CheckBox x:Name="ChbOverviewGridTwoData" Content="Data" HorizontalAlignment="Left" Margin="10,400,0,0" VerticalAlignment="Top"/>
+                                    <CheckBox x:Name="ChbOverviewGridTwoNazwisko" Content="Nazwisko" HorizontalAlignment="Left" Margin="10,450,0,0" VerticalAlignment="Top"/>
+                                    <CheckBox x:Name="ChbOverviewGridTwoFirma" Content="Firma" HorizontalAlignment="Left" Margin="10,500,0,0" VerticalAlignment="Top"/>
+                                    <DatePicker x:Name="DpOverviewGridTwoDataPicker" HorizontalAlignment="Left" Margin="132,395,0,0" VerticalAlignment="Top" Width="120"/>
+                                    <TextBox x:Name="TxtOverviewGridTwoNazwisko" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="132,445,0,0"/>
+                                    <TextBox x:Name="TxtOverviewGridTwoFirma" HorizontalAlignment="Left" Height="23" Margin="132,495,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                                    <Button x:Name="BtnOverviewGridTwoSzukaj" Content="Szukaj" HorizontalAlignment="Left" Margin="72,555,0,0" VerticalAlignment="Top" Width="121"/>
+                                </Grid>
+                                <Grid x:Name="GridOverviewThree" Margin="634,0,10,0">
+                                    <Label x:Name="LblOverviewGridThreeProdukty" Content="Produkty" FontSize="14" HorizontalAlignment="Left" Margin="203,10,0,0" VerticalAlignment="Top"/>
+                                    <DataGrid x:Name="DgOverviewGridThree" HorizontalAlignment="Left" Height="517" Margin="40,60,0,0" VerticalAlignment="Top" Width="407">
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn   Header="Produkt" Width="*" Binding="{Binding Produkt}"/>
+                                            <DataGridTextColumn   Header="Cena" Width="*" Binding="{Binding Cena}"/>
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                </Grid>
+                            </Grid>
+                        </TabItem>
+                    </TabControl>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="TabClients" Header="Klienci" >
+                <Canvas>
+                    <DataGrid x:Name="DgClientsLista" IsReadOnly="True" HorizontalAlignment="Left" VerticalAlignment="Top" Height="249" Width="177" Canvas.Left="10" Canvas.Top="38"  >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn   Header="Nazwisko" Width="80" Binding="{Binding Nazwisko}"/>
+                            <DataGridTextColumn   Header="Firma" Width="*" Binding="{Binding Firma}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <RadioButton x:Name="RbClientsWszyscy" GroupName="gn" Content="Wszyscy" Canvas.Left="10" Canvas.Top="10" RenderTransformOrigin="-2.457,0.36" />
+                    <RadioButton x:Name="RbClientsSzukaj" GroupName="gn" Content="Szukaj" Canvas.Left="111" Canvas.Top="10" RenderTransformOrigin="-2.457,0.36" />
+                    <RadioButton x:Name="RbClientsDodaj" GroupName="gn" Content="Dodaj" Canvas.Left="198" Canvas.Top="10" RenderTransformOrigin="-2.457,0.36" />
+                    <RadioButton x:Name="RbClientsModyfikuj" GroupName="gn" Content="Modyfikuj" Canvas.Left="286" Canvas.Top="10" RenderTransformOrigin="-2.457,0.36" />
+                    <RadioButton x:Name="RbClientsUsun" GroupName="gn" Content="Usun" Canvas.Left="391" Canvas.Top="10" RenderTransformOrigin="-2.457,0.36" />
+                    <Label x:Name="LblClientsNazwisko" Content="Nazwisko:" Height="27" Width="100" Canvas.Left="212" Canvas.Top="72"/>
+                    <Label x:Name="LblClientsFirma" Content="Firma:" Height="27" Width="100" Canvas.Left="212" Canvas.Top="104"/>
+                    <Label x:Name="LblClientsMiejscowosc" Content="Miejscowość:" Height="27" Width="100" Canvas.Left="212" Canvas.Top="136"/>
+                    <Label x:Name="LblClientsKodPocztowy" Content="Kod pocztowy:" Height="27" Width="100" Canvas.Left="212" Canvas.Top="168" RenderTransformOrigin="0.623,3.557"/>
+                    <Label x:Name="LblClientsWojewodztwo" Content="Województwo:" Height="27" Width="100" Canvas.Left="212" Canvas.Top="200"/>
+                    <Label x:Name="LblClientsIloscTransakcji" Content="Ilość transakcji:" Height="27" Width="225" Canvas.Left="212" Canvas.Top="232"/>
+                    <TextBox x:Name="TxbClientsNazwisko" Height="23" Canvas.Left="317" TextWrapping="Wrap" Canvas.Top="76" Width="120" RenderTransformOrigin="0.115,0.691"/>
+                    <TextBox x:Name="TxbClientsFirma" Height="23" Canvas.Left="317" TextWrapping="Wrap" Canvas.Top="108" Width="120" RenderTransformOrigin="0.115,0.691"/>
+                    <TextBox x:Name="TxbClientsMiejscowosc" Height="23" Canvas.Left="317" TextWrapping="Wrap" Canvas.Top="140" Width="120" RenderTransformOrigin="0.115,0.691"/>
+                    <TextBox x:Name="TxbClientsKodPocztowy" Height="23" Canvas.Left="317" TextWrapping="Wrap" Canvas.Top="172" Width="120" RenderTransformOrigin="0.115,0.691"/>
+                    <TextBox x:Name="TxbClientsWojewodztwo" Height="23" Canvas.Left="317" TextWrapping="Wrap" Canvas.Top="204" Width="120" RenderTransformOrigin="0.115,0.691"/>
+                    <Button x:Name="BtnClientsModyfikuj" Content="Modyfikuj" Canvas.Left="494" Canvas.Top="41" Width="75" />
+                    <Button x:Name="BtnClientsUsun" Content="Usuń" Canvas.Left="494" Canvas.Top="82" Width="75" />
+                    <Button x:Name="BtnClientsDodaj" Content="Dodaj" Canvas.Left="494" Canvas.Top="123" Width="75" />
+                    <Button x:Name="BtnClientsSzukaj" Content="Szukaj" Canvas.Left="494" Canvas.Top="166" Width="75" />
+                    <Label x:Name="LblClientsImie" Content="Imię:" Height="27" Width="100" Canvas.Left="212" Canvas.Top="37"/>
+                    <TextBox x:Name="TxbClientsImie" Height="23" Canvas.Left="317" TextWrapping="Wrap" Canvas.Top="41" Width="120" RenderTransformOrigin="0.115,0.691"/>
+                </Canvas>
+            </TabItem>
             <TabItem x:Name="TabCategory" Header="Kategorie" >
                 <Canvas>
                     <DataGrid x:Name="DgCategoryLista" HorizontalAlignment="Left" VerticalAlignment="Top" Height="211" Width="265"  IsReadOnly="True" Canvas.Left="10" Canvas.Top="40">
