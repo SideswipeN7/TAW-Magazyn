@@ -13,6 +13,7 @@ namespace Client.Controller
         private static Manager _instance;
         private MainWindow _window;
         private ICommunication _comm;
+        private int ID;
 
         private Manager()
         {
@@ -704,24 +705,7 @@ namespace Client.Controller
 
         //Transactions
 
-        public void GetClientTransactionData()
-        {
-            throw new NotImplementedException();
-        }
-        public void SetClientTransactionData()
-        {
-            throw new NotImplementedException();
-        }
-        public void ShowClientTransactionData()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ShowClientData()
-        {
-            throw new NotImplementedException();
-        }
-        //DO
+        //DO NEW
         public void LoadTransactionsDoStates()
         {
             _window.CmbDoGridOneWojewodztwo.Items.Clear();
@@ -814,12 +798,12 @@ namespace Client.Controller
                 _window.TxbDoGridTwoKodPocztowy.Text = k.Ksiazka_adresow.Kod_pocztowy;
                 _window.TxbDoGridTwoMiejscowosc.Text = k.Ksiazka_adresow.Miejscowosc;
                 _window.CmbDoGridTwoFirma.SelectedIndex = 1;
-                for (int i=0;i< _window.CmbDoGridTwoWojewodztwo.Items.Count;i++)
+                for (int i = 0; i < _window.CmbDoGridTwoWojewodztwo.Items.Count; i++)
                 {
                     if (_window.CmbDoGridTwoWojewodztwo.Items.GetItemAt(i).Equals(k.Ksiazka_adresow.Wojewodztwo))
-                        {
+                    {
                         _window.CmbDoGridTwoWojewodztwo.SelectedItem = i;
-                            }
+                    }
                 }
                 for (int i = 0; i < _window.CmbDoGridTwoNazwisko.Items.Count; i++)
                 {
@@ -876,16 +860,121 @@ namespace Client.Controller
 
         private void TransactionOld(List<Artykul_w_Koszyku> cart)
         {
-            throw new NotImplementedException();
+            if (_window.TxbDoGridOneImie.Text.Length > 5 &&
+                 _window.TxbDoGridOneNazwisko.Text.Length > 5 &&
+                 (_window.TxbDoGridOneFirma.Text.Length > 5 || _window.TxbDoGridOneFirma.Text.Length == 0) &&
+                 _window.TxbDoGridOneKodPocztowy.Text.Length == 6 &&
+                 _window.TxbDoGridOneMiejscowosc.Text.Length > 5 &&
+                 _window.CmbDoGridOneWojewodztwo.SelectedIndex > 0 &&
+                 _window.CmbDoGridOneDostawca.SelectedIndex > 0)
+            {
+                Adres a = new Adres()
+                {
+                    Kod_pocztowy = _window.TxbDoGridOneKodPocztowy.Text,
+                    Miejscowosc = _window.TxbDoGridOneMiejscowosc.Text,
+                    Wojewodztwo = _window.CmbDoGridOneWojewodztwo.SelectedItem.ToString()
+                };
+                Klient k = new Klient()
+                {
+                    Imie = _window.TxbDoGridOneImie.Text,
+                    Nazwisko = _window.TxbDoGridOneNazwisko.Text
+                };
+                _comm.RegisterClient(k, a);
+                k.idKlienta = _comm.GetClientByData(k);
+                Transakcja t = new Transakcja()
+                {
+                    idKlienta = k.idKlienta,
+                    idDostawcy = (int)(((ComboBoxItem)_window.CmbDoGridOneDostawca.SelectedItem).Tag),
+                    idPracownika = ID,
+                    Data = DateTime.Now
+                };
+                foreach (Artykul_w_Koszyku r in _window.DgDoGridFive.Items)
+                {
+                    for (int i = 0; i < r.Ilosc; i++)
+                        t.Artykuly_w_transakcji.Add(new Artykul_w_transakcji() { Artykuly = r.Artykul, Cena = r.Cena, idArtykulu = r.Artykul.idKategorii });
+                }
+                _comm.RegisterTransaction(t);
+            }
         }
 
         private void TransactionNew(List<Artykul_w_Koszyku> cart)
         {
-            throw new NotImplementedException();
+            if (_window.TxbDoGridTwoImie.Text.Length > 5 &&
+                 _window.CmbDoGridTwoNazwisko.SelectedIndex > 0 &&
+                 _window.CmbDoGridTwoFirma.SelectedIndex > 0 &&
+                 _window.TxbDoGridTwoKodPocztowy.Text.Length == 6 &&
+                 _window.TxbDoGridTwoMiejscowosc.Text.Length > 5 &&
+                 _window.CmbDoGridTwoWojewodztwo.SelectedIndex > 0 &&
+                 _window.CmbDoGridTwoDostawca.SelectedIndex > 0)
+            {
+                Adres a = new Adres()
+                {
+                    Kod_pocztowy = _window.TxbDoGridTwoKodPocztowy.Text,
+                    Miejscowosc = _window.TxbDoGridTwoMiejscowosc.Text,
+                    Wojewodztwo = _window.CmbDoGridTwoWojewodztwo.SelectedItem.ToString()
+                };
+                Klient k = ((Klient)((ComboBoxItem)_window.CmbDoGridTwoNazwisko.SelectedItem).Tag);
+                _comm.RegisterClient(k, a);
+                k.idKlienta = _comm.GetClientByData(k);
+                Transakcja t = new Transakcja()
+                {
+                    idKlienta = k.idKlienta,
+                    idDostawcy = (int)(((ComboBoxItem)_window.CmbDoGridTwoDostawca.SelectedItem).Tag),
+                    idPracownika = ID,
+                    Data = DateTime.Now
+                };
+                foreach (Artykul_w_Koszyku r in _window.DgDoGridFive.Items)
+                {
+                    for (int i = 0; i < r.Ilosc; i++)
+                        t.Artykuly_w_transakcji.Add(new Artykul_w_transakcji() { Artykuly = r.Artykul, Cena = r.Cena, idArtykulu = r.Artykul.idKategorii });
+                }
+                _comm.RegisterTransaction(t);
+            }
         }
 
         //DONE
+        public void GetClientTransactionData()
+        {
+            Task<IEnumerable<Transakcja>>.Factory.StartNew(() =>
+            {
+                return _comm.GetTransactions();
+            }).ContinueWith(x =>
+            {
+                Task.Factory.StartNew(() =>
+                {
+                    ShowClientTransactionData(x.Result);
+                });
+            });
+        }
+        public void SetClientTransactionData()
+        {
+            throw new NotImplementedException();
+        }
+        public void ShowClientTransactionData(IEnumerable<Transakcja> transactions)
+        {
+            _window.Dispatcher.BeginInvoke(new Action(() =>
+            {
+                foreach (Transakcja r in transactions)
+                    _window.DgOverviewGridOne.Items.Add(r);
 
+            }));
+        }
+
+        public void ShowClientData()
+        {
+            if (_window.DgOverviewGridOne.SelectedIndex > 0)
+            {
+                Transakcja t = (Transakcja)_window.DgOverviewGridOne.SelectedItem;
+                _window.LblOverviewGridTwoNazwisko.Content = $"Nazwisko: {t.Klienci.Nazwisko}";
+                _window.LblOverviewGridTwoNazwaFirmy.Content = $"Nazwa Firmy: {t.Klienci.Nazwa_firmy}";
+                _window.LblOverviewGridTwoDostawca.Content = $"Dostawca: {t.Dostawcy.Nazwa}";
+                _window.LblOverviewGridTwoNazwisko.Content = $"Nazwisko: {t.Klienci.Nazwisko}";
+                _window.LblOverviewGridTwoNazwisko.Content = $"Nazwisko: {t.Klienci.Nazwisko}";
+                _window.LblOverviewGridTwoNazwisko.Content = $"Nazwisko: {t.Klienci.Nazwisko}";
+                _window.LblOverviewGridTwoNazwisko.Content = $"Nazwisko: {t.Klienci.Nazwisko}";
+
+            }
+        }
 
 
 
