@@ -61,12 +61,12 @@ namespace WebServer.Controllers
                 //klient.idAdresu = adres.idAdresu;
                 klient.idAdresu = result;
                 db.Klienci.Add(klient);
-                db.SaveChanges();
-                return Request.CreateResponse(HttpStatusCode.Created);
+                db.SaveChanges();                
+                return Request.CreateResponse(HttpStatusCode.Created,klient.idKlienta);
             }
             catch
             {
-                return Request.CreateResponse(HttpStatusCode.Conflict);
+                return Request.CreateResponse(HttpStatusCode.Conflict,0);
             }
         }
 
