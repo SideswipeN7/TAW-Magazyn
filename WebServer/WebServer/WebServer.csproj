@@ -224,8 +224,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="Models\Magazyn.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Magazyn.Context.cs</LastGenOutput>
       <DependentUpon>Magazyn.edmx</DependentUpon>
+      <LastGenOutput>Magazyn.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\Magazyn.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

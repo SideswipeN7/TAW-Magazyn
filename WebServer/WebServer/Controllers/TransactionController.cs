@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Web.Http;
@@ -9,14 +10,25 @@ namespace WebServer.Controllers
 {
     public class TransactionController : ApiController
     {
-        private DB_A1D841_magazynEntities db = new DB_A1D841_magazynEntities();
+        private DB_A1D841_magazynEntities1 db = new DB_A1D841_magazynEntities1();
 
         // GET: api/Transaction
         [HttpGet]
         [ActionName("GetTransactions")]
         public IQueryable<Transakcja> GetTransactions()
         {
-            return db.Transakcje;
+            IQueryable<Transakcja> transactions = db.Transakcje;
+            foreach(Transakcja t in transactions)
+            {
+                t.Pracownicy = db.Pracownicy.FirstOrDefault(x => x.idPracownika == t.idPracownika);
+                t.Klienci = db.Klienci.FirstOrDefault(x => x.idKlienta == t.idKlienta);
+                IEnumerable<Artykul_w_transakcji> art = db.Artykuly_w_transakcji.Where(x => x.idTransakcji == t.idTransakcji).ToArray();
+                foreach(Artykul_w_transakcji a in art)
+                {
+                    a.Artykuly = db.Artykuly.FirstOrDefault(x => x.idArtykulu == a.idArtykulu);
+                }
+            }
+            return transactions;
         }
 
         // GET: api/Transaction/5
@@ -29,6 +41,18 @@ namespace WebServer.Controllers
             if (transakcja == null)
             {
                 return NotFound();
+            }
+            else
+            {
+
+                transakcja.Pracownicy = db.Pracownicy.FirstOrDefault(x => x.idPracownika == transakcja.idPracownika);
+                transakcja.Klienci = db.Klienci.FirstOrDefault(x => x.idKlienta == transakcja.idKlienta);
+                    IEnumerable<Artykul_w_transakcji> art = db.Artykuly_w_transakcji.Where(x => x.idTransakcji == transakcja.idTransakcji).ToArray();
+                    foreach (Artykul_w_transakcji a in art)
+                    {
+                        a.Artykuly = db.Artykuly.FirstOrDefault(x => x.idArtykulu == a.idArtykulu);
+                    }
+                
             }
 
             return Ok(transakcja);

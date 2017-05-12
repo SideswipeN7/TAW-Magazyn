@@ -12,25 +12,23 @@ namespace WebServer.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Pracownik
+    public partial class Adres
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Pracownik()
+        public Adres()
         {
-            this.Transakcje = new HashSet<Transakcja>();
+            this.Klienci = new HashSet<Klient>();
+            this.Pracownicy = new HashSet<Pracownik>();
         }
     
-        public int idPracownika { get; set; }
-        public string Imie { get; set; }
-        public string Nazwisko { get; set; }
-        public int Wiek { get; set; }
-        public string Login { get; set; }
-        public string Haslo { get; set; }
-        public int Sudo { get; set; }
         public int idAdresu { get; set; }
+        public string Miejscowosc { get; set; }
+        public string Kod_pocztowy { get; set; }
+        public string Wojewodztwo { get; set; }
     
-        public virtual Adres Ksiazka_adresow { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Transakcja> Transakcje { get; set; }
+        public virtual ICollection<Klient> Klienci { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Pracownik> Pracownicy { get; set; }
     }
 }

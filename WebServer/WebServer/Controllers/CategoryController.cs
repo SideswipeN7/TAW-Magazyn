@@ -11,7 +11,7 @@ namespace WebServer.Controllers
 {
     public class CategoryController : ApiController
     {
-        private DB_A1D841_magazynEntities db = new DB_A1D841_magazynEntities();
+        private DB_A1D841_magazynEntities1 db = new DB_A1D841_magazynEntities1();
 
         // GET: api/Category
         [HttpGet]
@@ -69,6 +69,23 @@ namespace WebServer.Controllers
             {
                 Console.WriteLine($"Error: {ex}");
                 return Content(HttpStatusCode.Conflict, kategoria);
+            }
+        }
+
+        [HttpDelete]
+        [ActionName("DeleteCategory")]
+        [ResponseType(typeof(HttpStatusCode))]
+        public HttpStatusCode DeleteCategory(Kategoria category)
+        {
+            try
+            {
+                db.Kategorie.Remove(category);
+                db.SaveChanges();
+                return HttpStatusCode.Gone;
+            }
+            catch (Exception ex)
+            {
+                return HttpStatusCode.NotModified;
             }
         }
     }

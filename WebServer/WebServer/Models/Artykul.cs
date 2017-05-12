@@ -12,25 +12,22 @@ namespace WebServer.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Pracownik
+    public partial class Artykul
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Pracownik()
+        public Artykul()
         {
-            this.Transakcje = new HashSet<Transakcja>();
+            this.Artykuly_w_transakcji = new HashSet<Artykul_w_transakcji>();
         }
     
-        public int idPracownika { get; set; }
-        public string Imie { get; set; }
-        public string Nazwisko { get; set; }
-        public int Wiek { get; set; }
-        public string Login { get; set; }
-        public string Haslo { get; set; }
-        public int Sudo { get; set; }
-        public int idAdresu { get; set; }
+        public int idArtykulu { get; set; }
+        public string Nazwa { get; set; }
+        public int Ilosc { get; set; }
+        public decimal Cena { get; set; }
+        public int idKategorii { get; set; }
     
-        public virtual Adres Ksiazka_adresow { get; set; }
+        public virtual Kategoria Kategorie { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Transakcja> Transakcje { get; set; }
+        public virtual ICollection<Artykul_w_transakcji> Artykuly_w_transakcji { get; set; }
     }
 }

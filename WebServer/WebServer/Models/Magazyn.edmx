@@ -410,7 +410,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="DB_A1D841_magazynEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="DB_A1D841_magazynEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Artykuly" EntityType="DB_A1D841_magazynModel.Artykul" />
           <EntitySet Name="Artykuly_w_transakcji" EntityType="DB_A1D841_magazynModel.Artykul_w_transakcji" />
           <EntitySet Name="Dostawcy" EntityType="DB_A1D841_magazynModel.Dostawca" />
@@ -457,7 +457,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="DB_A1D841_magazynModelStoreContainer" CdmEntityContainer="DB_A1D841_magazynEntities">
+        <EntityContainerMapping StorageEntityContainer="DB_A1D841_magazynModelStoreContainer" CdmEntityContainer="DB_A1D841_magazynEntities1">
           <EntitySetMapping Name="Artykuly">
             <EntityTypeMapping TypeName="DB_A1D841_magazynModel.Artykul">
               <MappingFragment StoreEntitySet="Artykuly">

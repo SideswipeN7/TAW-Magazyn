@@ -11,14 +11,20 @@ namespace WebServer.Controllers
 {
     public class ClientsController : ApiController
     {
-        private DB_A1D841_magazynEntities db = new DB_A1D841_magazynEntities();
+        private DB_A1D841_magazynEntities1 db = new DB_A1D841_magazynEntities1();
 
         // GET: api/Clients
         [HttpGet]
         [ActionName("GetClients")]
         public IQueryable<Klient> GetKlienci()
         {
-            return db.Klienci;
+            IQueryable<Klient> clients = db.Klienci;
+            foreach(Klient k in clients)
+            {
+                k.Ksiazka_adresow = db.Ksiazka_adresow.FirstOrDefault(x => x.idAdresu == k.idAdresu);
+                k.Transakcje = db.Transakcje.Where(x => x.idKlienta == k.idKlienta).ToArray();
+            }
+            return clients;
         }
 
         // GET: api/Clients/5
@@ -31,6 +37,11 @@ namespace WebServer.Controllers
             if (klient == null)
             {
                 return null;
+            }
+            else
+            {
+                klient.Ksiazka_adresow = db.Ksiazka_adresow.FirstOrDefault(x => x.idAdresu == klient.idAdresu);
+                klient.Transakcje = db.Transakcje.Where(x => x.idKlienta == klient.idKlienta).ToArray();
             }
 
             return klient;

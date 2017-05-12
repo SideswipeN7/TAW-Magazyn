@@ -187,7 +187,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="DB_A1D841_magazynEntities" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="DB_A1D841_magazynEntities1" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Artykuly" EntityType="DB_A1D841_magazynModel.Artykul" />
     <EntitySet Name="Artykuly_w_transakcji" EntityType="DB_A1D841_magazynModel.Artykul_w_transakcji" />
     <EntitySet Name="Dostawcy" EntityType="DB_A1D841_magazynModel.Dostawca" />

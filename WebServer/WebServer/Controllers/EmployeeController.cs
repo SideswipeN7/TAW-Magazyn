@@ -7,7 +7,7 @@ namespace WebServer.Controllers
 {
     public class EmployeeController : ApiController
     {
-        private DB_A1D841_magazynEntities db = new DB_A1D841_magazynEntities();
+        private DB_A1D841_magazynEntities1 db = new DB_A1D841_magazynEntities1();
 
         // POST: api/Employee/Register
         //[HttpPost]
@@ -20,6 +20,7 @@ namespace WebServer.Controllers
                 db.Ksiazka_adresow.Add(adres);
                 adres.idAdresu = db.Ksiazka_adresow.Find(adres).idAdresu;
                 pracownik.idAdresu = adres.idAdresu;
+                pracownik.Ksiazka_adresow = adres;
                 db.Pracownicy.Add(pracownik);
                 db.SaveChanges();
                 return Request.CreateResponse(HttpStatusCode.Created);

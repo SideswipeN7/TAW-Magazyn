@@ -10,7 +10,7 @@ namespace WebServer.Controllers
 {
     public class LoginController : ApiController
     {
-        private DB_A1D841_magazynEntities db = new DB_A1D841_magazynEntities();
+        private DB_A1D841_magazynEntities1 db = new DB_A1D841_magazynEntities1();
 
         // POST: api/Login
         [ResponseType(typeof(int))]

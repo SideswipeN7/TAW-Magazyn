@@ -12,25 +12,18 @@ namespace WebServer.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Pracownik
+    public partial class Kategoria
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Pracownik()
+        public Kategoria()
         {
-            this.Transakcje = new HashSet<Transakcja>();
+            this.Artykuly = new HashSet<Artykul>();
         }
     
-        public int idPracownika { get; set; }
-        public string Imie { get; set; }
-        public string Nazwisko { get; set; }
-        public int Wiek { get; set; }
-        public string Login { get; set; }
-        public string Haslo { get; set; }
-        public int Sudo { get; set; }
-        public int idAdresu { get; set; }
+        public int idKategorii { get; set; }
+        public string Nazwa { get; set; }
     
-        public virtual Adres Ksiazka_adresow { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Transakcja> Transakcje { get; set; }
+        public virtual ICollection<Artykul> Artykuly { get; set; }
     }
 }
