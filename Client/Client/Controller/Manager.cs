@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 
 namespace Client.Controller
 {
@@ -304,8 +303,11 @@ namespace Client.Controller
 
         public void CategoriesDelete()
         {
-            //TODO
-            throw new NotImplementedException();
+            if (_window.DgCategoryLista.SelectedIndex > 0)
+            {
+                _comm.DeleteCategory((Kategoria)_window.DgCategoryLista.SelectedItem);
+                GetCategoryData();
+            }
         }
 
         public void CategoriesSearch()
@@ -658,8 +660,11 @@ namespace Client.Controller
 
         public void ClientDelete()
         {
-            //TODO
-            throw new NotImplementedException();
+            if (_window.DgClientsLista.SelectedIndex > 0)
+            {
+                _comm.DeleteClient((Klient)_window.DgClientsLista.SelectedItem);
+                GetClientData();
+            }
         }
 
         public void SearchClients()
@@ -745,14 +750,14 @@ namespace Client.Controller
         public void LoadTransactionsDoProducts()
         {
             _window.CmbDoGridThreeNazwa.Items.Clear();
-            IEnumerable<Artykul> list = _comm.GetItems();            
+            IEnumerable<Artykul> list = _comm.GetItems();
             try
-            {          
-                
+            {
+
                 foreach (Artykul r in list)
-                {                   
-                    
-                         _window.CmbDoGridThreeNazwa.Items.Add(new ComboBoxItem() { Content =r.Nazwa, Tag = r });                    
+                {
+
+                    _window.CmbDoGridThreeNazwa.Items.Add(new ComboBoxItem() { Content = r.Nazwa, Tag = r });
                 }
             }
             catch (Exception ex)
@@ -910,8 +915,7 @@ namespace Client.Controller
                     Imie = _window.TxbDoGridOneImie.Text,
                     Nazwisko = _window.TxbDoGridOneNazwisko.Text
                 };
-                _comm.RegisterClient(k, a);
-                k.idKlienta = _comm.GetClientByData(k);
+                k.idKlienta = _comm.RegisterClient(k, a);
                 Transakcja t = new Transakcja()
                 {
                     idKlienta = k.idKlienta,
@@ -945,8 +949,7 @@ namespace Client.Controller
                     Wojewodztwo = _window.CmbDoGridTwoWojewodztwo.SelectedItem.ToString()
                 };
                 Klient k = ((Klient)((ComboBoxItem)_window.CmbDoGridTwoNazwisko.SelectedItem).Tag);
-                _comm.RegisterClient(k, a);
-                k.idKlienta = _comm.GetClientByData(k);
+                k.idKlienta = _comm.RegisterClient(k, a);
                 Transakcja t = new Transakcja()
                 {
                     idKlienta = k.idKlienta,
