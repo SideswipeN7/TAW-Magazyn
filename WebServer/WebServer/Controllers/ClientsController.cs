@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
@@ -92,6 +93,22 @@ namespace WebServer.Controllers
             }
 
             return Request.CreateResponse(HttpStatusCode.OK);
+        }
+
+        [HttpDelete]
+        [ActionName("DeleteClient")]
+        [ResponseType(typeof(HttpStatusCode))]
+        public HttpStatusCode DeleteClient(Klient klient)
+        {
+            try
+            {
+                db.Klienci.Remove(klient);
+                db.SaveChanges();
+                return HttpStatusCode.Gone;
+            }catch(Exception ex)
+            {
+                return HttpStatusCode.NotModified;
+            }
         }
     }
 }
