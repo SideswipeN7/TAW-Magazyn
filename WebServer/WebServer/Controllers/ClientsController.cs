@@ -19,13 +19,20 @@ namespace WebServer.Controllers
         [ActionName("GetClients")]
         public IQueryable<Klient> GetKlienci()
         {
-            IQueryable<Klient> clients = db.Klienci;
-            foreach(Klient k in clients)
+            try
             {
-                k.Ksiazka_adresow = db.Ksiazka_adresow.FirstOrDefault(x => x.idAdresu == k.idAdresu);
-                k.Transakcje = db.Transakcje.Where(x => x.idKlienta == k.idKlienta).ToArray();
+                IQueryable<Klient> clients = db.Klienci;
+                foreach (Klient k in clients)
+                {
+                    k.Ksiazka_adresow = db.Ksiazka_adresow.FirstOrDefault(x => x.idAdresu == k.idAdresu);
+                    k.Transakcje = db.Transakcje.Where(x => x.idKlienta == k.idKlienta).ToArray();
+                }
+                return clients;
+            }catch(Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"\nERROR: {ex}");
+                return null;
             }
-            return clients;
         }
 
         // GET: api/Clients/5

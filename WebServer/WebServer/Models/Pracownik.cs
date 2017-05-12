@@ -9,9 +9,10 @@
 
 namespace WebServer.Models
 {
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
-    
+
     public partial class Pracownik
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -29,8 +30,9 @@ namespace WebServer.Models
         public int Sudo { get; set; }
         public int idAdresu { get; set; }
     
-        public virtual Adres Ksiazka_adresow { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Transakcja> Transakcje { get; set; }
+        public  Adres Ksiazka_adresow { get; set; }
+        // [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        [JsonIgnore]
+        public  ICollection<Transakcja> Transakcje { get; set; }
     }
 }
