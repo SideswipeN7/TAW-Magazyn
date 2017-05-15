@@ -28,7 +28,7 @@ namespace Client.Communication
 
         bool ChangeClient(Klient klient);
 
-        bool RegisterClient(Klient klient, Adres adres);
+        int RegisterClient(Klient klient, Adres adres);
 
         bool RegisterEmployee(Pracownik pracownik, Adres adres);
 
@@ -53,6 +53,9 @@ namespace Client.Communication
         IEnumerable<Transakcja> GetTransactions();
 
         Transakcja GetTransaction(int id);
+        IEnumerable<Klient> GetClients();
+        void DeleteCategory(Kategoria selectedItem);
+        void DeleteClient(Klient selectedItem);
     }
 }
 

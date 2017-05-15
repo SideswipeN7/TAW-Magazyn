@@ -215,7 +215,7 @@ namespace Client.Communication
             throw new Exception("Exception in RegisterCategory");
         }
 
-        public bool RegisterClient(Klient klient, Adres adres)
+        public int RegisterClient(Klient klient, Adres adres)
         {
             string baseUrl = $"{urlAddress}/api/Clients";
             var client = new RestClient(baseUrl);
@@ -225,8 +225,8 @@ namespace Client.Communication
             request.AddJsonBody(klient);
             request.AddJsonBody(adres);
             IRestResponse response = client.Execute(request);
-            if (response.StatusCode.Equals(HttpStatusCode.Created)) return true;
-            if (response.StatusCode.Equals(HttpStatusCode.Conflict)) return false;
+            if (response.StatusCode.Equals(HttpStatusCode.Created)) return Int32.Parse(response.Content);
+            if (response.StatusCode.Equals(HttpStatusCode.Conflict)) return 0;
             throw new Exception("Exception in RegisterClient");
         }
 
@@ -299,5 +299,25 @@ namespace Client.Communication
             throw new Exception("Exception in RegisterTransItems");
         }
 
+        public IEnumerable<Klient> GetClients()
+        {
+            string baseUrl = $"{urlAddress}/api/Clients";
+            var client = new RestClient(baseUrl);
+            var request = new RestRequest(Method.GET);
+            request.AddHeader("cache-control", "no-cache");
+            request.AddHeader("content-type", "application/json");
+            IRestResponse response = client.Execute(request);
+            return JsonConvert.DeserializeObject<IEnumerable<Klient>>(response.Content);
+        }
+
+        public void DeleteCategory(Kategoria selectedItem)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteClient(Klient selectedItem)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

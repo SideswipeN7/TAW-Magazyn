@@ -18,7 +18,7 @@ namespace TDD_TEST
 
         public void Setup()
         {
-            comm = new Communicator();
+            comm = Communicator.GetInstance();
             comm.SetUrlAddress("http://o1018869-001-site1.htempurl.com");
         }
 
