@@ -317,7 +317,13 @@ namespace Client.Communication
 
         public void DeleteClient(Klient selectedItem)
         {
-            throw new NotImplementedException();
+            string baseUrl = $"{urlAddress}/api/Clients";
+            var client = new RestClient(baseUrl);
+            var request = new RestRequest(Method.DELETE);
+            request.AddHeader("cache-control", "no-cache");
+            request.AddHeader("content-type", "application/json");
+            request.AddJsonBody(selectedItem);
+            client.Execute(request);
         }
     }
 }
