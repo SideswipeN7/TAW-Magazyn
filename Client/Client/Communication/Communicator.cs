@@ -312,11 +312,6 @@ namespace Client.Communication
 
         public void DeleteCategory(Kategoria selectedItem)
         {
-            throw new NotImplementedException();
-        }
-
-        public void DeleteClient(Klient selectedItem)
-        {
             string baseUrl = $"{urlAddress}/api/Category";
             var client = new RestClient(baseUrl);
             var request = new RestRequest(Method.DELETE);
@@ -324,6 +319,11 @@ namespace Client.Communication
             request.AddHeader("content-type", "application/json");
             request.AddJsonBody(selectedItem);
             client.Execute(request);
+            
         }
-    }
+
+        public void DeleteClient(Klient selectedItem)
+        {
+            throw new NotImplementedException();
+        }
 }
