@@ -317,7 +317,7 @@ namespace Client.Communication
 
         public void DeleteClient(Klient selectedItem)
         {
-            string baseUrl = $"{urlAddress}/api/Clients";
+            string baseUrl = $"{urlAddress}/api/Category";
             var client = new RestClient(baseUrl);
             var request = new RestRequest(Method.DELETE);
             request.AddHeader("cache-control", "no-cache");
