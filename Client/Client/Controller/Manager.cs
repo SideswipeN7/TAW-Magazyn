@@ -20,6 +20,16 @@ namespace Client.Controller
             _comm = Communicator.GetInstance();
             _comm.SetUrlAddress("http://o1018869-001-site1.htempurl.com");
         }
+
+        internal void GetAll()
+        {
+            GetCategoryData();
+            GetMagazineState();
+            GetItemData();
+            GetClientData();
+            GetClientTransactionData();
+        }
+
         public static Manager GetInstance(MainWindow window)
         {
             if (_instance == null)
@@ -28,6 +38,15 @@ namespace Client.Controller
             }
             _instance._window = window;
             return _instance;
+        }
+
+        internal void LoadAll()
+        {
+            LoadCategoriesMagazineSate();
+            LoadClients();
+            LoadTransactionsDoProducts();
+            LoadTransactionsDoStates();
+            LoadTransactionsDoSupplier();
         }
 
 
@@ -662,7 +681,7 @@ namespace Client.Controller
         {
             if (_window.DgClientsLista.SelectedIndex > 0)
             {
-                _comm.DeleteClient((Klient)_window.DgClientsLista.SelectedItem);
+                _comm.DeleteClient(((Klient)_window.DgClientsLista.SelectedItem).idKlienta);
                 GetClientData();
             }
         }
@@ -778,7 +797,7 @@ namespace Client.Controller
             {
                 _window.CmbDoGridTwoNazwisko.Items.Clear();
                 _window.CmbDoGridTwoFirma.Items.Clear();
-                _window.CmbDoGridTwoFirma.Items.Add(new ComboBoxItem() { Content = "" });
+                _window.CmbDoGridTwoFirma.Items.Add(new ComboBoxItem() { Content = "",Tag=null });
                 foreach (Klient r in clients)
                 {
                     _window.CmbDoGridTwoNazwisko.Items.Add(new ComboBoxItem() { Content = r.Nazwisko, Tag = r });
@@ -833,46 +852,54 @@ namespace Client.Controller
                 _window.TxbDoGridTwoImie.Text = k.Imie;
                 _window.TxbDoGridTwoKodPocztowy.Text = k.Ksiazka_adresow.Kod_pocztowy;
                 _window.TxbDoGridTwoMiejscowosc.Text = k.Ksiazka_adresow.Miejscowosc;
-                _window.CmbDoGridTwoFirma.SelectedIndex = 1;
+                //_window.CmbDoGridTwoFirma.SelectedIndex = 1;
                 for (int i = 0; i < _window.CmbDoGridTwoWojewodztwo.Items.Count; i++)
                 {
                     if (_window.CmbDoGridTwoWojewodztwo.Items.GetItemAt(i).Equals(k.Ksiazka_adresow.Wojewodztwo))
                     {
-                        _window.CmbDoGridTwoWojewodztwo.SelectedItem = i;
+                        _window.CmbDoGridTwoWojewodztwo.SelectedIndex = i;
                     }
                 }
                 for (int i = 0; i < _window.CmbDoGridTwoNazwisko.Items.Count; i++)
                 {
-                    if (((ComboBoxItem)_window.CmbDoGridTwoNazwisko.Items.GetItemAt(i)).Name.Equals(k.Nazwisko))
+                    if (((Klient)((ComboBoxItem)_window.CmbDoGridTwoNazwisko.Items.GetItemAt(i)).Tag).idKlienta.Equals(k.idKlienta))
                     {
-                        _window.CmbDoGridTwoNazwisko.SelectedItem = i;
+                        if(_window.CmbDoGridTwoNazwisko.SelectedIndex != i)
+                        _window.CmbDoGridTwoNazwisko.SelectedIndex = i;
                     }
                 }
             }
         }
         public void SelectClientDoTransactionSurname()
         {
-            if (_window.CmbDoGridTwoNazwisko.SelectedIndex > 0)
+            if (_window.CmbDoGridTwoNazwisko.SelectedIndex >= 0)
             {
                 Klient k = ((Klient)((ComboBoxItem)_window.CmbDoGridTwoNazwisko.SelectedItem).Tag);
                 _window.TxbDoGridTwoImie.Text = k.Imie;
                 _window.TxbDoGridTwoKodPocztowy.Text = k.Ksiazka_adresow.Kod_pocztowy;
                 _window.TxbDoGridTwoMiejscowosc.Text = k.Ksiazka_adresow.Miejscowosc;
-                _window.CmbDoGridTwoFirma.SelectedIndex = 1;
+                bool chage = true;
                 for (int i = 0; i < _window.CmbDoGridTwoWojewodztwo.Items.Count; i++)
                 {
+                   
                     if (_window.CmbDoGridTwoWojewodztwo.Items.GetItemAt(i).Equals(k.Ksiazka_adresow.Wojewodztwo))
                     {
-                        _window.CmbDoGridTwoWojewodztwo.SelectedItem = i;
+                        _window.CmbDoGridTwoWojewodztwo.SelectedIndex = i;                       
                     }
                 }
+               
                 for (int i = 0; i < _window.CmbDoGridTwoFirma.Items.Count; i++)
                 {
-                    if (((ComboBoxItem)_window.CmbDoGridTwoWojewodztwo.Items.GetItemAt(i)).Name.Equals(k.Nazwa_firmy))
+                    if ((((ComboBoxItem)(_window.CmbDoGridTwoFirma.Items.GetItemAt(i))).Tag) != null && ((Klient)((ComboBoxItem)(_window.CmbDoGridTwoFirma.Items.GetItemAt(i))).Tag).idKlienta.Equals(k.idKlienta))
                     {
-                        _window.CmbDoGridTwoFirma.SelectedItem = i;
+                        if (_window.CmbDoGridTwoFirma.SelectedIndex != i)
+                        {
+                            _window.CmbDoGridTwoFirma.SelectedIndex = i;
+                           
+                        } chage = false;
                     }
                 }
+                if (chage) _window.CmbDoGridTwoFirma.SelectedIndex = 0;
             }
         }
 
@@ -1010,42 +1037,49 @@ namespace Client.Controller
 
         public void ShowClientData()
         {
-            if (_window.DgOverviewGridOne.SelectedIndex > 0)
+            if (_window.DgOverviewGridOne.SelectedIndex >= 0)
             {
-                Transakcja t = (Transakcja)_window.DgOverviewGridOne.SelectedItem;
-                _window.LblOverviewGridTwoNazwisko.Content = $"Nazwisko: {t.Klienci.Nazwisko}";
-                _window.LblOverviewGridTwoNazwaFirmy.Content = $"Nazwa Firmy: {t.Klienci.Nazwa_firmy}";
-                _window.LblOverviewGridTwoDostawca.Content = $"Dostawca: {t.Dostawcy.Nazwa}";
-                _window.LblOverviewGridTwoData.Content = $"Data: {t.Data}";
-                _window.LblOverviewGridTwoMiejscowosc.Content = $"Miejscowość: {t.Klienci.Ksiazka_adresow.Miejscowosc}";
-                _window.LblOverviewGridTwoKodPocztowy.Content = $"Kod Pocztowy: {t.Klienci.Ksiazka_adresow.Kod_pocztowy}";
-                _window.LblOverviewGridTwoWojewodztwo.Content = $"Województwo: {t.Klienci.Ksiazka_adresow.Wojewodztwo}";
-                //TODO                _window.LblOverviewGridTwoTransakcja.Content = $"Transakcja: {t.Nazwa}";
-                int quantity = t.Artykuly_w_transakcji.Count;
-                decimal cost = 0m;
-                foreach (Artykul_w_transakcji r in t.Artykuly_w_transakcji)
+                try
                 {
-                    cost += r.Cena;
-
-                    if (_window.DgOverviewGridThree.Items.Count == 0)
+                    Transakcja t = (Transakcja)_window.DgOverviewGridOne.SelectedItem;
+                    _window.LblOverviewGridTwoNazwisko.Content = $"Nazwisko: {t.Klienci.Nazwisko}";
+                    _window.LblOverviewGridTwoNazwaFirmy.Content = $"Nazwa Firmy: {t.Klienci.Nazwa_firmy}";
+                    _window.LblOverviewGridTwoDostawca.Content = $"Dostawca: {t.Dostawcy.Nazwa}";
+                    _window.LblOverviewGridTwoData.Content = $"Data: {t.Data}";
+                    _window.LblOverviewGridTwoMiejscowosc.Content = $"Miejscowość: {t.Klienci.Ksiazka_adresow.Miejscowosc}";
+                    _window.LblOverviewGridTwoKodPocztowy.Content = $"Kod Pocztowy: {t.Klienci.Ksiazka_adresow.Kod_pocztowy}";
+                    _window.LblOverviewGridTwoWojewodztwo.Content = $"Województwo: {t.Klienci.Ksiazka_adresow.Wojewodztwo}";
+                    //TODO                _window.LblOverviewGridTwoTransakcja.Content = $"Transakcja: {t.Nazwa}";
+                    int quantity = t.Artykuly_w_transakcji.Count;
+                    decimal cost = 0m;
+                    foreach (Artykul_w_transakcji r in t.Artykuly_w_transakcji)
                     {
-                        _window.DgOverviewGridThree.Items.Add(r.Artykuly);
-                    }
+                        cost += r.Cena;
 
-                    if (_window.DgOverviewGridThree.Items.Count > 0)
-                    {
-                        foreach (Artykul a in _window.DgOverviewGridThree.Items)
+                        if (_window.DgOverviewGridThree.Items.Count == 0)
                         {
-                            if (!r.Artykuly.Equals(a))
+                            _window.DgOverviewGridThree.Items.Add(r.Artykuly);
+                        }
+
+                        if (_window.DgOverviewGridThree.Items.Count > 0)
+                        {
+                            foreach (Artykul a in _window.DgOverviewGridThree.Items)
                             {
-                                _window.DgOverviewGridThree.Items.Add(r.Artykuly);
+                                if (!r.Artykuly.Equals(a))
+                                {
+                                    _window.DgOverviewGridThree.Items.Add(r.Artykuly);
+                                }
                             }
                         }
                     }
+                    _window.LblOverviewGridTwoCena.Content = $"Cena: {cost:2f}zł";
+                    _window.LblOverviewGridTwoIloscProduktow.Content = $"Ilość Produktów: {quantity}";
                 }
-                _window.LblOverviewGridTwoCena.Content = $"Cena: {cost:2f}zł";
-                _window.LblOverviewGridTwoIloscProduktow.Content = $"Ilość Produktów: {quantity}";
-            }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine($"Error in transactions: {ex}");
+                }
+            }          
         }
 
         public void TransactionsSearch()

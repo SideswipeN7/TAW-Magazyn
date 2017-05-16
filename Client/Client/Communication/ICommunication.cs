@@ -55,7 +55,7 @@ namespace Client.Communication
         Transakcja GetTransaction(int id);
         IEnumerable<Klient> GetClients();
         void DeleteCategory(Kategoria selectedItem);
-        void DeleteClient(Klient selectedItem);
+        void DeleteClient(int id);
     }
 }
 

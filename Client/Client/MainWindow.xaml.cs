@@ -1,8 +1,6 @@
 ﻿using System.Windows;
-<<<<<<< HEAD
-=======
 using Client.Controller;
->>>>>>> 3386f0e84df2ce1ab871226198887dc6315f4194
+
 
 namespace Client
 {
@@ -14,26 +12,12 @@ namespace Client
         private Manager _controller;
         public MainWindow()
         {
-<<<<<<< HEAD
-            InitializeComponent();           
-        }
-
-       
-=======
             InitializeComponent();
             _controller = Manager.GetInstance(this);
             //Show Data
-            _controller.GetCategoryData();
-            _controller.GetMagazineState();
-            _controller.GetItemData();
-            _controller.GetClientData();
-            _controller.GetClientTransactionData();
+            _controller.GetAll();
             //LoadData
-            _controller.LoadCategoriesMagazineSate();
-            _controller.LoadClients();//ERROR
-            _controller.LoadTransactionsDoProducts();
-            _controller.LoadTransactionsDoStates();
-            _controller.LoadTransactionsDoSupplier();
+            _controller.LoadAll();
         }
 
         //Magazine State
@@ -224,6 +208,6 @@ namespace Client
         {
             _controller.TransactionsSearch();
         }
->>>>>>> 3386f0e84df2ce1ab871226198887dc6315f4194
+
     }
 }

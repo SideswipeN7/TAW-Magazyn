@@ -312,14 +312,13 @@ namespace Client.Communication
 
         public void DeleteCategory(Kategoria selectedItem)
         {
-            string baseUrl = $"{urlAddress}/api/Category";
+            string baseUrl = $"{urlAddress}/api/Category{selectedItem.idKategorii}";
             var client = new RestClient(baseUrl);
             var request = new RestRequest(Method.DELETE);
             request.AddHeader("cache-control", "no-cache");
             request.AddHeader("content-type", "application/json");
-            request.AddJsonBody(selectedItem);
             client.Execute(request);
-            
+
         }
 
         public void DeleteClient(int id)
@@ -331,4 +330,6 @@ namespace Client.Communication
             request.AddHeader("content-type", "application/json");
             client.Execute(request);
         }
+               
+    }
 }
