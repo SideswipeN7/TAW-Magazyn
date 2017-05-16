@@ -28,6 +28,7 @@ namespace WebServer.Controllers
                     a.Artykuly = db.Artykuly.FirstOrDefault(x => x.idArtykulu == a.idArtykulu);
                 }
                 t.Dostawcy = db.Dostawcy.FirstOrDefault(x => x.idDostawcy == t.idDostawcy);
+                t.Klienci.Ksiazka_adresow = db.Ksiazka_adresow.FirstOrDefault(x => x.idAdresu == t.Klienci.idAdresu);
             }
             return transactions;
         }
