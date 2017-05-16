@@ -17,7 +17,12 @@ namespace WebServer.Controllers
         [ActionName("GetItems")]
         public IQueryable<Artykul> GetItems()
         {
-            return db.Artykuly;
+            IQueryable<Artykul> art= db.Artykuly;
+            foreach(Artykul a in art)
+            {
+                a.Kategorie = db.Kategorie.FirstOrDefault(x => x.idKategorii == a.idKategorii);
+            }
+            return art;
         }
 
         // PUT: api/Item/5
