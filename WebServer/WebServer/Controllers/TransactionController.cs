@@ -27,6 +27,7 @@ namespace WebServer.Controllers
                 {
                     a.Artykuly = db.Artykuly.FirstOrDefault(x => x.idArtykulu == a.idArtykulu);
                 }
+                t.Dostawcy = db.Dostawcy.FirstOrDefault(x => x.idDostawcy == t.idDostawcy);
             }
             return transactions;
         }
