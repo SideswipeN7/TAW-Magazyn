@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 using Client.Controller;
-
+using Client.Model;
 
 namespace Client
 {
@@ -276,6 +276,19 @@ namespace Client
         private void RdEmployeeUsun_Checked(object sender, RoutedEventArgs e)
         {
             _controller.ShowEmployeeDelete();
+        }
+
+        private void btnTabOverviewFaktura_Click(object sender, RoutedEventArgs e)
+        {
+            Transakcja tran = (Transakcja)DgOverviewGridOne.SelectedItem;
+            if (DgOverviewGridOne.SelectedItem != null)
+            {
+                _controller.ShowFacture(tran);
+            }
+            else
+            {
+                MessageBox.Show("Najpierw wybierz transakcję.");
+            }
         }
     }
 }
