@@ -262,16 +262,16 @@
             </TabItem>
             <TabItem x:Name="TabEmployees" Header="Pracownicy" >
                 <Canvas>
-                    <DataGrid x:Name="DgEmployeesList" Canvas.Left="10" Canvas.Top="26" Height="500" Width="250">
+                    <DataGrid x:Name="DgEmployeesList" Canvas.Left="10" Canvas.Top="26" Height="500" Width="250" SelectionChanged="DgEmployeesList_SelectionChanged">
                         <DataGrid.Columns>
                             <DataGridTextColumn   Header="Imię" Width="*" Binding="{Binding Nazwa}"/>
                             <DataGridTextColumn   Header="Nazwisko" Width="*" Binding="{Binding Ilosc}"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <RadioButton x:Name="RdEmployeeWszyscy" Content="Wszyscy" Canvas.Left="10" Canvas.Top="6"/>
-                    <RadioButton x:Name="RdEmployeeDodaj" Content="Dodaj" Canvas.Left="94" Canvas.Top="6"/>
-                    <RadioButton x:Name="RdEmployeeModyfikuj" Content="Modyfikuj" Canvas.Left="174" Canvas.Top="6"/>
-                    <RadioButton x:Name="RdEmployeeUsun" Content="Usuń" Canvas.Left="252" Canvas.Top="6"/>
+                    <RadioButton x:Name="RdEmployeeWszyscy" Content="Wszyscy" Canvas.Left="10" Canvas.Top="6" Checked="RdEmployeeWszyscy_Checked"/>
+                    <RadioButton x:Name="RdEmployeeDodaj" Content="Dodaj" Canvas.Left="94" Canvas.Top="6" Checked="RdEmployeeDodaj_Checked"/>
+                    <RadioButton x:Name="RdEmployeeModyfikuj" Content="Modyfikuj" Canvas.Left="174" Canvas.Top="6" Checked="RdEmployeeModyfikuj_Checked"/>
+                    <RadioButton x:Name="RdEmployeeUsun" Content="Usuń" Canvas.Left="252" Canvas.Top="6" Checked="RdEmployeeUsun_Checked"/>
                     <Label x:Name="LblEmployeeImie" Content="Imię:" Canvas.Left="306" Canvas.Top="42"/>
                     <TextBox x:Name="TxbEmployeeImie" Height="23" Canvas.Left="396" TextWrapping="Wrap" Canvas.Top="45" Width="120"/>
                     <Label x:Name="LblEmployeeNazwisko" Content="Nazwisko:" Canvas.Left="306" Canvas.Top="77"/>
@@ -290,9 +290,9 @@
                     <ComboBox x:Name="CmbEmployeeWojewodztwo" Canvas.Left="396" Canvas.Top="357" Width="120"/>
                     <Label x:Name="LblEmployeeHaslo" Content="Hasło:" Canvas.Left="306" Canvas.Top="193"/>
                     <TextBox x:Name="TxbEmployeeHaslo" Height="23" Canvas.Left="396" TextWrapping="Wrap" Canvas.Top="197" Width="120"/>
-                    <Button x:Name="BtnEmployeeDodaj" Content="Dodaj" Canvas.Left="615" Canvas.Top="148" Width="75"/>
-                    <Button x:Name="BtnEmployeeModyfikuj" Content="Modyfikuj" Canvas.Left="615" Canvas.Top="182" Width="75"/>
-                    <Button x:Name="BtnEmployeeUsun" Content="Usuń" Canvas.Left="615" Canvas.Top="219" Width="75"/>
+                    <Button x:Name="BtnEmployeeDodaj" Content="Dodaj" Canvas.Left="615" Canvas.Top="148" Width="75" Click="BtnEmployeeDodaj_Click"/>
+                    <Button x:Name="BtnEmployeeModyfikuj" Content="Modyfikuj" Canvas.Left="615" Canvas.Top="182" Width="75" Click="BtnEmployeeModyfikuj_Click"/>
+                    <Button x:Name="BtnEmployeeUsun" Content="Usuń" Canvas.Left="615" Canvas.Top="219" Width="75" Click="BtnEmployeeUsun_Click"/>
 
                 </Canvas>
             </TabItem>

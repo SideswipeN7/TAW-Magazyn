@@ -223,5 +223,45 @@ namespace Client
         {
             _controller.ShowClientsData();
         }
+
+        private void DgEmployeesList_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void BtnEmployeeDodaj_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnEmployeeModyfikuj_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnEmployeeUsun_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void RdEmployeeWszyscy_Checked(object sender, RoutedEventArgs e)
+        {
+            _controller.ShowEmployeeAll();
+        }
+
+        private void RdEmployeeDodaj_Checked(object sender, RoutedEventArgs e)
+        {
+            _controller.ShowEmployeeAdd();
+        }
+
+        private void RdEmployeeModyfikuj_Checked(object sender, RoutedEventArgs e)
+        {
+            _controller.ShowEmployeeModify();
+        }
+
+        private void RdEmployeeUsun_Checked(object sender, RoutedEventArgs e)
+        {
+            _controller.ShowEmployeeDelete();
+        }
     }
 }

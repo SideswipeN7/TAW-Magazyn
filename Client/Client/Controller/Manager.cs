@@ -231,6 +231,7 @@ namespace Client.Controller
             }
         }
 
+
         internal void ShowClientsData()
         {
             if (_window.DgClientsLista.SelectedIndex >= 0)
@@ -1184,6 +1185,34 @@ namespace Client.Controller
             _window.GridOverviewTwo.Visibility = Visibility.Visible;
         }
 
+        //EMPLOYEE
+        internal void ShowEmployeeDelete()
+        {
+            _window.BtnEmployeeDodaj.Visibility = Visibility.Hidden;
+            _window.BtnEmployeeModyfikuj.Visibility = Visibility.Hidden;
+            _window.BtnEmployeeUsun.Visibility = Visibility.Visible;
+        }
+
+        internal void ShowEmployeeModify()
+        {
+            _window.BtnEmployeeDodaj.Visibility = Visibility.Hidden;
+            _window.BtnEmployeeModyfikuj.Visibility = Visibility.Visible;
+            _window.BtnEmployeeUsun.Visibility = Visibility.Hidden;
+        }
+
+        internal void ShowEmployeeAdd()
+        {
+            _window.BtnEmployeeDodaj.Visibility = Visibility.Visible;
+            _window.BtnEmployeeModyfikuj.Visibility = Visibility.Hidden;
+            _window.BtnEmployeeUsun.Visibility = Visibility.Hidden;
+        }
+
+        internal void ShowEmployeeAll()
+        {
+            _window.BtnEmployeeDodaj.Visibility = Visibility.Hidden;
+            _window.BtnEmployeeModyfikuj.Visibility = Visibility.Hidden;
+            _window.BtnEmployeeUsun.Visibility = Visibility.Hidden;
+        }
 
         //Lists
 
