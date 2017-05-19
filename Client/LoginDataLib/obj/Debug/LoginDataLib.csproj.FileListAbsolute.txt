@@ -1,0 +1,5 @@
+F:\GIT\KOT\Client\LoginDataLib\bin\Debug\LoginDataLib.dll
+F:\GIT\KOT\Client\LoginDataLib\bin\Debug\LoginDataLib.pdb
+F:\GIT\KOT\Client\LoginDataLib\obj\Debug\LoginDataLib.csprojResolveAssemblyReference.cache
+F:\GIT\KOT\Client\LoginDataLib\obj\Debug\LoginDataLib.dll
+F:\GIT\KOT\Client\LoginDataLib\obj\Debug\LoginDataLib.pdb
