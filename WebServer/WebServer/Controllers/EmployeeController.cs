@@ -1,4 +1,6 @@
-﻿using System.Net;
+﻿using System;
+using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
@@ -12,6 +14,27 @@ namespace WebServer.Controllers
 
         // POST: api/Employee/Register
         //[HttpPost]
+
+        [HttpGet]
+        [ActionName("GetEmployees")]
+        public IQueryable<Pracownik> GetKPracownicy()
+        {
+            try
+            {
+                IQueryable<Pracownik> employees = db.Pracownicy;
+                foreach (Pracownik p in employees)
+                {
+                    p.Ksiazka_adresow = db.Ksiazka_adresow.FirstOrDefault(x => x.idAdresu == p.idAdresu);
+                }
+                return employees;
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"\nERROR: {ex}");
+                return null;
+            }
+        }
+
         [HttpGet]
         [ActionName("RegisterEmployee")]
         public HttpResponseMessage RegisterEmployee(Pracownik pracownik, Adres adres)
