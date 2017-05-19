@@ -9,7 +9,21 @@ namespace Client
     /// </summary>
     public partial class MainWindow : Window
     {
+        private static MainWindow _instance;
+
         private Manager _controller;
+        public int ID { get; set; }
+
+        public static MainWindow GetInstance(int id)
+        {
+            if (_instance == null)
+            {
+                _instance = new MainWindow();
+            }
+            _instance.ID = id;
+            return _instance;
+        }
+
         public MainWindow()
         {
             InitializeComponent();
@@ -231,12 +245,12 @@ namespace Client
 
         private void BtnEmployeeDodaj_Click(object sender, RoutedEventArgs e)
         {
-            _controller.EmployeeAdd();
+            _controller.SetEmployeeData();
         }
 
         private void BtnEmployeeModyfikuj_Click(object sender, RoutedEventArgs e)
         {
-            _controller.EmployeeModify();
+            _controller.SetEmployeeData();
         }
 
         private void BtnEmployeeUsun_Click(object sender, RoutedEventArgs e)

@@ -10,6 +10,8 @@ namespace Client.Controller
         void ShowCategoryData(IEnumerable<Kategoria> categories);
         void ShowClientTransactionData(IEnumerable<Transakcja> transactions);
         void ShowItemData(IEnumerable<Artykul> categories);
+        void ShowEmployeeData(IEnumerable<Pracownik> categories);
+        void GetEmployeeData();
         void GetClientData();
         void GetMagazineState();
         void GetCategoryData();
@@ -18,9 +20,11 @@ namespace Client.Controller
         void SetClientData();
         void SetCategoryData();       
         void SetItemData();
+        void SetEmployeeData();
         void ChangeClientData();
         void ChangeCategoryData();
         void ChangeItemData();
+        void ChangeEmployeeData();
         void SelectClientDoTransactionSurname();
         void SelectClientDoTransactionFirm();
     }

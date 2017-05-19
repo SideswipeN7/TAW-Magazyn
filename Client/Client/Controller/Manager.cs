@@ -13,12 +13,22 @@ namespace Client.Controller
         private static Manager _instance;
         private MainWindow _window;
         private ICommunication _comm;
-        private int ID;
+        private int ID { get; set; }
 
         private Manager()
         {
             _comm = Communicator.GetInstance();
             _comm.SetUrlAddress("http://o1018869-001-site1.htempurl.com");
+        }
+        public static Manager GetInstance(MainWindow window)
+        {
+            if (_instance == null)
+            {
+                _instance = new Manager();
+            }
+            _instance._window = window;
+            _instance.ID = window.ID;
+            return _instance;
         }
 
         internal void GetAll()
@@ -28,17 +38,10 @@ namespace Client.Controller
             GetItemData();
             GetClientData();
             GetClientTransactionData();
+            GetEmployeeData();
         }
 
-        public static Manager GetInstance(MainWindow window)
-        {
-            if (_instance == null)
-            {
-                _instance = new Manager();
-            }
-            _instance._window = window;
-            return _instance;
-        }
+
 
         internal void LoadAll()
         {
@@ -47,6 +50,14 @@ namespace Client.Controller
             LoadTransactionsDoProducts();
             LoadTransactionsDoStates();
             LoadTransactionsDoSupplier();
+            LoadSudo();
+        }
+
+        private void LoadSudo()
+        {
+            _window.CmbEmployeeAdmin.Items.Clear();
+            _window.CmbEmployeeAdmin.Items.Add(new ComboBoxItem() { Tag = 0, Content = "Nie" });
+            _window.CmbEmployeeAdmin.Items.Add(new ComboBoxItem() { Tag = 1, Content = "Tak" });
         }
 
 
@@ -246,7 +257,7 @@ namespace Client.Controller
                     _window.CmbClientsWojewodztwo.SelectedItem = ((Klient)_window.DgClientsLista.SelectedItem).Ksiazka_adresow.Wojewodztwo;
                     _window.LblClientsIloscTransakcji.Content = $"Ilość transakcji: {((Klient)_window.DgClientsLista.SelectedItem).Transakcje.Count}";
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}ERROR: {ex}");
                 }
@@ -376,7 +387,7 @@ namespace Client.Controller
 
         public void CategoriesDelete()
         {
-            if (_window.DgCategoryLista.SelectedIndex >=0 )
+            if (_window.DgCategoryLista.SelectedIndex >= 0)
             {
                 _comm.DeleteCategory((Kategoria)_window.DgCategoryLista.SelectedItem);
                 GetCategoryData();
@@ -655,7 +666,7 @@ namespace Client.Controller
             if (_window.TxbClientsImie.Text.Length > 5 &&
                 _window.TxbClientsNazwisko.Text.Length > 5 &&
                 (_window.TxbClientsFirma.Text.Length > 5 || _window.TxbClientsFirma.Text.Length == 0) &&
-               _window.CmbClientsWojewodztwo.SelectedIndex>=0 &&
+               _window.CmbClientsWojewodztwo.SelectedIndex >= 0 &&
                 _window.TxbClientsKodPocztowy.Text.Length == 6)
             {
                 if (_comm.ChangeClient(new Klient()
@@ -705,7 +716,7 @@ namespace Client.Controller
             if (_window.TxbClientsImie.Text.Length > 5 &&
               _window.TxbClientsNazwisko.Text.Length > 5 &&
               (_window.TxbClientsFirma.Text.Length > 5 || _window.TxbClientsFirma.Text.Length == 0) &&
-             _window.CmbClientsWojewodztwo.SelectedIndex>=0 &&
+             _window.CmbClientsWojewodztwo.SelectedIndex >= 0 &&
               _window.TxbClientsKodPocztowy.Text.Length == 6 &&
               _window.TxbClientsMiejscowosc.Text.Length > 5)
             {
@@ -713,7 +724,7 @@ namespace Client.Controller
                 {
                     Kod_pocztowy = _window.TxbClientsKodPocztowy.Text,
                     Miejscowosc = _window.TxbClientsMiejscowosc.Text,
-                    Wojewodztwo = _window.CmbClientsWojewodztwo.SelectedItem+""
+                    Wojewodztwo = _window.CmbClientsWojewodztwo.SelectedItem + ""
                 });
                 if (id > 0)
                     if (_comm.ChangeClient(new Klient()
@@ -795,11 +806,13 @@ namespace Client.Controller
             _window.CmbDoGridOneWojewodztwo.Items.Clear();
             _window.CmbDoGridTwoWojewodztwo.Items.Clear();
             _window.CmbClientsWojewodztwo.Items.Clear();
+            _window.CmbEmployeeWojewodztwo.Items.Clear();
             foreach (string r in states)
             {
                 _window.CmbDoGridOneWojewodztwo.Items.Add(r);
                 _window.CmbDoGridTwoWojewodztwo.Items.Add(r);
                 _window.CmbClientsWojewodztwo.Items.Add(r);
+                _window.CmbEmployeeWojewodztwo.Items.Add(r);
             }
         }
 
@@ -853,7 +866,7 @@ namespace Client.Controller
             {
                 _window.CmbDoGridTwoNazwisko.Items.Clear();
                 _window.CmbDoGridTwoFirma.Items.Clear();
-                _window.CmbDoGridTwoFirma.Items.Add(new ComboBoxItem() { Content = "",Tag=null });
+                _window.CmbDoGridTwoFirma.Items.Add(new ComboBoxItem() { Content = "", Tag = null });
                 foreach (Klient r in clients)
                 {
                     _window.CmbDoGridTwoNazwisko.Items.Add(new ComboBoxItem() { Content = r.Nazwisko, Tag = r });
@@ -869,7 +882,7 @@ namespace Client.Controller
 
         public void AddToCart()
         {
-            if (_window.CmbDoGridThreeNazwa.SelectedIndex>=0)
+            if (_window.CmbDoGridThreeNazwa.SelectedIndex >= 0)
             {
                 int quantity = ((Artykul)((ComboBoxItem)_window.CmbDoGridThreeNazwa.SelectedItem).Tag).Ilosc;
                 int selQuan;
@@ -920,8 +933,8 @@ namespace Client.Controller
                 {
                     if (((Klient)((ComboBoxItem)_window.CmbDoGridTwoNazwisko.Items.GetItemAt(i)).Tag).idKlienta.Equals(k.idKlienta))
                     {
-                        if(_window.CmbDoGridTwoNazwisko.SelectedIndex != i)
-                        _window.CmbDoGridTwoNazwisko.SelectedIndex = i;
+                        if (_window.CmbDoGridTwoNazwisko.SelectedIndex != i)
+                            _window.CmbDoGridTwoNazwisko.SelectedIndex = i;
                     }
                 }
             }
@@ -937,13 +950,13 @@ namespace Client.Controller
                 bool chage = true;
                 for (int i = 0; i < _window.CmbDoGridTwoWojewodztwo.Items.Count; i++)
                 {
-                   
+
                     if (_window.CmbDoGridTwoWojewodztwo.Items.GetItemAt(i).Equals(k.Ksiazka_adresow.Wojewodztwo))
                     {
-                        _window.CmbDoGridTwoWojewodztwo.SelectedIndex = i;                       
+                        _window.CmbDoGridTwoWojewodztwo.SelectedIndex = i;
                     }
                 }
-               
+
                 for (int i = 0; i < _window.CmbDoGridTwoFirma.Items.Count; i++)
                 {
                     if ((((ComboBoxItem)(_window.CmbDoGridTwoFirma.Items.GetItemAt(i))).Tag) != null && ((Klient)((ComboBoxItem)(_window.CmbDoGridTwoFirma.Items.GetItemAt(i))).Tag).idKlienta.Equals(k.idKlienta))
@@ -951,8 +964,9 @@ namespace Client.Controller
                         if (_window.CmbDoGridTwoFirma.SelectedIndex != i)
                         {
                             _window.CmbDoGridTwoFirma.SelectedIndex = i;
-                           
-                        } chage = false;
+
+                        }
+                        chage = false;
                     }
                 }
                 if (chage) _window.CmbDoGridTwoFirma.SelectedIndex = 0;
@@ -1135,7 +1149,7 @@ namespace Client.Controller
                 {
                     System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}ERROR: {ex}");
                 }
-            }          
+            }
         }
 
         public void TransactionsSearch()
@@ -1215,17 +1229,17 @@ namespace Client.Controller
             _window.BtnEmployeeUsun.Visibility = Visibility.Hidden;
         }
 
-        internal void EmployeeAdd()
+        public void SetEmployeeData()
         {
             int wiek;
-            if(    _window.TxbEmployeeHaslo.Text.Length>5
+            if (_window.TxbEmployeeHaslo.Text.Length > 5
                 && _window.TxbEmployeeLogin.Text.Length > 5
-                && _window.TxbEmployeeImie.Text.Length > 5 
-                && _window.TxbEmployeeNazwisko.Text.Length > 5 
-                && _window.TxbEmployeeMiejscowosc.Text.Length > 5 
-                && _window.TxbEmployeeKodPocztowy.Text.Length ==6 
-                && Int32.TryParse(_window.TxbEmployeeWiek.Text,out wiek)
-                && _window.CmbEmployeeAdmin.SelectedIndex>0
+                && _window.TxbEmployeeImie.Text.Length > 5
+                && _window.TxbEmployeeNazwisko.Text.Length > 5
+                && _window.TxbEmployeeMiejscowosc.Text.Length > 5
+                && _window.TxbEmployeeKodPocztowy.Text.Length == 6
+                && Int32.TryParse(_window.TxbEmployeeWiek.Text, out wiek)
+                && _window.CmbEmployeeAdmin.SelectedIndex > 0
                 && _window.CmbEmployeeWojewodztwo.SelectedIndex >= 0)
             {
                 Pracownik pracownik = new Pracownik()
@@ -1249,10 +1263,10 @@ namespace Client.Controller
 
         }
 
-        internal void EmployeeModify()
+        public void ChangeEmployeeData()
         {
             int wiek;
-            if (_window.DgEmployeesList.SelectedIndex>=0
+            if (_window.DgEmployeesList.SelectedIndex >= 0
                 && _window.TxbEmployeeHaslo.Text.Length > 5
                 && _window.TxbEmployeeLogin.Text.Length > 5
                 && _window.TxbEmployeeImie.Text.Length > 5
@@ -1265,7 +1279,7 @@ namespace Client.Controller
             {
                 Pracownik pracownik = new Pracownik()
                 {
-                    idPracownika=((Pracownik)_window.DgEmployeesList.SelectedItem).idPracownika,
+                    idPracownika = ((Pracownik)_window.DgEmployeesList.SelectedItem).idPracownika,
                     Haslo = _window.TxbEmployeeHaslo.Text,
                     Imie = _window.TxbEmployeeImie.Text,
                     Login = _window.TxbEmployeeLogin.Text,
@@ -1284,7 +1298,7 @@ namespace Client.Controller
             }
         }
 
-        internal void ShowEmployees()
+        public void GetEmployeeData()
         {
             Task<IEnumerable<Pracownik>>.Factory.StartNew(() =>
             {
@@ -1302,29 +1316,37 @@ namespace Client.Controller
         {
             if (_window.DgEmployeesList.SelectedIndex >= 0)
             {
-                Pracownik pracownik = (Pracownik)_window.DgEmployeesList.SelectedItem;
-                _window.TxbEmployeeHaslo.Text = pracownik.Haslo;
-                _window.TxbEmployeeLogin.Text = pracownik.Login;
-                _window.TxbEmployeeImie.Text = pracownik.Imie;
-                _window.TxbEmployeeNazwisko.Text = pracownik.Nazwisko;
-                _window.TxbEmployeeMiejscowosc.Text = pracownik.Ksiazka_adresow.Miejscowosc;
-                _window.TxbEmployeeKodPocztowy.Text = pracownik.Ksiazka_adresow.Kod_pocztowy;
-                _window.TxbEmployeeWiek.Text = pracownik.Wiek+"";
-                if (pracownik.Sudo == 0) {
-                    _window.CmbEmployeeAdmin.SelectedIndex = 0;
-                        }
-                if (pracownik.Sudo == 1)
+                try
                 {
-                    _window.CmbEmployeeAdmin.SelectedIndex = 1;
-                        }
-                _window.CmbEmployeeWojewodztwo.SelectedItem = pracownik.Ksiazka_adresow.Wojewodztwo;
+                    Pracownik pracownik = (Pracownik)_window.DgEmployeesList.SelectedItem;
+                    _window.TxbEmployeeHaslo.Text = pracownik.Haslo;
+                    _window.TxbEmployeeLogin.Text = pracownik.Login;
+                    _window.TxbEmployeeImie.Text = pracownik.Imie;
+                    _window.TxbEmployeeNazwisko.Text = pracownik.Nazwisko;
+                    _window.TxbEmployeeMiejscowosc.Text = pracownik.Ksiazka_adresow.Miejscowosc;
+                    _window.TxbEmployeeKodPocztowy.Text = pracownik.Ksiazka_adresow.Kod_pocztowy;
+                    _window.TxbEmployeeWiek.Text = pracownik.Wiek + "";
+                    if (pracownik.Sudo == 0)
+                    {
+                        _window.CmbEmployeeAdmin.SelectedIndex = 0;
+                    }
+                    if (pracownik.Sudo == 1)
+                    {
+                        _window.CmbEmployeeAdmin.SelectedIndex = 1;
+                    }
+                    _window.CmbEmployeeWojewodztwo.SelectedItem = pracownik.Ksiazka_adresow.Wojewodztwo;
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}ERROR: {ex}");
+                }
             }
         }
 
-        internal void ShowEmployeeData(IEnumerable<Pracownik> empolyees)
+        public void ShowEmployeeData(IEnumerable<Pracownik> empolyees)
         {
             _window.DgEmployeesList.Items.Clear();
-            foreach(Pracownik p in empolyees)
+            foreach (Pracownik p in empolyees)
             {
                 _window.DgEmployeesList.Items.Add(p);
             }
@@ -1333,7 +1355,7 @@ namespace Client.Controller
         internal void DeleteEmployee()
         {
             if (_window.DgEmployeesList.SelectedIndex >= 0)
-            {    
+            {
                 _comm.DeleteEmployee(((Pracownik)_window.DgEmployeesList.SelectedItem).idPracownika);
             }
         }

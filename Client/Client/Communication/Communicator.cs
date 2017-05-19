@@ -330,6 +330,20 @@ namespace Client.Communication
             request.AddHeader("content-type", "application/json");
             client.Execute(request);
         }
-               
+
+        public void ModifyEmployee(Pracownik pracownik, Adres adres)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteEmployee(int idPracownika)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Pracownik> GetEmpoyees()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
