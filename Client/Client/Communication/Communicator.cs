@@ -333,7 +333,14 @@ namespace Client.Communication
 
         public void ModifyEmployee(Pracownik pracownik, Adres adres)
         {
-            throw new NotImplementedException();
+            string baseUrl = $"{urlAddress}/api/Employee";
+            var client = new RestClient(baseUrl);
+            var request = new RestRequest(Method.PUT);
+            request.AddHeader("cache-control", "no-cache");
+            request.AddHeader("content-type", "application/json");
+            request.AddJsonBody(pracownik);
+            request.AddJsonBody(adres);
+            client.Execute(request);
         }
 
         public void DeleteEmployee(int idPracownika)
