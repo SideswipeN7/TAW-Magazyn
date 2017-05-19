@@ -226,7 +226,7 @@ namespace Client
 
         private void DgEmployeesList_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-            _controller.ShowEmployees();
+            _controller.ShowEmployee();
         }
 
         private void BtnEmployeeDodaj_Click(object sender, RoutedEventArgs e)

@@ -56,6 +56,9 @@ namespace Client.Communication
         IEnumerable<Klient> GetClients();
         void DeleteCategory(Kategoria selectedItem);
         void DeleteClient(int id);
+        void ModifyEmployee(Pracownik pracownik, Adres adres);
+        void DeleteEmployee(int idPracownika);
+        IEnumerable<Pracownik> GetEmpoyees();
     }
 }
 
