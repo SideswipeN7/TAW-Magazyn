@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -69,6 +70,28 @@ namespace WebServer.Controllers
             db.SaveChanges();
 
             return Ok(pracownik);
+        }
+
+        [HttpPut]
+        [ActionName("ModifyEmployee")]
+        [ResponseType(typeof(void))]
+        public bool ModifyEmployee(Pracownik pracownik, Adres adres)
+        {
+            if (!ModelState.IsValid)
+            {
+                return false;
+            }
+            try
+            {
+                db.Entry(adres).State = EntityState.Modified;
+                db.Entry(pracownik).State = EntityState.Modified;
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
     }
 }
