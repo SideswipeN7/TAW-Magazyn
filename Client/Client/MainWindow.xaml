@@ -260,6 +260,21 @@
 
                 </Canvas>
             </TabItem>
+            <TabItem x:Name="TabEmployees" Header="Pracownicy" >
+                <Canvas>
+                    <DataGrid x:Name="DgEmployeesList" Canvas.Left="10" Canvas.Top="26" Height="500" Width="250">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn   Header="Imię" Width="*" Binding="{Binding Nazwa}"/>
+                            <DataGridTextColumn   Header="Nazwisko" Width="*" Binding="{Binding Ilosc}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <RadioButton x:Name="RdEmployeeWszyscy" Content="Wszyscy" Canvas.Left="10" Canvas.Top="6"/>
+                    <RadioButton x:Name="RdEmployeeDodaj" Content="Dodaj" Canvas.Left="94" Canvas.Top="6"/>
+                    <RadioButton x:Name="RdEmployeeModyfikuj" Content="Modyfikuj" Canvas.Left="174" Canvas.Top="6"/>
+                    <RadioButton x:Name="RdEmployeeUsun" Content="Usuń" Canvas.Left="252" Canvas.Top="6"/>
+
+                </Canvas>
+            </TabItem>
 
         </TabControl>
     </Grid>
