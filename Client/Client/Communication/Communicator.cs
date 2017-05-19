@@ -355,7 +355,13 @@ namespace Client.Communication
 
         public IEnumerable<Pracownik> GetEmpoyees()
         {
-            throw new NotImplementedException();
+            string baseUrl = $"{urlAddress}/api/Employee";
+            var client = new RestClient(baseUrl);
+            var request = new RestRequest(Method.GET);
+            request.AddHeader("cache-control", "no-cache");
+            request.AddHeader("content-type", "application/json");
+            IRestResponse response = client.Execute(request);
+            return JsonConvert.DeserializeObject<IEnumerable<Pracownik>>(response.Content);
         }
     }
 }
