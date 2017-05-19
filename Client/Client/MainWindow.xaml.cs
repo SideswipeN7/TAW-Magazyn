@@ -226,22 +226,22 @@ namespace Client
 
         private void DgEmployeesList_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-
+            _controller.ShowEmployees();
         }
 
         private void BtnEmployeeDodaj_Click(object sender, RoutedEventArgs e)
         {
-
+            _controller.EmployeeAdd();
         }
 
         private void BtnEmployeeModyfikuj_Click(object sender, RoutedEventArgs e)
         {
-
+            _controller.EmployeeModify();
         }
 
         private void BtnEmployeeUsun_Click(object sender, RoutedEventArgs e)
         {
-
+            _controller.DeleteEmployee();
         }
 
         private void RdEmployeeWszyscy_Checked(object sender, RoutedEventArgs e)

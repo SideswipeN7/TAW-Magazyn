@@ -213,6 +213,7 @@ namespace Client.Controller
             }
         }
 
+
         internal void ShowItemsData()
         {
             if (_window.DgItemLista.SelectedIndex >= 0)
@@ -375,7 +376,7 @@ namespace Client.Controller
 
         public void CategoriesDelete()
         {
-            if (_window.DgCategoryLista.SelectedIndex >0 0)
+            if (_window.DgCategoryLista.SelectedIndex >=0 )
             {
                 _comm.DeleteCategory((Kategoria)_window.DgCategoryLista.SelectedItem);
                 GetCategoryData();
@@ -654,7 +655,7 @@ namespace Client.Controller
             if (_window.TxbClientsImie.Text.Length > 5 &&
                 _window.TxbClientsNazwisko.Text.Length > 5 &&
                 (_window.TxbClientsFirma.Text.Length > 5 || _window.TxbClientsFirma.Text.Length == 0) &&
-               _window.TxbClientsWojewodztwo.Text.Length > 5 &&
+               _window.CmbClientsWojewodztwo.SelectedIndex>=0 &&
                 _window.TxbClientsKodPocztowy.Text.Length == 6)
             {
                 if (_comm.ChangeClient(new Klient()
@@ -704,7 +705,7 @@ namespace Client.Controller
             if (_window.TxbClientsImie.Text.Length > 5 &&
               _window.TxbClientsNazwisko.Text.Length > 5 &&
               (_window.TxbClientsFirma.Text.Length > 5 || _window.TxbClientsFirma.Text.Length == 0) &&
-             _window.TxbClientsWojewodztwo.Text.Length > 5 &&
+             _window.CmbClientsWojewodztwo.SelectedIndex>=0 &&
               _window.TxbClientsKodPocztowy.Text.Length == 6 &&
               _window.TxbClientsMiejscowosc.Text.Length > 5)
             {
@@ -712,7 +713,7 @@ namespace Client.Controller
                 {
                     Kod_pocztowy = _window.TxbClientsKodPocztowy.Text,
                     Miejscowosc = _window.TxbClientsMiejscowosc.Text,
-                    Wojewodztwo = _window.TxbClientsWojewodztwo.Text
+                    Wojewodztwo = _window.CmbClientsWojewodztwo.SelectedItem+""
                 });
                 if (id > 0)
                     if (_comm.ChangeClient(new Klient()
@@ -1212,6 +1213,26 @@ namespace Client.Controller
             _window.BtnEmployeeDodaj.Visibility = Visibility.Hidden;
             _window.BtnEmployeeModyfikuj.Visibility = Visibility.Hidden;
             _window.BtnEmployeeUsun.Visibility = Visibility.Hidden;
+        }
+
+        internal void EmployeeAdd()
+        {
+            throw new NotImplementedException();
+        }
+
+        internal void EmployeeModify()
+        {
+            throw new NotImplementedException();
+        }
+
+        internal void ShowEmployees()
+        {
+            throw new NotImplementedException();
+        }
+
+        internal void DeleteEmployee()
+        {
+            throw new NotImplementedException();
         }
 
         //Lists
