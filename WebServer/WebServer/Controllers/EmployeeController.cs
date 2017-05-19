@@ -1,6 +1,7 @@
 ﻿using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Description;
 using WebServer.Models;
 
 namespace WebServer.Controllers
@@ -29,6 +30,22 @@ namespace WebServer.Controllers
             {
                 return Request.CreateResponse(HttpStatusCode.Conflict);
             }
+        }
+        [HttpDelete]
+        [ActionName("DeleteEmployee")]
+        [ResponseType(typeof(Pracownik))]
+        public IHttpActionResult DeleteEmployee(int id)
+        {
+            Pracownik pracownik = db.Pracownicy.Find(id);
+            if (pracownik == null)
+            {
+                return NotFound();
+            }
+
+            db.Pracownicy.Remove(pracownik);
+            db.SaveChanges();
+
+            return Ok(pracownik);
         }
     }
 }
