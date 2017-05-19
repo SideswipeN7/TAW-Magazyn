@@ -272,6 +272,27 @@
                     <RadioButton x:Name="RdEmployeeDodaj" Content="Dodaj" Canvas.Left="94" Canvas.Top="6"/>
                     <RadioButton x:Name="RdEmployeeModyfikuj" Content="Modyfikuj" Canvas.Left="174" Canvas.Top="6"/>
                     <RadioButton x:Name="RdEmployeeUsun" Content="Usuń" Canvas.Left="252" Canvas.Top="6"/>
+                    <Label x:Name="LblEmployeeImie" Content="Imię:" Canvas.Left="306" Canvas.Top="42"/>
+                    <TextBox x:Name="TxbEmployeeImie" Height="23" Canvas.Left="396" TextWrapping="Wrap" Canvas.Top="45" Width="120"/>
+                    <Label x:Name="LblEmployeeNazwisko" Content="Nazwisko:" Canvas.Left="306" Canvas.Top="77"/>
+                    <Label x:Name="LblEmployeeWiek" Content="Wiek:" Canvas.Left="306" Canvas.Top="112"/>
+                    <Label x:Name="LblEmployeeLogin" Content="Login:" Canvas.Left="306" Canvas.Top="148"/>
+                    <Label x:Name="LblEmployeeAdmin" Content="Administrator:" Canvas.Left="306" Canvas.Top="234"/>
+                    <Label x:Name="LblEmployeeMiejscowosc" Content="Miejscowość:" Canvas.Left="306" Canvas.Top="274"/>
+                    <Label x:Name="LblEmployeeKodPocztowy" Content="Kod Pocztowy:" Canvas.Left="306" Canvas.Top="315"/>
+                    <Label x:Name="LblEmployeeWojewodztwo" Content="Województwo:" Canvas.Left="303" Canvas.Top="353"/>
+                    <TextBox x:Name="TxbEmployeeNazwisko" Height="23" Canvas.Left="396" TextWrapping="Wrap" Canvas.Top="80" Width="120"/>
+                    <TextBox x:Name="TxbEmployeeWiek" Height="23" Canvas.Left="396" TextWrapping="Wrap" Canvas.Top="112" Width="120"/>
+                    <TextBox x:Name="TxbEmployeeLogin" Height="23" Canvas.Left="396" TextWrapping="Wrap" Canvas.Top="152" Width="120"/>
+                    <TextBox x:Name="TxbEmployeeMiejscowosc" Height="23" Canvas.Left="396" TextWrapping="Wrap" Canvas.Top="278" Width="120"/>
+                    <TextBox x:Name="TxbEmployeeKodPocztowy" Height="23" Canvas.Left="396" TextWrapping="Wrap" Canvas.Top="319" Width="120"/>
+                    <ComboBox x:Name="CmbEmployeeAdmin" Canvas.Left="396" Canvas.Top="234" Width="120"/>
+                    <ComboBox x:Name="CmbEmployeeWojewodztwo" Canvas.Left="396" Canvas.Top="357" Width="120"/>
+                    <Label x:Name="LblEmployeeHaslo" Content="Hasło:" Canvas.Left="306" Canvas.Top="193"/>
+                    <TextBox x:Name="TxbEmployeeHaslo" Height="23" Canvas.Left="396" TextWrapping="Wrap" Canvas.Top="197" Width="120"/>
+                    <Button x:Name="BtnEmployeeDodaj" Content="Dodaj" Canvas.Left="615" Canvas.Top="148" Width="75"/>
+                    <Button x:Name="BtnEmployeeModyfikuj" Content="Modyfikuj" Canvas.Left="615" Canvas.Top="182" Width="75"/>
+                    <Button x:Name="BtnEmployeeUsun" Content="Usuń" Canvas.Left="615" Canvas.Top="219" Width="75"/>
 
                 </Canvas>
             </TabItem>
