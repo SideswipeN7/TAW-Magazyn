@@ -209,5 +209,19 @@ namespace Client
             _controller.TransactionsSearch();
         }
 
+        private void DgCategoryLista_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            _controller.ShowCategoriesData();
+        }
+
+        private void DgItemLista_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            _controller.ShowItemsData();
+        }
+
+        private void DgClientsLista_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            _controller.ShowClientsData();
+        }
     }
 }

@@ -197,7 +197,59 @@ namespace Client.Controller
             });
         }
 
+        internal void ShowCategoriesData()
+        {
+            if (_window.DgCategoryLista.SelectedIndex >= 0)
+            {
+                try
+                {
+                    _window.TxbCategoryNazwa.Text = ((Kategoria)_window.DgCategoryLista.SelectedItem).Nazwa;
+                    _window.CmbCategoryId.SelectedItem = ((Kategoria)_window.DgCategoryLista.SelectedItem).idKategorii;
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}ERROR: {ex}");
+                }
+            }
+        }
 
+        internal void ShowItemsData()
+        {
+            if (_window.DgItemLista.SelectedIndex >= 0)
+            {
+                try
+                {
+                    _window.CmbItemKategoria.SelectedItem = ((Artykul)_window.DgItemLista.SelectedItem).Kategorie.Nazwa;
+                    _window.TxbItemCenaMin.Text = ((Artykul)_window.DgItemLista.SelectedItem).Cena + "";
+                    _window.TxbItemIlosc.Text = ((Artykul)_window.DgItemLista.SelectedItem).Ilosc + "";
+                    _window.TxbItemINazwa.Text = ((Artykul)_window.DgItemLista.SelectedItem).Nazwa;
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}ERROR: {ex}");
+                }
+            }
+        }
+
+        internal void ShowClientsData()
+        {
+            if (_window.DgClientsLista.SelectedIndex >= 0)
+            {
+                try
+                {
+                    _window.TxbClientsImie.Text = ((Klient)_window.DgClientsLista.SelectedItem).Imie;
+                    _window.TxbClientsKodPocztowy.Text = ((Klient)_window.DgClientsLista.SelectedItem).Ksiazka_adresow.Kod_pocztowy;
+                    _window.TxbClientsMiejscowosc.Text = ((Klient)_window.DgClientsLista.SelectedItem).Ksiazka_adresow.Miejscowosc;
+                    _window.TxbClientsNazwisko.Text = ((Klient)_window.DgClientsLista.SelectedItem).Nazwisko;
+                    _window.CmbClientsWojewodztwo.SelectedItem = ((Klient)_window.DgClientsLista.SelectedItem).Ksiazka_adresow.Wojewodztwo;
+                    _window.LblClientsIloscTransakcji.Content = $"Ilość transakcji: {((Klient)_window.DgClientsLista.SelectedItem).Transakcje.Count}";
+                }
+                catch(Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}ERROR: {ex}");
+                }
+            }
+        }
 
         public void ShowCategoryData(IEnumerable<Kategoria> categories)
         {
@@ -322,7 +374,7 @@ namespace Client.Controller
 
         public void CategoriesDelete()
         {
-            if (_window.DgCategoryLista.SelectedIndex > 0)
+            if (_window.DgCategoryLista.SelectedIndex >0 0)
             {
                 _comm.DeleteCategory((Kategoria)_window.DgCategoryLista.SelectedItem);
                 GetCategoryData();
@@ -453,7 +505,7 @@ namespace Client.Controller
             if (_window.TxbItemINazwa.Text.Length > 5 &&
                 Int32.TryParse(_window.TxbItemIlosc.Text, out quantity) &&
                 Decimal.TryParse(_window.TxbItemCenaMin.Text, out price) &&
-                _window.CmbItemKategoria.SelectedIndex > 0)
+                _window.CmbItemKategoria.SelectedIndex >= 0)
             {
                 if (_comm.ChangeItem(new Artykul() { idArtykulu = id, Cena = price, Ilosc = quantity, Nazwa = _window.TxbItemINazwa.Text, idKategorii = (int)((ComboBoxItem)_window.CmbItemKategoria.SelectedItem).Tag, Kategorie = new Kategoria() { idKategorii = (int)((ComboBoxItem)_window.CmbItemKategoria.SelectedItem).Tag, Nazwa = (String)((ComboBoxItem)_window.CmbItemKategoria.SelectedItem).Content } }))
                 {
@@ -469,7 +521,7 @@ namespace Client.Controller
             if (_window.TxbItemINazwa.Text.Length > 5 &&
                  Int32.TryParse(_window.TxbItemIlosc.Text, out quantity) &&
                  Decimal.TryParse(_window.TxbItemCenaMin.Text, out price) &&
-                 _window.CmbItemKategoria.SelectedIndex > 0)
+                 _window.CmbItemKategoria.SelectedIndex >= 0)
             {
                 if (_comm.RegisterItem(new Artykul() { Cena = price, Ilosc = quantity, Nazwa = _window.TxbItemINazwa.Text, idKategorii = (int)((ComboBoxItem)_window.CmbItemKategoria.SelectedItem).Tag, Kategorie = new Kategoria() { idKategorii = (int)((ComboBoxItem)_window.CmbItemKategoria.SelectedItem).Tag, Nazwa = (String)((ComboBoxItem)_window.CmbItemKategoria.SelectedItem).Content } }))
                 {
@@ -679,7 +731,7 @@ namespace Client.Controller
 
         public void ClientDelete()
         {
-            if (_window.DgClientsLista.SelectedIndex > 0)
+            if (_window.DgClientsLista.SelectedIndex >= 0)
             {
                 _comm.DeleteClient(((Klient)_window.DgClientsLista.SelectedItem).idKlienta);
                 GetClientData();
@@ -740,10 +792,12 @@ namespace Client.Controller
         {
             _window.CmbDoGridOneWojewodztwo.Items.Clear();
             _window.CmbDoGridTwoWojewodztwo.Items.Clear();
+            _window.CmbClientsWojewodztwo.Items.Clear();
             foreach (string r in states)
             {
                 _window.CmbDoGridOneWojewodztwo.Items.Add(r);
                 _window.CmbDoGridTwoWojewodztwo.Items.Add(r);
+                _window.CmbClientsWojewodztwo.Items.Add(r);
             }
         }
 
@@ -813,7 +867,7 @@ namespace Client.Controller
 
         public void AddToCart()
         {
-            if (_window.CmbDoGridThreeNazwa.SelectedIndex > 1)
+            if (_window.CmbDoGridThreeNazwa.SelectedIndex>=0)
             {
                 int quantity = ((Artykul)((ComboBoxItem)_window.CmbDoGridThreeNazwa.SelectedItem).Tag).Ilosc;
                 int selQuan;
@@ -837,7 +891,7 @@ namespace Client.Controller
 
         public void DeleteFormCart()
         {
-            if (_window.DgDoGridFive.SelectedIndex > 0)
+            if (_window.DgDoGridFive.SelectedIndex >= 0)
             {
                 _window.DgDoGridFive.Items.RemoveAt(_window.DgDoGridFive.SelectedIndex);
                 UpadtePrice();
@@ -846,7 +900,7 @@ namespace Client.Controller
 
         public void SelectClientDoTransactionFirm()
         {
-            if (_window.CmbDoGridTwoFirma.SelectedIndex > 0)
+            if (_window.CmbDoGridTwoFirma.SelectedIndex >= 0)
             {
                 Klient k = ((Klient)((ComboBoxItem)_window.CmbDoGridTwoFirma.SelectedItem).Tag);
                 _window.TxbDoGridTwoImie.Text = k.Imie;
@@ -905,7 +959,7 @@ namespace Client.Controller
 
         public void RegisterTransaction()
         {
-            if (_window.DgDoGridFive.Items.Count > 0)
+            if (_window.DgDoGridFive.Items.Count >= 0)
             {
                 List<Artykul_w_Koszyku> cart = new List<Artykul_w_Koszyku>();
                 foreach (Artykul_w_Koszyku r in _window.DgDoGridFive.Items)
@@ -1077,7 +1131,7 @@ namespace Client.Controller
                 }
                 catch (Exception ex)
                 {
-                    System.Diagnostics.Debug.WriteLine($"Error in transactions: {ex}");
+                    System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}ERROR: {ex}");
                 }
             }          
         }
