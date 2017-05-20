@@ -298,5 +298,32 @@ namespace Client.Windows
                 MessageBox.Show("Najpierw wybierz transakcję.");
             }
         }
+
+        private void MnAbout_Click(object sender, RoutedEventArgs e)
+        {
+            //TODO
+        }
+
+        private void MnCreators_Click(object sender, RoutedEventArgs e)
+        {
+            //TODO
+        }
+
+        private void MnVersion_Click(object sender, RoutedEventArgs e)
+        {
+            //TODO
+        }
+
+        private void MnLogOff_Click(object sender, RoutedEventArgs e)
+        {
+            Login window = new Login();            
+            window.Visibility = Visibility.Visible;
+            Close();
+        }
+
+        private void BtnEmployeeHaslo_Click(object sender, RoutedEventArgs e)
+        {
+            _controller.ShowPassword();
+        }
     }
 }

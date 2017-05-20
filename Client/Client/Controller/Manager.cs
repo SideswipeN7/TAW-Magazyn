@@ -30,7 +30,7 @@ namespace Client.Controller
                 _instance = new Manager();
             }
             _instance._window = window;
-            _instance.ID = window.ID;            
+            _instance.ID = window.ID;
             return _instance;
         }
 
@@ -146,6 +146,7 @@ namespace Client.Controller
             _window.CmbStateKategoria.Visibility = Visibility.Hidden;
 
             _window.BtnSateSzukaj.Visibility = Visibility.Hidden;
+            _window.LblState_.Visibility = Visibility.Hidden;
 
             GetMagazineState();
         }
@@ -169,6 +170,7 @@ namespace Client.Controller
             _window.CmbStateKategoria.Visibility = Visibility.Visible;
 
             _window.BtnSateSzukaj.Visibility = Visibility.Visible;
+            _window.LblState_.Visibility = Visibility.Visible;
         }
 
 
@@ -266,6 +268,7 @@ namespace Client.Controller
                 }
             }
         }
+
 
         public void ShowCategoryData(IEnumerable<Kategoria> categories)
         {
@@ -1203,6 +1206,119 @@ namespace Client.Controller
             _window.GridOverviewTwo.Visibility = Visibility.Visible;
         }
 
+        public void ShowFacture(Transakcja tran)
+        {
+
+
+            System.Collections.Generic.IEnumerable<Artykul_w_transakcji> art = tran.Artykuly_w_transakcji;
+
+            MigraDoc.DocumentObjectModel.Document doc = new MigraDoc.DocumentObjectModel.Document();
+            MigraDoc.DocumentObjectModel.Section sec = doc.AddSection();
+
+            Paragraph paragraph = sec.Headers.Primary.AddParagraph();
+            paragraph.AddText("Szczegółowe dane transakcji");
+            paragraph.Format.Font.Size = 18;
+            paragraph.Format.Font.Bold = true;
+            paragraph.Format.Alignment = ParagraphAlignment.Center;
+
+            MigraDoc.DocumentObjectModel.Tables.Table table = new MigraDoc.DocumentObjectModel.Tables.Table();
+            table.Borders.Width = 0;
+
+            MigraDoc.DocumentObjectModel.Tables.Column column = table.AddColumn(MigraDoc.DocumentObjectModel.Unit.FromCentimeter(5));
+            column.Format.Alignment = MigraDoc.DocumentObjectModel.ParagraphAlignment.Center;
+
+            column = table.AddColumn(MigraDoc.DocumentObjectModel.Unit.FromCentimeter(7));
+            column.Format.Alignment = MigraDoc.DocumentObjectModel.ParagraphAlignment.Center;
+
+            MigraDoc.DocumentObjectModel.Tables.Row row = table.AddRow();
+            MigraDoc.DocumentObjectModel.Tables.Cell cell = row.Cells[0];
+
+            cell = row.Cells[0];
+            cell.AddParagraph("Nr transakcji");
+            cell.Format.Font.Bold = true;
+            cell.Format.Font.Size = 12;
+            cell = row.Cells[1];
+            cell.AddParagraph(tran.idTransakcji.ToString());
+
+            row = table.AddRow();
+
+            cell = row.Cells[0];
+            cell.AddParagraph("Data");
+            cell.Format.Font.Bold = true;
+            cell.Format.Font.Size = 12;
+            cell = row.Cells[1];
+            cell.AddParagraph(tran.Data.ToString());
+
+            row = table.AddRow();
+
+            cell = row.Cells[0];
+            cell.AddParagraph("Imię");
+            cell.Format.Font.Bold = true;
+            cell.Format.Font.Size = 12;
+            cell = row.Cells[1];
+            cell.AddParagraph(tran.Klienci.Imie);
+
+            row = table.AddRow();
+
+            cell = row.Cells[0];
+            cell.AddParagraph("Nazwisko");
+            cell.Format.Font.Bold = true;
+            cell.Format.Font.Size = 12;
+            cell = row.Cells[1];
+            cell.AddParagraph(tran.Klienci.Nazwisko);
+
+            row = table.AddRow();
+
+            cell = row.Cells[0];
+            cell.AddParagraph("Nazwa firmy");
+            cell.Format.Font.Bold = true;
+            cell.Format.Font.Size = 12;
+            cell = row.Cells[1];
+            cell.AddParagraph(tran.Klienci.Nazwa_firmy);
+
+            row = table.AddRow();
+
+            cell = row.Cells[0];
+            cell.AddParagraph("Nazwa dostawcy");
+            cell.Format.Font.Bold = true;
+            cell.Format.Font.Size = 12;
+            cell = row.Cells[1];
+            cell.AddParagraph(tran.Dostawcy.Nazwa);
+
+            row = table.AddRow();
+
+            cell = row.Cells[0];
+            cell.AddParagraph("Przedmioty");
+            cell.Format.Font.Bold = true;
+            cell.Format.Font.Size = 12;
+            cell = row.Cells[1];
+
+            double suma = 0;
+            foreach (Artykul_w_transakcji awt in art)
+            {
+                cell = row.Cells[1];
+                cell.AddParagraph(awt.Artykuly.Nazwa + ", " + awt.Artykuly.Cena + "zl" + "\n");
+                suma = suma + (double)awt.Artykuly.Cena;
+            }
+
+            doc.LastSection.Add(table);
+
+            sec.AddParagraph();
+            sec.AddParagraph();
+            doc.AddSection();
+            sec.AddParagraph("Suma: " + suma + "zł");
+            sec.AddParagraph();
+
+            MigraDoc.Rendering.PdfDocumentRenderer docRend = new MigraDoc.Rendering.PdfDocumentRenderer(false);
+            docRend.Document = doc;
+            docRend.RenderDocument();
+
+            string name = "TransInfo.pdf";
+
+            docRend.PdfDocument.Save(name);
+            Process.Start(name);
+        }
+
         //EMPLOYEE
         internal void ShowEmployeeDelete()
         {
@@ -1322,7 +1438,7 @@ namespace Client.Controller
                 try
                 {
                     Pracownik pracownik = (Pracownik)_window.DgEmployeesList.SelectedItem;
-                    _window.TxbEmployeeHaslo.Text = pracownik.Haslo;
+                    _window.TxbEmployeeHaslo.Text = "*********";
                     _window.TxbEmployeeLogin.Text = pracownik.Login;
                     _window.TxbEmployeeImie.Text = pracownik.Imie;
                     _window.TxbEmployeeNazwisko.Text = pracownik.Nazwisko;
@@ -1363,118 +1479,30 @@ namespace Client.Controller
             }
         }
 
-        public void ShowFacture(Transakcja tran)
+        internal void ShowPassword()
         {
-
-
-            System.Collections.Generic.IEnumerable<Artykul_w_transakcji> art = tran.Artykuly_w_transakcji;
-
-            MigraDoc.DocumentObjectModel.Document doc = new MigraDoc.DocumentObjectModel.Document();
-            MigraDoc.DocumentObjectModel.Section sec = doc.AddSection();
-
-            Paragraph paragraph = sec.Headers.Primary.AddParagraph();
-            paragraph.AddText("Szczegółowe dane transakcji");
-            paragraph.Format.Font.Size = 18;
-            paragraph.Format.Font.Bold = true;
-            paragraph.Format.Alignment = ParagraphAlignment.Center;
-
-            MigraDoc.DocumentObjectModel.Tables.Table table = new MigraDoc.DocumentObjectModel.Tables.Table();
-            table.Borders.Width = 0;
-
-            MigraDoc.DocumentObjectModel.Tables.Column column = table.AddColumn(MigraDoc.DocumentObjectModel.Unit.FromCentimeter(5));
-            column.Format.Alignment = MigraDoc.DocumentObjectModel.ParagraphAlignment.Center;
-
-            column = table.AddColumn(MigraDoc.DocumentObjectModel.Unit.FromCentimeter(7));
-            column.Format.Alignment = MigraDoc.DocumentObjectModel.ParagraphAlignment.Center;
-
-            MigraDoc.DocumentObjectModel.Tables.Row row = table.AddRow();
-            MigraDoc.DocumentObjectModel.Tables.Cell cell = row.Cells[0];
-
-            cell = row.Cells[0];
-            cell.AddParagraph("Nr transakcji");
-            cell.Format.Font.Bold = true;
-            cell.Format.Font.Size = 12;
-            cell = row.Cells[1];
-            cell.AddParagraph(tran.idTransakcji.ToString());
-
-            row = table.AddRow();
-
-            cell = row.Cells[0];
-            cell.AddParagraph("Data");
-            cell.Format.Font.Bold = true;
-            cell.Format.Font.Size = 12;
-            cell = row.Cells[1];
-            cell.AddParagraph(tran.Data.ToString());
-
-            row = table.AddRow();
-
-            cell = row.Cells[0];
-            cell.AddParagraph("Imię");
-            cell.Format.Font.Bold = true;
-            cell.Format.Font.Size = 12;
-            cell = row.Cells[1];
-            cell.AddParagraph(tran.Klienci.Imie);
-
-            row = table.AddRow();
-
-            cell = row.Cells[0];
-            cell.AddParagraph("Nazwisko");
-            cell.Format.Font.Bold = true;
-            cell.Format.Font.Size = 12;
-            cell = row.Cells[1];
-            cell.AddParagraph(tran.Klienci.Nazwisko);
-
-            row = table.AddRow();
-
-            cell = row.Cells[0];
-            cell.AddParagraph("Nazwa firmy");
-            cell.Format.Font.Bold = true;
-            cell.Format.Font.Size = 12;
-            cell = row.Cells[1];
-            cell.AddParagraph(tran.Klienci.Nazwa_firmy);
-
-            row = table.AddRow();
-
-            cell = row.Cells[0];
-            cell.AddParagraph("Nazwa dostawcy");
-            cell.Format.Font.Bold = true;
-            cell.Format.Font.Size = 12;
-            cell = row.Cells[1];
-            cell.AddParagraph(tran.Dostawcy.Nazwa);
-
-            row = table.AddRow();
-
-            cell = row.Cells[0];
-            cell.AddParagraph("Przedmioty");
-            cell.Format.Font.Bold = true;
-            cell.Format.Font.Size = 12;
-            cell = row.Cells[1];
-
-            double suma = 0;
-            foreach (Artykul_w_transakcji awt in art)
+            try
             {
-                cell = row.Cells[1];
-                cell.AddParagraph(awt.Artykuly.Nazwa + ", " + awt.Artykuly.Cena + "zl" + "\n");
-                suma = suma + (double)awt.Artykuly.Cena;
+                switch (_window.TxbEmployeeHaslo.Text)
+                {
+                    case "*********":
+                        _window.TxbEmployeeHaslo.Text = ((Pracownik)_window.DgEmployeesList.SelectedItem).Haslo;
+                        _window.BtnEmployeeHaslo.Content = "Ukryj Hasło";
+                        break;
+                    default:
+                        _window.TxbEmployeeHaslo.Text = "*********";
+                        _window.BtnEmployeeHaslo.Content = "Pokaż Hasło";
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}ERROR: {ex}");
             }
 
-            doc.LastSection.Add(table);
-
-            sec.AddParagraph();
-            sec.AddParagraph();
-            doc.AddSection();
-            sec.AddParagraph("Suma: " + suma + "zł");
-            sec.AddParagraph();
-
-            MigraDoc.Rendering.PdfDocumentRenderer docRend = new MigraDoc.Rendering.PdfDocumentRenderer(false);
-            docRend.Document = doc;
-            docRend.RenderDocument();
-
-            string name = "TransInfo.pdf";
-
-            docRend.PdfDocument.Save(name);
-            Process.Start(name);
         }
+
+
 
         //Lists
 
