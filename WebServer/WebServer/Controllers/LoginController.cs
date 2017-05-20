@@ -13,20 +13,15 @@ namespace WebServer.Controllers
         private DB_A1D841_magazynEntities1 db = new DB_A1D841_magazynEntities1();
 
         // POST: api/Login
-        [ResponseType(typeof(int))]
-        public int PostPracownik(LoginPassword id)
+        [HttpPost]
+        [ActionName("Login")]
+        [ResponseType(typeof(Pracownik))]
+        public Pracownik LoginPracownik(LoginPassword loginPassword)
         {
-            Pracownik pracownik = db.Pracownicy.FirstOrDefault(x => x.Login == id.login);
-            if (pracownik == null)
-            {
-                return 0;
-            }
+            Pracownik pracownik = db.Pracownicy.FirstOrDefault(
+                x => x.Login == loginPassword.login && x.Haslo == loginPassword.password);
 
-            if (pracownik.Haslo == id.password)
-            {
-                return pracownik.idPracownika;
-            }
-            return 0;
+            return pracownik;
         }
     }
 }
