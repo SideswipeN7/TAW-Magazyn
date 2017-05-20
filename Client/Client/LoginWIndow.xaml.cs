@@ -3,6 +3,9 @@ using System;
 using System.IO;
 using System.Reflection;
 using PluginExecutor;
+using Newtonsoft.Json;
+using Client.Model;
+using LoginDataLib;
 
 namespace Client
 {
@@ -18,6 +21,28 @@ namespace Client
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
+            LoginData userLoginData = Login(txtLogin.Text, txtPassword.Text);
+
+            if (userLoginData.Id == 0)
+            {
+                ShowError();
+            }
+            else
+            {
+                MainWindow mw = new MainWindow();
+                mw.Show();
+                this.Close();
+            }
+        }
+
+        public void ShowError()
+        {
+            MessageBox.Show("Wprowadzone dane są niepoprawne");
+        }
+
+        public LoginData Login(String login, String password)
+        {
+            LoginData loginData = new LoginData(0, 0);
             DirectoryInfo di = new DirectoryInfo(".");
             foreach (FileInfo fi in di.GetFiles("Plugin*.dll"))
             {
@@ -27,32 +52,20 @@ namespace Client
                     if (pluginType.GetInterface(typeof(IPluginLogin).Name) != null)
                     {
                         IPluginLogin TypeLoadedFromPlugin = (IPluginLogin)Activator.CreateInstance(pluginType);
-                        int id = 0;
-                        if (Int32.TryParse(TypeLoadedFromPlugin.Login(txtLogin.Text, txtPassword.Text), out id))
+                        string pracownikJSON = TypeLoadedFromPlugin.Login(login, password);
+                        Pracownik pracownik = JsonConvert.DeserializeObject<Pracownik>(pracownikJSON);
+
+                        if (!pracownik.Equals(null))
                         {
-                            if (id > 0)
-                            {
-                                MainWindow mw = new MainWindow();
-                                mw.Show();
-                                this.Close();
-                            }
-                            else
-                            {
-                                ShowError();
-                            }
-                        }
-                        else
-                        {
-                            ShowError();
+                            loginData = new LoginData(pracownik.idPracownika, pracownik.Sudo);
+                            return loginData;
+
                         }
                     }
                 }
             }
-        }
 
-        public void ShowError()
-        {
-            MessageBox.Show("Wprowadzone dane są niepoprawne");
+            return loginData;
         }
     }
 }

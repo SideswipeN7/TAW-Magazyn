@@ -8,7 +8,13 @@ namespace LoginDataLib
 {
     public class LoginData
     {
-      bool Sudo { get; set; }
-      int Id { get; set; }
+        public int Sudo { get; set; }
+        public int Id { get; set; }
+
+        public LoginData(int Id, int Sudo)
+        {
+            this.Sudo = Sudo;
+            this.Id = Id;
+        }
     }
 }
