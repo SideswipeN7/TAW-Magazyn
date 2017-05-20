@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using FluentAssertions;
 using PluginExecutor;
 using System;
+using LoginDataLib;
+using Newtonsoft.Json;
 
 namespace TDD_TEST
 {
@@ -66,7 +68,8 @@ namespace TDD_TEST
             result.Should().HaveCount(x => x > 5);
         }
 
-        [Test]        public void ChangeItems()
+        [Test]
+        public void ChangeItems()
         {
             bool result = comm.ChangeItem(new Artykul { idArtykulu = 999, Nazwa = "LG OLED55B6J", Ilosc = 35, idKategorii = 5, Cena = 11799M });
             result.Should().BeFalse();
@@ -157,7 +160,7 @@ namespace TDD_TEST
             }
         }
 
-       
+
 
         [Test]
         [TestCaseSource(typeof(UnitTest1), nameof(UnitTest1.TestChangeAddressCases))]
@@ -210,14 +213,20 @@ namespace TDD_TEST
             else result.Should().BeGreaterThan(0);
         }
         [Test]
+        [TestCase("a", "b")]
         [TestCase("RogalDDL", "P@ssw0rd")]
         public void Login(string login, string haslo)
         {
             IPluginLogin i = new PluginLogin();
 
             string result = i.Login(login, haslo);
-            int x = Int32.Parse(result);
-            x.Should().BeGreaterOrEqualTo(1);
+            if (!result.Equals("null"))
+            {
+                Pracownik pracownik = JsonConvert.DeserializeObject<Pracownik>(result);
+                pracownik.idPracownika.Should().BeGreaterOrEqualTo(1);
+            }
+
+            result.ShouldBeEquivalentTo("null");
 
 
         }

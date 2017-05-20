@@ -52,11 +52,11 @@ namespace Client
                     if (pluginType.GetInterface(typeof(IPluginLogin).Name) != null)
                     {
                         IPluginLogin TypeLoadedFromPlugin = (IPluginLogin)Activator.CreateInstance(pluginType);
-                        string pracownikJSON = TypeLoadedFromPlugin.Login(login, password);
-                        Pracownik pracownik = JsonConvert.DeserializeObject<Pracownik>(pracownikJSON);
+                        string pracownikJSON = TypeLoadedFromPlugin.Login(login, password);                        
 
-                        if (!pracownik.Equals(null))
+                        if (!pracownikJSON.Equals("null"))
                         {
+                            Pracownik pracownik = JsonConvert.DeserializeObject<Pracownik>(pracownikJSON);
                             loginData = new LoginData(pracownik.idPracownika, pracownik.Sudo);
                             return loginData;
 

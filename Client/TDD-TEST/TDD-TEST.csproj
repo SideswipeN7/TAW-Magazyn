@@ -43,6 +43,9 @@
       <HintPath>..\packages\FluentAssertions.4.19.2\lib\net45\FluentAssertions.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework, Version=3.6.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
       <HintPath>..\packages\NUnit.3.6.1\lib\net45\nunit.framework.dll</HintPath>
       <Private>True</Private>
@@ -76,6 +79,10 @@
     <ProjectReference Include="..\Client\Client.csproj">
       <Project>{f204b7ea-321e-40ba-84da-9d16709d6087}</Project>
       <Name>Client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LoginDataLib\LoginDataLib.csproj">
+      <Project>{2d930be0-62ac-4239-936b-d45b72c3348c}</Project>
+      <Name>LoginDataLib</Name>
     </ProjectReference>
     <ProjectReference Include="..\PluginExecutor\PluginExecutor.csproj">
       <Project>{8d80d14a-3242-4bdb-ac4e-bfeaa38b528e}</Project>

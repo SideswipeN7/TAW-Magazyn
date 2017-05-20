@@ -3,3 +3,8 @@ F:\GIT\KOT\Client\LoginDataLib\bin\Debug\LoginDataLib.pdb
 F:\GIT\KOT\Client\LoginDataLib\obj\Debug\LoginDataLib.csprojResolveAssemblyReference.cache
 F:\GIT\KOT\Client\LoginDataLib\obj\Debug\LoginDataLib.dll
 F:\GIT\KOT\Client\LoginDataLib\obj\Debug\LoginDataLib.pdb
+C:\Users\USER\Documents\GitHub\TAW-Magazyn\Client\LoginDataLib\bin\Debug\LoginDataLib.dll
+C:\Users\USER\Documents\GitHub\TAW-Magazyn\Client\LoginDataLib\bin\Debug\LoginDataLib.pdb
+C:\Users\USER\Documents\GitHub\TAW-Magazyn\Client\LoginDataLib\obj\Debug\LoginDataLib.csprojResolveAssemblyReference.cache
+C:\Users\USER\Documents\GitHub\TAW-Magazyn\Client\LoginDataLib\obj\Debug\LoginDataLib.dll
+C:\Users\USER\Documents\GitHub\TAW-Magazyn\Client\LoginDataLib\obj\Debug\LoginDataLib.pdb
