@@ -225,10 +225,10 @@ namespace TDD_TEST
                 Pracownik pracownik = JsonConvert.DeserializeObject<Pracownik>(result);
                 pracownik.idPracownika.Should().BeGreaterOrEqualTo(1);
             }
-
-            result.ShouldBeEquivalentTo("null");
-
-
+            else
+            {
+                result.ShouldBeEquivalentTo("null");
+            }
         }
 
         [Test]
