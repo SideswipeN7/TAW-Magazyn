@@ -141,7 +141,9 @@
                                     <DatePicker x:Name="DpOverviewGridTwoDataPicker" HorizontalAlignment="Left" Margin="132,395,0,0" VerticalAlignment="Top" Width="120"/>
                                     <TextBox x:Name="TxbOverviewGridTwoNazwisko" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="132,445,0,0"/>
                                     <TextBox x:Name="TxbOverviewGridTwoFirma" HorizontalAlignment="Left" Height="23" Margin="132,495,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                                    <Button x:Name="BtnOverviewGridTwoSzukaj" Content="Szukaj" HorizontalAlignment="Left" Margin="72,555,0,0" VerticalAlignment="Top" Width="121" Click="BtnOverviewGridTwoSzukaj_Click"/>
+                                    <Button x:Name="BtnOverviewGridTwoSzukaj" Content="Szukaj" HorizontalAlignment="Left" Margin="132,554,0,0" VerticalAlignment="Top" Width="120" Click="BtnOverviewGridTwoSzukaj_Click" Height="23"/>
+                                    <Button x:Name="btnTabOverviewFaktura" Content="Faktura" HorizontalAlignment="Left" Margin="7,554,0,0" VerticalAlignment="Top" Width="120" Click="btnTabOverviewFaktura_Click" Height="23"/>
+
                                 </Grid>
                                 <Grid x:Name="GridOverviewThree" Margin="634,0,10,0">
                                     <Label x:Name="LblOverviewGridThreeProdukty" Content="Produkty" FontSize="14" HorizontalAlignment="Left" Margin="203,10,0,0" VerticalAlignment="Top"/>
@@ -154,6 +156,7 @@
                                 </Grid>
                             </Grid>
                         </TabItem>
+
                     </TabControl>
                 </Grid>
             </TabItem>

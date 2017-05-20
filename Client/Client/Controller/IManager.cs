@@ -27,5 +27,6 @@ namespace Client.Controller
         void ChangeEmployeeData();
         void SelectClientDoTransactionSurname();
         void SelectClientDoTransactionFirm();
+        void ShowFacture(Transakcja tran);
     }
 }
