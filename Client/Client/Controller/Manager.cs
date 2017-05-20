@@ -1,5 +1,6 @@
 ﻿using Client.Communication;
 using Client.Model;
+using Client.Windows;
 using MigraDoc.DocumentObjectModel;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ namespace Client.Controller
     public sealed class Manager : IManager
     {
         private static Manager _instance;
-        private MainWindow _window;
+        private Admin _window;
         private ICommunication _comm;
         private int ID { get; set; }
 
@@ -22,14 +23,14 @@ namespace Client.Controller
             _comm = Communicator.GetInstance();
             _comm.SetUrlAddress("http://o1018869-001-site1.htempurl.com");
         }
-        public static Manager GetInstance(MainWindow window)
+        public static Manager GetInstance(Admin window)
         {
             if (_instance == null)
             {
                 _instance = new Manager();
             }
             _instance._window = window;
-            _instance.ID = window.ID;
+            _instance.ID = window.ID;            
             return _instance;
         }
 

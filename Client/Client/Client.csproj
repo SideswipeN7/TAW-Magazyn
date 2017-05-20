@@ -77,11 +77,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="LoginWIndow.xaml">
+    <Page Include="Windows\Login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainWindow.xaml">
+    <Page Include="Windows\Admin.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -93,11 +93,11 @@
     <Compile Include="Communication\ICommunication.cs" />
     <Compile Include="Controller\IManager.cs" />
     <Compile Include="Controller\Manager.cs" />
-    <Compile Include="LoginWIndow.xaml.cs">
-      <DependentUpon>LoginWIndow.xaml</DependentUpon>
+    <Compile Include="Windows\Login.xaml.cs">
+      <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
+    <Compile Include="Windows\Admin.xaml.cs">
+      <DependentUpon>Admin.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

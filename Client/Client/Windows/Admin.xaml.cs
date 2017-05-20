@@ -2,29 +2,37 @@
 using Client.Controller;
 using Client.Model;
 
-namespace Client
+namespace Client.Windows
 {
     /// <summary>
     /// Logika interakcji dla klasy MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Admin : Window
     {
-        private static MainWindow _instance;
+        private static Admin _instance;
 
         private Manager _controller;
         public int ID { get; set; }
 
-        public static MainWindow GetInstance(int id)
+        public static Admin GetInstance(int id,bool sudo)
         {
             if (_instance == null)
             {
-                _instance = new MainWindow();
+                _instance = new Admin();
             }
             _instance.ID = id;
+            if (sudo)
+            {
+                _instance.TabEmployees.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                _instance.TabEmployees.Visibility = Visibility.Hidden;
+            }
             return _instance;
         }
 
-        public MainWindow()
+        public Admin()
         {
             InitializeComponent();
             _controller = Manager.GetInstance(this);

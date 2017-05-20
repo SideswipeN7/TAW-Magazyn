@@ -3,15 +3,16 @@ using System;
 using System.IO;
 using System.Reflection;
 using PluginExecutor;
+using Client.Windows;
 
-namespace Client
+namespace Client.Windows
 {
     /// <summary>
     /// Logika interakcji dla klasy LoginWIndow.xaml
     /// </summary>
-    public partial class LoginWIndow : Window
+    public partial class Login : Window
     {
-        public LoginWIndow()
+        public Login()
         {
             InitializeComponent();
         }
@@ -32,7 +33,7 @@ namespace Client
                         {
                             if (id > 0)
                             {
-                                MainWindow mw = new MainWindow();
+                                Admin mw = new Admin();
                                 mw.Show();
                                 this.Close();
                             }
