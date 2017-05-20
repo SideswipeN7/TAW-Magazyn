@@ -2,7 +2,11 @@
 using Client.Controller;
 using Client.Model;
 
+
+
+
 namespace Client.Windows
+
 {
     /// <summary>
     /// Logika interakcji dla klasy MainWindow.xaml

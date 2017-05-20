@@ -3,7 +3,10 @@ using System;
 using System.IO;
 using System.Reflection;
 using PluginExecutor;
-using Client.Windows;
+using Newtonsoft.Json;
+using Client.Model;
+
+
 
 namespace Client.Windows
 {
@@ -19,6 +22,27 @@ namespace Client.Windows
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
+            Admin mw = LogIn(txtLogin.Text, txtPassword.Text);
+
+            if (mw != null)
+            {
+                mw.Show();
+                this.Close();
+            }
+            else
+            {
+                ShowError();
+            }
+        }
+
+        public void ShowError()
+        {
+            MessageBox.Show("Wprowadzone dane są niepoprawne");
+        }
+
+        private Admin LogIn(string login, string password)
+        {
+            Admin window;
             DirectoryInfo di = new DirectoryInfo(".");
             foreach (FileInfo fi in di.GetFiles("Plugin*.dll"))
             {
@@ -28,32 +52,25 @@ namespace Client.Windows
                     if (pluginType.GetInterface(typeof(IPluginLogin).Name) != null)
                     {
                         IPluginLogin TypeLoadedFromPlugin = (IPluginLogin)Activator.CreateInstance(pluginType);
-                        int id = 0;
-                        if (Int32.TryParse(TypeLoadedFromPlugin.Login(txtLogin.Text, txtPassword.Text), out id))
+                        string pracownikJSON = TypeLoadedFromPlugin.Login(login, password);
+                        if (!pracownikJSON.Equals("null"))
                         {
-                            if (id > 0)
+                            Pracownik pracownik = JsonConvert.DeserializeObject<Pracownik>(pracownikJSON);
+                            bool sudo;
+                            switch (pracownik.Sudo)
                             {
-                                Admin mw = new Admin();
-                                mw.Show();
-                                this.Close();
+                                case 0: sudo = false; break;
+                                default: sudo = true; break;
                             }
-                            else
-                            {
-                                ShowError();
-                            }
-                        }
-                        else
-                        {
-                            ShowError();
+                            window = Admin.GetInstance(pracownik.idPracownika, sudo);
+                            return window;
                         }
                     }
                 }
             }
+            return null;
         }
 
-        public void ShowError()
-        {
-            MessageBox.Show("Wprowadzone dane są niepoprawne");
-        }
-    }
-}
+
+
+    } }
