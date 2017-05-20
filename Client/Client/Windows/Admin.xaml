@@ -7,7 +7,7 @@
         mc:Ignorable="d"
           Title="Tryb Administratora" Height="690" Width="1138.181">
     <Grid>
-        <TabControl x:Name="MainTab">
+        <TabControl x:Name="MainTab" d:IsHidden="True">
             <TabItem x:Name="TabState" Header="Stan Magazynu">
                 <Canvas>
                     <RadioButton Content="Wszystko" Height="18" Width="100" x:Name="RbStateWszystko" Canvas.Left="85" Canvas.Top="5" Checked="RbStateWszystko_Checked"/>
@@ -301,5 +301,11 @@
             </TabItem>
 
         </TabControl>
+        <Menu x:Name="menu" HorizontalAlignment="Left" Height="100" Margin="82,10,0,0" VerticalAlignment="Top" Width="608">
+            <MenuItem Header="wadawdawd">
+                <MenuItem/>
+            </MenuItem>
+            <MenuItem Header="awdawdaw"/>
+        </Menu>
     </Grid>
 </Window>
