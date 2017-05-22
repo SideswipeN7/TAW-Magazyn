@@ -1,9 +1,7 @@
 ﻿using System.Windows;
 using Client.Controller;
 using Client.Model;
-
-
-
+using System.Diagnostics;
 
 namespace Client.Windows
 
@@ -315,7 +313,11 @@ namespace Client.Windows
 
         private void MnVersion_Click(object sender, RoutedEventArgs e)
         {
-            //TODO
+            System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
+            FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(assembly.Location);
+            string version = fvi.FileVersion;
+
+            MessageBox.Show("Obecna wersja programu to: " + version, "Wersja Aplikacji", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void MnLogOff_Click(object sender, RoutedEventArgs e)
