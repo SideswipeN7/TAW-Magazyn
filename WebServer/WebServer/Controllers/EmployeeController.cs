@@ -36,7 +36,7 @@ namespace WebServer.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpPost]
         [ActionName("RegisterEmployee")]
         public HttpResponseMessage RegisterEmployee(Pracownik pracownik, Adres adres)
         {
