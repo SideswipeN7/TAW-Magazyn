@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Client.Windows"
         mc:Ignorable="d"
-          Title="Tryb Administratora" Height="1186" Width="1616.181">
+          Title="Tryb Administratora" Height="1186" Width="1616.181" WindowStartupLocation="CenterScreen" WindowState="Maximized">
     <Grid>
-        <TabControl x:Name="MainTab" Margin="0,44,0,-43">
+        <TabControl x:Name="MainTab" Margin="0,24,0,-23">
             <TabItem x:Name="TabState" Header="Stan Magazynu">
                 <Canvas>
-                    <RadioButton Content="Wszystko" Height="18" Width="100" x:Name="RbStateWszystko" Canvas.Left="85" Canvas.Top="5" Checked="RbStateWszystko_Checked"/>
+                    <RadioButton IsChecked="True" Content="Wszystko" Height="18" Width="100" x:Name="RbStateWszystko" Canvas.Left="85" Canvas.Top="5" Checked="RbStateWszystko_Checked"/>
                     <RadioButton Content="Szukaj" Height="18" Width="100" x:Name="RbStateSzukaj" Canvas.Left="190" Canvas.Top="5" Checked="RbStateSzukaj_Checked"/>
                     <DataGrid x:Name="DgStateLista" IsReadOnly="True" HorizontalAlignment="Left" VerticalAlignment="Top" Height="259" Width="322" Canvas.Left="10" Canvas.Top="28" AutoGenerateColumns="False"  >
                         <DataGrid.Columns>
@@ -40,7 +40,7 @@
 
             <TabItem x:Name="TabTransactions" Header="Transakcje">
                 <Grid>
-                    <TabControl x:Name="TabCtrlTransactions" Margin="-10,0,10,0">
+                    <TabControl x:Name="TabCtrlTransactions">
                         <TabItem x:Name="TabTransactionsDo" Header="Wykonaj">
                             <Grid x:Name="GridTransactionsDoMain" Margin="0,-15,0,15">
                                 <Grid x:Name="GridTransactionsDoOne" Margin="0,37,791,300">
@@ -113,7 +113,7 @@
                         <TabItem x:Name="TabOverview" Header="Przeglad">
                             <Grid>
                                 <Grid x:Name="GridOverviewOne" Margin="0,0,791,0">
-                                    <RadioButton x:Name="RbOverviewGridOneWszystkie" Content="Wszystkie" HorizontalAlignment="Left" Margin="48,10,0,0" VerticalAlignment="Top" Checked="RbOverviewGridOneWszystkie_Checked"/>
+                                    <RadioButton IsChecked="True" x:Name="RbOverviewGridOneWszystkie" Content="Wszystkie" HorizontalAlignment="Left" Margin="48,10,0,0" VerticalAlignment="Top" Checked="RbOverviewGridOneWszystkie_Checked"/>
                                     <RadioButton x:Name="RbOverviewGridOneSzukaj" Content="Szukaj" HorizontalAlignment="Left" Margin="188,10,0,0" VerticalAlignment="Top" Checked="RbOverviewGridOneSzukaj_Checked"/>
                                     <DataGrid x:Name="DgOverviewGridOne" HorizontalAlignment="Left" Height="549" Margin="10,44,0,0" VerticalAlignment="Top" Width="307" SelectionChanged="DgOverviewGridOne_SelectionChanged" FrozenColumnCount="0" SelectionMode="Single" CanUserResizeRows="False">
                                         <DataGrid.Columns>
@@ -180,7 +180,7 @@
                             <DataGridTextColumn   Header="Firma" Width="*" Binding="{Binding Nazwa_firmy}"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <RadioButton x:Name="RbClientsWszyscy" GroupName="gn" Content="Wszyscy" Canvas.Left="10" Canvas.Top="10" RenderTransformOrigin="-2.457,0.36" Checked="RbClientsWszyscy_Checked" />
+                    <RadioButton IsChecked="True" x:Name="RbClientsWszyscy" GroupName="gn" Content="Wszyscy" Canvas.Left="10" Canvas.Top="10" RenderTransformOrigin="-2.457,0.36" Checked="RbClientsWszyscy_Checked" />
                     <RadioButton x:Name="RbClientsSzukaj" GroupName="gn" Content="Szukaj" Canvas.Left="111" Canvas.Top="10" RenderTransformOrigin="-2.457,0.36" Checked="RbClientsSzukaj_Checked" />
                     <RadioButton x:Name="RbClientsDodaj" GroupName="gn" Content="Dodaj" Canvas.Left="198" Canvas.Top="10" RenderTransformOrigin="-2.457,0.36" Checked="RbClientsDodaj_Checked" />
                     <RadioButton x:Name="RbClientsModyfikuj" GroupName="gn" Content="Modyfikuj" Canvas.Left="286" Canvas.Top="10" RenderTransformOrigin="-2.457,0.36" Checked="RbClientsModyfikuj_Checked" />
@@ -212,7 +212,7 @@
                         </DataGrid.Columns>
                     </DataGrid>
                     <Button x:Name="BtnCategoryUsun" Content="Usuń" Canvas.Left="461" Canvas.Top="140" Width="75" Click="BtnCategoryUsun_Click"  />
-                    <RadioButton x:Name="RbCategoryWszystko" GroupName="gn" Content="Wszystko" Canvas.Left="10" Canvas.Top="10" Checked="RbCategoryWszystko_Checked" />
+                    <RadioButton IsChecked="True" x:Name="RbCategoryWszystko" GroupName="gn" Content="Wszystko" Canvas.Left="10" Canvas.Top="10" Checked="RbCategoryWszystko_Checked" />
                     <RadioButton x:Name="RbCategoryDodaj" GroupName="gn" Content="Dodaj" Canvas.Left="96" Canvas.Top="10" Checked="RbCategoryDodaj_Checked"/>
                     <RadioButton x:Name="RbCategoryModyfikuj" GroupName="gn" Content="Modyfikuj" Canvas.Left="168" Canvas.Top="10" Checked="RbCategoryModyfikuj_Checked" />
                     <RadioButton x:Name="RbCategoryUsun" GroupName="gn" Content="Usuń" Canvas.Left="260" Canvas.Top="10" Checked="RbCategoryUsun_Checked"/>
@@ -247,7 +247,7 @@
                     <Label x:Name="LblItemIlosc" Content="Ilość:" Height="28" Width="57" Canvas.Left="307" Canvas.Top="128"/>
                     <Label x:Name="LblItemCena" Content="Cena:" Height="28" Width="57" Canvas.Left="307" Canvas.Top="95"/>
                     <TextBox x:Name="TxbItemINazwa" Height="23" TextWrapping="Wrap" Width="120" Canvas.Left="369" Canvas.Top="70"/>
-                    <RadioButton x:Name="RbItemWszystko" GroupName="gn" Content="Wszystko" Canvas.Left="10" Canvas.Top="10" Checked="RbItemWszystko_Checked" />
+                    <RadioButton IsChecked="True" x:Name="RbItemWszystko" GroupName="gn" Content="Wszystko" Canvas.Left="10" Canvas.Top="10" Checked="RbItemWszystko_Checked" />
                     <RadioButton x:Name="RbItemSzukaj" GroupName="gn" Content="Szukaj" Canvas.Left="102" Canvas.Top="10" Checked="RbItemSzukaj_Checked" />
                     <RadioButton x:Name="RbItemModyfikuj" GroupName="gn" Content="Modyfikuj" Canvas.Left="175" Canvas.Top="10" Checked="RbItemModyfikuj_Checked" />
                     <RadioButton x:Name="RbItemDodaj" GroupName="gn" Content="Dodaj" Canvas.Left="266" Canvas.Top="10" Checked="RbItemDodaj_Checked" />
@@ -268,7 +268,7 @@
                             <DataGridTextColumn   Header="Nazwisko" Width="*" Binding="{Binding Nazwisko}"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <RadioButton x:Name="RdEmployeeWszyscy" Content="Wszyscy" Canvas.Left="10" Canvas.Top="6" Checked="RdEmployeeWszyscy_Checked"/>
+                    <RadioButton IsChecked="True" x:Name="RdEmployeeWszyscy" Content="Wszyscy" Canvas.Left="10" Canvas.Top="6" Checked="RdEmployeeWszyscy_Checked"/>
                     <RadioButton x:Name="RdEmployeeDodaj" Content="Dodaj" Canvas.Left="94" Canvas.Top="6" Checked="RdEmployeeDodaj_Checked"/>
                     <RadioButton x:Name="RdEmployeeModyfikuj" Content="Modyfikuj" Canvas.Left="174" Canvas.Top="6" Checked="RdEmployeeModyfikuj_Checked"/>
                     <RadioButton x:Name="RdEmployeeUsun" Content="Usuń" Canvas.Left="252" Canvas.Top="6" Checked="RdEmployeeUsun_Checked"/>
