@@ -248,14 +248,13 @@ namespace Client.Communication
             return 0;
         }
 
-        public bool RegisterEmployee(Pracownik pracownik, Adres adres)
+        public bool RegisterEmployee(PracownikAdress adres)
         {
             string baseUrl = $"{urlAddress}/api/Employee";
             var client = new RestClient(baseUrl);
             var request = new RestRequest(Method.POST);
             request.AddHeader("cache-control", "no-cache");
             request.AddHeader("content-type", "application/json");
-            request.AddJsonBody(pracownik);
             request.AddJsonBody(adres);
             IRestResponse response = client.Execute(request);
             if (response.StatusCode.Equals(HttpStatusCode.Created)) return true;
@@ -358,14 +357,14 @@ namespace Client.Communication
             client.Execute(request);
         }
 
-        public void ModifyEmployee(Pracownik pracownik, Adres adres)
+        public void ModifyEmployee(PracownikAdress adres)
         {
             string baseUrl = $"{urlAddress}/api/Employee";
             var client = new RestClient(baseUrl);
             var request = new RestRequest(Method.PUT);
             request.AddHeader("cache-control", "no-cache");
             request.AddHeader("content-type", "application/json");
-            request.AddJsonBody(pracownik);
+  
             request.AddJsonBody(adres);
             client.Execute(request);
         }

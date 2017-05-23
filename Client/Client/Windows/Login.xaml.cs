@@ -15,6 +15,7 @@ namespace Client.Windows
     /// </summary>
     public partial class Login : Window
     {
+        bool show =false;
         public Login()
         {
             InitializeComponent();
@@ -22,7 +23,7 @@ namespace Client.Windows
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            Admin mw = LogIn(txtLogin.Text, txtPassword.Text);
+            Admin mw = LogIn(txtLogin.Text, txbPassword.Password);
 
             if (mw != null)
             {
@@ -71,6 +72,44 @@ namespace Client.Windows
             return null;
         }
 
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            show = !show;
+            switch (show)
+            {
+                case false:
+                    ShowPasswordChars();
+                    break;
+                case true:
 
+                    HidePasswordChars();
+                    break;
+            }
+        }
 
+        private void HidePasswordChars()
+        {
+            txtPassword.Visibility = System.Windows.Visibility.Visible;
+            txbPassword.Visibility = System.Windows.Visibility.Collapsed;
+            BtnShow.Content = "Ukryj";
+            txtPassword.Focus();
+        }
+
+        private void ShowPasswordChars()
+        {
+            txbPassword.Visibility = System.Windows.Visibility.Visible;
+            txtPassword.Visibility = System.Windows.Visibility.Collapsed;
+            BtnShow.Content = "Pokaż";
+            txbPassword.Focus();
+        }
+
+        private void txbPassword_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            txtPassword.Text = txbPassword.Password;
+        }
+
+        private void txtPassword_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            txbPassword.Password = txtPassword.Text;
+        }
     } }

@@ -30,7 +30,7 @@ namespace Client.Communication
 
         int RegisterClient(KlientAdress adres);
 
-        bool RegisterEmployee(Pracownik pracownik, Adres adres);
+        bool RegisterEmployee(PracownikAdress adres);
 
         Adres GetAddress(int id);
 
@@ -56,7 +56,7 @@ namespace Client.Communication
         IEnumerable<Klient> GetClients();
         void DeleteCategory(Kategoria selectedItem);
         void DeleteClient(int id);
-        void ModifyEmployee(Pracownik pracownik, Adres adres);
+        void ModifyEmployee(PracownikAdress adres);
         void DeleteEmployee(int idPracownika);
         IEnumerable<Pracownik> GetEmpoyees();
     }

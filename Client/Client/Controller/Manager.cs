@@ -22,8 +22,8 @@ namespace Client.Controller
         private Manager()
         {
             _comm = Communicator.GetInstance();
-            //_comm.SetUrlAddress("http://o1018869-001-site1.htempurl.com");
-            _comm.SetUrlAddress("http://localhost:52992");
+            _comm.SetUrlAddress("http://o1018869-001-site1.htempurl.com");
+            //_comm.SetUrlAddress("http://localhost:52992");
         }
         public static Manager GetInstance(Admin window)
         {
@@ -1142,6 +1142,7 @@ namespace Client.Controller
                      }));
                      _window.Dispatcher.BeginInvoke(new Action(() => 
                      {
+                         GetAll();
                          MessageBox.Show("Wykonano pomyślnie!", "Transakcja", MessageBoxButton.OK);
 
                      }));
@@ -1531,7 +1532,15 @@ namespace Client.Controller
                     Wojewodztwo = _window.CmbEmployeeWojewodztwo.SelectedItem + ""
                 };
 
-                _comm.RegisterEmployee(pracownik, adres);
+               
+                Task<bool>.Factory.StartNew(() =>
+                {
+                    return _comm.RegisterEmployee(new PracownikAdress() { Pracownik = pracownik, Adres = adres }); ;
+                }).ContinueWith(x =>
+                    Task.Factory.StartNew(() =>
+                    {
+                        GetEmployeeData();
+                    }));
             }
 
         }
@@ -1567,7 +1576,15 @@ namespace Client.Controller
                     Wojewodztwo = _window.CmbEmployeeWojewodztwo.SelectedItem + ""
                 };
 
-                _comm.ModifyEmployee(pracownik, adres);
+                Task.Factory.StartNew(() =>
+                {
+                    _comm.ModifyEmployee(new PracownikAdress() { Pracownik = pracownik, Adres = adres });
+                }).ContinueWith(x=>
+                    Task.Factory.StartNew(() =>
+                    {
+                        GetEmployeeData();
+                    }));
+                
             }
         }
 
@@ -1634,6 +1651,7 @@ namespace Client.Controller
             if (_window.DgEmployeesList.SelectedIndex >= 0)
             {
                 _comm.DeleteEmployee(((Pracownik)_window.DgEmployeesList.SelectedItem).idPracownika);
+                GetEmployeeData();
             }
         }
 

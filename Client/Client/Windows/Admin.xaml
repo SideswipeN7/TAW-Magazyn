@@ -130,9 +130,8 @@
                                     <Label x:Name="LblOverviewGridTwoMiejscowosc" Content="Miejscowość:" HorizontalAlignment="Left" Margin="10,164,0,0" VerticalAlignment="Top"/>
                                     <Label x:Name="LblOverviewGridTwoKodPocztowy" Content="Kod Pocztowy:" HorizontalAlignment="Left" Margin="10,195,0,0" VerticalAlignment="Top"/>
                                     <Label x:Name="LblOverviewGridTwoWojewodztwo" Content="Województwo:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,226,0,0"/>
-                                    <Label x:Name="LblOverviewGridTwoTransakcja" Content="Transakcja:" HorizontalAlignment="Left" Margin="10,257,0,0" VerticalAlignment="Top"/>
-                                    <Label x:Name="LblOverviewGridTwoIloscProduktow" Content="Ilość Produktów:" HorizontalAlignment="Left" Margin="10,288,0,0" VerticalAlignment="Top"/>
-                                    <Label x:Name="LblOverviewGridTwoCena" Content="Cena:" HorizontalAlignment="Left" Margin="10,319,0,0" VerticalAlignment="Top"/>
+                                    <Label x:Name="LblOverviewGridTwoIloscProduktow" Content="Ilość Produktów:" HorizontalAlignment="Left" Margin="10,262,0,0" VerticalAlignment="Top"/>
+                                    <Label x:Name="LblOverviewGridTwoCena" Content="Cena:" HorizontalAlignment="Left" Margin="10,293,0,0" VerticalAlignment="Top"/>
                                     <CheckBox x:Name="ChbOverviewGridTwoData" Content="Data" HorizontalAlignment="Left" Margin="10,400,0,0" VerticalAlignment="Top"/>
                                     <CheckBox x:Name="ChbOverviewGridTwoNazwisko" Content="Nazwisko" HorizontalAlignment="Left" Margin="10,450,0,0" VerticalAlignment="Top"/>
                                     <CheckBox x:Name="ChbOverviewGridTwoFirma" Content="Firma" HorizontalAlignment="Left" Margin="10,500,0,0" VerticalAlignment="Top"/>

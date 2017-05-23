@@ -14,7 +14,7 @@ namespace Client.Windows
         private static Admin _instance;
 
         private Manager _controller;
-        public int ID = 1;//{ get; set; }
+        public int ID { get; set; }
 
         public static Admin GetInstance(int id,bool sudo)
         {
