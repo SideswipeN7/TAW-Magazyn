@@ -17,11 +17,13 @@ namespace Client.Controller
         private Admin _window;
         private ICommunication _comm;
         private int ID { get; set; }
+        private InProgress inProg;
 
         private Manager()
         {
             _comm = Communicator.GetInstance();
-            _comm.SetUrlAddress("http://o1018869-001-site1.htempurl.com");
+            //_comm.SetUrlAddress("http://o1018869-001-site1.htempurl.com");
+            _comm.SetUrlAddress("http://localhost:52992");
         }
         public static Manager GetInstance(Admin window)
         {
@@ -239,7 +241,7 @@ namespace Client.Controller
                 {
 
                     for (int i = 0; i < _window.CmbItemKategoria.Items.Count; i++)
-                    {                       
+                    {
                         if (((Kategoria)((ComboBoxItem)_window.CmbItemKategoria.Items.GetItemAt(i)).Tag).idKategorii == ((Artykul)_window.DgItemLista.SelectedItem).Kategorie.idKategorii)
                         {
                             _window.CmbItemKategoria.SelectedIndex = i;
@@ -295,9 +297,9 @@ namespace Client.Controller
 
         internal void CmbCategoryIdChange()
         {
-            foreach(Kategoria k in _window.DgCategoryLista.Items)
+            foreach (Kategoria k in _window.DgCategoryLista.Items)
             {
-                if(k.idKategorii ==(int)_window.CmbCategoryId.SelectedItem)
+                if (k.idKategorii == (int)_window.CmbCategoryId.SelectedItem)
                 {
                     _window.DgCategoryLista.SelectedItem = k;
                 }
@@ -641,11 +643,11 @@ namespace Client.Controller
         {
             _window.Dispatcher.BeginInvoke(new Action(() =>
             {
-               // _window.CmbCategoryId.Items.Clear();
+                // _window.CmbCategoryId.Items.Clear();
                 foreach (Artykul r in categories)
                 {
                     _window.DgItemLista.Items.Add(r);
-                    
+
                 }
 
 
@@ -856,22 +858,62 @@ namespace Client.Controller
 
         public void LoadTransactionsDoSupplier()
         {
-            if (_window.CmbDoGridOneDostawca.Items.Count > 0)
-                _window.CmbDoGridOneDostawca.Items.Clear();
-            if (_window.CmbDoGridTwoDostawca.Items.Count > 0)
-                _window.CmbDoGridTwoDostawca.Items.Clear();
-            IEnumerable<Dostawca> list = _comm.GetSuppliers();
             try
             {
-                foreach (Dostawca r in list)
-                {
-                    _window.CmbDoGridOneDostawca.Items.Add(new ComboBoxItem() { Content = r.Nazwa.ToString(), Tag = r.idDostawcy });
-                    _window.CmbDoGridTwoDostawca.Items.Add(new ComboBoxItem() { Content = r.Nazwa.ToString(), Tag = r.idDostawcy });
-                }
+                Task<IEnumerable<Dostawca>>.Factory.StartNew(() =>
+         {
+             return _comm.GetSuppliers();
+         }).ContinueWith(x =>
+         {
+             Task.Factory.StartNew(() =>
+             {
+                 Load1(x.Result);
+                 Load2(x.Result);
+             });
+         });
+
             }
             catch (Exception ex)
             { System.Diagnostics.Debug.WriteLine($"\nERROR {ex}"); }
 
+        }
+        void Load1(IEnumerable<Dostawca> list)
+        {
+            try
+            {
+                _window.Dispatcher.BeginInvoke(new Action(()=>
+                {
+                    {
+                        _window.CmbDoGridOneDostawca.Items.Clear();
+                        foreach (Dostawca r in list)
+                        {
+                            _window.CmbDoGridOneDostawca.Items.Add(new ComboBoxItem() { Content = r.Nazwa, Tag = r });
+                        }
+                    }
+                }));
+                
+            }
+            
+            catch (Exception ex)
+            { System.Diagnostics.Debug.WriteLine($"\nERROR {ex}"); }
+}
+        void Load2(IEnumerable<Dostawca> list)
+        {
+            try
+            {
+
+                _window.Dispatcher.BeginInvoke(new Action(() =>
+                {
+                
+                    _window.CmbDoGridTwoDostawca.Items.Clear();
+                foreach (Dostawca r in list)
+                {
+                    _window.CmbDoGridTwoDostawca.Items.Add(new ComboBoxItem() { Content = r.Nazwa.ToString(), Tag = r });
+                }
+                }));
+            }
+            catch (Exception ex)
+            { System.Diagnostics.Debug.WriteLine($"\nERROR {ex}"); }
         }
         public void LoadTransactionsDoProducts()
         {
@@ -883,7 +925,7 @@ namespace Client.Controller
                 foreach (Artykul r in list)
                 {
 
-                    _window.CmbDoGridThreeNazwa.Items.Add(new ComboBoxItem() { Content = r.Nazwa, Tag = r });
+                    _window.CmbDoGridThreeNazwa.Items.Add(new ComboBoxItem() { Content = r.Nazwa.ToString(), Tag = r });
                 }
             }
             catch (Exception ex)
@@ -939,7 +981,7 @@ namespace Client.Controller
             {
                 price += r.CenaCalosciowa;
             }
-            _window.LblDoFourCena.Content = $"Cena: {price:2f}zł";
+            _window.LblDoFourCena.Content = $"Cena: {price:F2} zł";
         }
 
         public void DeleteFormCart()
@@ -1015,6 +1057,8 @@ namespace Client.Controller
         {
             if (_window.DgDoGridFive.Items.Count >= 0)
             {
+               inProg = InProgress.GetInstance();
+                inProg.Show();
                 List<Artykul_w_Koszyku> cart = new List<Artykul_w_Koszyku>();
                 foreach (Artykul_w_Koszyku r in _window.DgDoGridFive.Items)
                     cart.Add(r);
@@ -1029,15 +1073,15 @@ namespace Client.Controller
             }
         }
 
-        private void TransactionOld(List<Artykul_w_Koszyku> cart)
+        private void TransactionNew(List<Artykul_w_Koszyku> cart)
         {
-            if (_window.TxbDoGridOneImie.Text.Length > 5 &&
-                 _window.TxbDoGridOneNazwisko.Text.Length > 5 &&
+            if (_window.TxbDoGridOneImie.Text.Length > 2 &&
+                 _window.TxbDoGridOneNazwisko.Text.Length > 2 &&
                  (_window.TxbDoGridOneFirma.Text.Length > 5 || _window.TxbDoGridOneFirma.Text.Length == 0) &&
                  _window.TxbDoGridOneKodPocztowy.Text.Length == 6 &&
-                 _window.TxbDoGridOneMiejscowosc.Text.Length > 5 &&
-                 _window.CmbDoGridOneWojewodztwo.SelectedIndex > 0 &&
-                 _window.CmbDoGridOneDostawca.SelectedIndex > 0)
+                 _window.TxbDoGridOneMiejscowosc.Text.Length > 2 &&
+                 _window.CmbDoGridOneWojewodztwo.SelectedIndex >= 0 &&
+                 _window.CmbDoGridOneDostawca.SelectedIndex >= 0)
             {
                 Adres a = new Adres()
                 {
@@ -1050,54 +1094,132 @@ namespace Client.Controller
                     Imie = _window.TxbDoGridOneImie.Text,
                     Nazwisko = _window.TxbDoGridOneNazwisko.Text
                 };
-                k.idKlienta = _comm.RegisterClient(k, a);
-                Transakcja t = new Transakcja()
+                Task<int>.Factory.StartNew(() =>
                 {
-                    idKlienta = k.idKlienta,
-                    idDostawcy = (int)(((ComboBoxItem)_window.CmbDoGridOneDostawca.SelectedItem).Tag),
-                    idPracownika = ID,
-                    Data = DateTime.Now
-                };
-                foreach (Artykul_w_Koszyku r in _window.DgDoGridFive.Items)
+                    return _comm.RegisterClient(new KlientAdress() { Klient = k, Adres = a });
+                }).ContinueWith(x =>
                 {
-                    for (int i = 0; i < r.Ilosc; i++)
-                        t.Artykuly_w_transakcji.Add(new Artykul_w_transakcji() { Artykuly = r.Artykul, Cena = r.Cena, idArtykulu = r.Artykul.idKategorii });
-                }
-                _comm.RegisterTransaction(t);
+                    Task.Factory.StartNew(() =>
+                    {
+                        k.idKlienta = x.Result;
+                        Transakcja t = null;
+                        _window.Dispatcher.BeginInvoke(new Action(() =>
+                        {
+                            t = new Transakcja()
+                            {
+                                idKlienta = k.idKlienta,
+                                idDostawcy = ((Dostawca)((ComboBoxItem)_window.CmbDoGridOneDostawca.SelectedItem).Tag).idDostawcy,
+                                idPracownika = ID,
+                                Data = DateTime.Now
+                            };
+                            foreach (Artykul_w_Koszyku r in _window.DgDoGridFive.Items)
+                            {
+                                for (int i = 0; i < r.Ilosc; i++)
+                                    t.Artykuly_w_transakcji.Add(new Artykul_w_transakcji() { Artykuly = r.Artykul, Cena = r.Cena, idArtykulu = r.Artykul.idKategorii });
+                            }
+                        }));
+                        TransactionRegister(t);
+                    });
+                });
+
+
             }
         }
 
-        private void TransactionNew(List<Artykul_w_Koszyku> cart)
+        private void TransactionRegister(Transakcja t)
         {
-            if (_window.TxbDoGridTwoImie.Text.Length > 5 &&
-                 _window.CmbDoGridTwoNazwisko.SelectedIndex > 0 &&
-                 _window.CmbDoGridTwoFirma.SelectedIndex > 0 &&
-                 _window.TxbDoGridTwoKodPocztowy.Text.Length == 6 &&
-                 _window.TxbDoGridTwoMiejscowosc.Text.Length > 5 &&
-                 _window.CmbDoGridTwoWojewodztwo.SelectedIndex > 0 &&
-                 _window.CmbDoGridTwoDostawca.SelectedIndex > 0)
+            
+            Task<int>.Factory.StartNew(() =>
+             {
+                 return _comm.RegisterTransaction(t);
+             }).ContinueWith(x =>
+             {
+                 Task.Factory.StartNew(() =>
+                 {
+                     inProg.Dispatcher.BeginInvoke(new Action(() =>
+                     {
+                         inProg.Hide();
+                     }));
+                     _window.Dispatcher.BeginInvoke(new Action(() => 
+                     {
+                         MessageBox.Show("Wykonano pomyślnie!", "Transakcja", MessageBoxButton.OK);
+
+                     }));
+                     return 0;
+                 });
+
+
+             });
+        }
+
+        private void TransactionOld(List<Artykul_w_Koszyku> cart)
+        {
+            try
             {
-                Adres a = new Adres()
+                System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}_window.TxbDoGridTwoImie.Text.Length= { _window.TxbDoGridTwoImie.Text.Length }{ Environment.NewLine}_window.CmbDoGridTwoNazwisko.SelectedIndex= {_window.CmbDoGridTwoNazwisko.SelectedIndex}{Environment.NewLine}_window.CmbDoGridTwoFirma.SelectedIndex= {_window.CmbDoGridTwoFirma.SelectedIndex}{Environment.NewLine}_window.TxbDoGridTwoKodPocztowy.Text.Length= {_window.TxbDoGridTwoKodPocztowy.Text.Length}{Environment.NewLine}_window.TxbDoGridTwoMiejscowosc.Text.Length= {_window.TxbDoGridTwoMiejscowosc.Text.Length}{Environment.NewLine}_window.CmbDoGridTwoWojewodztwo.SelectedIndex= {_window.CmbDoGridTwoWojewodztwo.SelectedIndex}{Environment.NewLine}_window.CmbDoGridTwoDostawca.SelectedIndex= {_window.CmbDoGridTwoDostawca.SelectedIndex}{Environment.NewLine}");
+                if (_window.TxbDoGridTwoImie.Text.Length > 2 &&
+                     _window.CmbDoGridTwoNazwisko.SelectedIndex >= 0 &&
+                     _window.CmbDoGridTwoFirma.SelectedIndex >= 0 &&
+                     _window.TxbDoGridTwoKodPocztowy.Text.Length == 6 &&
+                     _window.TxbDoGridTwoMiejscowosc.Text.Length > 2 &&
+                     _window.CmbDoGridTwoWojewodztwo.SelectedIndex >= 0 &&
+                     _window.CmbDoGridTwoDostawca.SelectedIndex >= 0)
                 {
-                    Kod_pocztowy = _window.TxbDoGridTwoKodPocztowy.Text,
-                    Miejscowosc = _window.TxbDoGridTwoMiejscowosc.Text,
-                    Wojewodztwo = _window.CmbDoGridTwoWojewodztwo.SelectedItem.ToString()
-                };
-                Klient k = ((Klient)((ComboBoxItem)_window.CmbDoGridTwoNazwisko.SelectedItem).Tag);
-                k.idKlienta = _comm.RegisterClient(k, a);
-                Transakcja t = new Transakcja()
-                {
-                    idKlienta = k.idKlienta,
-                    idDostawcy = (int)(((ComboBoxItem)_window.CmbDoGridTwoDostawca.SelectedItem).Tag),
-                    idPracownika = ID,
-                    Data = DateTime.Now
-                };
-                foreach (Artykul_w_Koszyku r in _window.DgDoGridFive.Items)
-                {
-                    for (int i = 0; i < r.Ilosc; i++)
-                        t.Artykuly_w_transakcji.Add(new Artykul_w_transakcji() { Artykuly = r.Artykul, Cena = r.Cena, idArtykulu = r.Artykul.idKategorii });
+                    Adres a = new Adres()
+                    {
+                        Kod_pocztowy = _window.TxbDoGridTwoKodPocztowy.Text,
+                        Miejscowosc = _window.TxbDoGridTwoMiejscowosc.Text,
+                        Wojewodztwo = _window.CmbDoGridTwoWojewodztwo.SelectedItem.ToString()
+                    };
+                    Klient k = ((Klient)((ComboBoxItem)_window.CmbDoGridTwoNazwisko.SelectedItem).Tag);
+                    Task<int>.Factory.StartNew(() =>
+                    {
+                        return _comm.RegisterClient(new KlientAdress() { Klient = k, Adres = a });
+                    }).ContinueWith(x =>
+                    {
+                        Task.Factory.StartNew(() =>
+                        {
+                            k.idKlienta = x.Result;
+                            Transakcja t = new Transakcja();
+                            try
+                            {
+
+                                t.idKlienta = k.idKlienta;
+                                //System.Diagnostics.Debug.WriteLine($"{Environment.NewLine} ERRRROR {((Dostawca)(((ComboBoxItem)_window.CmbDoGridTwoDostawca.SelectedItem).Tag)).Nazwa}");
+                                _window.Dispatcher.BeginInvoke(new Action(() =>
+                                {
+                                    Dostawca d = (Dostawca)(((ComboBoxItem)_window.CmbDoGridTwoDostawca.SelectedItem).Tag);
+                                    t.idDostawcy = d.idDostawcy;
+                                }));
+                               
+                                t.idPracownika = ID;
+                                t.Data = DateTime.Now;
+
+                            }
+                            catch (Exception ex)
+                            {
+                                System.Diagnostics.Debug.WriteLine($"{Environment.NewLine} ERRRROR {ex}");
+                            }
+                            _window.Dispatcher.BeginInvoke(new Action(() =>
+                            {
+                                foreach (Artykul_w_Koszyku r in _window.DgDoGridFive.Items)
+                            {
+                                for (int i = 0; i < r.Ilosc; i++)
+                                    t.Artykuly_w_transakcji.Add(new Artykul_w_transakcji() { Artykuly = r.Artykul, Cena = r.Cena, idArtykulu = r.Artykul.idKategorii });
+                                }
+                            }));
+                            TransactionRegister(t);
+                        });
+
+
+
+
+                    });
                 }
-                _comm.RegisterTransaction(t);
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"{Environment.NewLine} ERRRROR {ex}");
             }
         }
 
@@ -1180,7 +1302,7 @@ namespace Client.Controller
                             }
                         }
                     }
-                    _window.LblOverviewGridTwoCena.Content = $"Cena: {cost:2f}zł";
+                    _window.LblOverviewGridTwoCena.Content = $"Cena: {cost:F2} zł";
                     _window.LblOverviewGridTwoIloscProduktow.Content = $"Ilość Produktów: {quantity}";
                 }
                 catch (Exception ex)
@@ -1504,7 +1626,7 @@ namespace Client.Controller
                     _window.DgEmployeesList.Items.Add(p);
                 }
             }));
-           
+
         }
 
         internal void DeleteEmployee()

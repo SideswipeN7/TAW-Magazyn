@@ -28,7 +28,7 @@ namespace Client.Communication
 
         bool ChangeClient(Klient klient);
 
-        int RegisterClient(Klient klient, Adres adres);
+        int RegisterClient(KlientAdress adres);
 
         bool RegisterEmployee(Pracownik pracownik, Adres adres);
 

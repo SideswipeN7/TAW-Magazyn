@@ -14,7 +14,7 @@ namespace Client.Windows
         private static Admin _instance;
 
         private Manager _controller;
-        public int ID { get; set; }
+        public int ID = 1;//{ get; set; }
 
         public static Admin GetInstance(int id,bool sudo)
         {
@@ -42,6 +42,8 @@ namespace Client.Windows
             _controller.GetAll();
             //LoadData
             _controller.LoadAll();
+
+            
         }
 
         //Magazine State
@@ -339,5 +341,9 @@ namespace Client.Windows
             _controller.CmbCategoryIdChange();
         }
 
+        private void BtnDoGridFourRealizujZamowienie_Click(object sender, RoutedEventArgs e)
+        {
+            _controller.RegisterTransaction();
+        }
     }
 }

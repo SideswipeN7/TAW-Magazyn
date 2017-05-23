@@ -85,6 +85,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Windows\InProgress.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\Login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -101,11 +105,15 @@
     <Compile Include="Communication\ICommunication.cs" />
     <Compile Include="Controller\IManager.cs" />
     <Compile Include="Controller\Manager.cs" />
+    <Compile Include="Model\KlientAdress.cs" />
     <Compile Include="Windows\About.xaml.cs">
       <DependentUpon>About.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\Creators.xaml.cs">
       <DependentUpon>Creators.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\InProgress.xaml.cs">
+      <DependentUpon>InProgress.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>

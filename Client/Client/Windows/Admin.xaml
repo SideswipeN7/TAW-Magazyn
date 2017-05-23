@@ -15,9 +15,9 @@
                     <DataGrid x:Name="DgStateLista" IsReadOnly="True" HorizontalAlignment="Left" VerticalAlignment="Top" Height="259" Width="322" Canvas.Left="10" Canvas.Top="28" AutoGenerateColumns="False"  >
                         <DataGrid.Columns>
                             <DataGridTextColumn   Header="Nazwa artykułu" Width="100" Binding="{Binding Nazwa}" />
-                            <DataGridTextColumn   Header="Ilość" Width="80" Binding="{Binding Ilosc}"/>
+                            <DataGridTextColumn   Header="Ilość" Width="50" Binding="{Binding Ilosc}"/>
                             <DataGridTextColumn   Header="Kategoria" Width="80" Binding="{Binding Path=Kategorie.Nazwa}"/>
-                            <DataGridTextColumn   Header="Cena" Width="*" Binding="{Binding Cena}"/>
+                            <DataGridTextColumn   Header="Cena" Width="*" Binding="{Binding Cena, StringFormat={}{0:F2}}" />
                         </DataGrid.Columns>
                     </DataGrid>
                     <TextBox x:Name="TxbStateNazwa" Height="23" Canvas.Left="461" TextWrapping="Wrap" Text="" Canvas.Top="66" Width="127" RenderTransformOrigin="-0.096,0.011"/>
@@ -91,19 +91,17 @@
                                 </Grid>
                                 <Grid x:Name="GridDoFour" Margin="300,300,518,0">
                                     <Label x:Name="LblDoGridFourPodsumowanie" Content="Podsumowanie" HorizontalAlignment="Left" Margin="98,10,0,0" VerticalAlignment="Top"/>
-                                    <Label x:Name="LblDoGridFourNazwaTransakcji" Content="Nazwa Transakcji:" HorizontalAlignment="Left" Margin="36,62,0,0" VerticalAlignment="Top"/>
                                     <Label x:Name="LblDoFourCena" Content="Cena:" HorizontalAlignment="Left" Margin="98,112,0,0" VerticalAlignment="Top" Width="178"/>
-                                    <TextBox x:Name="TxbDoGridFourNazwaTransakcji" HorizontalAlignment="Left" Height="23" Margin="156,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                                    <Button x:Name="BtnDoGridFourRealizujZamowienie" Content="Realizuj Zamówienie" HorizontalAlignment="Left" Margin="156,165,0,0" VerticalAlignment="Top" Width="120"/>
+                                    <Button x:Name="BtnDoGridFourRealizujZamowienie" Content="Realizuj Zamówienie" HorizontalAlignment="Left" Margin="156,165,0,0" VerticalAlignment="Top" Width="120" Click="BtnDoGridFourRealizujZamowienie_Click"/>
 
                                 </Grid>
                                 <Grid x:Name="GridDoFive" Margin="600,0,0,0">
                                     <DataGrid x:Name="DgDoGridFive" HorizontalAlignment="Left" Height="583" Margin="10,16,0,0" VerticalAlignment="Top" Width="405">
                                         <DataGrid.Columns>
-                                            <DataGridTextColumn   Header="Artykuł" Width="100"  Binding="{Binding Artykul}"/>
+                                            <DataGridTextColumn   Header="Artykuł" Width="100"  Binding="{Binding Artykul.Nazwa}"/>
                                             <DataGridTextColumn   Header="Ilość" Width="100" Binding="{Binding Ilosc}"/>
-                                            <DataGridTextColumn   Header="Cena" Width="100"  Binding="{Binding Cena}"/>
-                                            <DataGridTextColumn   Header="Cena Całościowa" Width="*" Binding="{Binding CenaCalosciowa}"/>
+                                            <DataGridTextColumn   Header="Cena" Width="100"  Binding="{Binding Cena , StringFormat={}{0:F2}}"/>
+                                            <DataGridTextColumn   Header="Cena Całościowa" Width="*" Binding="{Binding CenaCalosciowa, StringFormat={}{0:F2}}"/>
                                         </DataGrid.Columns>
                                     </DataGrid>
                                     <Button x:Name="BtnDoGridFiveUsun" Content="Usuń" HorizontalAlignment="Left" Margin="433,19,0,0" VerticalAlignment="Top" Width="75" Click="BtnDoGridFiveUsun_Click"/>
@@ -150,7 +148,7 @@
                                     <DataGrid x:Name="DgOverviewGridThree" HorizontalAlignment="Left" Height="517" Margin="40,60,0,0" VerticalAlignment="Top" Width="407">
                                         <DataGrid.Columns>
                                             <DataGridTextColumn   Header="Produkt" Width="*" Binding="{Binding Nazwa}"/>
-                                            <DataGridTextColumn   Header="Cena" Width="*" Binding="{Binding Cena}"/>
+                                            <DataGridTextColumn   Header="Cena" Width="*" Binding="{Binding Cena, StringFormat={}{0:F2} }"/>
                                         </DataGrid.Columns>
                                     </DataGrid>
                                 </Grid>
@@ -236,7 +234,7 @@
                         <DataGrid.Columns>
                             <DataGridTextColumn   Header="Nazwa" Width="*" Binding="{Binding Nazwa}"/>
                             <DataGridTextColumn   Header="Ilość" Width="*" Binding="{Binding Ilosc}"/>
-                            <DataGridTextColumn   Header="Cena" Width="*" Binding="{Binding Cena}"/>
+                            <DataGridTextColumn   Header="Cena" Width="*" Binding="{Binding Cena, StringFormat={}{0:F2}}"/>
                             <DataGridTextColumn   Header="Kategoria" Width="*" Binding="{Binding Path=Kategorie.Nazwa}"/>
                         </DataGrid.Columns>
                     </DataGrid>
@@ -267,8 +265,8 @@
                 <Canvas>
                     <DataGrid x:Name="DgEmployeesList" Canvas.Left="10" Canvas.Top="26" Height="500" Width="250" SelectionChanged="DgEmployeesList_SelectionChanged">
                         <DataGrid.Columns>
-                            <DataGridTextColumn   Header="Imię" Width="*" Binding="{Binding Nazwa}"/>
-                            <DataGridTextColumn   Header="Nazwisko" Width="*" Binding="{Binding Ilosc}"/>
+                            <DataGridTextColumn   Header="Imię" Width="*" Binding="{Binding Imie}"/>
+                            <DataGridTextColumn   Header="Nazwisko" Width="*" Binding="{Binding Nazwisko}"/>
                         </DataGrid.Columns>
                     </DataGrid>
                     <RadioButton x:Name="RdEmployeeWszyscy" Content="Wszyscy" Canvas.Left="10" Canvas.Top="6" Checked="RdEmployeeWszyscy_Checked"/>

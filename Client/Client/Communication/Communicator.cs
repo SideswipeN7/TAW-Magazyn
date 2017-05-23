@@ -203,31 +203,49 @@ namespace Client.Communication
 
         public bool RegisterCategory(Kategoria kategoria)
         {
-            string baseUrl = $"{urlAddress}/api/Category";
-            var client = new RestClient(baseUrl);
-            var request = new RestRequest(Method.POST);
-            request.AddHeader("cache-control", "no-cache");
-            request.AddHeader("content-type", "application/json");
-            request.AddJsonBody(kategoria);
-            IRestResponse response = client.Execute(request);
-            if (response.StatusCode.Equals(HttpStatusCode.Created)) return true;
-            if (response.StatusCode.Equals(HttpStatusCode.Conflict)) return false;
-            throw new Exception("Exception in RegisterCategory");
+            try
+            {
+                string baseUrl = $"{urlAddress}/api/Category";
+                var client = new RestClient(baseUrl);
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("cache-control", "no-cache");
+                request.AddHeader("content-type", "application/json");
+                request.AddJsonBody(kategoria);
+                IRestResponse response = client.Execute(request);
+                if (response.StatusCode.Equals(HttpStatusCode.Created)) return true;
+                if (response.StatusCode.Equals(HttpStatusCode.Conflict)) return false;
+            }
+            catch
+            {
+                System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}Exception in RegisterCategory");
+
+            }
+            return false;
         }
 
-        public int RegisterClient(Klient klient, Adres adres)
+        public int RegisterClient(KlientAdress adres)
         {
-            string baseUrl = $"{urlAddress}/api/Clients";
-            var client = new RestClient(baseUrl);
-            var request = new RestRequest(Method.POST);
-            request.AddHeader("cache-control", "no-cache");
-            request.AddHeader("content-type", "application/json");
-            request.AddJsonBody(klient);
-            request.AddJsonBody(adres);
-            IRestResponse response = client.Execute(request);
-            if (response.StatusCode.Equals(HttpStatusCode.Created)) return Int32.Parse(response.Content);
-            if (response.StatusCode.Equals(HttpStatusCode.Conflict)) return 0;
-            throw new Exception("Exception in RegisterClient");
+            try
+            {
+                string baseUrl = $"{urlAddress}/api/Clients";
+                var client = new RestClient(baseUrl);
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("cache-control", "no-cache");
+                request.AddHeader("content-type", "application/json");                
+                //request.AddJsonBody(klient);
+                request.AddJsonBody(adres);
+                System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}Request: {request.ToString()}{Environment.NewLine}");
+                IRestResponse response = client.Execute(request);
+                System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}response: {response.Content}{Environment.NewLine}{response}");
+                if (response.StatusCode.Equals(HttpStatusCode.Created)) return Int32.Parse(response.Content);
+                if (response.StatusCode.Equals(HttpStatusCode.Conflict)) return 0;
+            }
+            catch(Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}Exception in RegisterClient{Environment.NewLine}{ex}{Environment.NewLine}");
+                return 0;
+            }
+            return 0;
         }
 
         public bool RegisterEmployee(Pracownik pracownik, Adres adres)
@@ -275,14 +293,23 @@ namespace Client.Communication
 
         public int RegisterTransaction(Transakcja transakcja)
         {
-            string baseUrl = $"{urlAddress}/api/transaction";
-            var client = new RestClient(baseUrl);
-            var request = new RestRequest(Method.POST);
-            request.AddHeader("cache-control", "no-cache");
-            request.AddHeader("content-type", "application/json");
-            request.AddJsonBody(transakcja);
-            IRestResponse response = client.Execute(request);
-            return Int32.Parse(response.Content);
+            try
+            {
+                string baseUrl = $"{urlAddress}/api/transaction";
+                var client = new RestClient(baseUrl);
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("cache-control", "no-cache");
+                request.AddHeader("content-type", "application/json");
+                request.AddJsonBody(transakcja);
+                IRestResponse response = client.Execute(request);
+                return Int32.Parse(response.Content);
+            }
+            catch
+            {
+                System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}Exception in RegisterTransaction");
+                return 0;
+            }
+
         }
 
         public bool RegisterTransItems(IEnumerable<Artykul_w_transakcji> artykul_w_transkacji)
