@@ -333,5 +333,11 @@ namespace Client.Windows
         {
             _controller.ShowPassword();
         }
+
+        private void CmbCategoryId_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            _controller.CmbCategoryIdChange();
+        }
+
     }
 }

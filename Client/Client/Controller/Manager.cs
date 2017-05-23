@@ -72,6 +72,7 @@ namespace Client.Controller
             foreach (Kategoria r in list)
             {
                 _window.CmbStateKategoria.Items.Add(new ComboBoxItem() { Content = r.Nazwa, Tag = r.idKategorii });
+                _window.CmbItemKategoria.Items.Add(new ComboBoxItem() { Content = r.Nazwa, Tag = r });
 
             }
         }
@@ -236,7 +237,15 @@ namespace Client.Controller
             {
                 try
                 {
-                    _window.CmbItemKategoria.SelectedItem = ((Artykul)_window.DgItemLista.SelectedItem).Kategorie.Nazwa;
+
+                    for (int i = 0; i < _window.CmbItemKategoria.Items.Count; i++)
+                    {                       
+                        if (((Kategoria)((ComboBoxItem)_window.CmbItemKategoria.Items.GetItemAt(i)).Tag).idKategorii == ((Artykul)_window.DgItemLista.SelectedItem).Kategorie.idKategorii)
+                        {
+                            _window.CmbItemKategoria.SelectedIndex = i;
+                        }
+                    }
+                    //_window.CmbItemKategoria.SelectedItem = new ComboBoxItem() { Content = ((Artykul)_window.DgItemLista.SelectedItem).Kategorie.Nazwa, Tag = ((Artykul)_window.DgItemLista.SelectedItem).Kategorie };
                     _window.TxbItemCenaMin.Text = ((Artykul)_window.DgItemLista.SelectedItem).Cena + "";
                     _window.TxbItemIlosc.Text = ((Artykul)_window.DgItemLista.SelectedItem).Ilosc + "";
                     _window.TxbItemINazwa.Text = ((Artykul)_window.DgItemLista.SelectedItem).Nazwa;
@@ -274,10 +283,25 @@ namespace Client.Controller
         {
             _window.Dispatcher.BeginInvoke(new Action(() =>
             {
+                _window.CmbCategoryId.Items.Clear();
                 foreach (Kategoria r in categories)
+                {
                     _window.DgCategoryLista.Items.Add(r);
-
+                    _window.CmbCategoryId.Items.Add(r.idKategorii);
+                }
             }));
+        }
+
+
+        internal void CmbCategoryIdChange()
+        {
+            foreach(Kategoria k in _window.DgCategoryLista.Items)
+            {
+                if(k.idKategorii ==(int)_window.CmbCategoryId.SelectedItem)
+                {
+                    _window.DgCategoryLista.SelectedItem = k;
+                }
+            }
         }
 
         public void ShowCategoriesSate()
@@ -610,12 +634,20 @@ namespace Client.Controller
             });
         }
 
+
+
+
         public void ShowItemData(IEnumerable<Artykul> categories)
         {
             _window.Dispatcher.BeginInvoke(new Action(() =>
             {
+               // _window.CmbCategoryId.Items.Clear();
                 foreach (Artykul r in categories)
+                {
                     _window.DgItemLista.Items.Add(r);
+                    
+                }
+
 
             }));
         }
@@ -1464,11 +1496,15 @@ namespace Client.Controller
 
         public void ShowEmployeeData(IEnumerable<Pracownik> empolyees)
         {
-            _window.DgEmployeesList.Items.Clear();
-            foreach (Pracownik p in empolyees)
+            _window.Dispatcher.BeginInvoke(new Action(() =>
             {
-                _window.DgEmployeesList.Items.Add(p);
-            }
+                _window.DgEmployeesList.Items.Clear();
+                foreach (Pracownik p in empolyees)
+                {
+                    _window.DgEmployeesList.Items.Add(p);
+                }
+            }));
+           
         }
 
         internal void DeleteEmployee()
