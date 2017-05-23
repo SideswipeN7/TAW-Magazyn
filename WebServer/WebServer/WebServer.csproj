@@ -211,6 +211,7 @@
     <Compile Include="Models\Pracownik.cs">
       <DependentUpon>Magazyn.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\PracownikAdress.cs" />
     <Compile Include="Models\Transakcja.cs">
       <DependentUpon>Magazyn.tt</DependentUpon>
     </Compile>

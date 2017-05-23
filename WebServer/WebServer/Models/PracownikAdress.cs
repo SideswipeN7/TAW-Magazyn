@@ -10,4 +10,5 @@ namespace WebServer.Models
         public Pracownik Pracownik { get; set; }
         public Adres Adres { get; set; }
     }
+
 }
