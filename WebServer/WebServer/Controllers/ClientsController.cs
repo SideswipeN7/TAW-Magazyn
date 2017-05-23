@@ -58,21 +58,22 @@ namespace WebServer.Controllers
         // POST: api/Clients/Register
         [HttpPost]
         [ActionName("RegisterClient")]
-        public HttpResponseMessage RegisterClient(Klient klient, Adres adres)
+        public HttpResponseMessage RegisterClient(KlientAdress dane)
         {
             try
             {
-                var result = new AdresssController().RegisterAddress(adres);
+                var result = new AdresssController().RegisterAddress(dane.Adres);
                 //db.Ksiazka_adresow.Add(adres);
                 //adres.idAdresu = db.Ksiazka_adresow.Find(adres).idAdresu;
                 //klient.idAdresu = adres.idAdresu;
-                klient.idAdresu = result;
-                db.Klienci.Add(klient);
+                dane.Klient.idAdresu = result;
+                db.Klienci.Add(dane.Klient);
                 db.SaveChanges();                
-                return Request.CreateResponse(HttpStatusCode.Created,klient.idKlienta);
+                return Request.CreateResponse(HttpStatusCode.Created,dane.Klient.idKlienta);
             }
-            catch
+            catch(Exception ex)
             {
+                System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}Exception in RegisterClient{Environment.NewLine}{ex}{Environment.NewLine}");
                 return Request.CreateResponse(HttpStatusCode.Conflict,0);
             }
         }

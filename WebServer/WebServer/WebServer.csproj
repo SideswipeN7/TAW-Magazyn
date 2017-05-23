@@ -192,6 +192,7 @@
     <Compile Include="Models\Klient.cs">
       <DependentUpon>Magazyn.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\KlientAdress.cs" />
     <Compile Include="Models\Magazyn.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
