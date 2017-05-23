@@ -303,12 +303,14 @@ namespace Client.Windows
 
         private void MnAbout_Click(object sender, RoutedEventArgs e)
         {
-            //TODO
+            About window = About.GetInstance();
+            window.ShowDialog();
         }
 
         private void MnCreators_Click(object sender, RoutedEventArgs e)
         {
-            //TODO
+            Creators window = Creators.GetInstance();
+            window.ShowDialog();
         }
 
         private void MnVersion_Click(object sender, RoutedEventArgs e)

@@ -15,28 +15,34 @@ using System.Windows.Shapes;
 namespace Client.Windows
 {
     /// <summary>
-    /// Logika interakcji dla klasy Creators.xaml
+    /// Interaction logic for About.xaml
     /// </summary>
-    public partial class Creators : Window
+    public partial class About : Window
     {
-        private static Creators _instance;
+        private static About _instance;
 
-        public static Creators GetInstance()
+        public static About GetInstance()
         {
             if (_instance == null)
-                _instance = new Creators();
+                _instance = new About();
             return _instance;
         }
-        public Creators()
+
+
+        public About()
         {
             InitializeComponent();
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
-            //this.WindowStyle = WindowStyle.ToolWindow;
+            SetLabel();
+        }
+        private void SetLabel()
+        {
+            LblAboutOpis.Content = $"Aplikacja do zarządzania sklepem:{Environment.NewLine} Wykonywanie transakcji{Environment.NewLine} Zarządzanie transakcjami{Environment.NewLine} Zarządzanie stanem magazynu{Environment.NewLine} Zarządzanie pracownikami";
         }
 
-        private void bt_creators_ok_Click(object sender, RoutedEventArgs e)
+        private void BtnAboutOk_Click(object sender, RoutedEventArgs e)
         {
-            this.Hide();
+            Hide();
         }
     }
 }

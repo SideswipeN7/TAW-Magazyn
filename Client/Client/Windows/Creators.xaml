@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Client.Windows"
         mc:Ignorable="d"
-        Title="Creators" Height="227.877" Width="242.455">
+        Title="Twórcy" Height="227.877" Width="242.455" ResizeMode="NoResize" ShowInTaskbar="False" WindowStyle="None" BorderThickness="1">
     <Grid>
         <Button x:Name="bt_creators_ok" Content="OK" HorizontalAlignment="Left" Margin="80,154,0,0" VerticalAlignment="Top" Width="75" Click="bt_creators_ok_Click"/>
         <Label x:Name="lbl_Creators" Content="Paweł Wanot &#xD;&#xA;Michał Stanecki &#xD;&#xA;Michał Nabdalik &#xD;&#xA;Ryszard Janicki" HorizontalAlignment="Left" Margin="69,62,0,0" VerticalAlignment="Top" Height="87"/>
