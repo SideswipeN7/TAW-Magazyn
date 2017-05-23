@@ -38,15 +38,16 @@ namespace WebServer.Controllers
 
         [HttpPost]
         [ActionName("RegisterEmployee")]
-        public HttpResponseMessage RegisterEmployee(Pracownik pracownik, Adres adres)
+        public HttpResponseMessage RegisterEmployee(PracownikAdress adres)
         {
             try
             {
-                db.Ksiazka_adresow.Add(adres);
-                adres.idAdresu = db.Ksiazka_adresow.Find(adres).idAdresu;
-                pracownik.idAdresu = adres.idAdresu;
-                pracownik.Ksiazka_adresow = adres;
-                db.Pracownicy.Add(pracownik);
+                Adres a = adres.Adres;
+                a.idAdresu = new AdresssController().RegisterAddress(a);
+
+                adres.Pracownik.idAdresu = a.idAdresu;
+                adres.Pracownik.Ksiazka_adresow = a;
+                db.Pracownicy.Add(adres.Pracownik);
                 db.SaveChanges();
                 return Request.CreateResponse(HttpStatusCode.Created);
             }
@@ -75,7 +76,7 @@ namespace WebServer.Controllers
         [HttpPut]
         [ActionName("ModifyEmployee")]
         [ResponseType(typeof(void))]
-        public bool ModifyEmployee(Pracownik pracownik, Adres adres)
+        public bool ModifyEmployee(PracownikAdress adres)
         {
             if (!ModelState.IsValid)
             {
@@ -83,8 +84,8 @@ namespace WebServer.Controllers
             }
             try
             {
-                db.Entry(adres).State = EntityState.Modified;
-                db.Entry(pracownik).State = EntityState.Modified;
+                db.Entry(adres.Adres).State = EntityState.Modified;
+                db.Entry(adres.Pracownik).State = EntityState.Modified;
                 db.SaveChanges();
                 return true;
             }
