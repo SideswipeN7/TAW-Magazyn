@@ -7,5 +7,6 @@
         void ShowData();
         void ShowSelectedData();
         void AddData();
+        void GetData();
     }
 }
