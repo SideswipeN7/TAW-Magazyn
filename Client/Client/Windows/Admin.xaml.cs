@@ -26,10 +26,12 @@ namespace Client.Windows
             if (sudo)
             {
                 _instance.TabEmployees.Visibility = Visibility.Visible;
+                _instance.Title = "Tryb Adminitratora";
             }
             else
             {
                 _instance.TabEmployees.Visibility = Visibility.Hidden;
+                _instance.Title = "Tryb Użytkownika";
             }
             return _instance;
         }
