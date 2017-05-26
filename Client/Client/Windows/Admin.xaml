@@ -12,7 +12,7 @@
                 <Canvas>
                     <RadioButton Content="Wszystko" Height="18" Width="100" x:Name="RbStateWszystko" Canvas.Left="85" Canvas.Top="5" Checked="RbStateWszystko_Checked"/>
                     <RadioButton Content="Szukaj" Height="18" Width="100" x:Name="RbStateSzukaj" Canvas.Left="190" Canvas.Top="5" Checked="RbStateSzukaj_Checked"/>
-                    <DataGrid x:Name="DgStateLista" IsReadOnly="True" HorizontalAlignment="Left" VerticalAlignment="Top" Height="259" Width="322" Canvas.Left="10" Canvas.Top="28" AutoGenerateColumns="False"  >
+                    <DataGrid x:Name="DgStateLista" IsReadOnly="True" HorizontalAlignment="Left" VerticalAlignment="Top" Height="1045" Width="322" Canvas.Left="10" Canvas.Top="28" AutoGenerateColumns="False" SelectionMode="Single"  >
                         <DataGrid.Columns>
                             <DataGridTextColumn   Header="Nazwa artykułu" Width="100" Binding="{Binding Nazwa}" />
                             <DataGridTextColumn   Header="Ilość" Width="50" Binding="{Binding Ilosc}"/>
@@ -40,7 +40,7 @@
 
             <TabItem x:Name="TabTransactions" Header="Transakcje">
                 <Grid>
-                    <TabControl x:Name="TabCtrlTransactions" Margin="-10,0,10,0">
+                    <TabControl x:Name="TabCtrlTransactions" Margin="-10,10,10,-10" >
                         <TabItem x:Name="TabTransactionsDo" Header="Wykonaj">
                             <Grid x:Name="GridTransactionsDoMain" Margin="0,-15,0,15">
                                 <Grid x:Name="GridTransactionsDoOne" Margin="0,37,791,300">
@@ -115,14 +115,23 @@
                                 <Grid x:Name="GridOverviewOne" Margin="0,0,791,0">
                                     <RadioButton x:Name="RbOverviewGridOneWszystkie" Content="Wszystkie" HorizontalAlignment="Left" Margin="48,10,0,0" VerticalAlignment="Top" Checked="RbOverviewGridOneWszystkie_Checked"/>
                                     <RadioButton x:Name="RbOverviewGridOneSzukaj" Content="Szukaj" HorizontalAlignment="Left" Margin="188,10,0,0" VerticalAlignment="Top" Checked="RbOverviewGridOneSzukaj_Checked"/>
-                                    <DataGrid x:Name="DgOverviewGridOne" HorizontalAlignment="Left" Height="549" Margin="10,44,0,0" VerticalAlignment="Top" Width="307" SelectionChanged="DgOverviewGridOne_SelectionChanged" FrozenColumnCount="0" SelectionMode="Single" CanUserResizeRows="False">
+                                    <DataGrid x:Name="DgOverviewGridOne" HorizontalAlignment="Left" Margin="0,61" Width="307" SelectionChanged="DgOverviewGridOne_SelectionChanged" FrozenColumnCount="0" SelectionMode="Single" CanUserResizeRows="False">
                                         <DataGrid.Columns>
                                             <DataGridTextColumn   Header="Transakcja" Width="*" Binding="{Binding idTransakcji}"/>
                                             <DataGridTextColumn   Header="Data Transakcji Data" Width="*" Binding="{Binding Data}"/>
                                         </DataGrid.Columns>
                                     </DataGrid>
                                 </Grid>
-                                <Grid x:Name="GridOverviewTwo" Margin="350,0,506,0">
+                                <Grid x:Name="GridDoSearch" Margin="350,0,506,0">
+                                    <Grid x:Name="GridOverwviewSearch" Margin="10,357,468,120">
+                                        <CheckBox x:Name="ChbOverviewGridTwoData" Content="Data" HorizontalAlignment="Left" Margin="20,31,0,0" VerticalAlignment="Top"/>
+                                        <CheckBox x:Name="ChbOverviewGridTwoNazwisko" Content="Nazwisko" HorizontalAlignment="Left" Margin="20,81,0,0" VerticalAlignment="Top"/>
+                                        <CheckBox x:Name="ChbOverviewGridTwoFirma" Content="Firma" HorizontalAlignment="Left" Margin="20,131,0,0" VerticalAlignment="Top"/>
+                                        <DatePicker x:Name="DpOverviewGridTwoDataPicker" HorizontalAlignment="Left" Margin="142,26,0,0" VerticalAlignment="Top" Width="120"/>
+                                        <TextBox x:Name="TxbOverviewGridTwoNazwisko" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="142,76,0,0"/>
+                                        <TextBox x:Name="TxbOverviewGridTwoFirma" HorizontalAlignment="Left" Height="23" Margin="142,126,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                                        <Button x:Name="BtnOverviewGridTwoSzukaj" Content="Szukaj" Click="BtnOverviewGridTwoSzukaj_Click" Margin="142,196,0,0" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="84" Height="23" VerticalAlignment="Top"/>
+                                    </Grid>
                                     <Label x:Name="LblOverviewGridTwoNazwisko" Content="Nazwisko:" HorizontalAlignment="Left" Margin="10,40,0,0" VerticalAlignment="Top"/>
                                     <Label x:Name="LblOverviewGridTwoNazwaFirmy" Content="Nazwa Firmy:" HorizontalAlignment="Left" Margin="10,71,0,0" VerticalAlignment="Top"/>
                                     <Label x:Name="LblOverviewGridTwoDostawca" Content="Dostawca:" HorizontalAlignment="Left" Margin="10,102,0,0" VerticalAlignment="Top"/>
@@ -132,19 +141,11 @@
                                     <Label x:Name="LblOverviewGridTwoWojewodztwo" Content="Województwo:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,226,0,0"/>
                                     <Label x:Name="LblOverviewGridTwoIloscProduktow" Content="Ilość Produktów:" HorizontalAlignment="Left" Margin="10,262,0,0" VerticalAlignment="Top"/>
                                     <Label x:Name="LblOverviewGridTwoCena" Content="Cena:" HorizontalAlignment="Left" Margin="10,293,0,0" VerticalAlignment="Top"/>
-                                    <CheckBox x:Name="ChbOverviewGridTwoData" Content="Data" HorizontalAlignment="Left" Margin="10,400,0,0" VerticalAlignment="Top"/>
-                                    <CheckBox x:Name="ChbOverviewGridTwoNazwisko" Content="Nazwisko" HorizontalAlignment="Left" Margin="10,450,0,0" VerticalAlignment="Top"/>
-                                    <CheckBox x:Name="ChbOverviewGridTwoFirma" Content="Firma" HorizontalAlignment="Left" Margin="10,500,0,0" VerticalAlignment="Top"/>
-                                    <DatePicker x:Name="DpOverviewGridTwoDataPicker" HorizontalAlignment="Left" Margin="132,395,0,0" VerticalAlignment="Top" Width="120"/>
-                                    <TextBox x:Name="TxbOverviewGridTwoNazwisko" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="132,445,0,0"/>
-                                    <TextBox x:Name="TxbOverviewGridTwoFirma" HorizontalAlignment="Left" Height="23" Margin="132,495,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                                    <Button x:Name="BtnOverviewGridTwoSzukaj" Content="Szukaj" HorizontalAlignment="Left" Margin="132,554,0,0" VerticalAlignment="Top" Width="120" Click="BtnOverviewGridTwoSzukaj_Click" Height="23"/>
                                     <Button x:Name="btnTabOverviewFaktura" Content="Faktura" HorizontalAlignment="Left" Margin="7,554,0,0" VerticalAlignment="Top" Width="120" Click="btnTabOverviewFaktura_Click" Height="23"/>
-
                                 </Grid>
                                 <Grid x:Name="GridOverviewThree" Margin="634,0,10,0">
                                     <Label x:Name="LblOverviewGridThreeProdukty" Content="Produkty" FontSize="14" HorizontalAlignment="Left" Margin="203,10,0,0" VerticalAlignment="Top"/>
-                                    <DataGrid x:Name="DgOverviewGridThree" HorizontalAlignment="Left" Height="517" Margin="40,60,0,0" VerticalAlignment="Top" Width="407">
+                                    <DataGrid x:Name="DgOverviewGridThree" HorizontalAlignment="Left" Margin="40,60,0,65" Width="407">
                                         <DataGrid.Columns>
                                             <DataGridTextColumn   Header="Produkt" Width="*" Binding="{Binding Nazwa}"/>
                                             <DataGridTextColumn   Header="Cena" Width="*" Binding="{Binding Cena, StringFormat={}{0:F2} }"/>
@@ -153,6 +154,7 @@
                                 </Grid>
                             </Grid>
                         </TabItem>
+
 
                     </TabControl>
                 </Grid>
@@ -174,7 +176,7 @@
                         <CheckBox x:Name="ChbClientsWojewodztwo" Content="" Margin="239,111,10,31"/>
                         <Button x:Name="BtnClientsSzukaj" Content="Szukaj" RenderTransformOrigin="0.449,0.517" Margin="127,145,74,0" Click="BtnClientsSzukaj_Click" />
                     </Grid>
-                    <DataGrid x:Name="DgClientsLista" IsReadOnly="True" HorizontalAlignment="Left" VerticalAlignment="Top" Height="249" Width="177" Canvas.Left="10" Canvas.Top="38" SelectionChanged="DgClientsLista_SelectionChanged"  >
+                    <DataGrid x:Name="DgClientsLista" IsReadOnly="True" HorizontalAlignment="Left" VerticalAlignment="Top" Height="1014" Width="177" Canvas.Left="10" Canvas.Top="37" SelectionChanged="DgClientsLista_SelectionChanged" SelectionMode="Single"  >
                         <DataGrid.Columns>
                             <DataGridTextColumn   Header="Nazwisko" Width="*" Binding="{Binding Nazwisko}"/>
                             <DataGridTextColumn   Header="Firma" Width="*" Binding="{Binding Nazwa_firmy}"/>
@@ -203,9 +205,9 @@
                     <ComboBox x:Name="CmbClientsWojewodztwo" Height="22" Width="120" Canvas.Left="317" Canvas.Top="205"/>
                 </Canvas>
             </TabItem>
-            <TabItem x:Name="TabCategory" Header="Kategorie" >
+            <TabItem x:Name="TabCategory" Header="Kategorie" Margin="-5,0,1,-2" >
                 <Canvas>
-                    <DataGrid x:Name="DgCategoryLista" HorizontalAlignment="Left" VerticalAlignment="Top" Height="211" Width="265"  IsReadOnly="True" Canvas.Left="10" Canvas.Top="40" SelectionChanged="DgCategoryLista_SelectionChanged">
+                    <DataGrid x:Name="DgCategoryLista" HorizontalAlignment="Left" VerticalAlignment="Top" Height="1035" Width="265"  IsReadOnly="True" Canvas.Left="10" Canvas.Top="40" SelectionChanged="DgCategoryLista_SelectionChanged" SelectionMode="Single">
                         <DataGrid.Columns>
                             <DataGridTextColumn   Header="ID" Width="*" Binding="{Binding idKategorii}" />
                             <DataGridTextColumn   Header="Nazwa" Width="*" Binding="{Binding Nazwa}"/>
@@ -229,7 +231,7 @@
             </TabItem>
             <TabItem x:Name="TabItems" Header="Artykuł" >
                 <Canvas>
-                    <DataGrid x:Name="DgItemLista" HorizontalAlignment="Left" VerticalAlignment="Top" Height="211" Width="265"  IsReadOnly="True" Canvas.Left="10" Canvas.Top="65" SelectionChanged="DgItemLista_SelectionChanged">
+                    <DataGrid x:Name="DgItemLista" HorizontalAlignment="Left" VerticalAlignment="Top" Height="1005" Width="265"  IsReadOnly="True" Canvas.Left="10" Canvas.Top="65" SelectionChanged="DgItemLista_SelectionChanged" SelectionMode="Single">
                         <DataGrid.Columns>
                             <DataGridTextColumn   Header="Nazwa" Width="*" Binding="{Binding Nazwa}"/>
                             <DataGridTextColumn   Header="Ilość" Width="*" Binding="{Binding Ilosc}"/>
@@ -262,7 +264,7 @@
             </TabItem>
             <TabItem x:Name="TabEmployees" Header="Pracownicy" >
                 <Canvas>
-                    <DataGrid x:Name="DgEmployeesList" Canvas.Left="10" Canvas.Top="26" Height="500" Width="250" SelectionChanged="DgEmployeesList_SelectionChanged">
+                    <DataGrid x:Name="DgEmployeesList" Canvas.Left="10" Canvas.Top="26" Height="1042" Width="250" SelectionChanged="DgEmployeesList_SelectionChanged" SelectionMode="Single">
                         <DataGrid.Columns>
                             <DataGridTextColumn   Header="Imię" Width="*" Binding="{Binding Imie}"/>
                             <DataGridTextColumn   Header="Nazwisko" Width="*" Binding="{Binding Nazwisko}"/>

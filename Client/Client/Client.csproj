@@ -103,8 +103,14 @@
     </Compile>
     <Compile Include="Communication\Communicator.cs" />
     <Compile Include="Communication\ICommunication.cs" />
+    <Compile Include="Controller\CategoryController.cs" />
+    <Compile Include="Controller\ClientsController.cs" />
+    <Compile Include="Controller\EmployeeController.cs" />
     <Compile Include="Controller\IManager.cs" />
+    <Compile Include="Controller\ItemsController.cs" />
+    <Compile Include="Controller\IWork.cs" />
     <Compile Include="Controller\Manager.cs" />
+    <Compile Include="Controller\TransactionController.cs" />
     <Compile Include="Model\KlientAdress.cs" />
     <Compile Include="Model\PracownikAdress.cs" />
     <Compile Include="Windows\About.xaml.cs">

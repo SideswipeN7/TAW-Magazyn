@@ -42,7 +42,7 @@ namespace Client.Windows
             _controller.GetAll();
             //LoadData
             _controller.LoadAll();
-
+            _controller.SelectaAll();
             
         }
 

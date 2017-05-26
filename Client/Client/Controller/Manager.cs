@@ -22,8 +22,8 @@ namespace Client.Controller
         private Manager()
         {
             _comm = Communicator.GetInstance();
-            _comm.SetUrlAddress("http://o1018869-001-site1.htempurl.com");
-            //_comm.SetUrlAddress("http://localhost:52992");
+           // _comm.SetUrlAddress("http://o1018869-001-site1.htempurl.com");
+            _comm.SetUrlAddress("http://localhost:52992");
         }
         public static Manager GetInstance(Admin window)
         {
@@ -46,7 +46,15 @@ namespace Client.Controller
             GetEmployeeData();
         }
 
-
+        internal void SelectaAll()
+        {
+            _window.RbStateWszystko.IsChecked = true;
+            _window.RbOverviewGridOneWszystkie.IsChecked = true;
+            _window.RbClientsWszyscy.IsChecked = true;
+            _window.RbCategoryWszystko.IsChecked = true;
+            _window.RbItemWszystko.IsChecked = true;
+            _window.RdEmployeeWszyscy.IsChecked = true;
+        }
 
         internal void LoadAll()
         {
@@ -1353,12 +1361,13 @@ namespace Client.Controller
         }
         internal void ShowTransactionsAll()
         {
-            _window.GridOverviewTwo.Visibility = Visibility.Hidden;
+            
+            _window.GridOverwviewSearch.Visibility = Visibility.Hidden;
         }
 
         internal void ShowTransactionsSearch()
         {
-            _window.GridOverviewTwo.Visibility = Visibility.Visible;
+            _window.GridOverwviewSearch.Visibility = Visibility.Visible;
         }
 
         public void ShowFacture(Transakcja tran)
