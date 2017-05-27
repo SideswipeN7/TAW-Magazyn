@@ -4,6 +4,7 @@ using Client.Windows;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace Client.Controller
@@ -18,8 +19,8 @@ namespace Client.Controller
         private EmployeeController()
         {
             _comm = Communicator.GetInstance();
-            _comm.SetUrlAddress("http://o1018869-001-site1.htempurl.com");
-            //_comm.SetUrlAddress("http://localhost:52992");
+            //_comm.SetUrlAddress("http://o1018869-001-site1.htempurl.com");
+            _comm.SetUrlAddress("http://localhost:52992");
         }
 
         public static EmployeeController GetInstance(Admin window)
@@ -38,41 +39,95 @@ namespace Client.Controller
             try
             {
                 int wiek;
-                if (_window.TxbEmployeeHaslo.Text.Length > 5
-                    && _window.TxbEmployeeLogin.Text.Length > 5
-                    && _window.TxbEmployeeImie.Text.Length > 5
-                    && _window.TxbEmployeeNazwisko.Text.Length > 5
-                    && _window.TxbEmployeeMiejscowosc.Text.Length > 5
-                    && _window.TxbEmployeeKodPocztowy.Text.Length == 6
-                    && Int32.TryParse(_window.TxbEmployeeWiek.Text, out wiek)
-                    && _window.CmbEmployeeAdmin.SelectedIndex > 0
-                    && _window.CmbEmployeeWojewodztwo.SelectedIndex >= 0)
+                if (_window.TxbEmployeeHaslo.Text.Length > 5) { }
+                else
                 {
-                    Pracownik pracownik = new Pracownik()
-                    {
-                        Haslo = _window.TxbEmployeeHaslo.Text,
-                        Imie = _window.TxbEmployeeImie.Text,
-                        Login = _window.TxbEmployeeLogin.Text,
-                        Nazwisko = _window.TxbEmployeeNazwisko.Text,
-                        Sudo = (int)((ComboBoxItem)_window.CmbEmployeeAdmin.SelectedItem).Tag,
-                        Wiek = wiek
-                    };
-                    Adres adres = new Adres()
-                    {
-                        Kod_pocztowy = _window.TxbEmployeeKodPocztowy.Text,
-                        Miejscowosc = _window.TxbEmployeeMiejscowosc.Text,
-                        Wojewodztwo = _window.CmbEmployeeWojewodztwo.SelectedItem + ""
-                    };
-
-                    Task<bool>.Factory.StartNew(() =>
-                    {
-                        return _comm.RegisterEmployee(new PracownikAdress() { Pracownik = pracownik, Adres = adres }); ;
-                    }).ContinueWith(x =>
-                        Task.Factory.StartNew(() =>
-                        {
-                            GetData();
-                        }));
+                    MessageBox.Show("Hasło zbyt krótkie", "Bład", MessageBoxButton.OK);
                 }
+
+                if (_window.TxbEmployeeLogin.Text.Length > 5) { }
+                else
+                {
+                    MessageBox.Show("Login zbyt krótki", "Bład", MessageBoxButton.OK);
+                }
+                
+                if (_window.TxbEmployeeImie.Text.Length >=4 ) { }
+                else
+                {
+                    MessageBox.Show("imię zbyt krótkie", "Bład", MessageBoxButton.OK);
+                }
+
+                if (_window.TxbEmployeeNazwisko.Text.Length > 5) { }
+                else
+                {
+                    MessageBox.Show("Nazwisko zbyt krótkie", "Bład", MessageBoxButton.OK);
+                }
+
+                if (_window.TxbEmployeeMiejscowosc.Text.Length > 5) { }
+                else
+                {
+                    MessageBox.Show("Miejscowość zbyt krótkie", "Bład", MessageBoxButton.OK);
+                }
+
+                if (_window.TxbEmployeeKodPocztowy.Text.Length == 6) { }
+                else
+                {
+                    MessageBox.Show("Zły format kodu pocztowego", "Bład", MessageBoxButton.OK);
+                }
+
+                if (Int32.TryParse(_window.TxbEmployeeWiek.Text, out wiek)) { }
+                else
+                {
+                    MessageBox.Show("Zły foramt wieku", "Bład", MessageBoxButton.OK);
+                }
+
+                if (_window.CmbEmployeeAdmin.SelectedIndex >= 0) { }
+                else
+                {
+                    MessageBox.Show("Błąd wyboru statusu użytkownika", "Bład", MessageBoxButton.OK);
+                }
+                if (_window.CmbEmployeeWojewodztwo.SelectedIndex >= 0) { }
+                else
+                {
+                    MessageBox.Show("Bład wyboru województwa", "Bład", MessageBoxButton.OK);
+
+                }
+               
+                //if (_window.TxbEmployeeHaslo.Text.Length > 5
+                //    && _window.TxbEmployeeLogin.Text.Length > 5
+                //    && _window.TxbEmployeeImie.Text.Length > 5
+                //    && _window.TxbEmployeeNazwisko.Text.Length > 5
+                //    && _window.TxbEmployeeMiejscowosc.Text.Length > 5
+                //    && _window.TxbEmployeeKodPocztowy.Text.Length == 6
+                //    && Int32.TryParse(_window.TxbEmployeeWiek.Text, out wiek)
+                //    && _window.CmbEmployeeAdmin.SelectedIndex > 0
+                //    && _window.CmbEmployeeWojewodztwo.SelectedIndex >= 0)
+                //{
+                //    Pracownik pracownik = new Pracownik()
+                //    {
+                //        Haslo = _window.TxbEmployeeHaslo.Text,
+                //        Imie = _window.TxbEmployeeImie.Text,
+                //        Login = _window.TxbEmployeeLogin.Text,
+                //        Nazwisko = _window.TxbEmployeeNazwisko.Text,
+                //        Sudo = (int)((ComboBoxItem)_window.CmbEmployeeAdmin.SelectedItem).Tag,
+                //        Wiek = wiek
+                //    };
+                //    Adres adres = new Adres()
+                //    {
+                //        Kod_pocztowy = _window.TxbEmployeeKodPocztowy.Text,
+                //        Miejscowosc = _window.TxbEmployeeMiejscowosc.Text,
+                //        Wojewodztwo = _window.CmbEmployeeWojewodztwo.SelectedItem + ""
+                //    };
+
+                //    Task<bool>.Factory.StartNew(() =>
+                //    {
+                //        return _comm.RegisterEmployee(new PracownikAdress() { Pracownik = pracownik, Adres = adres }); ;
+                //    }).ContinueWith(x =>
+                //        Task.Factory.StartNew(() =>
+                //        {
+                //            GetData();
+                //        }));
+                //}
             }
             catch (Exception ex)
             {
@@ -191,7 +246,12 @@ namespace Client.Controller
                     {
                         _window.CmbEmployeeAdmin.SelectedIndex = 1;
                     }
-                    _window.CmbEmployeeWojewodztwo.SelectedItem = pracownik.Ksiazka_adresow.Wojewodztwo;
+                    for (int i = 0; i < _window.CmbEmployeeWojewodztwo.Items.Count; i++)
+                    {
+                     if (_window.CmbEmployeeWojewodztwo.Items.GetItemAt(i).Equals(pracownik.Ksiazka_adresow.Wojewodztwo)){
+                            _window.CmbEmployeeWojewodztwo.SelectedIndex = i;
+                        }
+                    }
                 }
             }
             catch (Exception ex)

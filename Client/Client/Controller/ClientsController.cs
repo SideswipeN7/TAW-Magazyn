@@ -24,6 +24,11 @@ namespace Client.Controller
             throw new NotImplementedException();
         }
 
+        public void GetData()
+        {
+            throw new NotImplementedException();
+        }
+
         public void ShowData()
         {
             throw new NotImplementedException();

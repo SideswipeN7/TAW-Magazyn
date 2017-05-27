@@ -33,18 +33,18 @@ namespace Client.Controller
 
         public void AddData()
         {
-            int quantity;
-            decimal price;
-            if (_window.TxbItemINazwa.Text.Length > 5 &&
-                 Int32.TryParse(_window.TxbItemIlosc.Text, out quantity) &&
-                 Decimal.TryParse(_window.TxbItemCenaMin.Text, out price) &&
-                 _window.CmbItemKategoria.SelectedIndex >= 0)
-            {
-                if (_comm.RegisterItem(new Artykul() { Cena = price, Ilosc = quantity, Nazwa = _window.TxbItemINazwa.Text, idKategorii = (int)((ComboBoxItem)_window.CmbItemKategoria.SelectedItem).Tag, Kategorie = new Kategoria() { idKategorii = (int)((ComboBoxItem)_window.CmbItemKategoria.SelectedItem).Tag, Nazwa = (String)((ComboBoxItem)_window.CmbItemKategoria.SelectedItem).Content } }))
-                {
-                    GetItemData();
-                }
-            }
+            //int quantity;
+            //decimal price;
+            //if (_window.TxbItemINazwa.Text.Length > 5 &&
+            //     Int32.TryParse(_window.TxbItemIlosc.Text, out quantity) &&
+            //     Decimal.TryParse(_window.TxbItemCenaMin.Text, out price) &&
+            //     _window.CmbItemKategoria.SelectedIndex >= 0)
+            //{
+            //    if (_comm.RegisterItem(new Artykul() { Cena = price, Ilosc = quantity, Nazwa = _window.TxbItemINazwa.Text, idKategorii = (int)((ComboBoxItem)_window.CmbItemKategoria.SelectedItem).Tag, Kategorie = new Kategoria() { idKategorii = (int)((ComboBoxItem)_window.CmbItemKategoria.SelectedItem).Tag, Nazwa = (String)((ComboBoxItem)_window.CmbItemKategoria.SelectedItem).Content } }))
+            //    {
+            //        GetData();
+            //    }
+            //}
         }
 
         public void ChangeDate()
@@ -63,6 +63,11 @@ namespace Client.Controller
         }
 
         public void ShowSelectedData()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void GetData()
         {
             throw new NotImplementedException();
         }
