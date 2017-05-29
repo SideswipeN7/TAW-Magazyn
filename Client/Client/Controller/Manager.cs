@@ -22,9 +22,10 @@ namespace Client.Controller
         private Manager()
         {
             _comm = Communicator.GetInstance();
-           // _comm.SetUrlAddress("http://o1018869-001-site1.htempurl.com");
+            // _comm.SetUrlAddress("http://o1018869-001-site1.htempurl.com");
             _comm.SetUrlAddress("http://localhost:52992");
         }
+
         public static Manager GetInstance(Admin window)
         {
             if (_instance == null)
@@ -73,7 +74,6 @@ namespace Client.Controller
             _window.CmbEmployeeAdmin.Items.Add(new ComboBoxItem() { Tag = 1, Content = "Tak" });
         }
 
-
         //Magazine State
         public void LoadCategoriesMagazineSate()
         {
@@ -83,11 +83,8 @@ namespace Client.Controller
             {
                 _window.CmbStateKategoria.Items.Add(new ComboBoxItem() { Content = r.Nazwa, Tag = r.idKategorii });
                 _window.CmbItemKategoria.Items.Add(new ComboBoxItem() { Content = r.Nazwa, Tag = r });
-
             }
         }
-
-
 
         public void SearchCategoriesSate()
         {
@@ -116,14 +113,12 @@ namespace Client.Controller
             //3
             if (_window.ChbStateKategoria.IsChecked == true)
             {
-
                 for (int i = 0; i < list.Count; i++)
                 {
                     //TODO
                     if (list[i].idKategorii != (int)((ComboBoxItem)_window.CmbStateKategoria.SelectedItem).Tag)
                         list.Remove(list[i]);
                 }
-
             }
             //4
             if (_window.ChbStateNazwa.IsChecked == true)
@@ -135,7 +130,6 @@ namespace Client.Controller
                 }
             }
             ShowMagazineStateData(list);
-
         }
 
         public void ShowMagazineStateAll()
@@ -184,8 +178,6 @@ namespace Client.Controller
             _window.LblState_.Visibility = Visibility.Visible;
         }
 
-
-
         public void GetMagazineState()
         {
             _window.DgStateLista.Items.Clear();
@@ -200,15 +192,16 @@ namespace Client.Controller
                 });
             });
         }
+
         public void ShowMagazineStateData(IEnumerable<Artykul> categories)
         {
             _window.Dispatcher.BeginInvoke(new Action(() =>
             {
                 foreach (Artykul r in categories)
                     _window.DgStateLista.Items.Add(r);
-
             }));
         }
+
         //Categories
         public void GetCategoryData()
         {
@@ -240,14 +233,12 @@ namespace Client.Controller
             }
         }
 
-
         internal void ShowItemsData()
         {
             if (_window.DgItemLista.SelectedIndex >= 0)
             {
                 try
                 {
-
                     for (int i = 0; i < _window.CmbItemKategoria.Items.Count; i++)
                     {
                         if (((Kategoria)((ComboBoxItem)_window.CmbItemKategoria.Items.GetItemAt(i)).Tag).idKategorii == ((Artykul)_window.DgItemLista.SelectedItem).Kategorie.idKategorii)
@@ -266,7 +257,6 @@ namespace Client.Controller
                 }
             }
         }
-
 
         internal void ShowClientsData()
         {
@@ -288,7 +278,6 @@ namespace Client.Controller
             }
         }
 
-
         public void ShowCategoryData(IEnumerable<Kategoria> categories)
         {
             _window.Dispatcher.BeginInvoke(new Action(() =>
@@ -301,7 +290,6 @@ namespace Client.Controller
                 }
             }));
         }
-
 
         internal void CmbCategoryIdChange()
         {
@@ -420,7 +408,6 @@ namespace Client.Controller
                     {
                         GetCategoryData();
                     }
-
                 }
             }
         }
@@ -547,7 +534,6 @@ namespace Client.Controller
             _window.BtnItemDodaj.Visibility = Visibility.Hidden;
             _window.BtnItemModyfikuj.Visibility = Visibility.Hidden;
             _window.BtnItemSzukaj.Visibility = Visibility.Hidden;
-
         }
 
         public void ChangeItemData()
@@ -610,14 +596,12 @@ namespace Client.Controller
             //3
             if (_window.ChbItemKategoria.IsChecked == true)
             {
-
                 for (int i = 0; i < list.Count; i++)
                 {
                     //TODO
                     if (list[i].idKategorii != (int)((ComboBoxItem)_window.CmbItemKategoria.SelectedItem).Tag)
                         list.Remove(list[i]);
                 }
-
             }
             //4
             if (_window.ChbItemNazwa.IsChecked == true)
@@ -630,6 +614,7 @@ namespace Client.Controller
             }
             ShowItemData(list);
         }
+
         public void GetItemData()
         {
             Task<IEnumerable<Artykul>>.Factory.StartNew(() =>
@@ -644,9 +629,6 @@ namespace Client.Controller
             });
         }
 
-
-
-
         public void ShowItemData(IEnumerable<Artykul> categories)
         {
             _window.Dispatcher.BeginInvoke(new Action(() =>
@@ -655,12 +637,10 @@ namespace Client.Controller
                 foreach (Artykul r in categories)
                 {
                     _window.DgItemLista.Items.Add(r);
-
                 }
-
-
             }));
         }
+
         //Client
         internal void ShowClitentsAdd()
         {
@@ -707,7 +687,6 @@ namespace Client.Controller
             _window.BtnClientsDodaj.Visibility = Visibility.Hidden;
         }
 
-
         public void ChangeClientData()
         {
             int id = ((Klient)_window.DgClientsLista.SelectedItem).idKlienta;
@@ -735,7 +714,6 @@ namespace Client.Controller
 
         public void ShowClientData(IEnumerable<Klient> clients)
         {
-
             _window.Dispatcher.BeginInvoke(new Action(() =>
             {
                 foreach (Klient r in clients)
@@ -757,8 +735,6 @@ namespace Client.Controller
             });
         }
 
-
-
         public void SetClientData()
         {
             if (_window.TxbClientsImie.Text.Length > 5 &&
@@ -777,7 +753,6 @@ namespace Client.Controller
                 if (id > 0)
                     if (_comm.ChangeClient(new Klient()
                     {
-
                         Nazwa_firmy = _window.TxbClientsFirma.Text,
                         Imie = _window.TxbClientsImie.Text,
                         Nazwisko = _window.TxbClientsNazwisko.Text,
@@ -826,13 +801,11 @@ namespace Client.Controller
             //3
             if (_window.ChbClientsMiejscowosc.IsChecked == true)
             {
-
                 for (int i = 0; i < list.Count; i++)
                 {
                     if (!list[i].Ksiazka_adresow.Miejscowosc.ToLower().Equals(_window.TxbClientsMiejscowoscSearch.Text.ToLower()))
                         list.Remove(list[i]);
                 }
-
             }
             //4
             if (_window.ChbClientsWojewodztwo.IsChecked == true)
@@ -879,17 +852,16 @@ namespace Client.Controller
                  Load2(x.Result);
              });
          });
-
             }
             catch (Exception ex)
             { System.Diagnostics.Debug.WriteLine($"\nERROR {ex}"); }
-
         }
-        void Load1(IEnumerable<Dostawca> list)
+
+        private void Load1(IEnumerable<Dostawca> list)
         {
             try
             {
-                _window.Dispatcher.BeginInvoke(new Action(()=>
+                _window.Dispatcher.BeginInvoke(new Action(() =>
                 {
                     {
                         _window.CmbDoGridOneDostawca.Items.Clear();
@@ -899,46 +871,43 @@ namespace Client.Controller
                         }
                     }
                 }));
-                
             }
-            
             catch (Exception ex)
             { System.Diagnostics.Debug.WriteLine($"\nERROR {ex}"); }
-}
-        void Load2(IEnumerable<Dostawca> list)
+        }
+
+        private void Load2(IEnumerable<Dostawca> list)
         {
             try
             {
-
                 _window.Dispatcher.BeginInvoke(new Action(() =>
                 {
-                
                     _window.CmbDoGridTwoDostawca.Items.Clear();
-                foreach (Dostawca r in list)
-                {
-                    _window.CmbDoGridTwoDostawca.Items.Add(new ComboBoxItem() { Content = r.Nazwa.ToString(), Tag = r });
-                }
+                    foreach (Dostawca r in list)
+                    {
+                        _window.CmbDoGridTwoDostawca.Items.Add(new ComboBoxItem() { Content = r.Nazwa.ToString(), Tag = r });
+                    }
                 }));
             }
             catch (Exception ex)
             { System.Diagnostics.Debug.WriteLine($"\nERROR {ex}"); }
         }
+
         public void LoadTransactionsDoProducts()
         {
             _window.CmbDoGridThreeNazwa.Items.Clear();
             IEnumerable<Artykul> list = _comm.GetItems();
             try
             {
-
                 foreach (Artykul r in list)
                 {
-
                     _window.CmbDoGridThreeNazwa.Items.Add(new ComboBoxItem() { Content = r.Nazwa.ToString(), Tag = r });
                 }
             }
             catch (Exception ex)
             { System.Diagnostics.Debug.WriteLine($"\nERROR {ex}"); }
         }
+
         public void LoadClients()
         {
             try
@@ -948,6 +917,7 @@ namespace Client.Controller
             catch (Exception ex)
             { System.Diagnostics.Debug.WriteLine($"\nERROR {ex}"); }
         }
+
         private void LoadClientsToCmb(IEnumerable<Klient> clients)
         {
             try
@@ -982,6 +952,7 @@ namespace Client.Controller
                     }
             }
         }
+
         private void UpadtePrice()
         {
             decimal price = 0m;
@@ -1027,6 +998,7 @@ namespace Client.Controller
                 }
             }
         }
+
         public void SelectClientDoTransactionSurname()
         {
             if (_window.CmbDoGridTwoNazwisko.SelectedIndex >= 0)
@@ -1038,7 +1010,6 @@ namespace Client.Controller
                 bool chage = true;
                 for (int i = 0; i < _window.CmbDoGridTwoWojewodztwo.Items.Count; i++)
                 {
-
                     if (_window.CmbDoGridTwoWojewodztwo.Items.GetItemAt(i).Equals(k.Ksiazka_adresow.Wojewodztwo))
                     {
                         _window.CmbDoGridTwoWojewodztwo.SelectedIndex = i;
@@ -1052,7 +1023,6 @@ namespace Client.Controller
                         if (_window.CmbDoGridTwoFirma.SelectedIndex != i)
                         {
                             _window.CmbDoGridTwoFirma.SelectedIndex = i;
-
                         }
                         chage = false;
                     }
@@ -1065,7 +1035,7 @@ namespace Client.Controller
         {
             if (_window.DgDoGridFive.Items.Count >= 0)
             {
-               inProg = InProgress.GetInstance();
+                inProg = InProgress.GetInstance();
                 inProg.Show();
                 List<Artykul_w_Koszyku> cart = new List<Artykul_w_Koszyku>();
                 foreach (Artykul_w_Koszyku r in _window.DgDoGridFive.Items)
@@ -1129,14 +1099,11 @@ namespace Client.Controller
                         TransactionRegister(t);
                     });
                 });
-
-
             }
         }
 
         private void TransactionRegister(Transakcja t)
         {
-            
             Task<int>.Factory.StartNew(() =>
              {
                  return _comm.RegisterTransaction(t);
@@ -1148,16 +1115,13 @@ namespace Client.Controller
                      {
                          inProg.Hide();
                      }));
-                     _window.Dispatcher.BeginInvoke(new Action(() => 
+                     _window.Dispatcher.BeginInvoke(new Action(() =>
                      {
                          GetAll();
                          MessageBox.Show("Wykonano pomyślnie!", "Transakcja", MessageBoxButton.OK);
-
                      }));
                      return 0;
                  });
-
-
              });
         }
 
@@ -1192,7 +1156,6 @@ namespace Client.Controller
                             Transakcja t = new Transakcja();
                             try
                             {
-
                                 t.idKlienta = k.idKlienta;
                                 //System.Diagnostics.Debug.WriteLine($"{Environment.NewLine} ERRRROR {((Dostawca)(((ComboBoxItem)_window.CmbDoGridTwoDostawca.SelectedItem).Tag)).Nazwa}");
                                 _window.Dispatcher.BeginInvoke(new Action(() =>
@@ -1200,10 +1163,9 @@ namespace Client.Controller
                                     Dostawca d = (Dostawca)(((ComboBoxItem)_window.CmbDoGridTwoDostawca.SelectedItem).Tag);
                                     t.idDostawcy = d.idDostawcy;
                                 }));
-                               
+
                                 t.idPracownika = ID;
                                 t.Data = DateTime.Now;
-
                             }
                             catch (Exception ex)
                             {
@@ -1212,17 +1174,13 @@ namespace Client.Controller
                             _window.Dispatcher.BeginInvoke(new Action(() =>
                             {
                                 foreach (Artykul_w_Koszyku r in _window.DgDoGridFive.Items)
-                            {
-                                for (int i = 0; i < r.Ilosc; i++)
-                                    t.Artykuly_w_transakcji.Add(new Artykul_w_transakcji() { Artykuly = r.Artykul, Cena = r.Cena, idArtykulu = r.Artykul.idKategorii });
+                                {
+                                    for (int i = 0; i < r.Ilosc; i++)
+                                        t.Artykuly_w_transakcji.Add(new Artykul_w_transakcji() { Artykuly = r.Artykul, Cena = r.Cena, idArtykulu = r.Artykul.idKategorii });
                                 }
                             }));
                             TransactionRegister(t);
                         });
-
-
-
-
                     });
                 }
             }
@@ -1231,7 +1189,6 @@ namespace Client.Controller
                 System.Diagnostics.Debug.WriteLine($"{Environment.NewLine} ERRRROR {ex}");
             }
         }
-
 
         internal void TransactionNewSelcted()
         {
@@ -1245,7 +1202,7 @@ namespace Client.Controller
         {
             _window.GridDoTwo.IsEnabled = true;
             _window.GridTransactionsDoOne.IsEnabled = false;
-            // _window.GridDoTwo.Background = new SolidColorBrush(Color.FromRgb(255, 255, 255));            
+            // _window.GridDoTwo.Background = new SolidColorBrush(Color.FromRgb(255, 255, 255));
             // _window.GridTransactionsDoOne.Background = new SolidColorBrush(Color.FromRgb(220, 220, 220));
         }
 
@@ -1270,7 +1227,6 @@ namespace Client.Controller
             {
                 foreach (Transakcja r in transactions)
                     _window.DgOverviewGridOne.Items.Add(r);
-
             }));
         }
 
@@ -1348,20 +1304,17 @@ namespace Client.Controller
             //3
             if (_window.ChbOverviewGridTwoNazwisko.IsChecked == true)
             {
-
                 for (int i = 0; i < list.Count; i++)
                 {
                     if (!list[i].Klienci.Nazwisko.ToLower().Equals(_window.TxbOverviewGridTwoNazwisko.Text.ToLower()))
                         list.Remove(list[i]);
                 }
-
             }
             ShowClientTransactionData(list);
-
         }
+
         internal void ShowTransactionsAll()
         {
-            
             _window.GridOverwviewSearch.Visibility = Visibility.Hidden;
         }
 
@@ -1372,8 +1325,6 @@ namespace Client.Controller
 
         public void ShowFacture(Transakcja tran)
         {
-
-
             System.Collections.Generic.IEnumerable<Artykul_w_transakcji> art = tran.Artykuly_w_transakcji;
 
             MigraDoc.DocumentObjectModel.Document doc = new MigraDoc.DocumentObjectModel.Document();
@@ -1541,7 +1492,6 @@ namespace Client.Controller
                     Wojewodztwo = _window.CmbEmployeeWojewodztwo.SelectedItem + ""
                 };
 
-               
                 Task<bool>.Factory.StartNew(() =>
                 {
                     return _comm.RegisterEmployee(new PracownikAdress() { Pracownik = pracownik, Adres = adres }); ;
@@ -1551,7 +1501,6 @@ namespace Client.Controller
                         GetEmployeeData();
                     }));
             }
-
         }
 
         public void ChangeEmployeeData()
@@ -1588,12 +1537,11 @@ namespace Client.Controller
                 Task.Factory.StartNew(() =>
                 {
                     _comm.ModifyEmployee(new PracownikAdress() { Pracownik = pracownik, Adres = adres });
-                }).ContinueWith(x=>
+                }).ContinueWith(x =>
                     Task.Factory.StartNew(() =>
                     {
                         GetEmployeeData();
                     }));
-                
             }
         }
 
@@ -1652,7 +1600,6 @@ namespace Client.Controller
                     _window.DgEmployeesList.Items.Add(p);
                 }
             }));
-
         }
 
         internal void DeleteEmployee()
@@ -1674,6 +1621,7 @@ namespace Client.Controller
                         _window.TxbEmployeeHaslo.Text = ((Pracownik)_window.DgEmployeesList.SelectedItem).Haslo;
                         _window.BtnEmployeeHaslo.Content = "Ukryj Hasło";
                         break;
+
                     default:
                         _window.TxbEmployeeHaslo.Text = "*********";
                         _window.BtnEmployeeHaslo.Content = "Pokaż Hasło";
@@ -1684,10 +1632,7 @@ namespace Client.Controller
             {
                 System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}ERROR: {ex}");
             }
-
         }
-
-
 
         //Lists
 

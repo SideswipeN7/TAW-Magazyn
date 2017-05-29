@@ -1,7 +1,7 @@
-﻿using System.Windows;
-using Client.Controller;
+﻿using Client.Controller;
 using Client.Model;
 using System.Diagnostics;
+using System.Windows;
 
 namespace Client.Windows
 
@@ -14,9 +14,10 @@ namespace Client.Windows
         private static Admin _instance;
 
         private Manager _controller;
+        private ItemsController _itemController = ItemsController.GetInstance(_instance);
         public int ID { get; set; }
 
-        public static Admin GetInstance(int id,bool sudo)
+        public static Admin GetInstance(int id, bool sudo)
         {
             if (_instance == null)
             {
@@ -45,7 +46,6 @@ namespace Client.Windows
             //LoadData
             _controller.LoadAll();
             _controller.SelectaAll();
-            
         }
 
         //Magazine State
@@ -53,14 +53,17 @@ namespace Client.Windows
         {
             _controller.ShowMagazineStateSearch();
         }
+
         private void RbStateWszystko_Checked(object sender, RoutedEventArgs e)
         {
             _controller.ShowMagazineStateAll();
         }
+
         private void BtnSateSzukaj_Click(object sender, RoutedEventArgs e)
         {
             _controller.SearchCategoriesSate();
         }
+
         //Categories
         private void RbCategoryWszystko_Checked(object sender, RoutedEventArgs e)
         {
@@ -106,6 +109,7 @@ namespace Client.Windows
         {
             _controller.CategoriesSearch();
         }
+
         //Items
         private void RbItemWszystko_Checked(object sender, RoutedEventArgs e)
         {
@@ -141,6 +145,7 @@ namespace Client.Windows
         {
             _controller.SearchItems();
         }
+
         //Clients
         private void RbClientsWszyscy_Checked(object sender, RoutedEventArgs e)
         {
@@ -328,7 +333,7 @@ namespace Client.Windows
 
         private void MnLogOff_Click(object sender, RoutedEventArgs e)
         {
-            Login window = new Login();            
+            Login window = new Login();
             window.Visibility = Visibility.Visible;
             Close();
         }

@@ -1,24 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Client.Controller
 {
-    class EmployeeController : IWork
+    internal class EmployeeController : IWork
     {
         public void AddData()
         {
             throw new NotImplementedException();
         }
 
-        public void ChangeDate()
+        public void ChangeData()
         {
             throw new NotImplementedException();
         }
 
         public void DeleteData()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void GetData()
         {
             throw new NotImplementedException();
         }

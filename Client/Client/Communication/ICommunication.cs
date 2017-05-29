@@ -1,17 +1,12 @@
-﻿using System;
+﻿using Client.Model;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Client.Model;
 
 namespace Client.Communication
 {
-
-
     public interface ICommunication
     {
         void SetUrlAddress(string URL);
+
         IEnumerable<Artykul_w_transakcji> GetTransItems();
 
         bool RegisterTransItems(IEnumerable<Artykul_w_transakcji> artykul_w_transkacji);
@@ -53,12 +48,19 @@ namespace Client.Communication
         IEnumerable<Transakcja> GetTransactions();
 
         Transakcja GetTransaction(int id);
+
         IEnumerable<Klient> GetClients();
+
         void DeleteCategory(Kategoria selectedItem);
+
         void DeleteClient(int id);
+
         void ModifyEmployee(PracownikAdress adres);
+
         void DeleteEmployee(int idPracownika);
+
         IEnumerable<Pracownik> GetEmpoyees();
+
+        void DeleteItem(int idArtykulu);
     }
 }
-

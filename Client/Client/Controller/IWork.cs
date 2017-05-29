@@ -1,11 +1,17 @@
 ﻿namespace Client.Controller
 {
-    interface IWork
+    internal interface IWork
     {
-        void ChangeDate();
+        void ChangeData();
+
         void DeleteData();
+
         void ShowData();
+
         void ShowSelectedData();
+
         void AddData();
+
+        void GetData();
     }
 }
