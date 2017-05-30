@@ -10,14 +10,7 @@ namespace Client.Controller
         }
 
         public void ChangeData()
-<<<<<<< HEAD
-        {
-            throw new NotImplementedException();
-        }
 
-        public void ChangeDate()
-=======
->>>>>>> ItemsController
         {
             throw new NotImplementedException();
         }

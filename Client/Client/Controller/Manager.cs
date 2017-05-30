@@ -236,28 +236,7 @@ namespace Client.Controller
         internal void ShowItemsData()
         {
             IWork work = ItemsController.GetInstance(_window);
-            work.ShowSelectedData();
-            //if (_window.DgItemLista.SelectedIndex >= 0)
-            //{
-            //    try
-            //    {
-            //        for (int i = 0; i < _window.CmbItemKategoria.Items.Count; i++)
-            //        {
-            //            if (((Kategoria)((ComboBoxItem)_window.CmbItemKategoria.Items.GetItemAt(i)).Tag).idKategorii == ((Artykul)_window.DgItemLista.SelectedItem).Kategorie.idKategorii)
-            //            {
-            //                _window.CmbItemKategoria.SelectedIndex = i;
-            //            }
-            //        }
-            //        //_window.CmbItemKategoria.SelectedItem = new ComboBoxItem() { Content = ((Artykul)_window.DgItemLista.SelectedItem).Kategorie.Nazwa, Tag = ((Artykul)_window.DgItemLista.SelectedItem).Kategorie };
-            //        _window.TxbItemCenaMin.Text = ((Artykul)_window.DgItemLista.SelectedItem).Cena + "";
-            //        _window.TxbItemIlosc.Text = ((Artykul)_window.DgItemLista.SelectedItem).Ilosc + "";
-            //        _window.TxbItemINazwa.Text = ((Artykul)_window.DgItemLista.SelectedItem).Nazwa;
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}ERROR: {ex}");
-            //    }
-            //}
+            work.ShowSelectedData();           
         }
 
         internal void ShowClientsData()
@@ -1436,95 +1415,17 @@ namespace Client.Controller
 
         public void SetEmployeeData()
         {
-<<<<<<< HEAD
+
             IWork work = EmployeeController.GetInstance(_window);
             work.AddData();
-=======
-            int wiek;
-            if (_window.TxbEmployeeHaslo.Text.Length > 5
-                && _window.TxbEmployeeLogin.Text.Length > 5
-                && _window.TxbEmployeeImie.Text.Length > 5
-                && _window.TxbEmployeeNazwisko.Text.Length > 5
-                && _window.TxbEmployeeMiejscowosc.Text.Length > 5
-                && _window.TxbEmployeeKodPocztowy.Text.Length == 6
-                && Int32.TryParse(_window.TxbEmployeeWiek.Text, out wiek)
-                && _window.CmbEmployeeAdmin.SelectedIndex > 0
-                && _window.CmbEmployeeWojewodztwo.SelectedIndex >= 0)
-            {
-                Pracownik pracownik = new Pracownik()
-                {
-                    Haslo = _window.TxbEmployeeHaslo.Text,
-                    Imie = _window.TxbEmployeeImie.Text,
-                    Login = _window.TxbEmployeeLogin.Text,
-                    Nazwisko = _window.TxbEmployeeNazwisko.Text,
-                    Sudo = (int)((ComboBoxItem)_window.CmbEmployeeAdmin.SelectedItem).Tag,
-                    Wiek = wiek
-                };
-                Adres adres = new Adres()
-                {
-                    Kod_pocztowy = _window.TxbEmployeeKodPocztowy.Text,
-                    Miejscowosc = _window.TxbEmployeeMiejscowosc.Text,
-                    Wojewodztwo = _window.CmbEmployeeWojewodztwo.SelectedItem + ""
-                };
 
-                Task<bool>.Factory.StartNew(() =>
-                {
-                    return _comm.RegisterEmployee(new PracownikAdress() { Pracownik = pracownik, Adres = adres }); ;
-                }).ContinueWith(x =>
-                    Task.Factory.StartNew(() =>
-                    {
-                        GetEmployeeData();
-                    }));
-            }
->>>>>>> ItemsController
         }
 
         public void ChangeEmployeeData()
         {
-<<<<<<< HEAD
+
             IWork work = EmployeeController.GetInstance(_window);
             work.ChangeData();
-         
-=======
-            int wiek;
-            if (_window.DgEmployeesList.SelectedIndex >= 0
-                && _window.TxbEmployeeHaslo.Text.Length > 5
-                && _window.TxbEmployeeLogin.Text.Length > 5
-                && _window.TxbEmployeeImie.Text.Length > 5
-                && _window.TxbEmployeeNazwisko.Text.Length > 5
-                && _window.TxbEmployeeMiejscowosc.Text.Length > 5
-                && _window.TxbEmployeeKodPocztowy.Text.Length == 6
-                && Int32.TryParse(_window.TxbEmployeeWiek.Text, out wiek)
-                && _window.CmbEmployeeAdmin.SelectedIndex > 0
-                && _window.CmbEmployeeWojewodztwo.SelectedIndex >= 0)
-            {
-                Pracownik pracownik = new Pracownik()
-                {
-                    idPracownika = ((Pracownik)_window.DgEmployeesList.SelectedItem).idPracownika,
-                    Haslo = _window.TxbEmployeeHaslo.Text,
-                    Imie = _window.TxbEmployeeImie.Text,
-                    Login = _window.TxbEmployeeLogin.Text,
-                    Nazwisko = _window.TxbEmployeeNazwisko.Text,
-                    Sudo = (int)((ComboBoxItem)_window.CmbEmployeeAdmin.SelectedItem).Tag,
-                    Wiek = wiek
-                };
-                Adres adres = new Adres()
-                {
-                    Kod_pocztowy = _window.TxbEmployeeKodPocztowy.Text,
-                    Miejscowosc = _window.TxbEmployeeMiejscowosc.Text,
-                    Wojewodztwo = _window.CmbEmployeeWojewodztwo.SelectedItem + ""
-                };
-
-                Task.Factory.StartNew(() =>
-                {
-                    _comm.ModifyEmployee(new PracownikAdress() { Pracownik = pracownik, Adres = adres });
-                }).ContinueWith(x =>
-                    Task.Factory.StartNew(() =>
-                    {
-                        GetEmployeeData();
-                    }));
-            }
->>>>>>> ItemsController
         }
 
         public void GetEmployeeData()
@@ -1541,18 +1442,8 @@ namespace Client.Controller
 
         public void ShowEmployeeData(IEnumerable<Pracownik> empolyees)
         {
-<<<<<<< HEAD
+
             //TODELETE
-=======
-            _window.Dispatcher.BeginInvoke(new Action(() =>
-            {
-                _window.DgEmployeesList.Items.Clear();
-                foreach (Pracownik p in empolyees)
-                {
-                    _window.DgEmployeesList.Items.Add(p);
-                }
-            }));
->>>>>>> ItemsController
         }
 
         internal void DeleteEmployee()

@@ -24,14 +24,11 @@ namespace Client.Controller
             throw new NotImplementedException();
         }
 
-<<<<<<< HEAD
-=======
         public void SearchData()
         {
             throw new NotImplementedException();
         }
 
->>>>>>> ItemsController
         public void ShowData()
         {
             throw new NotImplementedException();
