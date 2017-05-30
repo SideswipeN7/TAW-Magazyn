@@ -331,7 +331,5 @@ namespace Client.Controller
                 System.Diagnostics.Debug.WriteLine($"Error in Item Controller SearchData: {ex}");
             }
         }
-
-       
     }
 }
