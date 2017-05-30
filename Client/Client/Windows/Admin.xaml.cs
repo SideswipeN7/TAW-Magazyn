@@ -264,7 +264,7 @@ namespace Client.Windows
 
         private void BtnEmployeeModyfikuj_Click(object sender, RoutedEventArgs e)
         {
-            _controller.SetEmployeeData();
+            _controller.ChangeEmployeeData();
         }
 
         private void BtnEmployeeUsun_Click(object sender, RoutedEventArgs e)

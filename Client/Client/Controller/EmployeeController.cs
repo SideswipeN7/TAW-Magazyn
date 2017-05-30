@@ -39,95 +39,61 @@ namespace Client.Controller
             try
             {
                 int wiek;
-                if (_window.TxbEmployeeHaslo.Text.Length > 5) { }
-                else
-                {
-                    MessageBox.Show("Hasło zbyt krótkie", "Bład", MessageBoxButton.OK);
-                }
+                if (_window.TxbEmployeeHaslo.Text.Length < 5) {
+                    MessageBox.Show("Hasło zbyt krótkie - minimum 5 znaków", "Bład", MessageBoxButton.OK); }
+                else   
 
-                if (_window.TxbEmployeeLogin.Text.Length > 5) { }
+                if (_window.TxbEmployeeLogin.Text.Length < 5) { MessageBox.Show("Login zbyt krótki - minimum 5 znaków", "Bład", MessageBoxButton.OK); }
                 else
-                {
-                    MessageBox.Show("Login zbyt krótki", "Bład", MessageBoxButton.OK);
-                }
                 
-                if (_window.TxbEmployeeImie.Text.Length >=4 ) { }
+                if (_window.TxbEmployeeImie.Text.Length < 4) { MessageBox.Show("imię zbyt krótkie", "Bład", MessageBoxButton.OK); }
                 else
-                {
-                    MessageBox.Show("imię zbyt krótkie", "Bład", MessageBoxButton.OK);
-                }
+                
+                if (_window.TxbEmployeeNazwisko.Text.Length < 5) { MessageBox.Show("Nazwisko zbyt krótkie", "Bład", MessageBoxButton.OK); }
+                else                
 
-                if (_window.TxbEmployeeNazwisko.Text.Length > 5) { }
-                else
-                {
-                    MessageBox.Show("Nazwisko zbyt krótkie", "Bład", MessageBoxButton.OK);
-                }
+                if (_window.TxbEmployeeMiejscowosc.Text.Length < 5) { MessageBox.Show("Miejscowość zbyt krótkie", "Bład", MessageBoxButton.OK); }
+                else                
 
-                if (_window.TxbEmployeeMiejscowosc.Text.Length > 5) { }
+                if (_window.TxbEmployeeKodPocztowy.Text.Length != 6) { MessageBox.Show("Zły format kodu pocztowego", "Bład", MessageBoxButton.OK); }
                 else
-                {
-                    MessageBox.Show("Miejscowość zbyt krótkie", "Bład", MessageBoxButton.OK);
-                }
-
-                if (_window.TxbEmployeeKodPocztowy.Text.Length == 6) { }
-                else
-                {
-                    MessageBox.Show("Zły format kodu pocztowego", "Bład", MessageBoxButton.OK);
-                }
-
-                if (Int32.TryParse(_window.TxbEmployeeWiek.Text, out wiek)) { }
-                else
-                {
-                    MessageBox.Show("Zły foramt wieku", "Bład", MessageBoxButton.OK);
-                }
-
-                if (_window.CmbEmployeeAdmin.SelectedIndex >= 0) { }
-                else
-                {
-                    MessageBox.Show("Błąd wyboru statusu użytkownika", "Bład", MessageBoxButton.OK);
-                }
-                if (_window.CmbEmployeeWojewodztwo.SelectedIndex >= 0) { }
-                else
-                {
-                    MessageBox.Show("Bład wyboru województwa", "Bład", MessageBoxButton.OK);
-
-                }
                
-                //if (_window.TxbEmployeeHaslo.Text.Length > 5
-                //    && _window.TxbEmployeeLogin.Text.Length > 5
-                //    && _window.TxbEmployeeImie.Text.Length > 5
-                //    && _window.TxbEmployeeNazwisko.Text.Length > 5
-                //    && _window.TxbEmployeeMiejscowosc.Text.Length > 5
-                //    && _window.TxbEmployeeKodPocztowy.Text.Length == 6
-                //    && Int32.TryParse(_window.TxbEmployeeWiek.Text, out wiek)
-                //    && _window.CmbEmployeeAdmin.SelectedIndex > 0
-                //    && _window.CmbEmployeeWojewodztwo.SelectedIndex >= 0)
-                //{
-                //    Pracownik pracownik = new Pracownik()
-                //    {
-                //        Haslo = _window.TxbEmployeeHaslo.Text,
-                //        Imie = _window.TxbEmployeeImie.Text,
-                //        Login = _window.TxbEmployeeLogin.Text,
-                //        Nazwisko = _window.TxbEmployeeNazwisko.Text,
-                //        Sudo = (int)((ComboBoxItem)_window.CmbEmployeeAdmin.SelectedItem).Tag,
-                //        Wiek = wiek
-                //    };
-                //    Adres adres = new Adres()
-                //    {
-                //        Kod_pocztowy = _window.TxbEmployeeKodPocztowy.Text,
-                //        Miejscowosc = _window.TxbEmployeeMiejscowosc.Text,
-                //        Wojewodztwo = _window.CmbEmployeeWojewodztwo.SelectedItem + ""
-                //    };
+                if (!Int32.TryParse(_window.TxbEmployeeWiek.Text, out wiek)) { MessageBox.Show("Zły foramt wieku", "Bład", MessageBoxButton.OK); }
+                else 
 
-                //    Task<bool>.Factory.StartNew(() =>
-                //    {
-                //        return _comm.RegisterEmployee(new PracownikAdress() { Pracownik = pracownik, Adres = adres }); ;
-                //    }).ContinueWith(x =>
-                //        Task.Factory.StartNew(() =>
-                //        {
-                //            GetData();
-                //        }));
-                //}
+                if (_window.CmbEmployeeAdmin.SelectedIndex < 0) { MessageBox.Show("Błąd wyboru statusu użytkownika", "Bład", MessageBoxButton.OK); }
+                else
+               
+                if (_window.CmbEmployeeWojewodztwo.SelectedIndex < 0) { MessageBox.Show("Bład wyboru województwa", "Bład", MessageBoxButton.OK); }
+                else
+                {
+                    {
+                        Pracownik pracownik = new Pracownik()
+                        {
+                            Haslo = _window.TxbEmployeeHaslo.Text,
+                            Imie = _window.TxbEmployeeImie.Text,
+                            Login = _window.TxbEmployeeLogin.Text,
+                            Nazwisko = _window.TxbEmployeeNazwisko.Text,
+                            Sudo = (int)((ComboBoxItem)_window.CmbEmployeeAdmin.SelectedItem).Tag,
+                            Wiek = wiek
+                        };
+                        Adres adres = new Adres()
+                        {
+                            Kod_pocztowy = _window.TxbEmployeeKodPocztowy.Text,
+                            Miejscowosc = _window.TxbEmployeeMiejscowosc.Text,
+                            Wojewodztwo = _window.CmbEmployeeWojewodztwo.SelectedItem + ""
+                        };
+
+                        Task<bool>.Factory.StartNew(() =>
+                        {
+                            return _comm.RegisterEmployee(new PracownikAdress() { Pracownik = pracownik, Adres = adres }); ;
+                        }).ContinueWith(x =>
+                            Task.Factory.StartNew(() =>
+                            {
+                                GetData();
+                            }));
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -141,40 +107,65 @@ namespace Client.Controller
             try
             {
                 int wiek;
-                if (_window.TxbEmployeeHaslo.Text.Length > 5
-                    && _window.TxbEmployeeLogin.Text.Length > 5
-                    && _window.TxbEmployeeImie.Text.Length > 5
-                    && _window.TxbEmployeeNazwisko.Text.Length > 5
-                    && _window.TxbEmployeeMiejscowosc.Text.Length > 5
-                    && _window.TxbEmployeeKodPocztowy.Text.Length == 6
-                    && Int32.TryParse(_window.TxbEmployeeWiek.Text, out wiek)
-                    && _window.CmbEmployeeAdmin.SelectedIndex > 0
-                    && _window.CmbEmployeeWojewodztwo.SelectedIndex >= 0)
+                if (_window.TxbEmployeeHaslo.Text.Length < 5)
                 {
-                    Pracownik pracownik = new Pracownik()
-                    {
-                        Haslo = _window.TxbEmployeeHaslo.Text,
-                        Imie = _window.TxbEmployeeImie.Text,
-                        Login = _window.TxbEmployeeLogin.Text,
-                        Nazwisko = _window.TxbEmployeeNazwisko.Text,
-                        Sudo = (int)((ComboBoxItem)_window.CmbEmployeeAdmin.SelectedItem).Tag,
-                        Wiek = wiek
-                    };
-                    Adres adres = new Adres()
-                    {
-                        Kod_pocztowy = _window.TxbEmployeeKodPocztowy.Text,
-                        Miejscowosc = _window.TxbEmployeeMiejscowosc.Text,
-                        Wojewodztwo = _window.CmbEmployeeWojewodztwo.SelectedItem + ""
-                    };
+                    MessageBox.Show("Hasło zbyt krótkie - minimum 5 znaków", "Bład", MessageBoxButton.OK);
+                }
+                else
 
-                    Task<bool>.Factory.StartNew(() =>
+                if (_window.TxbEmployeeLogin.Text.Length < 5) { MessageBox.Show("Login zbyt krótki - minimum 5 znaków", "Bład", MessageBoxButton.OK); }
+                else
+
+                if (_window.TxbEmployeeImie.Text.Length < 4) { MessageBox.Show("imię zbyt krótkie", "Bład", MessageBoxButton.OK); }
+                else
+
+                if (_window.TxbEmployeeNazwisko.Text.Length < 5) { MessageBox.Show("Nazwisko zbyt krótkie", "Bład", MessageBoxButton.OK); }
+                else
+
+                if (_window.TxbEmployeeMiejscowosc.Text.Length < 5) { MessageBox.Show("Miejscowość zbyt krótkie", "Bład", MessageBoxButton.OK); }
+                else
+
+                if (_window.TxbEmployeeKodPocztowy.Text.Length != 6) { MessageBox.Show("Zły format kodu pocztowego", "Bład", MessageBoxButton.OK); }
+                else
+
+                if (!Int32.TryParse(_window.TxbEmployeeWiek.Text, out wiek)) { MessageBox.Show("Zły foramt wieku", "Bład", MessageBoxButton.OK); }
+                else
+
+                if (_window.CmbEmployeeAdmin.SelectedIndex < 0) { MessageBox.Show("Błąd wyboru statusu użytkownika", "Bład", MessageBoxButton.OK); }
+                else
+
+                if (_window.CmbEmployeeWojewodztwo.SelectedIndex < 0) { MessageBox.Show("Bład wyboru województwa", "Bład", MessageBoxButton.OK); }
+                else
+                {
+                  
                     {
-                        return _comm.RegisterEmployee(new PracownikAdress() { Pracownik = pracownik, Adres = adres }); ;
-                    }).ContinueWith(x =>
+                        Pracownik pracownik = new Pracownik()
+                        {
+                            idPracownika = ((Pracownik)_window.DgEmployeesList.SelectedItem).idPracownika,
+                            Haslo = _window.TxbEmployeeHaslo.Text,
+                            Imie = _window.TxbEmployeeImie.Text,
+                            Login = _window.TxbEmployeeLogin.Text,
+                            Nazwisko = _window.TxbEmployeeNazwisko.Text,
+                            Sudo = (int)((ComboBoxItem)_window.CmbEmployeeAdmin.SelectedItem).Tag,
+                            Wiek = wiek
+                        };
+                        Adres adres = new Adres()
+                        {
+                            idAdresu = ((Pracownik)_window.DgEmployeesList.SelectedItem).idAdresu,
+                        Kod_pocztowy = _window.TxbEmployeeKodPocztowy.Text,
+                            Miejscowosc = _window.TxbEmployeeMiejscowosc.Text,
+                            Wojewodztwo = _window.CmbEmployeeWojewodztwo.SelectedItem + ""
+                        };                       
+
                         Task.Factory.StartNew(() =>
                         {
-                            GetData();
-                        }));
+                            _comm.ModifyEmployee(new PracownikAdress() { Pracownik = pracownik, Adres = adres }); ;
+                        }).ContinueWith(x =>
+                            Task.Factory.StartNew(() =>
+                            {
+                                GetData();
+                            }));
+                    }
                 }
             }
             catch (Exception ex)
@@ -248,7 +239,8 @@ namespace Client.Controller
                     }
                     for (int i = 0; i < _window.CmbEmployeeWojewodztwo.Items.Count; i++)
                     {
-                     if (_window.CmbEmployeeWojewodztwo.Items.GetItemAt(i).Equals(pracownik.Ksiazka_adresow.Wojewodztwo)){
+                        if (_window.CmbEmployeeWojewodztwo.Items.GetItemAt(i).Equals(pracownik.Ksiazka_adresow.Wojewodztwo))
+                        {
                             _window.CmbEmployeeWojewodztwo.SelectedIndex = i;
                         }
                     }

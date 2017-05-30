@@ -342,7 +342,7 @@ namespace Client.Communication
             var client = new RestClient(baseUrl);
             var request = new RestRequest(Method.DELETE);
             request.AddHeader("cache-control", "no-cache");
-            request.AddHeader("content-type", "application/json");
+           // request.AddHeader("content-type", "application/json");
             client.Execute(request);
 
         }
@@ -353,7 +353,7 @@ namespace Client.Communication
             var client = new RestClient(baseUrl);
             var request = new RestRequest(Method.DELETE);
             request.AddHeader("cache-control", "no-cache");
-            request.AddHeader("content-type", "application/json");
+           // request.AddHeader("content-type", "application/json");
             client.Execute(request);
         }
 
@@ -361,7 +361,10 @@ namespace Client.Communication
         {
             string baseUrl = $"{urlAddress}/api/Employee";
             var client = new RestClient(baseUrl);
-            var request = new RestRequest(Method.PUT);
+            var request = new RestRequest();
+            request.Method = Method.PUT;
+            
+            System.Diagnostics.Debug.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(adres));
             request.AddHeader("cache-control", "no-cache");
             request.AddHeader("content-type", "application/json");
   
@@ -371,11 +374,11 @@ namespace Client.Communication
 
         public void DeleteEmployee(int idPracownika)
         {
-            string baseUrl = $"{urlAddress}/api/Employee" + idPracownika;
+            string baseUrl = $"{urlAddress}/api/Employee/{idPracownika}";
             var client = new RestClient(baseUrl);
             var request = new RestRequest(Method.DELETE);
             request.AddHeader("cache-control", "no-cache");
-            request.AddHeader("content-type", "application/json");
+            //request.AddHeader("content-type", "application/json");
             client.Execute(request);
         }
 
