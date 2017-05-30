@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Client.Controller
 {
-    class CategoryController : IWork
+    internal class CategoryController : IWork
     {
         public void AddData()
         {
@@ -14,11 +10,14 @@ namespace Client.Controller
         }
 
         public void ChangeData()
+<<<<<<< HEAD
         {
             throw new NotImplementedException();
         }
 
         public void ChangeDate()
+=======
+>>>>>>> ItemsController
         {
             throw new NotImplementedException();
         }

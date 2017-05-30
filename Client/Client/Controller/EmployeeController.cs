@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿using Client.Communication;
 using Client.Model;
 using Client.Windows;
@@ -6,6 +7,9 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+=======
+﻿using System;
+>>>>>>> ItemsController
 
 namespace Client.Controller
 {
@@ -101,7 +105,10 @@ namespace Client.Controller
             }
         }
 
+<<<<<<< HEAD
         //Zmodyfikuj pracownika
+=======
+>>>>>>> ItemsController
         public void ChangeData()
         {
             try
@@ -191,7 +198,20 @@ namespace Client.Controller
             }
         }
 
+<<<<<<< HEAD
         //Pokaż listę dostępnych pracowników
+=======
+        public void GetData()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SearchData()
+        {
+            throw new NotImplementedException();
+        }
+
+>>>>>>> ItemsController
         public void ShowData()
         {
             try

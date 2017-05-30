@@ -7,13 +7,12 @@
         mc:Ignorable="d"
         Title="Logowanie" Height="243.243" Width="300">
     <Grid>
-        <Button x:Name="btnLogin" Content="Zaloguj" HorizontalAlignment="Left" Margin="99,164,0,0" VerticalAlignment="Top" Width="100" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="btnLogin_Click"/>
-        <TextBox x:Name="txtLogin" Height="23" Width="150" Margin="58,51,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <Button x:Name="btnLogin" Content="Zaloguj" HorizontalAlignment="Left" Margin="99,164,0,0" VerticalAlignment="Top" Width="100" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="btnLogin_Click" />
+        <TextBox x:Name="txtLogin" Height="23" Width="150" Margin="58,51,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" />
         <PasswordBox x:Name="txbPassword" Height="23" Width="150" Margin="58,110,0,0"  VerticalAlignment="Top"  HorizontalAlignment="Left" PasswordChanged="txbPassword_PasswordChanged" />
         <TextBox x:Name="txtPassword" Height="23" Width="150" Margin="75,110,0,0"  VerticalAlignment="Top"  HorizontalAlignment="Left" TextChanged="txtPassword_TextChanged" Visibility="Collapsed" />
-        <Label x:Name="LblLogin" Content="Login" HorizontalAlignment="Left" Margin="58,20,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="LblHaslo" Content="Hasło" HorizontalAlignment="Left" Margin="58,79,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="BtnShow" Content="Pokaż" HorizontalAlignment="Left" Margin="213,110,0,0" VerticalAlignment="Top" Width="52" Click="button_Click" Height="23"/>
-
+        <Label x:Name="LblLogin" Content="Login" HorizontalAlignment="Left" Margin="58,20,0,0" VerticalAlignment="Top" />
+        <Label x:Name="LblHaslo" Content="Hasło" HorizontalAlignment="Left" Margin="58,79,0,0" VerticalAlignment="Top" />
+        <Button x:Name="BtnShow" Content="Pokaż" HorizontalAlignment="Left" Margin="213,110,0,0" VerticalAlignment="Top" Width="52" Click="button_Click" Height="23" />
     </Grid>
 </Window>

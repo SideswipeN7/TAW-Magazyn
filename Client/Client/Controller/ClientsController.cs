@@ -1,20 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Client.Controller
 {
-    class ClientsController : IWork
+    internal class ClientsController : IWork
     {
-        
         public void AddData()
         {
             throw new NotImplementedException();
         }
 
-        public void ChangeDate()
+        public void ChangeData()
         {
             throw new NotImplementedException();
         }
@@ -29,6 +24,14 @@ namespace Client.Controller
             throw new NotImplementedException();
         }
 
+<<<<<<< HEAD
+=======
+        public void SearchData()
+        {
+            throw new NotImplementedException();
+        }
+
+>>>>>>> ItemsController
         public void ShowData()
         {
             throw new NotImplementedException();
