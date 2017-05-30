@@ -157,16 +157,8 @@ namespace Client.Controller
         //Categories
         public void GetCategoryData()
         {
-            Task<IEnumerable<Kategoria>>.Factory.StartNew(() =>
-            {
-                return _comm.GetCategories();
-            }).ContinueWith(x =>
-            {
-                Task.Factory.StartNew(() =>
-                {
-                    ShowCategoryData(x.Result);
-                });
-            });
+            IWork work = CategoryController.GetInstance(_window);
+            work.GetData();
         }
 
         internal void ShowCategoriesData()
@@ -188,7 +180,7 @@ namespace Client.Controller
         internal void ShowItemsData()
         {
             IWork work = ItemsController.GetInstance(_window);
-            work.ShowSelectedData();           
+            work.ShowSelectedData();
         }
 
         internal void ShowClientsData()
@@ -257,13 +249,13 @@ namespace Client.Controller
 
         internal void CmbCategoryIdChange()
         {
-            foreach (Kategoria k in _window.DgCategoryLista.Items)
-            {
-                if (k.idKategorii == (int)_window.CmbCategoryId.SelectedItem)
-                {
-                    _window.DgCategoryLista.SelectedItem = k;
-                }
-            }
+            //foreach (Kategoria k in _window.DgCategoryLista.Items)
+            //{
+            //    if (k.idKategorii == (int)_window.CmbCategoryId.SelectedItem)
+            //    {
+            //        _window.DgCategoryLista.SelectedItem = k;
+            //    }
+            //}
         }
 
         public void ShowCategoriesSate()
@@ -353,54 +345,26 @@ namespace Client.Controller
 
         public void SetCategoryData()
         {
-            if (_window.TxbCategoryNazwa.Text.Length > 5)
-            {
-                if (_comm.RegisterCategory(new Kategoria() { Nazwa = _window.TxbCategoryNazwa.Text }))
-                {
-                    GetCategoryData();
-                }
-            }
+            IWork work = CategoryController.GetInstance(_window);
+            work.AddData();
         }
 
         public void ChangeCategoryData()
         {
-            if (_window.TxbCategoryNazwa.Text.Length > 5)
-            {
-                if (_window.CmbCategoryId.SelectedIndex > 0)
-                {
-                    if (_comm.ChangeCategory(new Kategoria() { idKategorii = (int)_window.CmbCategoryId.SelectedItem, Nazwa = _window.TxbCategoryNazwa.Text }))
-                    {
-                        GetCategoryData();
-                    }
-                }
-            }
+            IWork work = CategoryController.GetInstance(_window);
+            work.ChangeData();
         }
 
         public void CategoriesDelete()
         {
-            if (_window.DgCategoryLista.SelectedIndex >= 0)
-            {
-                _comm.DeleteCategory((Kategoria)_window.DgCategoryLista.SelectedItem);
-                GetCategoryData();
-            }
+            IWork work = CategoryController.GetInstance(_window);
+            work.DeleteData();
         }
 
         public void CategoriesSearch()
         {
-            List<Kategoria> list = new List<Kategoria>();
-            for (int i = 0; i < _window.DgCategoryLista.Items.Count; i++)
-                list.Add((Kategoria)_window.DgCategoryLista.Items.GetItemAt(i));
-            _window.DgCategoryLista.Items.Clear();
-            //1
-            if (_window.ChbCategoryNazwa.IsChecked == true)
-            {
-                for (int i = 0; i < list.Count; i++)
-                {
-                    if (list[i].Nazwa.ToLower().Contains(_window.TxbCategoryNazwa.Text.ToLower()))
-                        list.Remove(list[i]);
-                }
-                GetCategoryData();
-            }
+            IWork work = CategoryController.GetInstance(_window);
+            work.SearchData();
         }
 
         //Items
@@ -522,7 +486,7 @@ namespace Client.Controller
         public void SearchItems()
         {
             IWork work = ItemsController.GetInstance(_window);
-            work.SearchData();           
+            work.SearchData();
         }
 
         public void GetItemData()
@@ -600,24 +564,27 @@ namespace Client.Controller
         {
             //TODELETE
         }
-        
+
 
         public void GetClientData()
         {
+
             IWork work = ClientsController.GetInstance(_window);
             work.GetData();
         }
 
 
-       
+
         public void SetClientData()
         {
+
             IWork work = ClientsController.GetInstance(_window);
             work.AddData();
         }
 
         public void ClientDelete()
         {
+
             IWork work = ClientsController.GetInstance(_window);
             work.DeleteData();
         }
@@ -1298,7 +1265,7 @@ namespace Client.Controller
         internal void ShowEmployee()
         {
             IWork work = EmployeeController.GetInstance(_window);
-            work.ShowSelectedData();           
+            work.ShowSelectedData();
         }
 
         public void ShowEmployeeData(IEnumerable<Pracownik> empolyees)

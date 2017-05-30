@@ -105,6 +105,7 @@ namespace Client.Controller
 
 
         public void ChangeData()
+
         {
             try
             {
@@ -192,8 +193,6 @@ namespace Client.Controller
                 System.Diagnostics.Debug.WriteLine($"Error in Employee Controller DeleteData: {ex}");
             }
         }
-
-
 
         public void ShowData()
         {

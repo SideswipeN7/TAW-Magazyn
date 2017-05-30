@@ -40,6 +40,7 @@ namespace Client.Controller
 
             try
             {
+
                 int quantity;
                 decimal price;
                 if (_window.TxbItemINazwa.Text.Length < 5)
@@ -331,5 +332,6 @@ namespace Client.Controller
                 System.Diagnostics.Debug.WriteLine($"Error in Item Controller SearchData: {ex}");
             }
         }
+
     }
 }

@@ -345,7 +345,6 @@ namespace Client.Communication
             var client = new RestClient(baseUrl);
             var request = new RestRequest(Method.DELETE);
             request.AddHeader("cache-control", "no-cache");
-           // request.AddHeader("content-type", "application/json");
             client.Execute(request);
         }
 
