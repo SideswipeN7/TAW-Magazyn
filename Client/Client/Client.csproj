@@ -109,6 +109,7 @@
     <Compile Include="Controller\IManager.cs" />
     <Compile Include="Controller\ItemsController.cs" />
     <Compile Include="Controller\IWork.cs" />
+    <Compile Include="Controller\MagazineController.cs" />
     <Compile Include="Controller\Manager.cs" />
     <Compile Include="Controller\TransactionController.cs" />
     <Compile Include="Model\KlientAdress.cs" />

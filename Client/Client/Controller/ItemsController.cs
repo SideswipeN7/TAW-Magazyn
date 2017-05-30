@@ -16,7 +16,6 @@ namespace Client.Controller
         private Admin _window { get; set; }
         private ICommunication _comm;
         private List<Artykul> art;
-        private List<Artykul> search = new List<Artykul>();
 
 
         private ItemsController()
@@ -38,20 +37,7 @@ namespace Client.Controller
 
         public void AddData()
         {
-<<<<<<< HEAD
-            //int quantity;
-            //decimal price;
-            //if (_window.TxbItemINazwa.Text.Length > 5 &&
-            //     Int32.TryParse(_window.TxbItemIlosc.Text, out quantity) &&
-            //     Decimal.TryParse(_window.TxbItemCenaMin.Text, out price) &&
-            //     _window.CmbItemKategoria.SelectedIndex >= 0)
-            //{
-            //    if (_comm.RegisterItem(new Artykul() { Cena = price, Ilosc = quantity, Nazwa = _window.TxbItemINazwa.Text, idKategorii = (int)((ComboBoxItem)_window.CmbItemKategoria.SelectedItem).Tag, Kategorie = new Kategoria() { idKategorii = (int)((ComboBoxItem)_window.CmbItemKategoria.SelectedItem).Tag, Nazwa = (String)((ComboBoxItem)_window.CmbItemKategoria.SelectedItem).Content } }))
-            //    {
-            //        GetData();
-            //    }
-            //}
-=======
+
             try
             {
                 int quantity;
@@ -103,7 +89,7 @@ namespace Client.Controller
             {
                 System.Diagnostics.Debug.WriteLine($"Error in Item Controller AddData: {ex}");
             }
->>>>>>> ItemsController
+
         }
 
         public void ChangeData()
@@ -346,9 +332,6 @@ namespace Client.Controller
             }
         }
 
-        public void GetData()
-        {
-            throw new NotImplementedException();
-        }
+       
     }
 }

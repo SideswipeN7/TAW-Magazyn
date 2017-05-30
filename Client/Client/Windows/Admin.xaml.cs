@@ -353,6 +353,7 @@ namespace Client.Windows
             _controller.RegisterTransaction();
         }
 
+
         private void RbItemUsun_Checked(object sender, RoutedEventArgs e)
         {
             _controller.ItemsShowDelete();
@@ -361,6 +362,10 @@ namespace Client.Windows
         private void BtnItemUsun_Click(object sender, RoutedEventArgs e)
         {
             _controller.DeleteItems();
+        }
+        private void DgStateLista_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

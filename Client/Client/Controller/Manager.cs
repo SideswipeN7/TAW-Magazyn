@@ -88,48 +88,9 @@ namespace Client.Controller
 
         public void SearchCategoriesSate()
         {
-            List<Artykul> list = new List<Artykul>();
-            for (int i = 0; i < _window.DgStateLista.Items.Count; i++)
-                list.Add((Artykul)_window.DgStateLista.Items.GetItemAt(i));
-            _window.DgStateLista.Items.Clear();
-            //1
-            if (_window.ChbStateCena.IsChecked == true)
-            {
-                for (int i = 0; i < list.Count; i++)
-                {
-                    if (list[i].Cena < Decimal.Parse(_window.TxbStateCenaMin.Text) || list[i].Cena > Decimal.Parse(_window.TxbStateCenaMax.Text))
-                        list.Remove(list[i]);
-                }
-            }
-            //2
-            if (_window.ChbStateIlosc.IsChecked == true)
-            {
-                for (int i = 0; i < list.Count; i++)
-                {
-                    if (list[i].Ilosc > Int32.Parse(_window.TxbStateIlosc.Text))
-                        list.Remove(list[i]);
-                }
-            }
-            //3
-            if (_window.ChbStateKategoria.IsChecked == true)
-            {
-                for (int i = 0; i < list.Count; i++)
-                {
-                    //TODO
-                    if (list[i].idKategorii != (int)((ComboBoxItem)_window.CmbStateKategoria.SelectedItem).Tag)
-                        list.Remove(list[i]);
-                }
-            }
-            //4
-            if (_window.ChbStateNazwa.IsChecked == true)
-            {
-                for (int i = 0; i < list.Count; i++)
-                {
-                    if (!(list[i].Nazwa.ToLower().Contains(_window.TxbStateNazwa.Text.ToLower())))
-                        list.Remove(list[i]);
-                }
-            }
-            ShowMagazineStateData(list);
+            IWork work = MagazineController.GetInstance(_window);
+            work.SearchData();
+
         }
 
         public void ShowMagazineStateAll()
@@ -180,17 +141,8 @@ namespace Client.Controller
 
         public void GetMagazineState()
         {
-            _window.DgStateLista.Items.Clear();
-            Task<IEnumerable<Artykul>>.Factory.StartNew(() =>
-            {
-                return _comm.GetItems();
-            }).ContinueWith(x =>
-            {
-                Task.Factory.StartNew(() =>
-                {
-                    ShowMagazineStateData(x.Result);
-                });
-            });
+            IWork work = MagazineController.GetInstance(_window);
+            work.GetData();
         }
 
         public void ShowMagazineStateData(IEnumerable<Artykul> categories)
