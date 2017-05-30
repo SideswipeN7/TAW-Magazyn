@@ -347,5 +347,10 @@ namespace Client.Windows
         {
             _controller.RegisterTransaction();
         }
+
+        private void DgStateLista_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

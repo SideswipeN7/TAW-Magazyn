@@ -14,6 +14,7 @@ namespace Client.Controller
         private static ItemsController _instance;
         Admin _window { get; set; }
         private ICommunication _comm;
+        List<Artykul> art;
 
         private ItemsController()
         {
@@ -33,21 +34,9 @@ namespace Client.Controller
 
         public void AddData()
         {
-            int quantity;
-            decimal price;
-            if (_window.TxbItemINazwa.Text.Length > 5 &&
-                 Int32.TryParse(_window.TxbItemIlosc.Text, out quantity) &&
-                 Decimal.TryParse(_window.TxbItemCenaMin.Text, out price) &&
-                 _window.CmbItemKategoria.SelectedIndex >= 0)
-            {
-                if (_comm.RegisterItem(new Artykul() { Cena = price, Ilosc = quantity, Nazwa = _window.TxbItemINazwa.Text, idKategorii = (int)((ComboBoxItem)_window.CmbItemKategoria.SelectedItem).Tag, Kategorie = new Kategoria() { idKategorii = (int)((ComboBoxItem)_window.CmbItemKategoria.SelectedItem).Tag, Nazwa = (String)((ComboBoxItem)_window.CmbItemKategoria.SelectedItem).Content } }))
-                {
-                    GetItemData();
-                }
-            }
         }
 
-        public void ChangeDate()
+        public void ChangeData()
         {
             throw new NotImplementedException();
         }
@@ -65,6 +54,15 @@ namespace Client.Controller
         public void ShowSelectedData()
         {
             throw new NotImplementedException();
+        }
+
+        public void SearchData()
+        {
+        }
+
+        public void GetData()
+        {
+            
         }
     }
 }
