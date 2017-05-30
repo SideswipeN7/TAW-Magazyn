@@ -5,18 +5,8 @@ namespace Client.Controller
 {
     internal interface IManager
     {
-        void ShowClientData();
-
-        void ShowMagazineStateData(IEnumerable<Artykul> categories);
-
-        void ShowCategoryData(IEnumerable<Kategoria> categories);
-
-        void ShowClientTransactionData(IEnumerable<Transakcja> transactions);
-
-        void ShowItemData(IEnumerable<Artykul> categories);
-
-        void ShowEmployeeData(IEnumerable<Pracownik> categories);
-
+        void ShowClientData(); 
+        
         void GetEmployeeData();
 
         void GetClientData();
