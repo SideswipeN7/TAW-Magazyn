@@ -4,23 +4,23 @@ using Client.Windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Client.Controller
 {
-    class ClientsController : IWork
+    internal class ClientsController : IWork
     {
         private static ClientsController _instance;
         private Admin _window;
         private ICommunication _comm;
-        private IEnumerable<Klient> clients;
+        private List<Klient> clients;
 
         private ClientsController()
         {
             _comm = Communicator.GetInstance();
-            _comm.SetUrlAddress("http://o1018869-001-site1.htempurl.com");
-            //_comm.SetUrlAddress("http://localhost:52992");
+            // _comm.SetUrlAddress("http://o1018869-001-site1.htempurl.com");
+            _comm.SetUrlAddress("http://localhost:52992");
         }
 
         public static ClientsController GetInstance(Admin window)
@@ -35,97 +35,189 @@ namespace Client.Controller
 
         public void GetData()
         {
-            Task<IEnumerable<Klient>>.Factory.StartNew(() =>
+            try
             {
-                return _comm.GetClients();
-            }).ContinueWith(x =>
-            {
-                Task.Factory.StartNew(() =>
+                Task<IEnumerable<Klient>>.Factory.StartNew(() =>
                 {
-                    ShowClientData(x.Result);
+                    return _comm.GetClients();
+                }).ContinueWith(x =>
+                {
+                    Task.Factory.StartNew(() =>
+                    {
+                        clients = x.Result.ToList();
+                        _window.Dispatcher.BeginInvoke(new Action(() =>
+                        {
+                            if (_window.RbClientsSzukaj.IsChecked == false)
+                                ShowData();
+                        }));
+                    });
                 });
-            });
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error in Client Controller GetData: {ex}");
+            }
         }
 
         public void AddData()
         {
-            if (_window.TxbClientsImie.Text.Length > 5 &&
-              _window.TxbClientsNazwisko.Text.Length > 5 &&
-              (_window.TxbClientsFirma.Text.Length > 5 || _window.TxbClientsFirma.Text.Length == 0) &&
-             _window.CmbClientsWojewodztwo.SelectedIndex >= 0 &&
-              _window.TxbClientsKodPocztowy.Text.Length == 6 &&
-              _window.TxbClientsMiejscowosc.Text.Length > 5)
+            try
             {
-                int id = _comm.RegisterAddress(new Adres()
+                if (_window.TxbClientsImie.Text.Length < 5)
                 {
-                    Kod_pocztowy = _window.TxbClientsKodPocztowy.Text,
-                    Miejscowosc = _window.TxbClientsMiejscowosc.Text,
-                    Wojewodztwo = _window.CmbClientsWojewodztwo.SelectedItem + ""
-                });
-                if (id > 0)
-                    if (_comm.ChangeClient(new Klient()
+                    MessageBox.Show("Imię zbyt krótkie", "Bład", MessageBoxButton.OK);
+                }
+                else
+                if (_window.TxbClientsNazwisko.Text.Length < 5)
+                {
+                    MessageBox.Show("Nazwisko zbyt krótkie", "Bład", MessageBoxButton.OK);
+                }
+                else
+                if (_window.TxbClientsFirma.Text.Length != 0 && _window.TxbClientsFirma.Text.Length < 5)
+                {
+                    MessageBox.Show("Firma zbyt krótka nazwa", "Bład", MessageBoxButton.OK);
+                }
+                else
+                if (_window.TxbClientsKodPocztowy.Text.Length != 6)
+                {
+                    MessageBox.Show("Zły format kodu pocztowego", "Bład", MessageBoxButton.OK);
+                }
+                else
+                if (_window.TxbClientsMiejscowosc.Text.Length < 5)
+                {
+                    MessageBox.Show("Miejscowość zbyt krótka", "Bład", MessageBoxButton.OK);
+                }
+                else
+                if (_window.CmbClientsWojewodztwo.SelectedIndex < 0)
+                {
+                    MessageBox.Show("Bład wyboru Województwa", "Bład", MessageBoxButton.OK);
+                }
+                else
+                {
+                    Adres adres = new Adres()
                     {
-
+                        Kod_pocztowy = _window.TxbClientsKodPocztowy.Text,
+                        Miejscowosc = _window.TxbClientsMiejscowosc.Text,
+                        Wojewodztwo = _window.CmbClientsWojewodztwo.SelectedItem + ""
+                    };
+                    Klient klient = new Klient()
+                    {
                         Nazwa_firmy = _window.TxbClientsFirma.Text,
                         Imie = _window.TxbClientsImie.Text,
                         Nazwisko = _window.TxbClientsNazwisko.Text,
-                        idAdresu = id,
-                        Ksiazka_adresow = _comm.GetAddress(id)
-                    }))
-                    {
-                        GetData();
-                    }
+                    };
+
+                    _comm.RegisterClient(new KlientAdress() { Adres = adres, Klient = klient });
+                    GetData();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error in Client Controller AddData: {ex}");
             }
         }
 
-        public void ChangeDate()
+        public void ChangeData()
         {
-            int id = ((Klient)_window.DgClientsLista.SelectedItem).idKlienta;
-            if (_window.TxbClientsImie.Text.Length > 5 &&
-                _window.TxbClientsNazwisko.Text.Length > 5 &&
-                (_window.TxbClientsFirma.Text.Length > 5 || _window.TxbClientsFirma.Text.Length == 0) &&
-               _window.CmbClientsWojewodztwo.SelectedIndex >= 0 &&
-                _window.TxbClientsKodPocztowy.Text.Length == 6)
+            try
             {
-                if (_comm.ChangeClient(new Klient()
+                if (_window.TxbClientsImie.Text.Length < 5)
                 {
-                    idKlienta = id,
-                    Nazwa_firmy = _window.TxbClientsFirma.Text,
-                    Imie = _window.TxbClientsImie.Text,
-                    Nazwisko = _window.TxbClientsNazwisko.Text,
-                    Transakcje = ((Klient)_window.DgClientsLista.SelectedItem).Transakcje,
-                    idAdresu = ((Klient)_window.DgClientsLista.SelectedItem).idAdresu,
-                    Ksiazka_adresow = ((Klient)_window.DgClientsLista.SelectedItem).Ksiazka_adresow
-                }))
+                    MessageBox.Show("Imię zbyt krótkie", "Bład", MessageBoxButton.OK);
+                }
+                else
+                if (_window.TxbClientsNazwisko.Text.Length < 5)
                 {
+                    MessageBox.Show("Nazwisko zbyt krótkie", "Bład", MessageBoxButton.OK);
+                }
+                else
+               if (_window.TxbClientsFirma.Text.Length != 0 && _window.TxbClientsFirma.Text.Length < 5)
+                {
+                    MessageBox.Show("Firma zbyt krótka nazwa", "Bład", MessageBoxButton.OK);
+                }
+                else
+                if (_window.TxbClientsKodPocztowy.Text.Length != 6)
+                {
+                    MessageBox.Show("Zły format kodu pocztowego", "Bład", MessageBoxButton.OK);
+                }
+                else
+                    if (_window.TxbClientsMiejscowosc.Text.Length < 5)
+                {
+                    MessageBox.Show("Miejscowość zbyt krótka", "Bład", MessageBoxButton.OK);
+                }
+                else if (_window.CmbClientsWojewodztwo.SelectedIndex < 0)
+                {
+                    MessageBox.Show("Bład wyboru Województwa", "Bład", MessageBoxButton.OK);
+                }
+                else
+                {
+                    Adres adres = new Adres()
+                    {
+                        idAdresu = ((Klient)_window.DgClientsLista.SelectedItem).Ksiazka_adresow.idAdresu,
+                        Kod_pocztowy = _window.TxbClientsKodPocztowy.Text,
+                        Miejscowosc = _window.TxbClientsMiejscowosc.Text,
+                        Wojewodztwo = _window.CmbClientsWojewodztwo.SelectedItem + ""
+                    };
+                    Klient klient = new Klient()
+                    {
+                        idKlienta = ((Klient)_window.DgClientsLista.SelectedItem).idKlienta,
+                        Nazwa_firmy = _window.TxbClientsFirma.Text,
+                        Imie = _window.TxbClientsImie.Text,
+                        Nazwisko = _window.TxbClientsNazwisko.Text,
+                        idAdresu = adres.idAdresu,
+                        Ksiazka_adresow = adres
+                    };
+
+                    _comm.ChangeAddress(adres);
+                    _comm.ChangeClient(klient);
                     GetData();
                 }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error in Client Controller AddData: {ex}");
             }
         }
 
         public void DeleteData()
         {
-            if (_window.DgClientsLista.SelectedIndex >= 0)
+            try
             {
-                _comm.DeleteClient(((Klient)_window.DgClientsLista.SelectedItem).idKlienta);
-                GetData();
+                if (_window.DgClientsLista.SelectedIndex >= 0)
+                {
+                    _comm.DeleteClient(((Klient)_window.DgClientsLista.SelectedItem).idKlienta);
+                    GetData();
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error in Client Controller DeleteData: {ex}");
             }
         }
 
         public void ShowData()
         {
-            _window.Dispatcher.BeginInvoke(new Action(() =>
+            try
             {
-                foreach (Klient r in clients)
-                _window.DgClientsLista.Items.Add(r);
-            }));
+                _window.Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    _window.DgClientsLista.Items.Clear();
+                    foreach (Klient r in clients)
+                        _window.DgClientsLista.Items.Add(r);
+                }));
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error in Client Controller ShowData: {ex}");
+            }
         }
 
         public void ShowSelectedData()
         {
-            if (_window.DgClientsLista.SelectedIndex >= 0)
+            try
             {
-                try
+                if (_window.DgClientsLista.SelectedIndex >= 0)
                 {
                     _window.TxbClientsImie.Text = ((Klient)_window.DgClientsLista.SelectedItem).Imie;
                     _window.TxbClientsKodPocztowy.Text = ((Klient)_window.DgClientsLista.SelectedItem).Ksiazka_adresow.Kod_pocztowy;
@@ -134,58 +226,84 @@ namespace Client.Controller
                     _window.CmbClientsWojewodztwo.SelectedItem = ((Klient)_window.DgClientsLista.SelectedItem).Ksiazka_adresow.Wojewodztwo;
                     _window.LblClientsIloscTransakcji.Content = $"Ilość transakcji: {((Klient)_window.DgClientsLista.SelectedItem).Transakcje.Count}";
                 }
-                catch (Exception ex)
-                {
-                    System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}ERROR: {ex}");
-                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error in Client Controller ShowSelectedData: {ex}");
             }
         }
 
         public void SearchData()
         {
-            List<Klient> list = new List<Klient>();
-            for (int i = 0; i < _window.DgClientsLista.Items.Count; i++)
-                list.Add((Klient)_window.DgClientsLista.Items.GetItemAt(i));
-            _window.DgClientsLista.Items.Clear();
-            //1
-            if (_window.ChbClientsImie.IsChecked == true)
+            try
             {
-                for (int i = 0; i < list.Count; i++)
+                Task.Factory.StartNew(() =>
                 {
-                    if (!list[i].Imie.ToLower().Equals(_window.TxbClientsImieSearch.Text.ToLower()))
-                        list.Remove(list[i]);
-                }
+                    GetData();
+                }).ContinueWith(x =>
+                Task.Factory.StartNew(() =>
+                {
+                    _window.Dispatcher.BeginInvoke(new Action(() =>
+                    {
+                        List<Klient> list = new List<Klient>();
+                        //1
+                        if (_window.ChbClientsNazwisko.IsChecked == true)
+                        {
+                            if (_window.TxbClientsNazwiskoSearch.Text.Length > 0)
+                                foreach (Klient a in clients)
+                                {
+                                    if (!a.Nazwisko.ToLower().Contains(_window.TxbClientsNazwiskoSearch.Text.ToLower()))
+                                    {
+                                        list.Add(a);
+                                    }
+                                }
+                        }
+                        //2
+                        if (_window.ChbClientsMiejscowosc.IsChecked == true)
+                        {
+                            if (_window.TxbClientsMiejscowosc.Text.Length > 0)
+                                foreach (Klient a in clients)
+                                {
+                                    if (!a.Ksiazka_adresow.Miejscowosc.ToLower().Contains(_window.TxbClientsMiejscowosc.Text.ToLower()))
+                                    {
+                                        list.Add(a);
+                                    }
+                                }
+                        }
+                        //3
+                        if (_window.ChbClientsFirma.IsChecked == true)
+                        {
+                            if (_window.TxbClientsFirmaSearch.Text.Length > 0)
+                                foreach (Klient a in clients)
+                                {
+                                    if (!a.Nazwa_firmy.ToLower().Contains(_window.TxbClientsFirmaSearch.Text.ToLower()))
+                                    {
+                                        list.Add(a);
+                                    }
+                                }
+                        }
+                        //4
+                        if (_window.ChbClientsWojewodztwo.IsChecked == true)
+                        {
+                            if (_window.CmbClientsWojewodztwoSearch.SelectedIndex >= 0)
+                                foreach (Klient a in clients)
+                                {
+                                    if (!a.Ksiazka_adresow.Wojewodztwo.Equals((string)_window.CmbClientsWojewodztwoSearch.SelectedItem))
+                                    {
+                                        list.Add(a);
+                                    }
+                                }
+                        }
+                        foreach (Klient a in list)
+                            clients.RemoveAll(ar => ar.idKlienta == a.idKlienta);
+                        ShowData();
+                    }));
+                }));
             }
-            //2
-            if (_window.ChbClientsKodPocztowy.IsChecked == true)
+            catch (Exception ex)
             {
-                for (int i = 0; i < list.Count; i++)
-                {
-                    if (!list[i].Ksiazka_adresow.Kod_pocztowy.Equals(_window.TxbClientsKodPocztowySearch.Text))
-                        list.Remove(list[i]);
-                }
+                System.Diagnostics.Debug.WriteLine($"Error in Client Controller SearchData: {ex}");
             }
-            //3
-            if (_window.ChbClientsMiejscowosc.IsChecked == true)
-            {
-
-                for (int i = 0; i < list.Count; i++)
-                {
-                    if (!list[i].Ksiazka_adresow.Miejscowosc.ToLower().Equals(_window.TxbClientsMiejscowoscSearch.Text.ToLower()))
-                        list.Remove(list[i]);
-                }
-
-            }
-            //4
-            if (_window.ChbClientsWojewodztwo.IsChecked == true)
-            {
-                for (int i = 0; i < list.Count; i++)
-                {
-                    if (!list[i].Ksiazka_adresow.Wojewodztwo.ToLower().Equals(_window.TxbClientsWojewodztwoSearch.Text.ToLower()))
-                        list.Remove(list[i]);
-                }
-            }
-            ShowClientData(list);
         }
     }
 }

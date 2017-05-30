@@ -2,10 +2,12 @@
 {
     interface IWork
     {
-        void ChangeDate();
+        void ChangeData();
         void DeleteData();
         void ShowData();
         void ShowSelectedData();
         void AddData();
+        void SearchData();
+        void GetData();
     }
 }

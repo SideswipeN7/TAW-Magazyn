@@ -349,11 +349,11 @@ namespace Client.Communication
 
         public void DeleteClient(int id)
         {
-            string baseUrl = $"{urlAddress}/api/Clients" + id; ;
+            string baseUrl = $"{urlAddress}/api/Clients/{id}";
             var client = new RestClient(baseUrl);
             var request = new RestRequest(Method.DELETE);
             request.AddHeader("cache-control", "no-cache");
-            request.AddHeader("content-type", "application/json");
+            //request.AddHeader("content-type", "application/json");
             client.Execute(request);
         }
 

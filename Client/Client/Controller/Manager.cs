@@ -710,140 +710,31 @@ namespace Client.Controller
 
         public void ChangeClientData()
         {
-            int id = ((Klient)_window.DgClientsLista.SelectedItem).idKlienta;
-            if (_window.TxbClientsImie.Text.Length > 5 &&
-                _window.TxbClientsNazwisko.Text.Length > 5 &&
-                (_window.TxbClientsFirma.Text.Length > 5 || _window.TxbClientsFirma.Text.Length == 0) &&
-               _window.CmbClientsWojewodztwo.SelectedIndex >= 0 &&
-                _window.TxbClientsKodPocztowy.Text.Length == 6)
-            {
-                if (_comm.ChangeClient(new Klient()
-                {
-                    idKlienta = id,
-                    Nazwa_firmy = _window.TxbClientsFirma.Text,
-                    Imie = _window.TxbClientsImie.Text,
-                    Nazwisko = _window.TxbClientsNazwisko.Text,
-                    Transakcje = ((Klient)_window.DgClientsLista.SelectedItem).Transakcje,
-                    idAdresu = ((Klient)_window.DgClientsLista.SelectedItem).idAdresu,
-                    Ksiazka_adresow = ((Klient)_window.DgClientsLista.SelectedItem).Ksiazka_adresow
-                }))
-                {
-                    GetClientData();
-                }
-            }
+            IWork work = ClientsController.GetInstance(_window);
+            work.ChangeData();
         }
-
-        public void ShowClientData(IEnumerable<Klient> clients)
-        {
-
-            _window.Dispatcher.BeginInvoke(new Action(() =>
-            {
-                foreach (Klient r in clients)
-                    _window.DgClientsLista.Items.Add(r);
-            }));
-        }
-
+        
         public void GetClientData()
         {
-            Task<IEnumerable<Klient>>.Factory.StartNew(() =>
-            {
-                return _comm.GetClients();
-            }).ContinueWith(x =>
-            {
-                Task.Factory.StartNew(() =>
-                {
-                    ShowClientData(x.Result);
-                });
-            });
+            IWork work = ClientsController.GetInstance(_window);
+            work.GetData();
         }
-
-
-
         public void SetClientData()
         {
-            if (_window.TxbClientsImie.Text.Length > 5 &&
-              _window.TxbClientsNazwisko.Text.Length > 5 &&
-              (_window.TxbClientsFirma.Text.Length > 5 || _window.TxbClientsFirma.Text.Length == 0) &&
-             _window.CmbClientsWojewodztwo.SelectedIndex >= 0 &&
-              _window.TxbClientsKodPocztowy.Text.Length == 6 &&
-              _window.TxbClientsMiejscowosc.Text.Length > 5)
-            {
-                int id = _comm.RegisterAddress(new Adres()
-                {
-                    Kod_pocztowy = _window.TxbClientsKodPocztowy.Text,
-                    Miejscowosc = _window.TxbClientsMiejscowosc.Text,
-                    Wojewodztwo = _window.CmbClientsWojewodztwo.SelectedItem + ""
-                });
-                if (id > 0)
-                    if (_comm.ChangeClient(new Klient()
-                    {
-
-                        Nazwa_firmy = _window.TxbClientsFirma.Text,
-                        Imie = _window.TxbClientsImie.Text,
-                        Nazwisko = _window.TxbClientsNazwisko.Text,
-                        idAdresu = id,
-                        Ksiazka_adresow = _comm.GetAddress(id)
-                    }))
-                    {
-                        GetClientData();
-                    }
-            }
+            IWork work = ClientsController.GetInstance(_window);
+            work.AddData();
         }
 
         public void ClientDelete()
         {
-            if (_window.DgClientsLista.SelectedIndex >= 0)
-            {
-                _comm.DeleteClient(((Klient)_window.DgClientsLista.SelectedItem).idKlienta);
-                GetClientData();
-            }
+            IWork work = ClientsController.GetInstance(_window);
+            work.DeleteData();
         }
 
         public void SearchClients()
         {
-            List<Klient> list = new List<Klient>();
-            for (int i = 0; i < _window.DgClientsLista.Items.Count; i++)
-                list.Add((Klient)_window.DgClientsLista.Items.GetItemAt(i));
-            _window.DgClientsLista.Items.Clear();
-            //1
-            if (_window.ChbClientsImie.IsChecked == true)
-            {
-                for (int i = 0; i < list.Count; i++)
-                {
-                    if (!list[i].Imie.ToLower().Equals(_window.TxbClientsImieSearch.Text.ToLower()))
-                        list.Remove(list[i]);
-                }
-            }
-            //2
-            if (_window.ChbClientsKodPocztowy.IsChecked == true)
-            {
-                for (int i = 0; i < list.Count; i++)
-                {
-                    if (!list[i].Ksiazka_adresow.Kod_pocztowy.Equals(_window.TxbClientsKodPocztowySearch.Text))
-                        list.Remove(list[i]);
-                }
-            }
-            //3
-            if (_window.ChbClientsMiejscowosc.IsChecked == true)
-            {
-
-                for (int i = 0; i < list.Count; i++)
-                {
-                    if (!list[i].Ksiazka_adresow.Miejscowosc.ToLower().Equals(_window.TxbClientsMiejscowoscSearch.Text.ToLower()))
-                        list.Remove(list[i]);
-                }
-
-            }
-            //4
-            if (_window.ChbClientsWojewodztwo.IsChecked == true)
-            {
-                for (int i = 0; i < list.Count; i++)
-                {
-                    if (!list[i].Ksiazka_adresow.Wojewodztwo.ToLower().Equals(_window.TxbClientsWojewodztwoSearch.Text.ToLower()))
-                        list.Remove(list[i]);
-                }
-            }
-            ShowClientData(list);
+            IWork work = ClientsController.GetInstance(_window);
+            work.SearchData();
         }
 
         //Transactions
@@ -855,12 +746,14 @@ namespace Client.Controller
             _window.CmbDoGridTwoWojewodztwo.Items.Clear();
             _window.CmbClientsWojewodztwo.Items.Clear();
             _window.CmbEmployeeWojewodztwo.Items.Clear();
+            _window.CmbClientsWojewodztwoSearch.Items.Clear();
             foreach (string r in states)
             {
                 _window.CmbDoGridOneWojewodztwo.Items.Add(r);
                 _window.CmbDoGridTwoWojewodztwo.Items.Add(r);
                 _window.CmbClientsWojewodztwo.Items.Add(r);
                 _window.CmbEmployeeWojewodztwo.Items.Add(r);
+                _window.CmbClientsWojewodztwoSearch.Items.Add(r);
             }
         }
 

@@ -162,19 +162,19 @@
             <TabItem x:Name="TabClients" Header="Klienci" >
                 <Canvas>
                     <Grid x:Name="GridClientsSearch" Height="165" Width="276" Canvas.Left="480" Canvas.Top="62">
-                        <CheckBox x:Name="ChbClientsImie" Content="" Margin="238,10,11,133"/>
-                        <Label x:Name="LblClientsMiejscowoscSearch" Content="Miejscowość:" Margin="0,38,188,100"/>
-                        <Label x:Name="LblClientsKodPocztowySearch" Content="Kod pocztowy:" RenderTransformOrigin="0.623,3.557" Margin="0,70,188,64"/>
-                        <Label x:Name="LblClientsWojewodztwoSearch" Content="Województwo:" Margin="0,106,188,31"/>
-                        <TextBox x:Name="TxbClientsMiejscowoscSearch" TextWrapping="Wrap" RenderTransformOrigin="0.115,0.691" Margin="98,42,43,99" Height="23"/>
-                        <TextBox x:Name="TxbClientsKodPocztowySearch" TextWrapping="Wrap" RenderTransformOrigin="0.115,0.691" Margin="98,78,43,64" Height="23"/>
-                        <TextBox x:Name="TxbClientsWojewodztwoSearch" TextWrapping="Wrap" RenderTransformOrigin="0.115,0.691" Margin="98,111,47,31" Height="23"/>
-                        <Label x:Name="LblClientsImieSearch" Content="Imię:" Margin="0,10,188,127"/>
-                        <TextBox x:Name="TxbClientsImieSearch" TextWrapping="Wrap" RenderTransformOrigin="0.115,0.691" Margin="98,10,43,133"/>
-                        <CheckBox x:Name="ChbClientsMiejscowosc" Content="" Margin="238,42,11,100"/>
-                        <CheckBox x:Name="ChbClientsKodPocztowy" Content="" Margin="238,78,11,64"/>
-                        <CheckBox x:Name="ChbClientsWojewodztwo" Content="" Margin="239,111,10,31"/>
-                        <Button x:Name="BtnClientsSzukaj" Content="Szukaj" RenderTransformOrigin="0.449,0.517" Margin="127,145,74,0" Click="BtnClientsSzukaj_Click" />
+                        <CheckBox x:Name="ChbClientsNazwisko" Content="" Margin="238,10,11,133"/>
+                        <Label x:Name="LblClientsMiejscowoscSearch" Content="Miejscowość:" Margin="1,71,187,67"/>
+                        <Label x:Name="LblClientsWojewodztwoSearch" Content="Województwo:" Margin="0,98,188,39"/>
+                        <TextBox x:Name="TxbClientsMiejscowoscSearch" TextWrapping="Wrap" RenderTransformOrigin="0.115,0.691" Margin="99,75,42,67" Height="23"/>
+                        <ComboBox x:Name="CmbClientsWojewodztwoSearch"  RenderTransformOrigin="0.115,0.691" Margin="98,103,47,39" Height="23"/>
+                        <Label x:Name="LblClientsNazwiskoSearch" Content="Nazwisko:" Margin="0,10,188,127"/>
+                        <TextBox x:Name="TxbClientsNazwiskoSearch" TextWrapping="Wrap" RenderTransformOrigin="0.115,0.691" Margin="98,10,43,133"/>
+                        <CheckBox x:Name="ChbClientsMiejscowosc" Content="" Margin="239,75,10,67"/>
+                        <CheckBox x:Name="ChbClientsWojewodztwo" Content="" Margin="239,103,10,39"/>
+                        <Button x:Name="BtnClientsSzukaj" Content="Szukaj" RenderTransformOrigin="0.449,0.517" Margin="126,135,75,10" Click="BtnClientsSzukaj_Click" />
+                        <CheckBox x:Name="ChbClientsFirma" Content="" Margin="239,37,10,106"/>
+                        <Label x:Name="LblClientsFirmaSearch" Content="Firma: " Margin="1,37,187,100"/>
+                        <TextBox x:Name="TxbClientsFirmaSearch" TextWrapping="Wrap" RenderTransformOrigin="0.115,0.691" Margin="99,37,42,106"/>
                     </Grid>
                     <DataGrid x:Name="DgClientsLista" IsReadOnly="True" HorizontalAlignment="Left" VerticalAlignment="Top" Height="1014" Width="177" Canvas.Left="10" Canvas.Top="37" SelectionChanged="DgClientsLista_SelectionChanged" SelectionMode="Single"  >
                         <DataGrid.Columns>
