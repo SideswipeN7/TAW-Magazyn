@@ -40,10 +40,10 @@ namespace Client.Controller
                  Decimal.TryParse(_window.TxbItemCenaMin.Text, out price) &&
                  _window.CmbItemKategoria.SelectedIndex >= 0)
             {
-                if (_comm.RegisterItem(new Artykul() { Cena = price, Ilosc = quantity, Nazwa = _window.TxbItemINazwa.Text, idKategorii = (int)((ComboBoxItem)_window.CmbItemKategoria.SelectedItem).Tag, Kategorie = new Kategoria() { idKategorii = (int)((ComboBoxItem)_window.CmbItemKategoria.SelectedItem).Tag, Nazwa = (String)((ComboBoxItem)_window.CmbItemKategoria.SelectedItem).Content } }))
-                {
-                    GetItemData();
-                }
+                //if (_comm.RegisterItem(new Artykul() { Cena = price, Ilosc = quantity, Nazwa = _window.TxbItemINazwa.Text, idKategorii = (int)((ComboBoxItem)_window.CmbItemKategoria.SelectedItem).Tag, Kategorie = new Kategoria() { idKategorii = (int)((ComboBoxItem)_window.CmbItemKategoria.SelectedItem).Tag, Nazwa = (String)((ComboBoxItem)_window.CmbItemKategoria.SelectedItem).Content } }))
+                //{
+                //    GetItemData();
+                //}
             }
         }
 
@@ -63,6 +63,21 @@ namespace Client.Controller
         }
 
         public void ShowSelectedData()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ChangeData()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void GetData()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SearchData()
         {
             throw new NotImplementedException();
         }

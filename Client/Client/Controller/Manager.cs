@@ -212,16 +212,8 @@ namespace Client.Controller
         //Categories
         public void GetCategoryData()
         {
-            Task<IEnumerable<Kategoria>>.Factory.StartNew(() =>
-            {
-                return _comm.GetCategories();
-            }).ContinueWith(x =>
-            {
-                Task.Factory.StartNew(() =>
-                {
-                    ShowCategoryData(x.Result);
-                });
-            });
+            IWork work = CategoryController.GetInstance(_window);
+            work.GetData();
         }
 
         internal void ShowCategoriesData()
@@ -305,13 +297,13 @@ namespace Client.Controller
 
         internal void CmbCategoryIdChange()
         {
-            foreach (Kategoria k in _window.DgCategoryLista.Items)
-            {
-                if (k.idKategorii == (int)_window.CmbCategoryId.SelectedItem)
-                {
-                    _window.DgCategoryLista.SelectedItem = k;
-                }
-            }
+            //foreach (Kategoria k in _window.DgCategoryLista.Items)
+            //{
+            //    if (k.idKategorii == (int)_window.CmbCategoryId.SelectedItem)
+            //    {
+            //        _window.DgCategoryLista.SelectedItem = k;
+            //    }
+            //}
         }
 
         public void ShowCategoriesSate()
@@ -401,55 +393,26 @@ namespace Client.Controller
 
         public void SetCategoryData()
         {
-            if (_window.TxbCategoryNazwa.Text.Length > 5)
-            {
-                if (_comm.RegisterCategory(new Kategoria() { Nazwa = _window.TxbCategoryNazwa.Text }))
-                {
-                    GetCategoryData();
-                }
-            }
+            IWork work = CategoryController.GetInstance(_window);
+            work.AddData();
         }
 
         public void ChangeCategoryData()
         {
-            if (_window.TxbCategoryNazwa.Text.Length > 5)
-            {
-                if (_window.CmbCategoryId.SelectedIndex > 0)
-                {
-                    if (_comm.ChangeCategory(new Kategoria() { idKategorii = (int)_window.CmbCategoryId.SelectedItem, Nazwa = _window.TxbCategoryNazwa.Text }))
-                    {
-                        GetCategoryData();
-                    }
-
-                }
-            }
+            IWork work = CategoryController.GetInstance(_window);
+            work.ChangeData();
         }
 
         public void CategoriesDelete()
         {
-            if (_window.DgCategoryLista.SelectedIndex >= 0)
-            {
-                _comm.DeleteCategory((Kategoria)_window.DgCategoryLista.SelectedItem);
-                GetCategoryData();
-            }
+            IWork work = CategoryController.GetInstance(_window);
+            work.DeleteData();
         }
 
         public void CategoriesSearch()
         {
-            List<Kategoria> list = new List<Kategoria>();
-            for (int i = 0; i < _window.DgCategoryLista.Items.Count; i++)
-                list.Add((Kategoria)_window.DgCategoryLista.Items.GetItemAt(i));
-            _window.DgCategoryLista.Items.Clear();
-            //1
-            if (_window.ChbCategoryNazwa.IsChecked == true)
-            {
-                for (int i = 0; i < list.Count; i++)
-                {
-                    if (list[i].Nazwa.ToLower().Contains(_window.TxbCategoryNazwa.Text.ToLower()))
-                        list.Remove(list[i]);
-                }
-                GetCategoryData();
-            }
+            IWork work = CategoryController.GetInstance(_window);
+            work.SearchData();
         }
 
         //Items
@@ -745,105 +708,28 @@ namespace Client.Controller
 
         public void GetClientData()
         {
-            Task<IEnumerable<Klient>>.Factory.StartNew(() =>
-            {
-                return _comm.GetClients();
-            }).ContinueWith(x =>
-            {
-                Task.Factory.StartNew(() =>
-                {
-                    ShowClientData(x.Result);
-                });
-            });
+            IWork work = CategoryController.GetInstance(_window);
+            work.GetData();
         }
 
 
 
         public void SetClientData()
         {
-            if (_window.TxbClientsImie.Text.Length > 5 &&
-              _window.TxbClientsNazwisko.Text.Length > 5 &&
-              (_window.TxbClientsFirma.Text.Length > 5 || _window.TxbClientsFirma.Text.Length == 0) &&
-             _window.CmbClientsWojewodztwo.SelectedIndex >= 0 &&
-              _window.TxbClientsKodPocztowy.Text.Length == 6 &&
-              _window.TxbClientsMiejscowosc.Text.Length > 5)
-            {
-                int id = _comm.RegisterAddress(new Adres()
-                {
-                    Kod_pocztowy = _window.TxbClientsKodPocztowy.Text,
-                    Miejscowosc = _window.TxbClientsMiejscowosc.Text,
-                    Wojewodztwo = _window.CmbClientsWojewodztwo.SelectedItem + ""
-                });
-                if (id > 0)
-                    if (_comm.ChangeClient(new Klient()
-                    {
-
-                        Nazwa_firmy = _window.TxbClientsFirma.Text,
-                        Imie = _window.TxbClientsImie.Text,
-                        Nazwisko = _window.TxbClientsNazwisko.Text,
-                        idAdresu = id,
-                        Ksiazka_adresow = _comm.GetAddress(id)
-                    }))
-                    {
-                        GetClientData();
-                    }
-            }
+            IWork work = CategoryController.GetInstance(_window);
+            work.AddData();
         }
 
         public void ClientDelete()
         {
-            if (_window.DgClientsLista.SelectedIndex >= 0)
-            {
-                _comm.DeleteClient(((Klient)_window.DgClientsLista.SelectedItem).idKlienta);
-                GetClientData();
-            }
+            IWork work = CategoryController.GetInstance(_window);
+            work.DeleteData();
         }
 
         public void SearchClients()
         {
-            List<Klient> list = new List<Klient>();
-            for (int i = 0; i < _window.DgClientsLista.Items.Count; i++)
-                list.Add((Klient)_window.DgClientsLista.Items.GetItemAt(i));
-            _window.DgClientsLista.Items.Clear();
-            //1
-            if (_window.ChbClientsImie.IsChecked == true)
-            {
-                for (int i = 0; i < list.Count; i++)
-                {
-                    if (!list[i].Imie.ToLower().Equals(_window.TxbClientsImieSearch.Text.ToLower()))
-                        list.Remove(list[i]);
-                }
-            }
-            //2
-            if (_window.ChbClientsKodPocztowy.IsChecked == true)
-            {
-                for (int i = 0; i < list.Count; i++)
-                {
-                    if (!list[i].Ksiazka_adresow.Kod_pocztowy.Equals(_window.TxbClientsKodPocztowySearch.Text))
-                        list.Remove(list[i]);
-                }
-            }
-            //3
-            if (_window.ChbClientsMiejscowosc.IsChecked == true)
-            {
-
-                for (int i = 0; i < list.Count; i++)
-                {
-                    if (!list[i].Ksiazka_adresow.Miejscowosc.ToLower().Equals(_window.TxbClientsMiejscowoscSearch.Text.ToLower()))
-                        list.Remove(list[i]);
-                }
-
-            }
-            //4
-            if (_window.ChbClientsWojewodztwo.IsChecked == true)
-            {
-                for (int i = 0; i < list.Count; i++)
-                {
-                    if (!list[i].Ksiazka_adresow.Wojewodztwo.ToLower().Equals(_window.TxbClientsWojewodztwoSearch.Text.ToLower()))
-                        list.Remove(list[i]);
-                }
-            }
-            ShowClientData(list);
+            IWork work = CategoryController.GetInstance(_window);
+            work.SearchData();
         }
 
         //Transactions

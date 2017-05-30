@@ -41,7 +41,7 @@ namespace Client.Windows
             InitializeComponent();
             _controller = Manager.GetInstance(this);
             //Show Data
-            _controller.GetAll();
+           _controller.GetAll();
             //LoadData
             _controller.LoadAll();
             _controller.SelectaAll();

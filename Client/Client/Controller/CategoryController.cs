@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Client.Controller
 {
@@ -14,13 +15,13 @@ namespace Client.Controller
         private static CategoryController _instance;
         Admin _window { get; set; }
         private ICommunication _comm;
-        private IEnumerable<Kategoria> categories;
+        private List<Kategoria> categories;
 
         private CategoryController()
         {
             _comm = Communicator.GetInstance();
-            _comm.SetUrlAddress("http://o1018869-001-site1.htempurl.com");
-            //_comm.SetUrlAddress("http://localhost:52992");
+            // _comm.SetUrlAddress("http://o1018869-001-site1.htempurl.com");
+            _comm.SetUrlAddress("http://localhost:52992");
         }
         public static CategoryController GetInstance(Admin window)
         {
@@ -34,36 +35,60 @@ namespace Client.Controller
 
         public void AddData()
         {
-            if (_window.TxbCategoryNazwa.Text.Length > 5)
+            try
             {
-                if (_comm.RegisterCategory(new Kategoria() { Nazwa = _window.TxbCategoryNazwa.Text }))
+                if (_window.TxbCategoryNazwa.Text.Length > 5)
                 {
-                    GetCategoryData();
+                    _comm.RegisterCategory(new Kategoria() { Nazwa = _window.TxbCategoryNazwa.Text });
+                    GetData();
                 }
+                else
+                {
+                    MessageBox.Show("Nazwa zbyt krótka", "Bład", MessageBoxButton.OK);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error in Category Controller AddData: {ex}");
             }
         }
 
-        public void ChangeDate()
+        public void ChangeData()
         {
-            if (_window.TxbCategoryNazwa.Text.Length > 5)
+            try
             {
-                if (_window.CmbCategoryId.SelectedIndex > 0)
+                if (_window.TxbCategoryNazwa.Text.Length > 5)
                 {
-                    if (_comm.ChangeCategory(new Kategoria() { idKategorii = (int)_window.CmbCategoryId.SelectedItem, Nazwa = _window.TxbCategoryNazwa.Text }))
+                    if (_window.CmbCategoryId.SelectedIndex > 0)
                     {
-                        GetCategoryData();
+                        _comm.ChangeCategory(new Kategoria() { idKategorii = (int)_window.CmbCategoryId.SelectedItem, Nazwa = _window.TxbCategoryNazwa.Text });
+                        GetData();
                     }
-
                 }
+                else
+                {
+                    MessageBox.Show("Nazwa zbyt krótka", "Bład", MessageBoxButton.OK);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error in Category Controller ChangeData: {ex}");
             }
         }
 
         public void DeleteData()
         {
-            if (_window.DgCategoryLista.SelectedIndex >= 0)
+            try
             {
-                _comm.DeleteCategory((Kategoria)_window.DgCategoryLista.SelectedItem);
-                GetCategoryData();
+                if (_window.DgCategoryLista.SelectedIndex >= 0)
+                {
+                    _comm.DeleteCategory((Kategoria)_window.DgCategoryLista.SelectedItem);
+                    GetData();
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error in Category Controller DeleteData: {ex}");
             }
         }
 
@@ -74,6 +99,7 @@ namespace Client.Controller
             _window.Dispatcher.BeginInvoke(new Action(() =>
             {
                 _window.CmbCategoryId.Items.Clear();
+                _window.DgCategoryLista.Items.Clear();
                 foreach (Kategoria r in categories)
                 {
                     _window.DgCategoryLista.Items.Add(r);
@@ -81,56 +107,104 @@ namespace Client.Controller
                 }
             }));
         }
-        
 
-        public void GetCategoryData()
+
+        public void GetData()
         {
-            Task<IEnumerable<Kategoria>>.Factory.StartNew(() =>
+            try
             {
-                return _comm.GetCategories();
-            }).ContinueWith(x =>
-            {
-                Task.Factory.StartNew(() =>
+                Task<IEnumerable<Kategoria>>.Factory.StartNew(() =>
                 {
-                    ShowCategoryData(x.Result);
+                    return _comm.GetCategories();
+                }).ContinueWith(x =>
+                {
+                    Task.Factory.StartNew(() =>
+                    {
+                        categories = x.Result.ToList();
+                        _window.Dispatcher.BeginInvoke(new Action(() =>
+                        {
+                            if (_window.ChbCategoryNazwa.IsChecked == false)
+                                ShowData();
+                        }));
+                    });
                 });
-            });
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error in Category Controller GetData: {ex}");
+            }
         }
 
         public void ShowData()
         {
-            _window.Dispatcher.BeginInvoke(new Action(() =>
+            try
             {
-                _window.CmbCategoryId.Items.Clear();
-                foreach (Kategoria r in categories)
+                _window.Dispatcher.BeginInvoke(new Action(() =>
                 {
-                    _window.DgCategoryLista.Items.Add(r);
-                    _window.CmbCategoryId.Items.Add(r.idKategorii);
-                }
-            }));
-        }
-
-        public void CategoriesSearch()
-        {
-            List<Kategoria> list = new List<Kategoria>();
-            for (int i = 0; i < _window.DgCategoryLista.Items.Count; i++)
-                list.Add((Kategoria)_window.DgCategoryLista.Items.GetItemAt(i));
-            _window.DgCategoryLista.Items.Clear();
-            //1
-            if (_window.ChbCategoryNazwa.IsChecked == true)
+                    _window.CmbCategoryId.Items.Clear();
+                    foreach (Kategoria r in categories)
+                    {
+                        _window.DgCategoryLista.Items.Add(r);
+                        _window.CmbCategoryId.Items.Add(r.idKategorii);
+                    }
+                }));
+            }
+            catch (Exception ex)
             {
-                for (int i = 0; i < list.Count; i++)
-                {
-                    if (list[i].Nazwa.ToLower().Contains(_window.TxbCategoryNazwa.Text.ToLower()))
-                        list.Remove(list[i]);
-                }
-                GetCategoryData();
+                System.Diagnostics.Debug.WriteLine($"Error in Category Controller ShowData: {ex}");
             }
         }
 
+
         public void ShowSelectedData()
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (_window.DgCategoryLista.SelectedIndex >= 0)
+                {
+                    _window.TxbCategoryNazwa.Text = ((Kategoria)_window.DgCategoryLista.SelectedItem).Nazwa;
+                    _window.CmbCategoryId.SelectedItem = ((Kategoria)_window.DgCategoryLista.SelectedItem).idKategorii;
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error in Category Controller ShowSelectedData: {ex}");
+            }
+
+        }
+
+        public void SearchData()
+        {
+            try
+            {
+                Task.Factory.StartNew(() =>
+                {
+                    GetData();
+                }).ContinueWith(x =>
+                Task.Factory.StartNew(() =>
+                {
+                    _window.Dispatcher.BeginInvoke(new Action(() =>
+                    {
+                        List<Kategoria> list = new List<Kategoria>();
+                        if (_window.ChbCategoryNazwa.IsChecked == true)
+                        {
+                            foreach (Kategoria k in categories)
+                                if (!k.Nazwa.ToLower().Contains(_window.TxbCategoryNazwa.Text.ToLower()))
+                                {
+                                    list.Add(k);
+                                }
+                            foreach (Kategoria a in list)
+                                categories.RemoveAll(ar => ar.idKategorii == a.idKategorii);
+                            ShowData();
+                        }
+                    }));
+
+                }));
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error in Category Controller SearchData: {ex}");
+            }
         }
     }
 }

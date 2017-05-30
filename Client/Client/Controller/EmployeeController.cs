@@ -13,12 +13,27 @@ namespace Client.Controller
             throw new NotImplementedException();
         }
 
+        public void ChangeData()
+        {
+            throw new NotImplementedException();
+        }
+
         public void ChangeDate()
         {
             throw new NotImplementedException();
         }
 
         public void DeleteData()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void GetData()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SearchData()
         {
             throw new NotImplementedException();
         }
