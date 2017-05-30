@@ -352,5 +352,15 @@ namespace Client.Windows
         {
             _controller.RegisterTransaction();
         }
+
+        private void RbItemUsun_Checked(object sender, RoutedEventArgs e)
+        {
+            _controller.ItemsShowDelete();
+        }
+
+        private void BtnItemUsun_Click(object sender, RoutedEventArgs e)
+        {
+            _controller.DeleteItems();
+        }
     }
 }

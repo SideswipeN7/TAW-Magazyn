@@ -235,27 +235,29 @@ namespace Client.Controller
 
         internal void ShowItemsData()
         {
-            if (_window.DgItemLista.SelectedIndex >= 0)
-            {
-                try
-                {
-                    for (int i = 0; i < _window.CmbItemKategoria.Items.Count; i++)
-                    {
-                        if (((Kategoria)((ComboBoxItem)_window.CmbItemKategoria.Items.GetItemAt(i)).Tag).idKategorii == ((Artykul)_window.DgItemLista.SelectedItem).Kategorie.idKategorii)
-                        {
-                            _window.CmbItemKategoria.SelectedIndex = i;
-                        }
-                    }
-                    //_window.CmbItemKategoria.SelectedItem = new ComboBoxItem() { Content = ((Artykul)_window.DgItemLista.SelectedItem).Kategorie.Nazwa, Tag = ((Artykul)_window.DgItemLista.SelectedItem).Kategorie };
-                    _window.TxbItemCenaMin.Text = ((Artykul)_window.DgItemLista.SelectedItem).Cena + "";
-                    _window.TxbItemIlosc.Text = ((Artykul)_window.DgItemLista.SelectedItem).Ilosc + "";
-                    _window.TxbItemINazwa.Text = ((Artykul)_window.DgItemLista.SelectedItem).Nazwa;
-                }
-                catch (Exception ex)
-                {
-                    System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}ERROR: {ex}");
-                }
-            }
+            IWork work = ItemsController.GetInstance(_window);
+            work.ShowSelectedData();
+            //if (_window.DgItemLista.SelectedIndex >= 0)
+            //{
+            //    try
+            //    {
+            //        for (int i = 0; i < _window.CmbItemKategoria.Items.Count; i++)
+            //        {
+            //            if (((Kategoria)((ComboBoxItem)_window.CmbItemKategoria.Items.GetItemAt(i)).Tag).idKategorii == ((Artykul)_window.DgItemLista.SelectedItem).Kategorie.idKategorii)
+            //            {
+            //                _window.CmbItemKategoria.SelectedIndex = i;
+            //            }
+            //        }
+            //        //_window.CmbItemKategoria.SelectedItem = new ComboBoxItem() { Content = ((Artykul)_window.DgItemLista.SelectedItem).Kategorie.Nazwa, Tag = ((Artykul)_window.DgItemLista.SelectedItem).Kategorie };
+            //        _window.TxbItemCenaMin.Text = ((Artykul)_window.DgItemLista.SelectedItem).Cena + "";
+            //        _window.TxbItemIlosc.Text = ((Artykul)_window.DgItemLista.SelectedItem).Ilosc + "";
+            //        _window.TxbItemINazwa.Text = ((Artykul)_window.DgItemLista.SelectedItem).Nazwa;
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}ERROR: {ex}");
+            //    }
+            //}
         }
 
         internal void ShowClientsData()
@@ -276,6 +278,37 @@ namespace Client.Controller
                     System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}ERROR: {ex}");
                 }
             }
+        }
+
+        internal void ItemsShowDelete()
+        {
+            _window.ChbItemCena.Visibility = Visibility.Hidden;
+            _window.ChbItemIlosc.Visibility = Visibility.Hidden;
+            _window.ChbItemKategoria.Visibility = Visibility.Hidden;
+            _window.ChbItemNazwa.Visibility = Visibility.Hidden;
+
+            _window.LblItemCena.Visibility = Visibility.Hidden;
+            _window.LblItemIlosc.Visibility = Visibility.Hidden;
+            _window.LblItemKategoria.Visibility = Visibility.Hidden;
+            _window.LblItemNazwa.Visibility = Visibility.Hidden;
+
+            _window.TxbItemCenaMax.Visibility = Visibility.Hidden;
+            _window.TxbItemCenaMin.Visibility = Visibility.Hidden; _window.TxbItemCenaMax.Visibility = Visibility.Hidden;
+            _window.TxbItemIlosc.Visibility = Visibility.Hidden;
+            _window.TxbItemINazwa.Visibility = Visibility.Hidden;
+
+            _window.CmbItemKategoria.Visibility = Visibility.Hidden;
+
+            _window.BtnItemDodaj.Visibility = Visibility.Hidden;
+            _window.BtnItemModyfikuj.Visibility = Visibility.Hidden;
+            _window.BtnItemSzukaj.Visibility = Visibility.Hidden;
+            _window.BtnItemUsun.Visibility = Visibility.Visible;
+        }
+
+        internal void DeleteItems()
+        {
+            IWork work = ItemsController.GetInstance(_window);
+            work.DeleteData();
         }
 
         public void ShowCategoryData(IEnumerable<Kategoria> categories)
@@ -462,6 +495,7 @@ namespace Client.Controller
             _window.BtnItemDodaj.Visibility = Visibility.Hidden;
             _window.BtnItemModyfikuj.Visibility = Visibility.Hidden;
             _window.BtnItemSzukaj.Visibility = Visibility.Visible;
+            _window.BtnItemUsun.Visibility = Visibility.Hidden;
         }
 
         public void ShowItemsModify()
@@ -486,6 +520,7 @@ namespace Client.Controller
             _window.BtnItemDodaj.Visibility = Visibility.Hidden;
             _window.BtnItemModyfikuj.Visibility = Visibility.Visible;
             _window.BtnItemSzukaj.Visibility = Visibility.Hidden;
+            _window.BtnItemUsun.Visibility = Visibility.Hidden;
         }
 
         public void ShowItemsAdd()
@@ -510,10 +545,14 @@ namespace Client.Controller
             _window.BtnItemDodaj.Visibility = Visibility.Visible;
             _window.BtnItemModyfikuj.Visibility = Visibility.Hidden;
             _window.BtnItemSzukaj.Visibility = Visibility.Hidden;
+            _window.BtnItemUsun.Visibility = Visibility.Hidden;
         }
 
         public void ShowItemsAll()
         {
+            IWork work = ItemsController.GetInstance(_window);
+            work.GetData();
+
             _window.ChbItemCena.Visibility = Visibility.Hidden;
             _window.ChbItemIlosc.Visibility = Visibility.Hidden;
             _window.ChbItemKategoria.Visibility = Visibility.Hidden;
@@ -534,99 +573,31 @@ namespace Client.Controller
             _window.BtnItemDodaj.Visibility = Visibility.Hidden;
             _window.BtnItemModyfikuj.Visibility = Visibility.Hidden;
             _window.BtnItemSzukaj.Visibility = Visibility.Hidden;
+            _window.BtnItemUsun.Visibility = Visibility.Hidden;
         }
 
         public void ChangeItemData()
         {
-            int quantity;
-            decimal price;
-            int id = ((Artykul)_window.DgItemLista.SelectedItem).idArtykulu;
-            if (_window.TxbItemINazwa.Text.Length > 5 &&
-                Int32.TryParse(_window.TxbItemIlosc.Text, out quantity) &&
-                Decimal.TryParse(_window.TxbItemCenaMin.Text, out price) &&
-                _window.CmbItemKategoria.SelectedIndex >= 0)
-            {
-                if (_comm.ChangeItem(new Artykul() { idArtykulu = id, Cena = price, Ilosc = quantity, Nazwa = _window.TxbItemINazwa.Text, idKategorii = (int)((ComboBoxItem)_window.CmbItemKategoria.SelectedItem).Tag, Kategorie = new Kategoria() { idKategorii = (int)((ComboBoxItem)_window.CmbItemKategoria.SelectedItem).Tag, Nazwa = (String)((ComboBoxItem)_window.CmbItemKategoria.SelectedItem).Content } }))
-                {
-                    GetItemData();
-                }
-            }
+            IWork work = ItemsController.GetInstance(_window);
+            work.ChangeData();
         }
 
         public void SetItemData()
         {
-            int quantity;
-            decimal price;
-            if (_window.TxbItemINazwa.Text.Length > 5 &&
-                 Int32.TryParse(_window.TxbItemIlosc.Text, out quantity) &&
-                 Decimal.TryParse(_window.TxbItemCenaMin.Text, out price) &&
-                 _window.CmbItemKategoria.SelectedIndex >= 0)
-            {
-                if (_comm.RegisterItem(new Artykul() { Cena = price, Ilosc = quantity, Nazwa = _window.TxbItemINazwa.Text, idKategorii = (int)((ComboBoxItem)_window.CmbItemKategoria.SelectedItem).Tag, Kategorie = new Kategoria() { idKategorii = (int)((ComboBoxItem)_window.CmbItemKategoria.SelectedItem).Tag, Nazwa = (String)((ComboBoxItem)_window.CmbItemKategoria.SelectedItem).Content } }))
-                {
-                    GetItemData();
-                }
-            }
+            IWork work = ItemsController.GetInstance(_window);
+            work.AddData();
         }
 
         public void SearchItems()
         {
-            List<Artykul> list = new List<Artykul>();
-            for (int i = 0; i < _window.DgItemLista.Items.Count; i++)
-                list.Add((Artykul)_window.DgItemLista.Items.GetItemAt(i));
-            _window.DgItemLista.Items.Clear();
-            //1
-            if (_window.ChbItemCena.IsChecked == true)
-            {
-                for (int i = 0; i < list.Count; i++)
-                {
-                    if (list[i].Cena < Decimal.Parse(_window.TxbItemCenaMin.Text) || list[i].Cena > Decimal.Parse(_window.TxbItemCenaMax.Text))
-                        list.Remove(list[i]);
-                }
-            }
-            //2
-            if (_window.ChbItemIlosc.IsChecked == true)
-            {
-                for (int i = 0; i < list.Count; i++)
-                {
-                    if (list[i].Ilosc > Int32.Parse(_window.TxbItemIlosc.Text))
-                        list.Remove(list[i]);
-                }
-            }
-            //3
-            if (_window.ChbItemKategoria.IsChecked == true)
-            {
-                for (int i = 0; i < list.Count; i++)
-                {
-                    //TODO
-                    if (list[i].idKategorii != (int)((ComboBoxItem)_window.CmbItemKategoria.SelectedItem).Tag)
-                        list.Remove(list[i]);
-                }
-            }
-            //4
-            if (_window.ChbItemNazwa.IsChecked == true)
-            {
-                for (int i = 0; i < list.Count; i++)
-                {
-                    if (!(list[i].Nazwa.ToLower().Contains(_window.TxbItemINazwa.Text.ToLower())))
-                        list.Remove(list[i]);
-                }
-            }
-            ShowItemData(list);
+            IWork work = ItemsController.GetInstance(_window);
+            work.SearchData();           
         }
 
         public void GetItemData()
         {
-            Task<IEnumerable<Artykul>>.Factory.StartNew(() =>
-            {
-                return _comm.GetItems();
-            }).ContinueWith(x =>
-            {
-                Task.Factory.StartNew(() =>
-                {
-                    ShowItemData(x.Result);
-                });
-            });
+            IWork work = ItemsController.GetInstance(_window);
+            work.GetData();
         }
 
         public void ShowItemData(IEnumerable<Artykul> categories)

@@ -254,6 +254,8 @@
                     <CheckBox x:Name="ChbItemIlosc" Content="" Canvas.Left="504" Canvas.Top="133" />
                     <CheckBox x:Name="ChbItemNazwa" Content="" Canvas.Left="504" Canvas.Top="70" RenderTransformOrigin="0.4,0.6" />
                     <TextBox x:Name="TxbItemCenaMax" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Canvas.Left="504" Canvas.Top="100" />
+                    <RadioButton x:Name="RbItemUsun" GroupName="gn" Content="Usuń" Canvas.Left="10" Canvas.Top="35" Checked="RbItemUsun_Checked" />
+                    <Button x:Name="BtnItemUsun" Content="Usuń" Canvas.Left="480" Canvas.Top="175" Width="75" Click="BtnItemUsun_Click" />
                 </Canvas>
             </TabItem>
             <TabItem x:Name="TabEmployees" Header="Pracownicy">

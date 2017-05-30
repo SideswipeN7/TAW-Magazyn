@@ -4,7 +4,9 @@ using Client.Windows;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
+using System.Linq;
 
 namespace Client.Controller
 {
@@ -13,14 +15,15 @@ namespace Client.Controller
         private static ItemsController _instance;
         private Admin _window { get; set; }
         private ICommunication _comm;
-        private IEnumerable<Artykul> art;
+        private List<Artykul> art;
+        private List<Artykul> search = new List<Artykul>();
 
 
         private ItemsController()
         {
             _comm = Communicator.GetInstance();
-            _comm.SetUrlAddress("http://o1018869-001-site1.htempurl.com");
-            //_comm.SetUrlAddress("http://localhost:52992");
+            //_comm.SetUrlAddress("http://o1018869-001-site1.htempurl.com");
+            _comm.SetUrlAddress("http://localhost:52992");
         }
 
         public static ItemsController GetInstance(Admin window)
@@ -35,63 +38,159 @@ namespace Client.Controller
 
         public void AddData()
         {
-            int quantity;
-            decimal price;
-            if (_window.TxbItemINazwa.Text.Length > 5 &&
-                 Int32.TryParse(_window.TxbItemIlosc.Text, out quantity) &&
-                 Decimal.TryParse(_window.TxbItemCenaMin.Text, out price) &&
-                 _window.CmbItemKategoria.SelectedIndex >= 0)
+            try
             {
-                if (_comm.RegisterItem(new Artykul() { Cena = price, Ilosc = quantity, Nazwa = _window.TxbItemINazwa.Text, idKategorii = (int)((ComboBoxItem)_window.CmbItemKategoria.SelectedItem).Tag, Kategorie = new Kategoria() { idKategorii = (int)((ComboBoxItem)_window.CmbItemKategoria.SelectedItem).Tag, Nazwa = (String)((ComboBoxItem)_window.CmbItemKategoria.SelectedItem).Content } }))
+                int quantity;
+                decimal price;
+                if (_window.TxbItemINazwa.Text.Length < 5)
                 {
-                    GetData();
+                    MessageBox.Show("Nazwa zbyt krótka zbyt krótkie", "Bład", MessageBoxButton.OK);
                 }
+                else
+                if (!Int32.TryParse(_window.TxbItemIlosc.Text, out quantity))
+                {
+                    MessageBox.Show("Zły format ilości", "Bład", MessageBoxButton.OK);
+                }
+                else
+                if (!Decimal.TryParse(_window.TxbItemCenaMin.Text, out price))
+                {
+                    MessageBox.Show("Zły format Ceny", "Bład", MessageBoxButton.OK);
+                }
+                else
+                if (_window.CmbItemKategoria.SelectedIndex < 0)
+                {
+                    MessageBox.Show("Bład wyboru kategori", "Bład", MessageBoxButton.OK);
+                }
+                else
+                {
+                    Artykul artykul = new Artykul()
+                    {
+                        Cena = price,
+                        Ilosc = quantity,
+                        Nazwa = _window.TxbItemINazwa.Text,
+                        idKategorii = ((Kategoria)((ComboBoxItem)_window.CmbItemKategoria.SelectedItem).Tag).idKategorii,
+                        Kategorie = new Kategoria()
+                        {
+                            idKategorii = ((Kategoria)((ComboBoxItem)_window.CmbItemKategoria.SelectedItem).Tag).idKategorii,
+                            Nazwa = (String)((ComboBoxItem)_window.CmbItemKategoria.SelectedItem).Content
+                        }
+                    };
+                    Task.Factory.StartNew(() =>
+                    {
+                        _comm.RegisterItem(artykul);
+                    }).ContinueWith(x =>
+                    Task.Factory.StartNew(() =>
+                    {
+                        GetData();
+                    }));
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error in Item Controller AddData: {ex}");
             }
         }
 
         public void ChangeData()
         {
-            int quantity;
-            decimal price;
-            int id = ((Artykul)_window.DgItemLista.SelectedItem).idArtykulu;
-            if (_window.TxbItemINazwa.Text.Length > 5 &&
-                Int32.TryParse(_window.TxbItemIlosc.Text, out quantity) &&
-                Decimal.TryParse(_window.TxbItemCenaMin.Text, out price) &&
-                _window.CmbItemKategoria.SelectedIndex >= 0)
+            try
             {
-                if (_comm.ChangeItem(new Artykul() { idArtykulu = id, Cena = price, Ilosc = quantity, Nazwa = _window.TxbItemINazwa.Text, idKategorii = (int)((ComboBoxItem)_window.CmbItemKategoria.SelectedItem).Tag, Kategorie = new Kategoria() { idKategorii = (int)((ComboBoxItem)_window.CmbItemKategoria.SelectedItem).Tag, Nazwa = (String)((ComboBoxItem)_window.CmbItemKategoria.SelectedItem).Content } }))
+                int quantity;
+                decimal price;
+                if (_window.TxbItemINazwa.Text.Length < 5)
                 {
-                    GetData();
+                    MessageBox.Show("Nazwa zbyt krótka zbyt krótkie", "Bład", MessageBoxButton.OK);
+                }
+                else
+                if (!Int32.TryParse(_window.TxbItemIlosc.Text, out quantity))
+                {
+                    MessageBox.Show("Zły format ilości", "Bład", MessageBoxButton.OK);
+                }
+                else
+                if (!Decimal.TryParse(_window.TxbItemCenaMin.Text, out price))
+                {
+                    MessageBox.Show("Zły format Ceny", "Bład", MessageBoxButton.OK);
+                }
+                else
+                if (_window.CmbItemKategoria.SelectedIndex < 0)
+                {
+                    MessageBox.Show("Bład wyboru kategori", "Bład", MessageBoxButton.OK);
+                }
+                else
+                {
+                    Artykul artykul = new Artykul()
+                    {
+                        idArtykulu = ((Artykul)_window.DgItemLista.SelectedItem).idArtykulu,
+                        Cena = price,
+                        Ilosc = quantity,
+                        Nazwa = _window.TxbItemINazwa.Text,
+                        idKategorii = ((Kategoria)((ComboBoxItem)_window.CmbItemKategoria.SelectedItem).Tag).idKategorii,
+                        Kategorie = new Kategoria()
+                        {
+                            idKategorii = ((Kategoria)((ComboBoxItem)_window.CmbItemKategoria.SelectedItem).Tag).idKategorii,
+                            Nazwa = (String)((ComboBoxItem)_window.CmbItemKategoria.SelectedItem).Content
+                        }
+                    };
+                    Task.Factory.StartNew(() =>
+                    {
+                        _comm.ChangeItem(artykul);
+                    }).ContinueWith(x =>
+                    Task.Factory.StartNew(() =>
+                    {
+                        GetData();
+                    }));
                 }
             }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error in Item Controller ChangeData: {ex}");
+            }
+
         }
 
         public void DeleteData()
         {
-            if (_window.DgItemLista.SelectedIndex >= 0)
+            try
             {
-                _comm.DeleteItem(((Artykul)_window.DgItemLista.SelectedItem).idArtykulu);
-                GetData();
+                if (_window.DgItemLista.SelectedIndex >= 0)
+                {
+                    _comm.DeleteItem(((Artykul)_window.DgItemLista.SelectedItem).idArtykulu);
+                    GetData();
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error in Item Controller DeleteData: {ex}");
             }
         }
 
         public void ShowData()
         {
-            _window.Dispatcher.BeginInvoke(new Action(() =>
+            try
             {
-                // _window.CmbCategoryId.Items.Clear();
-                foreach (Artykul r in art)
+                _window.Dispatcher.BeginInvoke(new Action(() =>
                 {
-                    _window.DgItemLista.Items.Add(r);
-                }
-            }));
+                    _window.DgItemLista.Items.Clear();
+
+                    foreach (Artykul r in art)
+                    {
+                        _window.DgItemLista.Items.Add(r);
+                    }
+
+
+                }));
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error in Item Controller ShowData: {ex}");
+            }
         }
 
         public void ShowSelectedData()
         {
-            if (_window.DgItemLista.SelectedIndex >= 0)
+            try
             {
-                try
+                if (_window.DgItemLista.SelectedIndex >= 0)
                 {
                     for (int i = 0; i < _window.CmbItemKategoria.Items.Count; i++)
                     {
@@ -100,31 +199,136 @@ namespace Client.Controller
                             _window.CmbItemKategoria.SelectedIndex = i;
                         }
                     }
-                    //_window.CmbItemKategoria.SelectedItem = new ComboBoxItem() { Content = ((Artykul)_window.DgItemLista.SelectedItem).Kategorie.Nazwa, Tag = ((Artykul)_window.DgItemLista.SelectedItem).Kategorie };
                     _window.TxbItemCenaMin.Text = ((Artykul)_window.DgItemLista.SelectedItem).Cena + "";
                     _window.TxbItemIlosc.Text = ((Artykul)_window.DgItemLista.SelectedItem).Ilosc + "";
                     _window.TxbItemINazwa.Text = ((Artykul)_window.DgItemLista.SelectedItem).Nazwa;
                 }
-                catch (Exception ex)
-                {
-                    System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}ERROR: {ex}");
-                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error in Item Controller ShowSelectedData: {ex}");
             }
         }
 
         public void GetData()
         {
-            Task<IEnumerable<Artykul>>.Factory.StartNew(() =>
+            try
             {
-                return _comm.GetItems();
-            }).ContinueWith(x =>
+                Task<IEnumerable<Artykul>>.Factory.StartNew(() =>
+                {
+                    return _comm.GetItems();
+                }).ContinueWith(x =>
+                {
+                    Task.Factory.StartNew(() =>
+                    {
+                        art = x.Result.ToList();
+                        _window.Dispatcher.BeginInvoke(new Action(() =>
+                        {
+                            if (_window.RbItemSzukaj.IsChecked == false)
+                                ShowData();
+                        }));
+                    });
+                });
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error in Item Controller GetData: {ex}");
+            }
+        }
+
+        public void SearchData()
+        {
+            try
             {
                 Task.Factory.StartNew(() =>
                 {
-                    art = x.Result;
-                    ShowData();
-                });
-            });
+                    GetData();
+                }).ContinueWith(x =>
+                Task.Factory.StartNew(() =>
+                {
+                    _window.Dispatcher.BeginInvoke(new Action(() =>
+                    {
+                        List<Artykul> list = new List<Artykul>();
+                        //1
+                        if (_window.ChbItemCena.IsChecked == true)
+                        {
+                            decimal max, min;
+                            if (_window.TxbItemCenaMin.Text.Length == 0)
+                                _window.TxbItemCenaMin.Text = "0";
+                                if (_window.TxbItemCenaMax.Text.Length==0)
+                                _window.TxbItemCenaMax.Text = "9999";
+                            if (!Decimal.TryParse(_window.TxbItemCenaMin.Text, out min))
+                            {
+                                MessageBox.Show("Zły format Ceny Minimalnej", "Bład", MessageBoxButton.OK);
+                            }
+                            else
+                            if (!Decimal.TryParse(_window.TxbItemCenaMax.Text, out max))
+                            { MessageBox.Show("Zły format Ceny Maksymalnej", "Bład", MessageBoxButton.OK); }
+                            else
+                            {
+                                foreach (Artykul a in art)
+                                {
+                                    if (a.Cena < min || a.Cena > max)
+                                    {
+                                        list.Add(a);
+                                    }
+                                }
+                            }
+
+                        }
+                        //2
+                        if (_window.ChbItemIlosc.IsChecked == true)
+                        {
+                            decimal ilosc;
+                            if (Decimal.TryParse(_window.TxbItemCenaMin.Text, out ilosc))
+                            {
+                                foreach (Artykul a in art)
+                                {
+                                    if (a.Ilosc > ilosc)
+                                    {
+                                        list.Add(a);
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("Zły format Ceny", "Bład", MessageBoxButton.OK);
+                            }
+                        }
+                        //3
+                        if (_window.ChbItemKategoria.IsChecked == true)
+                        {
+                            foreach (Artykul a in art)
+                            {
+                                if (a.idKategorii != ((Kategoria)((ComboBoxItem)_window.CmbItemKategoria.SelectedItem).Tag).idKategorii)
+                                {
+                                    list.Add(a);
+                                }
+                            }
+                        }
+                        //4
+                        if (_window.ChbItemNazwa.IsChecked == true)
+                        {
+                            foreach (Artykul a in art)
+                            {
+                                if (!a.Nazwa.ToLower().Contains(_window.TxbItemINazwa.Text.ToLower()))
+                                {
+                                    list.Add(a);
+                                }
+                            }
+                        }
+                        foreach (Artykul a in list)
+                            art.RemoveAll(ar => ar.idArtykulu == a.idArtykulu);
+                        ShowData();
+
+                    }));
+
+                }));
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error in Item Controller SearchData: {ex}");
+            }
         }
     }
 }

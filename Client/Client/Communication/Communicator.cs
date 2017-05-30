@@ -394,12 +394,21 @@ namespace Client.Communication
 
         public void DeleteItem(int idArtykulu)
         {
-            string baseUrl = $"{urlAddress}/api/Items" + idArtykulu; ;
-            var client = new RestClient(baseUrl);
-            var request = new RestRequest(Method.DELETE);
-            request.AddHeader("cache-control", "no-cache");
-            request.AddHeader("content-type", "application/json");
-            client.Execute(request);
+            try
+            {
+                string baseUrl = $"{urlAddress}/api/Item/{idArtykulu}";
+                var client = new RestClient(baseUrl);
+                var request = new RestRequest(Method.DELETE);
+                request.AddHeader("cache-control", "no-cache");
+
+                client.Execute(request);
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}Exception in DeleteItem{Environment.NewLine}{ex}{Environment.NewLine}");
+               
+            }
+
         }
     }
 }
