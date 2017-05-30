@@ -17,8 +17,8 @@ namespace WebServer.Controllers
         [ActionName("GetItems")]
         public IQueryable<Artykul> GetItems()
         {
-            IQueryable<Artykul> art= db.Artykuly;
-            foreach(Artykul a in art)
+            IQueryable<Artykul> art = db.Artykuly;
+            foreach (Artykul a in art)
             {
                 a.Kategorie = db.Kategorie.FirstOrDefault(x => x.idKategorii == a.idKategorii);
             }
@@ -75,6 +75,24 @@ namespace WebServer.Controllers
                 }
             }
             return StatusCode(HttpStatusCode.Conflict);
+        }
+
+
+        [HttpDelete]
+        [ActionName("DeleteItem")]
+        [ResponseType(typeof(Artykul))]
+        public IHttpActionResult DeleteItem(int id)
+        {
+            Artykul pracownik = db.Artykuly.Find(id);
+            if (pracownik == null)
+            {
+                return NotFound();
+            }
+
+            db.Artykuly.Remove(pracownik);
+            db.SaveChanges();
+
+            return Ok(pracownik);
         }
     }
 }
