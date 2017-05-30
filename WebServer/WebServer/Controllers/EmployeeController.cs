@@ -75,8 +75,8 @@ namespace WebServer.Controllers
 
         [HttpPut]
         [ActionName("ModifyEmployee")]
-        [ResponseType(typeof(void))]
-        public bool ModifyEmployee(PracownikAdress adres)
+        [ResponseType(typeof(bool))]
+        public bool PutEmployee(PracownikAdress adres)
         {
             if (!ModelState.IsValid)
             {
@@ -84,8 +84,20 @@ namespace WebServer.Controllers
             }
             try
             {
-                db.Entry(adres.Adres).State = EntityState.Modified;
-                db.Entry(adres.Pracownik).State = EntityState.Modified;
+                Pracownik p = db.Pracownicy.FirstOrDefault(x => x.idPracownika == adres.Pracownik.idPracownika);
+                Adres a = db.Ksiazka_adresow.FirstOrDefault(x => x.idAdresu == adres.Adres.idAdresu);
+                a.Kod_pocztowy = adres.Adres.Kod_pocztowy;
+                a.Miejscowosc = adres.Adres.Miejscowosc;
+                a.Wojewodztwo = adres.Adres.Wojewodztwo;
+
+                p.Imie = adres.Pracownik.Imie;
+                p.Login = adres.Pracownik.Login;
+                p.Nazwisko = adres.Pracownik.Nazwisko;
+                p.Sudo = adres.Pracownik.Sudo;
+                p.Wiek = adres.Pracownik.Wiek;
+
+                db.Entry(a).State = EntityState.Modified;
+                db.Entry(p).State = EntityState.Modified;
                 db.SaveChanges();
                 return true;
             }
