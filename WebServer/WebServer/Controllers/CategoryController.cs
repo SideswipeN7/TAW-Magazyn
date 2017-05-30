@@ -72,22 +72,22 @@ namespace WebServer.Controllers
             }
         }
 
-        //[HttpDelete]
-        //[ActionName("DeleteCategory")]
-        //[ResponseType(typeof(HttpStatusCode))]
-        //public HttpStatusCode DeleteCategory(Kategoria category)
-        //{
-        //    try
-        //    {
-        //        db.Kategorie.Remove(category);
-        //        db.SaveChanges();
-        //        return HttpStatusCode.Gone;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return HttpStatusCode.NotModified;
-        //    }
-        //}
+        [HttpDelete]
+        [ActionName("DeleteCategory")]
+        [ResponseType(typeof(HttpStatusCode))]
+        public HttpStatusCode DeleteCategory(Kategoria category)
+        {
+            try
+            {
+                db.Kategorie.Remove(category);
+                db.SaveChanges();
+                return HttpStatusCode.Gone;
+            }
+            catch (Exception ex)
+            {
+                return HttpStatusCode.NotModified;
+            }
+        }
 
         [HttpDelete]
         [ActionName("DeleteCategory")]
