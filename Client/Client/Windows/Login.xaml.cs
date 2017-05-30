@@ -1,12 +1,10 @@
-﻿using System.Windows;
+﻿using Client.Model;
+using Newtonsoft.Json;
+using PluginExecutor;
 using System;
 using System.IO;
 using System.Reflection;
-using PluginExecutor;
-using Newtonsoft.Json;
-using Client.Model;
-
-
+using System.Windows;
 
 namespace Client.Windows
 {
@@ -15,7 +13,8 @@ namespace Client.Windows
     /// </summary>
     public partial class Login : Window
     {
-        bool show =false;
+        private bool show = false;
+
         public Login()
         {
             InitializeComponent();
@@ -80,6 +79,7 @@ namespace Client.Windows
                 case false:
                     ShowPasswordChars();
                     break;
+
                 case true:
 
                     HidePasswordChars();
@@ -112,4 +112,5 @@ namespace Client.Windows
         {
             txbPassword.Password = txtPassword.Text;
         }
-    } }
+    }
+}

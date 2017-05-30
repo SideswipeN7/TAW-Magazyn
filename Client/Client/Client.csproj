@@ -106,9 +106,12 @@
     <Compile Include="Controller\CategoryController.cs" />
     <Compile Include="Controller\ClientsController.cs" />
     <Compile Include="Controller\EmployeeController.cs" />
+    <Compile Include="Facture\Facture.cs" />
+    <Compile Include="Facture\IFacture.cs" />
     <Compile Include="Controller\IManager.cs" />
     <Compile Include="Controller\ItemsController.cs" />
     <Compile Include="Controller\IWork.cs" />
+    <Compile Include="Controller\MagazineController.cs" />
     <Compile Include="Controller\Manager.cs" />
     <Compile Include="Controller\TransactionController.cs" />
     <Compile Include="Model\KlientAdress.cs" />
@@ -175,6 +178,9 @@
       <Project>{8d80d14a-3242-4bdb-ac4e-bfeaa38b528e}</Project>
       <Name>PluginExecutor</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Adapter\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

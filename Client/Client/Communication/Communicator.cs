@@ -1,15 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using Client.Model;
-using RestSharp;
+﻿using Client.Model;
 using Newtonsoft.Json;
+using RestSharp;
+using System;
+using System.Collections.Generic;
 using System.Net;
+
 namespace Client.Communication
 {
     public sealed class Communicator : ICommunication
     {
         private static Communicator _instance;
-        private Communicator() { }
+
+        private Communicator()
+        {
+        }
+
         public static Communicator GetInstance()
         {
             if (_instance == null)
@@ -19,8 +24,8 @@ namespace Client.Communication
             return _instance;
         }
 
+        private string urlAddress;
 
-        string urlAddress;
         public void SetUrlAddress(string URL)
         {
             urlAddress = URL;
@@ -218,7 +223,6 @@ namespace Client.Communication
             catch
             {
                 System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}Exception in RegisterCategory");
-
             }
             return false;
         }
@@ -231,7 +235,7 @@ namespace Client.Communication
                 var client = new RestClient(baseUrl);
                 var request = new RestRequest(Method.POST);
                 request.AddHeader("cache-control", "no-cache");
-                request.AddHeader("content-type", "application/json");                
+                request.AddHeader("content-type", "application/json");
                 //request.AddJsonBody(klient);
                 request.AddJsonBody(adres);
                 System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}Request: {request.ToString()}{Environment.NewLine}");
@@ -240,7 +244,7 @@ namespace Client.Communication
                 if (response.StatusCode.Equals(HttpStatusCode.Created)) return Int32.Parse(response.Content);
                 if (response.StatusCode.Equals(HttpStatusCode.Conflict)) return 0;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}Exception in RegisterClient{Environment.NewLine}{ex}{Environment.NewLine}");
                 return 0;
@@ -308,7 +312,6 @@ namespace Client.Communication
                 System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}Exception in RegisterTransaction");
                 return 0;
             }
-
         }
 
         public bool RegisterTransItems(IEnumerable<Artykul_w_transakcji> artykul_w_transkacji)
@@ -342,18 +345,15 @@ namespace Client.Communication
             var client = new RestClient(baseUrl);
             var request = new RestRequest(Method.DELETE);
             request.AddHeader("cache-control", "no-cache");
-            request.AddHeader("content-type", "application/json");
             client.Execute(request);
-
         }
 
         public void DeleteClient(int id)
         {
-            string baseUrl = $"{urlAddress}/api/Clients" + id; ;
+            string baseUrl = $"{urlAddress}/api/Clients/{id}";
             var client = new RestClient(baseUrl);
             var request = new RestRequest(Method.DELETE);
             request.AddHeader("cache-control", "no-cache");
-            request.AddHeader("content-type", "application/json");
             client.Execute(request);
         }
 
@@ -361,21 +361,24 @@ namespace Client.Communication
         {
             string baseUrl = $"{urlAddress}/api/Employee";
             var client = new RestClient(baseUrl);
-            var request = new RestRequest(Method.PUT);
+            var request = new RestRequest();
+            request.Method = Method.PUT;
+            
+            System.Diagnostics.Debug.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(adres));
             request.AddHeader("cache-control", "no-cache");
             request.AddHeader("content-type", "application/json");
-  
+
             request.AddJsonBody(adres);
             client.Execute(request);
         }
 
         public void DeleteEmployee(int idPracownika)
         {
-            string baseUrl = $"{urlAddress}/api/Employee" + idPracownika;
+            string baseUrl = $"{urlAddress}/api/Employee/{idPracownika}";
             var client = new RestClient(baseUrl);
             var request = new RestRequest(Method.DELETE);
             request.AddHeader("cache-control", "no-cache");
-            request.AddHeader("content-type", "application/json");
+            //request.AddHeader("content-type", "application/json");
             client.Execute(request);
         }
 
@@ -388,6 +391,25 @@ namespace Client.Communication
             request.AddHeader("content-type", "application/json");
             IRestResponse response = client.Execute(request);
             return JsonConvert.DeserializeObject<IEnumerable<Pracownik>>(response.Content);
+        }
+
+        public void DeleteItem(int idArtykulu)
+        {
+            try
+            {
+                string baseUrl = $"{urlAddress}/api/Item/{idArtykulu}";
+                var client = new RestClient(baseUrl);
+                var request = new RestRequest(Method.DELETE);
+                request.AddHeader("cache-control", "no-cache");
+
+                client.Execute(request);
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}Exception in DeleteItem{Environment.NewLine}{ex}{Environment.NewLine}");
+               
+            }
+
         }
     }
 }

@@ -1,28 +1,24 @@
-﻿using NUnit.Framework;
-using Client.Communication;
+﻿using Client.Communication;
 using Client.Model;
-using System.Collections.Generic;
 using FluentAssertions;
-using PluginExecutor;
-
 using Newtonsoft.Json;
+using NUnit.Framework;
+using PluginExecutor;
+using System.Collections.Generic;
 
 namespace TDD_TEST
 {
-
     [TestFixture]
     public class UnitTest1
     {
+        private ICommunication comm;
 
-        ICommunication comm;
         [SetUp]
-
         public void Setup()
         {
             comm = Communicator.GetInstance();
             comm.SetUrlAddress("http://o1018869-001-site1.htempurl.com");
         }
-
 
         [Test]
         public void GetCategories()
@@ -141,7 +137,6 @@ namespace TDD_TEST
             }
         }
 
-
         [Test]
         [TestCaseSource(typeof(UnitTest1), nameof(UnitTest1.TestRegisterSupplyCases))]
         public void RegisterSupply(Dostawca dostawca)
@@ -159,8 +154,6 @@ namespace TDD_TEST
             }
         }
 
-
-
         [Test]
         [TestCaseSource(typeof(UnitTest1), nameof(UnitTest1.TestChangeAddressCases))]
         public void RegisterAddress(Adres adres)
@@ -171,7 +164,6 @@ namespace TDD_TEST
             {
                 result.ShouldBeEquivalentTo(1);
             }
-
             else result.Should().BeGreaterThan(0);
         }
 
@@ -208,9 +200,9 @@ namespace TDD_TEST
             {
                 result.ShouldBeEquivalentTo(1);
             }
-
             else result.Should().BeGreaterThan(0);
         }
+
         [Test]
         [TestCase("a", "b")]
         [TestCase("RogalDDL", "P@ssw0rd")]
@@ -247,8 +239,6 @@ namespace TDD_TEST
             }
         }
 
-
-
         //Test cases
         public static Kategoria[] TestChangeCategoryCases =
         {
@@ -266,8 +256,8 @@ namespace TDD_TEST
         {
             new Transakcja {idTransakcji = 2 , Data = new System.DateTime(2017,06,01,13,45,30), idKlienta = 1, idPracownika = 3, idDostawcy =1},
             new Transakcja {idTransakcji = 9999, Data = new System.DateTime(2017,06,01,13,45,30), idKlienta = 1, idPracownika = 3, idDostawcy =1}
-
         };
+
         public static Adres[] TestChangeAddressCases =
         {
             new Adres { idAdresu = 1, Miejscowosc = "Czeladz", Kod_pocztowy = "41-250", Wojewodztwo = "Slaskie" },
@@ -278,16 +268,12 @@ namespace TDD_TEST
         {
             new Dostawca { idDostawcy = 1, Nazwa = "Kuriers"},
             new Dostawca { idDostawcy= 999, Nazwa="999"}
-
         };
 
         public static Klient[] TestChangeClientCases =
         {
             new Klient { idKlienta = 1, Imie ="Mariusz", Nazwisko ="Cebula", Nazwa_firmy = "Cebulex", idAdresu = 3 },
             new Klient { idKlienta = 999, Imie ="Test", Nazwisko ="Test", Nazwa_firmy = "Test", idAdresu = 3 }
-
-
         };
-
     }
 }
