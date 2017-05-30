@@ -1516,163 +1516,36 @@ namespace Client.Controller
         {
             IWork work = EmployeeController.GetInstance(_window);
             work.AddData();
-            //int wiek;
-            //if (_window.TxbEmployeeHaslo.Text.Length > 5
-            //    && _window.TxbEmployeeLogin.Text.Length > 5
-            //    && _window.TxbEmployeeImie.Text.Length > 5
-            //    && _window.TxbEmployeeNazwisko.Text.Length > 5
-            //    && _window.TxbEmployeeMiejscowosc.Text.Length > 5
-            //    && _window.TxbEmployeeKodPocztowy.Text.Length == 6
-            //    && Int32.TryParse(_window.TxbEmployeeWiek.Text, out wiek)
-            //    && _window.CmbEmployeeAdmin.SelectedIndex > 0
-            //    && _window.CmbEmployeeWojewodztwo.SelectedIndex >= 0)
-            //{
-            //    Pracownik pracownik = new Pracownik()
-            //    {
-            //        Haslo = _window.TxbEmployeeHaslo.Text,
-            //        Imie = _window.TxbEmployeeImie.Text,
-            //        Login = _window.TxbEmployeeLogin.Text,
-            //        Nazwisko = _window.TxbEmployeeNazwisko.Text,
-            //        Sudo = (int)((ComboBoxItem)_window.CmbEmployeeAdmin.SelectedItem).Tag,
-            //        Wiek = wiek
-            //    };
-            //    Adres adres = new Adres()
-            //    {
-            //        Kod_pocztowy = _window.TxbEmployeeKodPocztowy.Text,
-            //        Miejscowosc = _window.TxbEmployeeMiejscowosc.Text,
-            //        Wojewodztwo = _window.CmbEmployeeWojewodztwo.SelectedItem + ""
-            //    };
-
-
-            //    Task<bool>.Factory.StartNew(() =>
-            //    {
-            //        return _comm.RegisterEmployee(new PracownikAdress() { Pracownik = pracownik, Adres = adres }); ;
-            //    }).ContinueWith(x =>
-            //        Task.Factory.StartNew(() =>
-            //        {
-            //            GetEmployeeData();
-            //        }));
-            //}
-
         }
 
         public void ChangeEmployeeData()
         {
             IWork work = EmployeeController.GetInstance(_window);
-            work.ChangeDate();
-            //int wiek;
-            //if (_window.DgEmployeesList.SelectedIndex >= 0
-            //    && _window.TxbEmployeeHaslo.Text.Length > 5
-            //    && _window.TxbEmployeeLogin.Text.Length > 5
-            //    && _window.TxbEmployeeImie.Text.Length > 5
-            //    && _window.TxbEmployeeNazwisko.Text.Length > 5
-            //    && _window.TxbEmployeeMiejscowosc.Text.Length > 5
-            //    && _window.TxbEmployeeKodPocztowy.Text.Length == 6
-            //    && Int32.TryParse(_window.TxbEmployeeWiek.Text, out wiek)
-            //    && _window.CmbEmployeeAdmin.SelectedIndex > 0
-            //    && _window.CmbEmployeeWojewodztwo.SelectedIndex >= 0)
-            //{
-            //    Pracownik pracownik = new Pracownik()
-            //    {
-            //        idPracownika = ((Pracownik)_window.DgEmployeesList.SelectedItem).idPracownika,
-            //        Haslo = _window.TxbEmployeeHaslo.Text,
-            //        Imie = _window.TxbEmployeeImie.Text,
-            //        Login = _window.TxbEmployeeLogin.Text,
-            //        Nazwisko = _window.TxbEmployeeNazwisko.Text,
-            //        Sudo = (int)((ComboBoxItem)_window.CmbEmployeeAdmin.SelectedItem).Tag,
-            //        Wiek = wiek
-            //    };
-            //    Adres adres = new Adres()
-            //    {
-            //        Kod_pocztowy = _window.TxbEmployeeKodPocztowy.Text,
-            //        Miejscowosc = _window.TxbEmployeeMiejscowosc.Text,
-            //        Wojewodztwo = _window.CmbEmployeeWojewodztwo.SelectedItem + ""
-            //    };
-
-            //    Task.Factory.StartNew(() =>
-            //    {
-            //        _comm.ModifyEmployee(new PracownikAdress() { Pracownik = pracownik, Adres = adres });
-            //    }).ContinueWith(x=>
-            //        Task.Factory.StartNew(() =>
-            //        {
-            //            GetEmployeeData();
-            //        }));
-
-            //}
+            work.ChangeData();
+         
         }
 
         public void GetEmployeeData()
         {
             IWork work = EmployeeController.GetInstance(_window);
             work.GetData();
-
-            //Task<IEnumerable<Pracownik>>.Factory.StartNew(() =>
-            //{
-            //    return _comm.GetEmpoyees();
-            //}).ContinueWith(x =>
-            //{
-            //    Task.Factory.StartNew(() =>
-            //    {
-            //        ShowEmployeeData(x.Result);
-            //    });
-            //});
         }
 
         internal void ShowEmployee()
         {
             IWork work = EmployeeController.GetInstance(_window);
-            work.ShowSelectedData();
-            //if (_window.DgEmployeesList.SelectedIndex >= 0)
-            //{
-            //    try
-            //    {
-            //        Pracownik pracownik = (Pracownik)_window.DgEmployeesList.SelectedItem;
-            //        _window.TxbEmployeeHaslo.Text = "*********";
-            //        _window.TxbEmployeeLogin.Text = pracownik.Login;
-            //        _window.TxbEmployeeImie.Text = pracownik.Imie;
-            //        _window.TxbEmployeeNazwisko.Text = pracownik.Nazwisko;
-            //        _window.TxbEmployeeMiejscowosc.Text = pracownik.Ksiazka_adresow.Miejscowosc;
-            //        _window.TxbEmployeeKodPocztowy.Text = pracownik.Ksiazka_adresow.Kod_pocztowy;
-            //        _window.TxbEmployeeWiek.Text = pracownik.Wiek + "";
-            //        if (pracownik.Sudo == 0)
-            //        {
-            //            _window.CmbEmployeeAdmin.SelectedIndex = 0;
-            //        }
-            //        if (pracownik.Sudo == 1)
-            //        {
-            //            _window.CmbEmployeeAdmin.SelectedIndex = 1;
-            //        }
-            //        _window.CmbEmployeeWojewodztwo.SelectedItem = pracownik.Ksiazka_adresow.Wojewodztwo;
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}ERROR: {ex}");
-            //    }
-            //}
+            work.ShowSelectedData();           
         }
 
         public void ShowEmployeeData(IEnumerable<Pracownik> empolyees)
         {
-            //_window.Dispatcher.BeginInvoke(new Action(() =>
-            //{
-            //    _window.DgEmployeesList.Items.Clear();
-            //    foreach (Pracownik p in empolyees)
-            //    {
-            //        _window.DgEmployeesList.Items.Add(p);
-            //    }
-            //}));
-
+            //TODELETE
         }
 
         internal void DeleteEmployee()
         {
             IWork work = EmployeeController.GetInstance(_window);
             work.DeleteData();
-            //if (_window.DgEmployeesList.SelectedIndex >= 0)
-            //{
-            //    _comm.DeleteEmployee(((Pracownik)_window.DgEmployeesList.SelectedItem).idPracownika);
-            //    GetEmployeeData();
-            //}
         }
 
         internal void ShowPassword()

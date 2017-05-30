@@ -13,6 +13,11 @@ namespace Client.Controller
             throw new NotImplementedException();
         }
 
+        public void ChangeData()
+        {
+            throw new NotImplementedException();
+        }
+
         public void ChangeDate()
         {
             throw new NotImplementedException();
@@ -24,6 +29,11 @@ namespace Client.Controller
         }
 
         public void GetData()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SearchData()
         {
             throw new NotImplementedException();
         }

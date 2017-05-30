@@ -102,7 +102,7 @@ namespace Client.Controller
         }
 
         //Zmodyfikuj pracownika
-        public void ChangeDate()
+        public void ChangeData()
         {
             try
             {
