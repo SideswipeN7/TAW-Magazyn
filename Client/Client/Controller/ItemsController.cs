@@ -21,8 +21,8 @@ namespace Client.Controller
         private ItemsController()
         {
             _comm = Communicator.GetInstance();
-            //_comm.SetUrlAddress("http://o1018869-001-site1.htempurl.com");
-            _comm.SetUrlAddress("http://localhost:52992");
+            _comm.SetUrlAddress("http://c414305-001-site1.btempurl.com");
+            //_comm.SetUrlAddress("http://localhost:52992");
         }
 
         public static ItemsController GetInstance(Admin window)
