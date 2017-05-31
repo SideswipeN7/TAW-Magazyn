@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="DB_A1D841_magazynModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="DB_A25DBA_magazynModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="Artykuly">
     <Key>
       <PropertyRef Name="idArtykulu" />
     </Key>
     <Property Name="idArtykulu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Nazwa" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="Nazwa" Type="nvarchar" MaxLength="45" Nullable="false" />
     <Property Name="Ilosc" Type="int" Nullable="false" />
     <Property Name="Cena" Type="decimal" Precision="8" Scale="2" Nullable="false" />
     <Property Name="idKategorii" Type="int" Nullable="false" />
@@ -24,23 +24,23 @@
       <PropertyRef Name="idDostawcy" />
     </Key>
     <Property Name="idDostawcy" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Nazwa" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="Nazwa" Type="nvarchar" MaxLength="45" Nullable="false" />
   </EntityType>
   <EntityType Name="Kategorie">
     <Key>
       <PropertyRef Name="idKategorii" />
     </Key>
     <Property Name="idKategorii" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Nazwa" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="Nazwa" Type="nvarchar" MaxLength="45" Nullable="false" />
   </EntityType>
   <EntityType Name="Klienci">
     <Key>
       <PropertyRef Name="idKlienta" />
     </Key>
     <Property Name="idKlienta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Nazwisko" Type="varchar" MaxLength="45" Nullable="false" />
-    <Property Name="Imie" Type="varchar" MaxLength="45" Nullable="false" />
-    <Property Name="Nazwa_firmy" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="Nazwisko" Type="nvarchar" MaxLength="45" Nullable="false" />
+    <Property Name="Imie" Type="nvarchar" MaxLength="45" Nullable="false" />
+    <Property Name="Nazwa_firmy" Type="nvarchar" MaxLength="45" Nullable="false" />
     <Property Name="idAdresu" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Ksiazka_adresow">
@@ -48,9 +48,9 @@
       <PropertyRef Name="idAdresu" />
     </Key>
     <Property Name="idAdresu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Miejscowosc" Type="varchar" MaxLength="45" Nullable="false" />
-    <Property Name="Kod_pocztowy" Type="varchar" MaxLength="45" Nullable="false" />
-    <Property Name="Wojewodztwo" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="Miejscowosc" Type="nvarchar" MaxLength="45" Nullable="false" />
+    <Property Name="Kod_pocztowy" Type="nvarchar" MaxLength="45" Nullable="false" />
+    <Property Name="Wojewodztwo" Type="nvarchar" MaxLength="45" Nullable="false" />
   </EntityType>
   <EntityType Name="Pracownicy">
     <Key>
@@ -171,7 +171,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="DB_A1D841_magazynModelStoreContainer">
+  <EntityContainer Name="DB_A25DBA_magazynModelStoreContainer">
     <EntitySet Name="Artykuly" EntityType="Self.Artykuly" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Artykuly_w_transakcji" EntityType="Self.Artykuly_w_transakcji" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Dostawcy" EntityType="Self.Dostawcy" Schema="dbo" store:Type="Tables" />

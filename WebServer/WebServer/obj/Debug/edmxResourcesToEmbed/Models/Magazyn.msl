@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="DB_A1D841_magazynModelStoreContainer" CdmEntityContainer="DB_A1D841_magazynEntities1">
+  <EntityContainerMapping StorageEntityContainer="DB_A25DBA_magazynModelStoreContainer" CdmEntityContainer="DB_A25DBA_magazynEntities">
     <EntitySetMapping Name="Artykuly">
-      <EntityTypeMapping TypeName="DB_A1D841_magazynModel.Artykul">
+      <EntityTypeMapping TypeName="DB_A25DBA_magazynModel.Artykul">
         <MappingFragment StoreEntitySet="Artykuly">
           <ScalarProperty Name="idArtykulu" ColumnName="idArtykulu" />
           <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
@@ -13,7 +13,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Artykuly_w_transakcji">
-      <EntityTypeMapping TypeName="DB_A1D841_magazynModel.Artykul_w_transakcji">
+      <EntityTypeMapping TypeName="DB_A25DBA_magazynModel.Artykul_w_transakcji">
         <MappingFragment StoreEntitySet="Artykuly_w_transakcji">
           <ScalarProperty Name="idArt_w_trans" ColumnName="idArt_w_trans" />
           <ScalarProperty Name="Cena" ColumnName="Cena" />
@@ -23,7 +23,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Dostawcy">
-      <EntityTypeMapping TypeName="DB_A1D841_magazynModel.Dostawca">
+      <EntityTypeMapping TypeName="DB_A25DBA_magazynModel.Dostawca">
         <MappingFragment StoreEntitySet="Dostawcy">
           <ScalarProperty Name="idDostawcy" ColumnName="idDostawcy" />
           <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
@@ -31,7 +31,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Kategorie">
-      <EntityTypeMapping TypeName="DB_A1D841_magazynModel.Kategoria">
+      <EntityTypeMapping TypeName="DB_A25DBA_magazynModel.Kategoria">
         <MappingFragment StoreEntitySet="Kategorie">
           <ScalarProperty Name="idKategorii" ColumnName="idKategorii" />
           <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
@@ -39,7 +39,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Klienci">
-      <EntityTypeMapping TypeName="DB_A1D841_magazynModel.Klient">
+      <EntityTypeMapping TypeName="DB_A25DBA_magazynModel.Klient">
         <MappingFragment StoreEntitySet="Klienci">
           <ScalarProperty Name="idKlienta" ColumnName="idKlienta" />
           <ScalarProperty Name="Nazwisko" ColumnName="Nazwisko" />
@@ -50,7 +50,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Ksiazka_adresow">
-      <EntityTypeMapping TypeName="DB_A1D841_magazynModel.Adres">
+      <EntityTypeMapping TypeName="DB_A25DBA_magazynModel.Adres">
         <MappingFragment StoreEntitySet="Ksiazka_adresow">
           <ScalarProperty Name="idAdresu" ColumnName="idAdresu" />
           <ScalarProperty Name="Miejscowosc" ColumnName="Miejscowosc" />
@@ -60,7 +60,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Pracownicy">
-      <EntityTypeMapping TypeName="DB_A1D841_magazynModel.Pracownik">
+      <EntityTypeMapping TypeName="DB_A25DBA_magazynModel.Pracownik">
         <MappingFragment StoreEntitySet="Pracownicy">
           <ScalarProperty Name="idPracownika" ColumnName="idPracownika" />
           <ScalarProperty Name="Imie" ColumnName="Imie" />
@@ -74,7 +74,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Transakcje">
-      <EntityTypeMapping TypeName="DB_A1D841_magazynModel.Transakcja">
+      <EntityTypeMapping TypeName="DB_A25DBA_magazynModel.Transakcja">
         <MappingFragment StoreEntitySet="Transakcje">
           <ScalarProperty Name="idTransakcji" ColumnName="idTransakcji" />
           <ScalarProperty Name="Data" ColumnName="Data" />

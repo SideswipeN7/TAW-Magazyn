@@ -29,9 +29,9 @@ namespace WebServer.Models
 
         //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         [JsonIgnore]
-        public  ICollection<Klient> Klienci { get; set; }
+        public ICollection<Klient> Klienci { get; set; }
         // [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         [JsonIgnore]
-        public  ICollection<Pracownik> Pracownicy { get; set; }
+        public ICollection<Pracownik> Pracownicy { get; set; }
     }
 }

@@ -10,7 +10,7 @@ namespace WebServer.Controllers
 {
     public class SupplyController : ApiController
     {
-        private DB_A1D841_magazynEntities1 db = new DB_A1D841_magazynEntities1();
+        private DB_A25DBA_magazynEntities db = new DB_A25DBA_magazynEntities();
 
         // GET: api/Supply
         [HttpGet]
@@ -84,6 +84,23 @@ namespace WebServer.Controllers
                 }
             }
             return StatusCode(HttpStatusCode.Conflict);
+        }
+
+        [HttpDelete]
+        [ActionName("DeleteSupply")]
+        [ResponseType(typeof(Artykul))]
+        public IHttpActionResult DeleteSupply(int id)
+        {
+            Dostawca dostawva = db.Dostawcy.Find(id);
+            if (dostawva == null)
+            {
+                return NotFound();
+            }
+
+            db.Dostawcy.Remove(dostawva);
+            db.SaveChanges();
+
+            return Ok(dostawva);
         }
     }
 }

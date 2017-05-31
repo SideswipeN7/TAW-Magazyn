@@ -10,7 +10,7 @@ namespace WebServer.Controllers
 {
     public class AdresssController : ApiController
     {
-        private DB_A1D841_magazynEntities1 db = new DB_A1D841_magazynEntities1();
+        private DB_A25DBA_magazynEntities db = new DB_A25DBA_magazynEntities();
 
         // GET: api/Adresss
         public IQueryable<Adres> GetKsiazka_adresow()

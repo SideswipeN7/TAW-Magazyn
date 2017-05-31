@@ -27,9 +27,9 @@ namespace WebServer.Models
         public decimal Cena { get; set; }
         public int idKategorii { get; set; }
     
-        public  Kategoria Kategorie { get; set; }
+        public virtual Kategoria Kategorie { get; set; }
         //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         [JsonIgnore]
-        public  ICollection<Artykul_w_transakcji> Artykuly_w_transakcji { get; set; }
+        public ICollection<Artykul_w_transakcji> Artykuly_w_transakcji { get; set; }
     }
 }

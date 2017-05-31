@@ -20,8 +20,8 @@ namespace WebServer.Models
         public int idTransakcji { get; set; }
         public int idArtykulu { get; set; }
     
-        public  Artykul Artykuly { get; set; }
+        public virtual Artykul Artykuly { get; set; }
         [JsonIgnore]
-        public  Transakcja Transakcje { get; set; }
+        public virtual Transakcja Transakcje { get; set; }
     }
 }
