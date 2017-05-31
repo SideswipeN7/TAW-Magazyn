@@ -167,7 +167,7 @@ namespace Client.Controller
         {
             try
             {
-                _window.DgStateLista.Items.Clear();
+              
                 Task<IEnumerable<Artykul>>.Factory.StartNew(() =>
                 {
                     return _comm.GetItems();

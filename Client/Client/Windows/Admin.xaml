@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Client.Windows"
         mc:Ignorable="d"
-          Title="Tryb Administratora" Height="1186" Width="1616.181">
+          Title="Tryb Administratora" Height="1186" Width="1616.181" WindowStartupLocation="CenterScreen" WindowState="Maximized" SizeToContent="Manual">
     <Grid>
         <TabControl x:Name="MainTab" Margin="0,44,0,-43">
             <TabItem x:Name="TabState" Header="Stan Magazynu">
@@ -65,7 +65,7 @@
                                 <Grid x:Name="GridDoTwo" Margin="0,300,791,0">
                                     <Label x:Name="LblDoGridTwoNazwisko" Content="Nazwisko:" HorizontalAlignment="Left" Margin="21,94,0,0" VerticalAlignment="Top" Width="92" />
                                     <Label x:Name="LblDoGridTwoFirma" Content="Firma:" HorizontalAlignment="Left" Margin="21,125,0,0" VerticalAlignment="Top" Width="92" />
-                                    <Label x:Name="LblDoGridTwoDostawca" Content="Dostwaca:" HorizontalAlignment="Left" Margin="21,156,0,0" VerticalAlignment="Top" Width="92" />
+                                    <Label x:Name="LblDoGridTwoDostawca" Content="Dostawca:" HorizontalAlignment="Left" Margin="21,156,0,0" VerticalAlignment="Top" Width="92" />
                                     <Label x:Name="LblDoGridTwoMiejscowosc" Content="Miejscowość:" HorizontalAlignment="Left" Margin="21,187,0,0" VerticalAlignment="Top" Width="92" />
                                     <Label x:Name="LblDoGridTwoKodPocztowy" Content="Kod Pocztowy:" HorizontalAlignment="Left" Margin="21,218,0,0" VerticalAlignment="Top" Width="92" />
                                     <Label x:Name="LblDoGridTwoWojewodztwo" Content="Województwo:" HorizontalAlignment="Left" Margin="21,246,0,0" VerticalAlignment="Top" Width="92" />

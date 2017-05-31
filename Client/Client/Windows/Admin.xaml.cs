@@ -1,5 +1,6 @@
 ﻿using Client.Controller;
 using System.Diagnostics;
+using System.Threading;
 using System.Windows;
 
 namespace Client.Windows
@@ -40,16 +41,19 @@ namespace Client.Windows
         public Admin()
         {
             InitializeComponent();
-            service = Adapter.Adapter.GetInstance(ID, _instance);
+            
+            ID = 0;
+            service = Adapter.Adapter.GetInstance(ID, this);
             service.GetAll();
             service.LoadAll();
+            Thread.Sleep(250);
             service.SelectaAll();
         }
 
         //Magazine State
         private void RbStateSzukaj_Checked(object sender, RoutedEventArgs e)
         {
-            service.SearchMagazine();
+            service.ShowSearchMagazine();
         }
 
         private void RbStateWszystko_Checked(object sender, RoutedEventArgs e)

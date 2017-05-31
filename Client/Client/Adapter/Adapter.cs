@@ -6,6 +6,7 @@ using Client.Model;
 using Client.Windows;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -68,31 +69,31 @@ namespace Client.Adapter
 
         public void AddCategories()
         {
-            IWork work = MagazineController.GetInstance(_window);
+            IWork work = CategoryController.GetInstance(_window);
             work.AddData();
         }
 
         public void DeleteCategories()
         {
-            IWork work = MagazineController.GetInstance(_window);
+            IWork work = CategoryController.GetInstance(_window);
             work.DeleteData();
         }
 
         public void ModifyCategories()
         {
-            IWork work = MagazineController.GetInstance(_window);
+            IWork work = CategoryController.GetInstance(_window);
             work.ChangeData();
         }
 
         public void SearchCategories()
         {
-            IWork work = MagazineController.GetInstance(_window);
+            IWork work = CategoryController.GetInstance(_window);
             work.SearchData();
         }
 
         public void SelectedCategories()
         {
-            IWork work = MagazineController.GetInstance(_window);
+            IWork work = CategoryController.GetInstance(_window);
             work.ShowSelectedData();
         }
 
@@ -343,12 +344,14 @@ namespace Client.Adapter
         //Magzine
         public void ShowAllMagazine()
         {
-            throw new NotImplementedException();
+            IViewController work = MagazineView.GetInstance(_window);
+            work.ShowAll();
         }
 
         public void ShowSearchMagazine()
         {
-            throw new NotImplementedException();
+            IViewController work = MagazineView.GetInstance(_window);
+            work.ShowSearch();
         }
 
         public void ShowAddMagazine()
@@ -576,20 +579,20 @@ namespace Client.Adapter
 
         public void CmbCategoryIdChange()
         {
-            //try
-            //{
-            //    foreach (Kategoria k in _window.DgCategoryLista.Items)
-            //    {
-            //        if (k.idKategorii == (int)_window.CmbCategoryId.SelectedItem)
-            //        {
-            //            _window.DgCategoryLista.SelectedItem = k;
-            //        }
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    System.Diagnostics.Debug.WriteLine($"Error in Adapter CmbCategoryIdChange: {ex}");
-            //}
+            try
+            {
+                foreach (Kategoria k in _window.DgCategoryLista.Items)
+                {
+                    if (k.idKategorii == (int)_window.CmbCategoryId.SelectedItem)
+                    {
+                        _window.DgCategoryLista.SelectedItem = k;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error in Adapter CmbCategoryIdChange: {ex}");
+            }
         }
 
         public void GetAll()
@@ -604,13 +607,12 @@ namespace Client.Adapter
             work.GetData();
             work = MagazineController.GetInstance(_window);
             work.GetData();
-            work = TransactionController.GetInstance(ID,_window);
+            work = TransactionController.GetInstance(ID, _window);
             work.GetData();
         }
 
         public void LoadAll()
         {
-
             //States
             {
                 _window.CmbDoGridOneWojewodztwo.Items.Clear();
@@ -625,7 +627,6 @@ namespace Client.Adapter
                     _window.CmbClientsWojewodztwo.Items.Add(r);
                     _window.CmbEmployeeWojewodztwo.Items.Add(r);
                     _window.CmbClientsWojewodztwoSearch.Items.Add(r);
-
                 }
             }
             //SUDO
@@ -662,14 +663,38 @@ namespace Client.Adapter
 
         public void SelectaAll()
         {
-            _window.RbStateWszystko.IsChecked = true;
-            _window.RbOverviewGridOneWszystkie.IsChecked = true;
-            _window.RbClientsWszyscy.IsChecked = true;
-            _window.RbCategoryWszystko.IsChecked = true;
-            _window.RbItemWszystko.IsChecked = true;
-            _window.RdEmployeeWszyscy.IsChecked = true;
+            try
+            {
+                Task.Factory.StartNew(() =>
+                {
+                    while (
+                                       _window.RbStateWszystko.IsInitialized == false &&
+                                        _window.RbClientsWszyscy.IsInitialized == false &&
+                                         _window.RbItemWszystko.IsInitialized == false &&
+                                         _window.RdEmployeeWszyscy.IsInitialized == false &&
+                                         _window.RbCategoryWszystko.IsInitialized == false&&
+                                         _window.RbOverviewGridOneWszystkie.IsInitialized == true
+                                       )
+                    {
+                        Thread.Sleep(200);
+                    }
+                }).ContinueWith(x =>
+                Task.Factory.StartNew(() =>
+                {
+                    _window.Dispatcher.BeginInvoke(new Action(() =>
+                    {
+                        _window.RbStateWszystko.IsChecked = true;                        
+                        _window.RbClientsWszyscy.IsChecked = true;
+                        _window.RbItemWszystko.IsChecked = true;
+                        _window.RdEmployeeWszyscy.IsChecked = true;
+                        _window.RbCategoryWszystko.IsChecked = true;
+                        _window.RbOverviewGridOneWszystkie.IsChecked = true;
+                    }));
+                }));
+            }
+            catch (Exception ex)
+            { System.Diagnostics.Debug.WriteLine($"Error in Adapter SelectAll: {ex}"); }
         }
-
 
         private void Load(IEnumerable<Dostawca> list)
         {
@@ -704,6 +729,7 @@ namespace Client.Adapter
             catch (Exception ex)
             { System.Diagnostics.Debug.WriteLine($"Error in Adapter LoadTransactionsDoProducts: {ex}"); }
         }
+
         public void LoadClients()
         {
             try
@@ -733,6 +759,7 @@ namespace Client.Adapter
             catch (Exception ex)
             { System.Diagnostics.Debug.WriteLine($"Error in Adapter LoadClientsToCmb: {ex}"); }
         }
+
         public void LoadCategories()
         {
             IEnumerable<Kategoria> list = _comm.GetCategories();
@@ -743,6 +770,5 @@ namespace Client.Adapter
                 _window.CmbItemKategoria.Items.Add(new ComboBoxItem() { Content = r.Nazwa, Tag = r });
             }
         }
-
     }
 }

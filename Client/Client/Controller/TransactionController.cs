@@ -22,8 +22,8 @@ namespace Client.Controller
         private TransactionController()
         {
             _comm = Communicator.GetInstance();
-            _comm.SetUrlAddress("http://c414305-001-site1.btempurl.com");
-            //_comm.SetUrlAddress("http://localhost:52992");
+            //_comm.SetUrlAddress("http://c414305-001-site1.btempurl.com");
+            _comm.SetUrlAddress("http://localhost:52992");
         }
 
         public static TransactionController GetInstance(int id, Admin window)
@@ -286,12 +286,17 @@ namespace Client.Controller
                     {
                         inProg.Dispatcher.BeginInvoke(new Action(() =>
                         {
+                            inProg = InProgress.GetInstance();
                             inProg.Hide();
                         }));
+                       
                         _window.Dispatcher.BeginInvoke(new Action(() =>
                         {
                             GetData();
-                            MessageBox.Show("Wykonano pomyślnie!", "Transakcja", MessageBoxButton.OK);
+                            if (x.Result > 0)
+                                MessageBox.Show("Wykonano pomyślnie!", "Transakcja", MessageBoxButton.OK);
+                            if (x.Result== 0)
+                                MessageBox.Show("Bład Transakcji", "Transakcja", MessageBoxButton.OK);
                         }));
                         return 0;
                     });

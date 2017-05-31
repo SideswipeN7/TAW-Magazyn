@@ -63,6 +63,7 @@ namespace Client.Windows
                                 default: sudo = true; break;
                             }
                             window = Admin.GetInstance(pracownik.idPracownika, sudo);
+                            //window = new Admin() { ID = 1 };
                             return window;
                         }
                     }

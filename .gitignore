@@ -1,7 +1,3 @@
-Client/Client/bin/Debug/Client.vshost.exe
-Client/Client/bin/Debug/Client.vshost.exe.config
-Client/Client/bin/Debug/Client.vshost.exe.manifest
-Client/.vs/Client/v14/.suo
 Client/TDD-TEST/obj/Debug/TDD-TEST.csprojResolveAssemblyReference.cache
 Client/TDD-TEST/bin/Debug/nunit_random_seed.tmp
 Client/TDD-TEST/bin/Debug/TDD-TEST.pdb
@@ -17,9 +13,6 @@ Client/Client/obj/Debug/MainWindow.baml
 Client/Client/obj/Debug/MainWindow.g.cs
 Client/Client/obj/Debug/MainWindow.g.i.cs
 Client/PluginExecutor/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
-Client/Client/bin/Debug/Client.exe
-Client/Client/bin/Debug/Client.pdb
-Client/Client/bin/Debug/nunit_random_seed.tmp
 Client/Client/obj/Debug/App.g.cs
 Client/Client/obj/Debug/App.g.i.cs
 Client/Client/obj/Debug/Client.csproj.GenerateResource.Cache
@@ -41,8 +34,6 @@ Client/TDD-TEST/obj/Debug/CoreCompileInputs.cache
 Client/TDD-TEST/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
 Client/TDD-TEST/obj/Debug/TDD-TEST.csproj.FileListAbsolute.txt
 Client/PluginExecutor/obj/Debug/PluginExecutor.csprojResolveAssemblyReference.cache
-Client/Client/bin/Debug/PluginExecutor.dll
-Client/Client/bin/Debug/PluginExecutor.pdb
 Client/PluginExecutor/bin/Debug/PluginExecutor.dll
 Client/PluginExecutor/bin/Debug/PluginExecutor.pdb
 Client/PluginExecutor/obj/Debug/PluginExecutor.csproj.FileListAbsolute.txt

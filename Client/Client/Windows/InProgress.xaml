@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Client.Windows"
         mc:Ignorable="d"
-        Title="InProgress" Height="78.052" Width="200.318" ResizeMode="NoResize" BorderThickness="1" WindowStyle="None">
+        Title="InProgress" Height="78.052" Width="200.318" ResizeMode="NoResize" BorderThickness="1" WindowStyle="None" ShowInTaskbar="False">
     <Grid Margin="0,0,-2,-2">
         <ProgressBar x:Name="PrgPostep" HorizontalAlignment="Left" Height="10" Margin="48,41,0,0" VerticalAlignment="Top" Width="100" IsIndeterminate="True" />
         <Label x:Name="LblInfo" Content="Trwa wykonywanie transakcji" HorizontalAlignment="Left" Margin="14,10,0,0" VerticalAlignment="Top" />

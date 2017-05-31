@@ -113,6 +113,7 @@
     <Compile Include="Controller\View\EmployeeView.cs" />
     <Compile Include="Controller\View\ItemView.cs" />
     <Compile Include="Controller\View\IViewController.cs" />
+    <Compile Include="Controller\View\MagazineView.cs" />
     <Compile Include="Controller\View\TransactionView.cs" />
     <Compile Include="Facture\Facture.cs" />
     <Compile Include="Facture\IFacture.cs" />
@@ -176,10 +177,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LoginDataLib\LoginDataLib.csproj">
-      <Project>{2d930be0-62ac-4239-936b-d45b72c3348c}</Project>
-      <Name>LoginDataLib</Name>
-    </ProjectReference>
     <ProjectReference Include="..\PluginExecutor\PluginExecutor.csproj">
       <Project>{8d80d14a-3242-4bdb-ac4e-bfeaa38b528e}</Project>
       <Name>PluginExecutor</Name>
