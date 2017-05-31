@@ -1,5 +1,4 @@
 ﻿using Client.Controller;
-using Client.Model;
 using System.Diagnostics;
 using System.Windows;
 
@@ -12,10 +11,10 @@ namespace Client.Windows
     public partial class Admin : Window
     {
         private static Admin _instance;
-
-        private Manager _controller;
         private ItemsController _itemController = ItemsController.GetInstance(_instance);
         public int ID { get; set; }
+
+        private Adapter.Adapter service { get; set; }
 
         public static Admin GetInstance(int id, bool sudo)
         {
@@ -34,280 +33,298 @@ namespace Client.Windows
                 _instance.TabEmployees.Visibility = Visibility.Hidden;
                 _instance.Title = "Tryb Użytkownika";
             }
+
             return _instance;
         }
 
         public Admin()
         {
             InitializeComponent();
-            _controller = Manager.GetInstance(this);
-            //Show Data
-           _controller.GetAll();
-            //LoadData
-            _controller.LoadAll();
-            _controller.SelectaAll();
+            service = Adapter.Adapter.GetInstance(ID, _instance);
+            service.GetAll();
+            service.LoadAll();
+            service.SelectaAll();
         }
 
         //Magazine State
         private void RbStateSzukaj_Checked(object sender, RoutedEventArgs e)
         {
-            _controller.ShowMagazineStateSearch();
+            service.SearchMagazine();
         }
 
         private void RbStateWszystko_Checked(object sender, RoutedEventArgs e)
         {
-            _controller.ShowMagazineStateAll();
+            service.ShowAllMagazine();
         }
 
         private void BtnSateSzukaj_Click(object sender, RoutedEventArgs e)
         {
-            _controller.SearchCategoriesSate();
+            service.SearchMagazine();
         }
 
         //Categories
-        private void RbCategoryWszystko_Checked(object sender, RoutedEventArgs e)
+        private void CmbCategoryId_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-            _controller.ShowCategoriesSate();
-        }
-
-        private void RbCategoryDodaj_Checked(object sender, RoutedEventArgs e)
-        {
-            _controller.ShowCategoriesAdd();
-        }
-
-        private void RbCategoryModyfikuj_Checked(object sender, RoutedEventArgs e)
-        {
-            _controller.ShowCategoriesModify();
-        }
-
-        private void RbCategoryUsun_Checked(object sender, RoutedEventArgs e)
-        {
-            _controller.ShowCategoriesDelete();
-        }
-
-        private void RbCategorySzukaj_Checked(object sender, RoutedEventArgs e)
-        {
-            _controller.ShowCategoriesSearch();
-        }
-
-        private void BtnCategoryDodaj_Click(object sender, RoutedEventArgs e)
-        {
-            _controller.SetCategoryData();
-        }
-
-        private void BtnCategoryModyfikuj_Click(object sender, RoutedEventArgs e)
-        {
-            _controller.ChangeCategoryData();
-        }
-
-        private void BtnCategoryUsun_Click(object sender, RoutedEventArgs e)
-        {
-            _controller.CategoriesDelete();
-        }
-
-        private void BtnCategorySzukaj_Click(object sender, RoutedEventArgs e)
-        {
-            _controller.CategoriesSearch();
-        }
-
-        //Items
-        private void RbItemWszystko_Checked(object sender, RoutedEventArgs e)
-        {
-            _controller.ShowItemsAll();
-        }
-
-        private void RbItemSzukaj_Checked(object sender, RoutedEventArgs e)
-        {
-            _controller.ShowItemsSearch();
-        }
-
-        private void RbItemModyfikuj_Checked(object sender, RoutedEventArgs e)
-        {
-            _controller.ShowItemsModify();
-        }
-
-        private void RbItemDodaj_Checked(object sender, RoutedEventArgs e)
-        {
-            _controller.ShowItemsAdd();
-        }
-
-        private void BtnItemModyfikuj_Click(object sender, RoutedEventArgs e)
-        {
-            _controller.ChangeItemData();
-        }
-
-        private void BtnItemDodaj_Click(object sender, RoutedEventArgs e)
-        {
-            _controller.SetItemData();
-        }
-
-        private void BtnItemSzukaj_Click(object sender, RoutedEventArgs e)
-        {
-            _controller.SearchItems();
-        }
-
-        //Clients
-        private void RbClientsWszyscy_Checked(object sender, RoutedEventArgs e)
-        {
-            _controller.ShowClitentsAll();
-        }
-
-        private void RbClientsSzukaj_Checked(object sender, RoutedEventArgs e)
-        {
-            _controller.ShowClitentsSearch();
-        }
-
-        private void RbClientsDodaj_Checked(object sender, RoutedEventArgs e)
-        {
-            _controller.ShowClitentsAdd();
-        }
-
-        private void RbClientsModyfikuj_Checked(object sender, RoutedEventArgs e)
-        {
-            _controller.ShowClitentsModify();
-        }
-
-        private void RbClientsUsun_Checked(object sender, RoutedEventArgs e)
-        {
-            _controller.ShowClitentsDelete();
-        }
-
-        private void BtnClientsSzukaj_Click(object sender, RoutedEventArgs e)
-        {
-            _controller.SearchClients();
-        }
-
-        private void BtnClientsModyfikuj_Click(object sender, RoutedEventArgs e)
-        {
-            _controller.ChangeClientData();
-        }
-
-        private void BtnClientsUsun_Click(object sender, RoutedEventArgs e)
-        {
-            _controller.ClientDelete();
-        }
-
-        private void BtnClientsDodaj_Click(object sender, RoutedEventArgs e)
-        {
-            _controller.SetClientData();
-        }
-
-        private void RbDoGridOneNowyKlient_Checked(object sender, RoutedEventArgs e)
-        {
-            _controller.TransactionNewSelcted();
-        }
-
-        private void RbDoGridOneStalyKlient_Checked(object sender, RoutedEventArgs e)
-        {
-            _controller.TransactionOldSelcted();
-        }
-
-        private void CmbDoGridTwoNazwisko_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
-        {
-            _controller.SelectClientDoTransactionSurname();
-        }
-
-        private void CmbDoGridTwoFirma_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
-        {
-            _controller.SelectClientDoTransactionFirm();
-        }
-
-        private void BtnDoGridThreeDodajProdukty_Click(object sender, RoutedEventArgs e)
-        {
-            _controller.AddToCart();
-        }
-
-        private void BtnDoGridFiveUsun_Click(object sender, RoutedEventArgs e)
-        {
-            _controller.DeleteFormCart();
-        }
-
-        private void DgOverviewGridOne_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
-        {
-            _controller.ShowClientData();
-        }
-
-        private void RbOverviewGridOneWszystkie_Checked(object sender, RoutedEventArgs e)
-        {
-            _controller.ShowTransactionsAll();
-        }
-
-        private void RbOverviewGridOneSzukaj_Checked(object sender, RoutedEventArgs e)
-        {
-            _controller.ShowTransactionsSearch();
-        }
-
-        private void BtnOverviewGridTwoSzukaj_Click(object sender, RoutedEventArgs e)
-        {
-            _controller.TransactionsSearch();
+            service.CmbCategoryIdChange();
         }
 
         private void DgCategoryLista_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-            _controller.ShowCategoriesData();
+            service.SelectedCategories();
         }
 
+        private void RbCategoryWszystko_Checked(object sender, RoutedEventArgs e)
+        {
+            service.ShowAllCategories();
+        }
+
+        private void RbCategoryDodaj_Checked(object sender, RoutedEventArgs e)
+        {
+            service.ShowAddCategories();
+        }
+
+        private void RbCategoryModyfikuj_Checked(object sender, RoutedEventArgs e)
+        {
+            service.ShowModifyCategories();
+        }
+
+        private void RbCategoryUsun_Checked(object sender, RoutedEventArgs e)
+        {
+            service.ShowDeleteCategories();
+        }
+
+        private void RbCategorySzukaj_Checked(object sender, RoutedEventArgs e)
+        {
+            service.ShowSearchCategories();
+        }
+
+        private void BtnCategoryDodaj_Click(object sender, RoutedEventArgs e)
+        {
+            service.AddCategories();
+        }
+
+        private void BtnCategoryModyfikuj_Click(object sender, RoutedEventArgs e)
+        {
+            service.ModifyCategories();
+        }
+
+        private void BtnCategoryUsun_Click(object sender, RoutedEventArgs e)
+        {
+            service.DeleteCategories();
+        }
+
+        private void BtnCategorySzukaj_Click(object sender, RoutedEventArgs e)
+        {
+            service.SearchCategories();
+        }
+
+        //Items
         private void DgItemLista_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-            _controller.ShowItemsData();
+            service.SelectedItems();
         }
 
+        private void RbItemWszystko_Checked(object sender, RoutedEventArgs e)
+        {
+            service.ShowAllItems();
+        }
+
+        private void RbItemSzukaj_Checked(object sender, RoutedEventArgs e)
+        {
+            service.ShowSearchItems();
+        }
+
+        private void RbItemModyfikuj_Checked(object sender, RoutedEventArgs e)
+        {
+            service.ShowModifyItems();
+        }
+
+        private void RbItemDodaj_Checked(object sender, RoutedEventArgs e)
+        {
+            service.ShowAddItems();
+        }
+
+        private void BtnItemModyfikuj_Click(object sender, RoutedEventArgs e)
+        {
+            service.ModifyItems();
+        }
+
+        private void BtnItemDodaj_Click(object sender, RoutedEventArgs e)
+        {
+            service.AddItems();
+        }
+
+        private void BtnItemSzukaj_Click(object sender, RoutedEventArgs e)
+        {
+            service.SearchItems();
+        }
+
+        private void RbItemUsun_Checked(object sender, RoutedEventArgs e)
+        {
+            service.ShowDeleteItems();
+        }
+
+        private void BtnItemUsun_Click(object sender, RoutedEventArgs e)
+        {
+            service.DeleteItems();
+        }
+
+        //Clients
         private void DgClientsLista_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-            _controller.ShowClientsData();
+            service.SelectedClients(); ;
         }
 
+        private void RbClientsWszyscy_Checked(object sender, RoutedEventArgs e)
+        {
+            service.ShowAllClients();
+        }
+
+        private void RbClientsSzukaj_Checked(object sender, RoutedEventArgs e)
+        {
+            service.ShowSearchClients();
+        }
+
+        private void RbClientsDodaj_Checked(object sender, RoutedEventArgs e)
+        {
+            service.ShowAddClients();
+        }
+
+        private void RbClientsModyfikuj_Checked(object sender, RoutedEventArgs e)
+        {
+            service.ShowModifyClients();
+        }
+
+        private void RbClientsUsun_Checked(object sender, RoutedEventArgs e)
+        {
+            service.ShowDeleteClients();
+        }
+
+        private void BtnClientsSzukaj_Click(object sender, RoutedEventArgs e)
+        {
+            service.SearchClients();
+        }
+
+        private void BtnClientsModyfikuj_Click(object sender, RoutedEventArgs e)
+        {
+            service.ModifyClients();
+        }
+
+        private void BtnClientsUsun_Click(object sender, RoutedEventArgs e)
+        {
+            service.DeleteClients();
+        }
+
+        private void BtnClientsDodaj_Click(object sender, RoutedEventArgs e)
+        {
+            service.AddClients();
+        }
+
+        //Transactions
+        private void RbDoGridOneNowyKlient_Checked(object sender, RoutedEventArgs e)
+        {
+            service.TransactionNewSelcted();
+        }
+
+        private void RbDoGridOneStalyKlient_Checked(object sender, RoutedEventArgs e)
+        {
+            service.TransactionOldSelcted();
+        }
+
+        private void CmbDoGridTwoNazwisko_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            service.SelectClientDoTransactionSurname();
+        }
+
+        private void CmbDoGridTwoFirma_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            service.SelectClientDoTransactionFirm();
+        }
+
+        private void BtnDoGridThreeDodajProdukty_Click(object sender, RoutedEventArgs e)
+        {
+            service.AddToCart();
+        }
+
+        private void BtnDoGridFiveUsun_Click(object sender, RoutedEventArgs e)
+        {
+            service.DeleteFormCart();
+        }//END OF TODO
+
+        private void DgOverviewGridOne_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            service.SelectedTransaction();
+        }
+
+        private void RbOverviewGridOneWszystkie_Checked(object sender, RoutedEventArgs e)
+        {
+            service.ShowAllTransaction();
+        }
+
+        private void RbOverviewGridOneSzukaj_Checked(object sender, RoutedEventArgs e)
+        {
+            service.ShowSearchTransaction();
+        }
+
+        private void BtnDoGridFourRealizujZamowienie_Click(object sender, RoutedEventArgs e)
+        {
+            service.AddTransaction();
+        }
+
+        private void BtnOverviewGridTwoSzukaj_Click(object sender, RoutedEventArgs e)
+        {
+            service.SearchTransaction();
+        }
+
+        //Employee
         private void DgEmployeesList_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-            _controller.ShowEmployee();
+            service.SelectedEmployee();
         }
 
         private void BtnEmployeeDodaj_Click(object sender, RoutedEventArgs e)
         {
-            _controller.SetEmployeeData();
+            service.AddEmployee();
         }
 
         private void BtnEmployeeModyfikuj_Click(object sender, RoutedEventArgs e)
         {
-            _controller.ChangeEmployeeData();
+            service.ModifyEmployee();
         }
 
         private void BtnEmployeeUsun_Click(object sender, RoutedEventArgs e)
         {
-            _controller.DeleteEmployee();
+            service.DeleteEmployee();
         }
 
         private void RdEmployeeWszyscy_Checked(object sender, RoutedEventArgs e)
         {
-            _controller.ShowEmployeeAll();
+            service.ShowAllEmployee();
         }
 
         private void RdEmployeeDodaj_Checked(object sender, RoutedEventArgs e)
         {
-            _controller.ShowEmployeeAdd();
+            service.ShowAddEmployee();
         }
 
         private void RdEmployeeModyfikuj_Checked(object sender, RoutedEventArgs e)
         {
-            _controller.ShowEmployeeModify();
+            service.ShowModifyEmployee();
         }
 
         private void RdEmployeeUsun_Checked(object sender, RoutedEventArgs e)
         {
-            _controller.ShowEmployeeDelete();
+            service.ShowDeleteEmployee();
+        }
+
+        private void BtnEmployeeHaslo_Click(object sender, RoutedEventArgs e)
+        {
+            service.ShowPassword();
         }
 
         private void btnTabOverviewFaktura_Click(object sender, RoutedEventArgs e)
         {
-            Transakcja tran = (Transakcja)DgOverviewGridOne.SelectedItem;
-            if (DgOverviewGridOne.SelectedItem != null)
-            {
-                _controller.ShowFacture(tran);
-            }
-            else
-            {
-                MessageBox.Show("Najpierw wybierz transakcję.");
-            }
+            service.GetFacture();
         }
 
         private void MnAbout_Click(object sender, RoutedEventArgs e)
@@ -336,36 +353,6 @@ namespace Client.Windows
             Login window = new Login();
             window.Visibility = Visibility.Visible;
             Close();
-        }
-
-        private void BtnEmployeeHaslo_Click(object sender, RoutedEventArgs e)
-        {
-            _controller.ShowPassword();
-        }
-
-        private void CmbCategoryId_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
-        {
-            _controller.CmbCategoryIdChange();
-        }
-
-        private void BtnDoGridFourRealizujZamowienie_Click(object sender, RoutedEventArgs e)
-        {
-            _controller.RegisterTransaction();
-        }
-
-
-        private void RbItemUsun_Checked(object sender, RoutedEventArgs e)
-        {
-            _controller.ItemsShowDelete();
-        }
-
-        private void BtnItemUsun_Click(object sender, RoutedEventArgs e)
-        {
-            _controller.DeleteItems();
-        }
-        private void DgStateLista_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
-        {
-
         }
     }
 }

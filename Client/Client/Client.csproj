@@ -97,6 +97,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="Adapter\Adapter.cs" />
+    <Compile Include="Adapter\IAdapter.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -106,11 +108,17 @@
     <Compile Include="Controller\CategoryController.cs" />
     <Compile Include="Controller\ClientsController.cs" />
     <Compile Include="Controller\EmployeeController.cs" />
-    <Compile Include="Controller\IManager.cs" />
+    <Compile Include="Controller\View\CategoryView.cs" />
+    <Compile Include="Controller\View\ClientsView.cs" />
+    <Compile Include="Controller\View\EmployeeView.cs" />
+    <Compile Include="Controller\View\ItemView.cs" />
+    <Compile Include="Controller\View\IViewController.cs" />
+    <Compile Include="Controller\View\TransactionView.cs" />
+    <Compile Include="Facture\Facture.cs" />
+    <Compile Include="Facture\IFacture.cs" />
     <Compile Include="Controller\ItemsController.cs" />
     <Compile Include="Controller\IWork.cs" />
     <Compile Include="Controller\MagazineController.cs" />
-    <Compile Include="Controller\Manager.cs" />
     <Compile Include="Controller\TransactionController.cs" />
     <Compile Include="Model\KlientAdress.cs" />
     <Compile Include="Model\PracownikAdress.cs" />
@@ -177,5 +185,6 @@
       <Name>PluginExecutor</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
