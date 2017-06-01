@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 
 using System.Web.Http;
@@ -18,10 +19,18 @@ namespace WebServer.Controllers
         [ResponseType(typeof(Pracownik))]
         public Pracownik LoginPracownik(LoginPassword loginPassword)
         {
-            Pracownik pracownik = db.Pracownicy.FirstOrDefault(
-                x => x.Login == loginPassword.login && x.Haslo == loginPassword.password);
+            try
+            {
+                Pracownik pracownik = db.Pracownicy.FirstOrDefault(
+                    x => x.Login == loginPassword.login && x.Haslo == loginPassword.password);
 
-            return pracownik;
+                return pracownik;
+            }
+            catch(Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"ERROR: {ex}");
+                return null;
+            }
         }
     }
 }

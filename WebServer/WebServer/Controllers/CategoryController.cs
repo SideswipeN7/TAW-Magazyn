@@ -85,6 +85,7 @@ namespace WebServer.Controllers
             }
             catch (Exception ex)
             {
+                System.Diagnostics.Debug.WriteLine($"ERROR: {ex}");
                 return HttpStatusCode.NotModified;
             }
         }

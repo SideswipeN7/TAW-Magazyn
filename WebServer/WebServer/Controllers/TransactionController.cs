@@ -76,6 +76,7 @@ namespace WebServer.Controllers
                 Adres a = transakcja.Klienci.Ksiazka_adresow;
                 Klient k = transakcja.Klienci;
                 new ClientsController().RegisterClient(new KlientAdress() { Adres = a, Klient = k });
+                transakcja.idKlienta = k.idKlienta;
                 db.Transakcje.Add(transakcja);
                 db.SaveChanges();
                 int id = transakcja.idTransakcji;

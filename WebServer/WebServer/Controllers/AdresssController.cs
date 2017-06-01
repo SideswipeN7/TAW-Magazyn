@@ -44,6 +44,7 @@ namespace WebServer.Controllers
             }
             catch (Exception ex)
             {
+                System.Diagnostics.Debug.WriteLine($"ERROR: {ex}");
                 return false;
             }
         }
@@ -51,7 +52,7 @@ namespace WebServer.Controllers
         // POST: api/Adresss
         [HttpPost]
         [ActionName("RegisterAddress")]
-        [ResponseType(typeof(Adres))]
+        [ResponseType(typeof(int))]
         public int RegisterAddress(Adres adres)
         {
             if (!ModelState.IsValid)
@@ -71,6 +72,7 @@ namespace WebServer.Controllers
                 }
                 catch (DbEntityValidationException ex)
                 {
+                    System.Diagnostics.Debug.WriteLine($"ERROR: {ex}");
                     return 0;
                 }
             }
