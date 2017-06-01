@@ -24,7 +24,7 @@ namespace Client.Controller
         {
             _comm = Communicator.GetInstance();
             _comm.SetUrlAddress("http://c414305-001-site1.btempurl.com");
-             _comm.SetUrlAddress("http://localhost:52992");
+             //_comm.SetUrlAddress("http://localhost:52992");
             transakcjeSearched = new List<Transakcja>();
         }
 

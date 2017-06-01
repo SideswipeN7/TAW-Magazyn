@@ -95,7 +95,6 @@ namespace Client.Controller
             }
         }
 
-
         public void GetData()
         {
             try

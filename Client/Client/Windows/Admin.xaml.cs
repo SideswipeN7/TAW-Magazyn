@@ -27,14 +27,13 @@ namespace Client.Windows
             if (sudo)
             {
                 _instance.TabEmployees.Visibility = Visibility.Visible;
-                _instance.Title = "Tryb Adminitratora";
+                _instance.Title = "Tryb Administratora";
             }
             else
             {
                 _instance.TabEmployees.Visibility = Visibility.Hidden;
                 _instance.Title = "Tryb Użytkownika";
             }
-
             return _instance;
         }
 
@@ -45,8 +44,7 @@ namespace Client.Windows
             ID = 0;
             service = Adapter.Service.GetInstance(ID, this);
             service.GetAll();
-            service.LoadAll();
-            //Thread.Sleep(250);
+            service.LoadAll();            
             service.SelectaAll();
         }
 
