@@ -13,7 +13,7 @@
         void AddData();
 
         void GetData();
-        void SearchData();
 
+        void SearchData();
     }
 }

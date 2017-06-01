@@ -13,21 +13,21 @@ using System.Windows.Controls;
 
 namespace Client.Adapter
 {
-    public class Adapter : IAdapter
+    public class Service : IAdapter
     {
         private Admin _window;
         private int ID { get; set; }
-        private static Adapter _instance;
+        private static Service _instance;
         private ICommunication _comm;
 
         private static List<string> states = new List<string>()
         {"Dolonośląskie","Kujawsko-Pomorskie","Lubelskie","Lubuskie","Łódzkie","Małopolskie","Mazowieckie", "Opolskie","Podkarpackie","Podlaskie","Pomorskie","Śląskie","Świętokrzyskie","Warmińsko-Mazurskie","Wielkopolskie","Zachodniopomorskie"};
 
-        public static Adapter GetInstance(int ID, Admin window)
+        public static Service GetInstance(int ID, Admin window)
         {
             if (_instance == null)
             {
-                _instance = new Adapter();
+                _instance = new Service();
             }
             _instance._comm = Communicator.GetInstance();
             _instance._comm.SetUrlAddress("http://o1018869-001-site1.htempurl.com");
@@ -41,6 +41,8 @@ namespace Client.Adapter
         {
             IViewController view = CategoryView.GetInstance(_window);
             view.ShowAll();
+            IWork work = CategoryController.GetInstance(_window);
+            work.GetData();
         }
 
         public void ShowSearchCategories()
@@ -102,6 +104,8 @@ namespace Client.Adapter
         {
             IViewController view = ItemView.GetInstance(_window);
             view.ShowAll();
+            IWork work = ItemsController.GetInstance(_window);
+            work.GetData();
         }
 
         public void ShowSearchItems()
@@ -163,6 +167,8 @@ namespace Client.Adapter
         {
             IViewController view = ClientsView.GetInstance(_window);
             view.ShowAll();
+            IWork work = ClientsController.GetInstance(_window);
+            work.GetData();
         }
 
         public void ShowSearchClients()
@@ -224,6 +230,8 @@ namespace Client.Adapter
         {
             IViewController view = EmployeeView.GetInstance(_window);
             view.ShowAll();
+            IWork work = EmployeeController.GetInstance(_window);
+            work.GetData();
         }
 
         public void ShowSearchEmployee()
@@ -285,6 +293,8 @@ namespace Client.Adapter
         {
             IViewController view = TransactionView.GetInstance(_window);
             view.ShowAll();
+            IWork work = TransactionController.GetInstance(ID,_window);
+            work.GetData();
         }
 
         public void ShowSearchTransaction()
@@ -344,8 +354,10 @@ namespace Client.Adapter
         //Magzine
         public void ShowAllMagazine()
         {
-            IViewController work = MagazineView.GetInstance(_window);
-            work.ShowAll();
+            IViewController view = MagazineView.GetInstance(_window);
+            view.ShowAll();
+            IWork work = MagazineController.GetInstance(_window);
+            work.GetData();
         }
 
         public void ShowSearchMagazine()
@@ -665,32 +677,13 @@ namespace Client.Adapter
         {
             try
             {
-                Task.Factory.StartNew(() =>
-                {
-                    while (
-                                       _window.RbStateWszystko.IsInitialized == false &&
-                                        _window.RbClientsWszyscy.IsInitialized == false &&
-                                         _window.RbItemWszystko.IsInitialized == false &&
-                                         _window.RdEmployeeWszyscy.IsInitialized == false &&
-                                         _window.RbCategoryWszystko.IsInitialized == false&&
-                                         _window.RbOverviewGridOneWszystkie.IsInitialized == true
-                                       )
-                    {
-                        Thread.Sleep(200);
-                    }
-                }).ContinueWith(x =>
-                Task.Factory.StartNew(() =>
-                {
-                    _window.Dispatcher.BeginInvoke(new Action(() =>
-                    {
-                        _window.RbStateWszystko.IsChecked = true;                        
-                        _window.RbClientsWszyscy.IsChecked = true;
-                        _window.RbItemWszystko.IsChecked = true;
-                        _window.RdEmployeeWszyscy.IsChecked = true;
-                        _window.RbCategoryWszystko.IsChecked = true;
-                        _window.RbOverviewGridOneWszystkie.IsChecked = true;
-                    }));
-                }));
+                _window.RbStateWszystko.IsChecked = true;
+                _window.RbClientsWszyscy.IsChecked = true;
+                _window.RbItemWszystko.IsChecked = true;
+                _window.RdEmployeeWszyscy.IsChecked = true;
+                _window.RbCategoryWszystko.IsChecked = true;
+                _window.RbOverviewGridOneWszystkie.IsChecked = true;
+             
             }
             catch (Exception ex)
             { System.Diagnostics.Debug.WriteLine($"Error in Adapter SelectAll: {ex}"); }
@@ -766,7 +759,7 @@ namespace Client.Adapter
 
             foreach (Kategoria r in list)
             {
-                _window.CmbStateKategoria.Items.Add(new ComboBoxItem() { Content = r.Nazwa, Tag = r.idKategorii });
+                _window.CmbStateKategoria.Items.Add(new ComboBoxItem() { Content = r.Nazwa, Tag = r });
                 _window.CmbItemKategoria.Items.Add(new ComboBoxItem() { Content = r.Nazwa, Tag = r });
             }
         }

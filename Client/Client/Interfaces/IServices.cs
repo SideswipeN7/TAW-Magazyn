@@ -144,11 +144,13 @@
         void AddToCart();
 
         void DeleteFormCart();
+
         void CmbCategoryIdChange();
 
         void GetAll();
 
         void LoadAll();
+
         void SelectaAll();
     }
 }

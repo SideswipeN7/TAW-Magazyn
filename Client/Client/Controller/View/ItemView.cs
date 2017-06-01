@@ -29,17 +29,17 @@ namespace Client.Controller.View
             _window.ChbItemKategoria.Visibility = Visibility.Hidden;
             _window.ChbItemNazwa.Visibility = Visibility.Hidden;
 
-            _window.LblItemCena.Visibility = Visibility.Hidden;
-            _window.LblItemIlosc.Visibility = Visibility.Hidden;
-            _window.LblItemKategoria.Visibility = Visibility.Hidden;
-            _window.LblItemNazwa.Visibility = Visibility.Hidden;
+            //_window.LblItemCena.Visibility = Visibility.Hidden;
+            //_window.LblItemIlosc.Visibility = Visibility.Hidden;
+            //_window.LblItemKategoria.Visibility = Visibility.Hidden;
+            //_window.LblItemNazwa.Visibility = Visibility.Hidden;
 
             _window.TxbItemCenaMax.Visibility = Visibility.Hidden;
-            _window.TxbItemCenaMin.Visibility = Visibility.Hidden; _window.TxbItemCenaMax.Visibility = Visibility.Hidden;
-            _window.TxbItemIlosc.Visibility = Visibility.Hidden;
-            _window.TxbItemINazwa.Visibility = Visibility.Hidden;
+            _window.TxbItemCenaMin.IsEnabled = false;
+            _window.TxbItemIlosc.IsEnabled = false;
+            _window.TxbItemINazwa.IsEnabled = false;
 
-            _window.CmbItemKategoria.Visibility = Visibility.Hidden;
+            _window.CmbItemKategoria.IsEnabled = false;
 
             _window.BtnItemDodaj.Visibility = Visibility.Hidden;
             _window.BtnItemModyfikuj.Visibility = Visibility.Hidden;
@@ -70,6 +70,12 @@ namespace Client.Controller.View
             _window.BtnItemModyfikuj.Visibility = Visibility.Hidden;
             _window.BtnItemSzukaj.Visibility = Visibility.Visible;
             _window.BtnItemUsun.Visibility = Visibility.Hidden;
+
+            _window.TxbItemCenaMin.IsEnabled = true;
+            _window.TxbItemIlosc.IsEnabled = true;
+            _window.TxbItemINazwa.IsEnabled = true;
+
+            _window.CmbItemKategoria.IsEnabled = true;
         }
 
         public void ShowAdd()
@@ -95,6 +101,12 @@ namespace Client.Controller.View
             _window.BtnItemModyfikuj.Visibility = Visibility.Hidden;
             _window.BtnItemSzukaj.Visibility = Visibility.Hidden;
             _window.BtnItemUsun.Visibility = Visibility.Hidden;
+
+            _window.TxbItemCenaMin.IsEnabled = true;
+            _window.TxbItemIlosc.IsEnabled = true;
+            _window.TxbItemINazwa.IsEnabled = true;
+
+            _window.CmbItemKategoria.IsEnabled = true;
         }
 
         public void ShowDelete()
@@ -121,6 +133,11 @@ namespace Client.Controller.View
             _window.BtnItemModyfikuj.Visibility = Visibility.Hidden;
             _window.BtnItemSzukaj.Visibility = Visibility.Hidden;
             _window.BtnItemUsun.Visibility = Visibility.Visible;
+            _window.TxbItemCenaMin.IsEnabled = false;
+            _window.TxbItemIlosc.IsEnabled = false;
+            _window.TxbItemINazwa.IsEnabled = false;
+
+            _window.CmbItemKategoria.IsEnabled = false;
         }
 
         public void ShowModify()
@@ -146,6 +163,12 @@ namespace Client.Controller.View
             _window.BtnItemModyfikuj.Visibility = Visibility.Visible;
             _window.BtnItemSzukaj.Visibility = Visibility.Hidden;
             _window.BtnItemUsun.Visibility = Visibility.Hidden;
+
+            _window.TxbItemCenaMin.IsEnabled = true;
+            _window.TxbItemIlosc.IsEnabled = true;
+            _window.TxbItemINazwa.IsEnabled = true;
+
+            _window.CmbItemKategoria.IsEnabled = true;
         }
     }
 }

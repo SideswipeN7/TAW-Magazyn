@@ -363,7 +363,7 @@ namespace Client.Communication
             var client = new RestClient(baseUrl);
             var request = new RestRequest();
             request.Method = Method.PUT;
-            
+
             System.Diagnostics.Debug.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(adres));
             request.AddHeader("cache-control", "no-cache");
             request.AddHeader("content-type", "application/json");
@@ -407,9 +407,7 @@ namespace Client.Communication
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}Exception in DeleteItem{Environment.NewLine}{ex}{Environment.NewLine}");
-               
             }
-
         }
     }
 }

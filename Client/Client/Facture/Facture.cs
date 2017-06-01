@@ -1,14 +1,17 @@
-﻿using System;
-using Client.Model;
+﻿using Client.Model;
 using MigraDoc.DocumentObjectModel;
+using System;
 using System.Diagnostics;
 
- namespace Client.Facture
+namespace Client.Facture
 {
     public class Facture : IFacture
     {
         private static Facture _instance;
-        private Facture() { }
+
+        private Facture()
+        {
+        }
 
         public static Facture GetInstace()
         {

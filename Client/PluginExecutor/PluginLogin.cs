@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Net;
 
 namespace PluginExecutor
@@ -7,22 +8,31 @@ namespace PluginExecutor
     {
         public string Login(string login, string password)
         {
-            
-            var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://c414305-001-site1.btempurl.com/api/Login");
-            httpWebRequest.ContentType = "application/json";
-            httpWebRequest.Method = "POST";
-
-            using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+            try
             {
-                string json = "{\"login\": \"" + login + "\",\"password\": \"" + password + "\"}";
-                streamWriter.Write(json);
+                var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://c414305-001-site1.btempurl.com/api/Login");
+
+                httpWebRequest.ContentType = "application/json";
+                httpWebRequest.Method = "POST";
+
+                using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+                {
+                    string json = "{\"login\": \"" + login + "\",\"password\": \"" + password + "\"}";
+                    streamWriter.Write(json);
+                }
+
+                var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+                //System.Diagnostics.Debug.WriteLine($"RECIVED: {response.Content}");
+                using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+                {
+                    var result = streamReader.ReadToEnd();
+                    return result;
+                }
             }
-
-            var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
-            using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+            catch (Exception ex)
             {
-                var result = streamReader.ReadToEnd();
-                return result;
+                System.Diagnostics.Debug.WriteLine($"Error in PluginLogin: {ex}");
+                throw new Exception("ERROR in PluginLogin");
             }
         }
     }

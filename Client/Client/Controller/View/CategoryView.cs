@@ -1,5 +1,4 @@
 ﻿using Client.Windows;
-using System;
 using System.Windows;
 
 namespace Client.Controller.View
@@ -38,18 +37,25 @@ namespace Client.Controller.View
             _window.BtnCategoryModyfikuj.Visibility = Visibility.Hidden;
             _window.BtnCategorySzukaj.Visibility = Visibility.Hidden;
             _window.BtnCategoryUsun.Visibility = Visibility.Hidden;
+
+            _window.LblCategoryId.IsEnabled = true;
+            _window.LblCategoryNazwa.IsEnabled = true;
+
+            _window.TxbCategoryNazwa.IsEnabled = true;
+
+            _window.CmbCategoryId.IsEnabled = true;
         }
 
         public void ShowAll()
         {
             _window.ChbCategoryNazwa.Visibility = Visibility.Hidden;
 
-            _window.LblCategoryId.Visibility = Visibility.Hidden;
-            _window.LblCategoryNazwa.Visibility = Visibility.Hidden;
+            _window.LblCategoryId.IsEnabled = false;
+            _window.LblCategoryNazwa.IsEnabled = false;
 
-            _window.TxbCategoryNazwa.Visibility = Visibility.Hidden;
+            _window.TxbCategoryNazwa.IsEnabled = false;
 
-            _window.CmbCategoryId.Visibility = Visibility.Hidden;
+            _window.CmbCategoryId.IsEnabled = false;
 
             _window.BtnCategoryDodaj.Visibility = Visibility.Hidden;
             _window.BtnCategoryModyfikuj.Visibility = Visibility.Hidden;
@@ -72,6 +78,12 @@ namespace Client.Controller.View
             _window.BtnCategoryModyfikuj.Visibility = Visibility.Hidden;
             _window.BtnCategorySzukaj.Visibility = Visibility.Hidden;
             _window.BtnCategoryUsun.Visibility = Visibility.Visible;
+            _window.LblCategoryId.IsEnabled = true;
+            _window.LblCategoryNazwa.IsEnabled = true;
+
+            _window.TxbCategoryNazwa.IsEnabled = true;
+
+            _window.CmbCategoryId.IsEnabled = true;
         }
 
         public void ShowModify()
@@ -89,6 +101,12 @@ namespace Client.Controller.View
             _window.BtnCategoryModyfikuj.Visibility = Visibility.Visible;
             _window.BtnCategorySzukaj.Visibility = Visibility.Hidden;
             _window.BtnCategoryUsun.Visibility = Visibility.Hidden;
+            _window.LblCategoryId.IsEnabled = true;
+            _window.LblCategoryNazwa.IsEnabled = true;
+
+            _window.TxbCategoryNazwa.IsEnabled = true;
+
+            _window.CmbCategoryId.IsEnabled = true;
         }
 
         public void ShowSearch()
@@ -106,6 +124,12 @@ namespace Client.Controller.View
             _window.BtnCategoryModyfikuj.Visibility = Visibility.Hidden;
             _window.BtnCategorySzukaj.Visibility = Visibility.Visible;
             _window.BtnCategoryUsun.Visibility = Visibility.Hidden;
+            _window.LblCategoryId.IsEnabled = true;
+            _window.LblCategoryNazwa.IsEnabled = true;
+
+            _window.TxbCategoryNazwa.IsEnabled = true;
+
+            _window.CmbCategoryId.IsEnabled = true;
         }
     }
 }

@@ -16,12 +16,14 @@ namespace Client.Controller
         private static MagazineController _instance;
         private ICommunication _comm;
         private List<Artykul> art;
+        private List<Artykul> artSearched;
 
         private MagazineController()
         {
             _comm = Communicator.GetInstance();
             _comm.SetUrlAddress("http://c414305-001-site1.btempurl.com");
             //_comm.SetUrlAddress("http://localhost:52992");
+            artSearched = new List<Artykul>();
         }
 
         public static MagazineController GetInstance(Admin window)
@@ -51,8 +53,16 @@ namespace Client.Controller
                 _window.Dispatcher.BeginInvoke(new Action(() =>
                 {
                     _window.DgStateLista.Items.Clear();
-                    foreach (Artykul r in art)
-                        _window.DgStateLista.Items.Add(r);
+                    if (_window.RbStateSzukaj.IsChecked == false)
+                    {
+                        foreach (Artykul r in art)
+                            _window.DgStateLista.Items.Add(r);
+                    }
+                    if (_window.RbStateSzukaj.IsChecked == true)
+                    {
+                        foreach (Artykul r in artSearched)
+                            _window.DgStateLista.Items.Add(r);
+                    }
                 }));
             }
             catch (Exception ex)
@@ -63,7 +73,24 @@ namespace Client.Controller
 
         public void ShowSelectedData()
         {
-            throw new NotImplementedException();
+            try
+            {
+                Artykul a = (Artykul)_window.DgStateLista.SelectedItem;
+                _window.TxbStateCenaMin.Text = a.Cena + "";
+                _window.TxbStateIlosc.Text = a.Ilosc + "";
+                _window.TxbStateNazwa.Text = a.Nazwa;
+                for (int i = 0; i < _window.CmbStateKategoria.Items.Count; i++)
+                {
+                    if (((Kategoria)((ComboBoxItem)_window.CmbStateKategoria.Items.GetItemAt(i)).Tag).idKategorii == a.idKategorii)
+                    {
+                        _window.CmbStateKategoria.SelectedIndex = i;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error in Magazine Controller ShowSelectedData: {ex}");
+            }
         }
 
         public void ChangeData()
@@ -75,6 +102,7 @@ namespace Client.Controller
         {
             try
             {
+                artSearched.Clear();
                 Task.Factory.StartNew(() =>
                 {
                     GetData();
@@ -151,8 +179,13 @@ namespace Client.Controller
                                 }
                             }
                         }
-                        foreach (Artykul a in list)
-                            art.RemoveAll(ar => ar.idArtykulu == a.idArtykulu);
+                        //foreach (Artykul a in list)
+                        //    art.RemoveAll(ar => ar.idArtykulu == a.idArtykulu);
+                        foreach (Artykul a in art)
+                        {
+                            if (!list.Contains(a))
+                                artSearched.Add(a);
+                        }
                         ShowData();
                     }));
                 }));
@@ -167,7 +200,6 @@ namespace Client.Controller
         {
             try
             {
-              
                 Task<IEnumerable<Artykul>>.Factory.StartNew(() =>
                 {
                     return _comm.GetItems();
@@ -175,12 +207,7 @@ namespace Client.Controller
                 {
                     Task.Factory.StartNew(() =>
                     {
-                        art = x.Result.ToList();
-                        _window.Dispatcher.BeginInvoke(new Action(() =>
-                        {
-                            if (_window.RbStateSzukaj.IsChecked == false)
-                                ShowData();
-                        }));
+                        art = x.Result.ToList();                       
                         ShowData();
                     });
                 });

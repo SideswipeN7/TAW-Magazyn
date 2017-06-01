@@ -1,29 +1,30 @@
-﻿﻿using Client.Communication;
+﻿using Client.Communication;
 using Client.Model;
 using Client.Windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-
 
 namespace Client.Controller
 {
     internal class CategoryController : IWork
     {
         private static CategoryController _instance;
-        Admin _window { get; set; }
+        private Admin _window { get; set; }
         private ICommunication _comm;
         private List<Kategoria> categories;
+        private List<Kategoria> categoriesSeareched;
 
         private CategoryController()
         {
             _comm = Communicator.GetInstance();
             _comm.SetUrlAddress("http://c414305-001-site1.btempurl.com");
             //_comm.SetUrlAddress("http://localhost:52992");
+            categoriesSeareched = new List<Kategoria>();
         }
+
         public static CategoryController GetInstance(Admin window)
         {
             if (_instance == null)
@@ -95,22 +96,6 @@ namespace Client.Controller
         }
 
 
-
-        public void ShowCategoryData(IEnumerable<Kategoria> categories)
-        {
-            _window.Dispatcher.BeginInvoke(new Action(() =>
-            {
-                _window.CmbCategoryId.Items.Clear();
-                _window.DgCategoryLista.Items.Clear();
-                foreach (Kategoria r in categories)
-                {
-                    _window.DgCategoryLista.Items.Add(r);
-                    _window.CmbCategoryId.Items.Add(r.idKategorii);
-                }
-            }));
-        }
-
-
         public void GetData()
         {
             try
@@ -136,7 +121,6 @@ namespace Client.Controller
                 System.Diagnostics.Debug.WriteLine($"Error in Category Controller GetData: {ex}");
             }
         }
-              
 
         public void ShowData()
         {
@@ -145,6 +129,7 @@ namespace Client.Controller
                 _window.Dispatcher.BeginInvoke(new Action(() =>
                 {
                     _window.CmbCategoryId.Items.Clear();
+                    _window.DgCategoryLista.Items.Clear();
                     foreach (Kategoria r in categories)
                     {
                         _window.DgCategoryLista.Items.Add(r);
@@ -157,7 +142,6 @@ namespace Client.Controller
                 System.Diagnostics.Debug.WriteLine($"Error in Category Controller ShowData: {ex}");
             }
         }
-
 
         public void ShowSelectedData()
         {
@@ -173,7 +157,6 @@ namespace Client.Controller
             {
                 System.Diagnostics.Debug.WriteLine($"Error in Category Controller ShowSelectedData: {ex}");
             }
-
         }
 
         public void SearchData()
@@ -201,7 +184,6 @@ namespace Client.Controller
                             ShowData();
                         }
                     }));
-
                 }));
             }
             catch (Exception ex)

@@ -1,14 +1,9 @@
 ﻿using Client.Windows;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace Client.Controller.View
 {
-    class ClientsView:IViewController
+    internal class ClientsView : IViewController
     {
         private Admin _window { get; set; }
         private static ClientsView _instance;
@@ -16,6 +11,7 @@ namespace Client.Controller.View
         private ClientsView()
         {
         }
+
         public static ClientsView GetInstance(Admin window)
         {
             if (_instance == null)
@@ -33,6 +29,14 @@ namespace Client.Controller.View
             _window.BtnClientsSzukaj.Visibility = Visibility.Hidden;
             _window.BtnClientsUsun.Visibility = Visibility.Hidden;
             _window.BtnClientsDodaj.Visibility = Visibility.Hidden;
+
+            _window.TxbClientsFirma.IsEnabled = false;
+            _window.TxbClientsImie.IsEnabled = false;
+            _window.TxbClientsKodPocztowy.IsEnabled = false;
+            _window.TxbClientsMiejscowosc.IsEnabled = false;
+            _window.TxbClientsNazwisko.IsEnabled = false;
+            _window.CmbClientsWojewodztwo.IsEnabled = false;
+
         }
 
         public void ShowSearch()
@@ -42,6 +46,13 @@ namespace Client.Controller.View
             _window.BtnClientsSzukaj.Visibility = Visibility.Visible;
             _window.BtnClientsUsun.Visibility = Visibility.Hidden;
             _window.BtnClientsDodaj.Visibility = Visibility.Hidden;
+
+            _window.TxbClientsFirma.IsEnabled = false;
+            _window.TxbClientsImie.IsEnabled = false;
+            _window.TxbClientsKodPocztowy.IsEnabled = false;
+            _window.TxbClientsMiejscowosc.IsEnabled = false;
+            _window.TxbClientsNazwisko.IsEnabled = false;
+            _window.CmbClientsWojewodztwo.IsEnabled = false;
         }
 
         public void ShowAdd()
@@ -51,6 +62,12 @@ namespace Client.Controller.View
             _window.BtnClientsSzukaj.Visibility = Visibility.Hidden;
             _window.BtnClientsUsun.Visibility = Visibility.Hidden;
             _window.BtnClientsDodaj.Visibility = Visibility.Visible;
+            _window.TxbClientsFirma.IsEnabled = true;
+            _window.TxbClientsImie.IsEnabled = true;
+            _window.TxbClientsKodPocztowy.IsEnabled = true;
+            _window.TxbClientsMiejscowosc.IsEnabled = true;
+            _window.TxbClientsNazwisko.IsEnabled = true;
+            _window.CmbClientsWojewodztwo.IsEnabled = true;
         }
 
         public void ShowDelete()
@@ -60,6 +77,12 @@ namespace Client.Controller.View
             _window.BtnClientsSzukaj.Visibility = Visibility.Hidden;
             _window.BtnClientsUsun.Visibility = Visibility.Visible;
             _window.BtnClientsDodaj.Visibility = Visibility.Hidden;
+            _window.TxbClientsFirma.IsEnabled = true;
+            _window.TxbClientsImie.IsEnabled = true;
+            _window.TxbClientsKodPocztowy.IsEnabled = true;
+            _window.TxbClientsMiejscowosc.IsEnabled = true;
+            _window.TxbClientsNazwisko.IsEnabled = true;
+            _window.CmbClientsWojewodztwo.IsEnabled = true;
         }
 
         public void ShowModify()
@@ -69,6 +92,12 @@ namespace Client.Controller.View
             _window.BtnClientsSzukaj.Visibility = Visibility.Hidden;
             _window.BtnClientsUsun.Visibility = Visibility.Hidden;
             _window.BtnClientsDodaj.Visibility = Visibility.Hidden;
+            _window.TxbClientsFirma.IsEnabled = false;
+            _window.TxbClientsImie.IsEnabled = false;
+            _window.TxbClientsKodPocztowy.IsEnabled = false;
+            _window.TxbClientsMiejscowosc.IsEnabled = false;
+            _window.TxbClientsNazwisko.IsEnabled = false;
+            _window.CmbClientsWojewodztwo.IsEnabled = false;
         }
     }
 }

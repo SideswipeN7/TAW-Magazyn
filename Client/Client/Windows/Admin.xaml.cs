@@ -15,7 +15,7 @@ namespace Client.Windows
         private ItemsController _itemController = ItemsController.GetInstance(_instance);
         public int ID { get; set; }
 
-        private Adapter.Adapter service { get; set; }
+        private Adapter.Service service { get; set; }
 
         public static Admin GetInstance(int id, bool sudo)
         {
@@ -41,16 +41,20 @@ namespace Client.Windows
         public Admin()
         {
             InitializeComponent();
-            
+
             ID = 0;
-            service = Adapter.Adapter.GetInstance(ID, this);
+            service = Adapter.Service.GetInstance(ID, this);
             service.GetAll();
             service.LoadAll();
-            Thread.Sleep(250);
+            //Thread.Sleep(250);
             service.SelectaAll();
         }
 
         //Magazine State
+        private void DgStateLista_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            service.SelectedMagazine();
+        }
         private void RbStateSzukaj_Checked(object sender, RoutedEventArgs e)
         {
             service.ShowSearchMagazine();
@@ -253,7 +257,7 @@ namespace Client.Windows
         private void BtnDoGridFiveUsun_Click(object sender, RoutedEventArgs e)
         {
             service.DeleteFormCart();
-        }//END OF TODO
+        }
 
         private void DgOverviewGridOne_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
@@ -358,5 +362,7 @@ namespace Client.Windows
             window.Visibility = Visibility.Visible;
             Close();
         }
+
+       
     }
 }

@@ -3,10 +3,10 @@ using Client.Model;
 using Client.Windows;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Linq;
 
 namespace Client.Controller
 {
@@ -16,13 +16,14 @@ namespace Client.Controller
         private Admin _window { get; set; }
         private ICommunication _comm;
         private List<Artykul> art;
-
+        private List<Artykul> artSearched;
 
         private ItemsController()
         {
             _comm = Communicator.GetInstance();
             _comm.SetUrlAddress("http://c414305-001-site1.btempurl.com");
             //_comm.SetUrlAddress("http://localhost:52992");
+            artSearched = new List<Artykul>();
         }
 
         public static ItemsController GetInstance(Admin window)
@@ -37,10 +38,8 @@ namespace Client.Controller
 
         public void AddData()
         {
-
             try
             {
-
                 int quantity;
                 decimal price;
                 if (_window.TxbItemINazwa.Text.Length < 5)
@@ -90,7 +89,6 @@ namespace Client.Controller
             {
                 System.Diagnostics.Debug.WriteLine($"Error in Item Controller AddData: {ex}");
             }
-
         }
 
         public void ChangeData()
@@ -147,7 +145,6 @@ namespace Client.Controller
             {
                 System.Diagnostics.Debug.WriteLine($"Error in Item Controller ChangeData: {ex}");
             }
-
         }
 
         public void DeleteData()
@@ -173,13 +170,20 @@ namespace Client.Controller
                 _window.Dispatcher.BeginInvoke(new Action(() =>
                 {
                     _window.DgItemLista.Items.Clear();
-
-                    foreach (Artykul r in art)
+                    if (_window.RbItemWszystko.IsChecked == false)
                     {
-                        _window.DgItemLista.Items.Add(r);
+                        foreach (Artykul r in art)
+                        {
+                            _window.DgItemLista.Items.Add(r);
+                        }
                     }
-
-
+                    if (_window.RbItemSzukaj.IsChecked == true)
+                    {
+                        foreach (Artykul r in artSearched)
+                        {
+                            _window.DgItemLista.Items.Add(r);
+                        }
+                    }
                 }));
             }
             catch (Exception ex)
@@ -242,6 +246,7 @@ namespace Client.Controller
         {
             try
             {
+                artSearched.Clear();
                 Task.Factory.StartNew(() =>
                 {
                     GetData();
@@ -257,7 +262,7 @@ namespace Client.Controller
                             decimal max, min;
                             if (_window.TxbItemCenaMin.Text.Length == 0)
                                 _window.TxbItemCenaMin.Text = "0";
-                                if (_window.TxbItemCenaMax.Text.Length==0)
+                            if (_window.TxbItemCenaMax.Text.Length == 0)
                                 _window.TxbItemCenaMax.Text = "9999";
                             if (!Decimal.TryParse(_window.TxbItemCenaMin.Text, out min))
                             {
@@ -276,7 +281,6 @@ namespace Client.Controller
                                     }
                                 }
                             }
-
                         }
                         //2
                         if (_window.ChbItemIlosc.IsChecked == true)
@@ -319,12 +323,13 @@ namespace Client.Controller
                                 }
                             }
                         }
-                        foreach (Artykul a in list)
-                            art.RemoveAll(ar => ar.idArtykulu == a.idArtykulu);
+                        foreach (Artykul a in art)
+                        {
+                            if (!list.Contains(a))
+                                artSearched.Add(a);
+                        }
                         ShowData();
-
                     }));
-
                 }));
             }
             catch (Exception ex)
@@ -332,6 +337,5 @@ namespace Client.Controller
                 System.Diagnostics.Debug.WriteLine($"Error in Item Controller SearchData: {ex}");
             }
         }
-
     }
 }

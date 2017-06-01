@@ -22,7 +22,10 @@ namespace Client.Windows
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            Admin mw = LogIn(txtLogin.Text, txbPassword.Password);
+            string password = "";
+            if (txbPassword.IsVisible) password = txbPassword.Password;
+            if (txtPassword.IsVisible) password = txtPassword.Text;
+            Admin mw = LogIn(txtLogin.Text, password);
 
             if (mw != null)
             {
@@ -94,7 +97,7 @@ namespace Client.Windows
             txbPassword.Visibility = System.Windows.Visibility.Collapsed;
             txtPassword.Text = txbPassword.Password;
             BtnShow.Content = "Ukryj";
-           // txtPassword.Focus();
+            // txtPassword.Focus();
         }
 
         private void ShowPasswordChars()

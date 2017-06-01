@@ -18,7 +18,6 @@ namespace TDD_TEST
         public void Setup()
         {
             comm = Communicator.GetInstance();
-            //comm.SetUrlAddress("http://o1018869-001-site1.htempurl.com");
             comm.SetUrlAddress("http://c414305-001-site1.btempurl.com");
         }
 
@@ -128,35 +127,35 @@ namespace TDD_TEST
             }
         }
 
-        //[Test]
-        //[TestCaseSource(typeof(UnitTest1), nameof(UnitTest1.TestRegisterSupplyCases))]
-        //public void RegisterSupply(Dostawca dostawca)
-        //{
-        //    bool result = comm.RegisterSupplier(dostawca);
+        [Test]
+        [TestCaseSource(typeof(UnitTest1), nameof(UnitTest1.TestRegisterSupplyCases))]
+        public void RegisterSupply(Dostawca dostawca)
+        {
+            bool result = comm.RegisterSupplier(dostawca);
 
-        //    if (dostawca.idDostawcy == 1)
-        //    {
-        //        result.ShouldBeEquivalentTo(false);
-        //    }
+            if (dostawca.idDostawcy == 1)
+            {
+                result.ShouldBeEquivalentTo(false);
+            }
 
-        //    if (dostawca.idDostawcy == 999)
-        //    {
-        //        result.ShouldBeEquivalentTo(true);
-        //    }
-        //}
+            if (dostawca.idDostawcy == 999)
+            {
+                result.ShouldBeEquivalentTo(true);
+            }
+        }
 
-        //[Test]
-        //[TestCaseSource(typeof(UnitTest1), nameof(UnitTest1.TestChangeAddressCases))]
-        //public void RegisterAddress(Adres adres)
-        //{
-        //    int result = comm.RegisterAddress(adres);
+        [Test]
+        [TestCaseSource(typeof(UnitTest1), nameof(UnitTest1.TestChangeAddressCases))]
+        public void RegisterAddress(Adres adres)
+        {
+            int result = comm.RegisterAddress(adres);
 
-        //    if (adres.idAdresu == 1)
-        //    {
-        //        result.ShouldBeEquivalentTo(1);
-        //    }
-        //    else result.Should().BeGreaterThan(0);
-        //}
+            if (adres.idAdresu == 1)
+            {
+                result.ShouldBeEquivalentTo(1);
+            }
+            else result.Should().BeGreaterThan(0);
+        }
 
         [Test]
         [TestCase(0)]
@@ -181,18 +180,18 @@ namespace TDD_TEST
             }
         }
 
-        //[Test]
-        //[TestCaseSource(typeof(UnitTest1), nameof(UnitTest1.TestRegisterTransactionCases))]
-        //public void RegisterTransaction(Transakcja transakcja)
-        //{
-        //    int result = comm.RegisterTransaction(transakcja);
+        [Test]
+        [TestCaseSource(typeof(UnitTest1), nameof(UnitTest1.TestRegisterTransactionCases))]
+        public void RegisterTransaction(Transakcja transakcja)
+        {
+            int result = comm.RegisterTransaction(transakcja);
 
-        //    if (transakcja.idTransakcji == 1)
-        //    {
-        //        result.ShouldBeEquivalentTo(1);
-        //    }
-        //    else result.Should().BeGreaterThan(0);
-        //}
+            if (transakcja.idTransakcji == 1)
+            {
+                result.ShouldBeEquivalentTo(1);
+            }
+            else result.Should().BeGreaterThan(0);
+        }
 
         [Test]
         [TestCase("a", "b")]

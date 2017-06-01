@@ -12,7 +12,7 @@
                 <Canvas>
                     <RadioButton Content="Wszystko" Height="18" Width="100" x:Name="RbStateWszystko" Canvas.Left="85" Canvas.Top="5" Checked="RbStateWszystko_Checked" />
                     <RadioButton Content="Szukaj" Height="18" Width="100" x:Name="RbStateSzukaj" Canvas.Left="190" Canvas.Top="5" Checked="RbStateSzukaj_Checked" />
-                    <DataGrid x:Name="DgStateLista" IsReadOnly="True" HorizontalAlignment="Left" VerticalAlignment="Top" Height="1045" Width="322" Canvas.Left="10" Canvas.Top="28" AutoGenerateColumns="False" SelectionMode="Single">
+                    <DataGrid x:Name="DgStateLista" IsReadOnly="True" HorizontalAlignment="Left" VerticalAlignment="Top" Height="1045" Width="322" Canvas.Left="10" Canvas.Top="28" AutoGenerateColumns="False" SelectionMode="Single" SelectionChanged="DgStateLista_SelectionChanged">
                         <DataGrid.Columns>
                             <DataGridTextColumn   Header="Nazwa artykułu" Width="100" Binding="{Binding Nazwa}" />
                             <DataGridTextColumn   Header="Ilość" Width="50" Binding="{Binding Ilosc}" />
@@ -112,7 +112,7 @@
                                 <Grid x:Name="GridOverviewOne" Margin="0,0,791,0">
                                     <RadioButton x:Name="RbOverviewGridOneWszystkie" Content="Wszystkie" HorizontalAlignment="Left" Margin="48,10,0,0" VerticalAlignment="Top" Checked="RbOverviewGridOneWszystkie_Checked" />
                                     <RadioButton x:Name="RbOverviewGridOneSzukaj" Content="Szukaj" HorizontalAlignment="Left" Margin="188,10,0,0" VerticalAlignment="Top" Checked="RbOverviewGridOneSzukaj_Checked" />
-                                    <DataGrid x:Name="DgOverviewGridOne" HorizontalAlignment="Left" Margin="0,61" Width="307" SelectionChanged="DgOverviewGridOne_SelectionChanged" FrozenColumnCount="0" SelectionMode="Single" CanUserResizeRows="False">
+                                    <DataGrid x:Name="DgOverviewGridOne" HorizontalAlignment="Left" Margin="0,61" Width="307" SelectionChanged="DgOverviewGridOne_SelectionChanged" FrozenColumnCount="0" SelectionMode="Single" CanUserResizeRows="False" IsReadOnly="True">
                                         <DataGrid.Columns>
                                             <DataGridTextColumn   Header="Transakcja" Width="*" Binding="{Binding idTransakcji}" />
                                             <DataGridTextColumn   Header="Data Transakcji Data" Width="*" Binding="{Binding Data}" />
@@ -142,7 +142,7 @@
                                 </Grid>
                                 <Grid x:Name="GridOverviewThree" Margin="634,0,10,0">
                                     <Label x:Name="LblOverviewGridThreeProdukty" Content="Produkty" FontSize="14" HorizontalAlignment="Left" Margin="203,10,0,0" VerticalAlignment="Top" />
-                                    <DataGrid x:Name="DgOverviewGridThree" HorizontalAlignment="Left" Margin="40,60,0,65" Width="407">
+                                    <DataGrid x:Name="DgOverviewGridThree" HorizontalAlignment="Left" Margin="40,60,0,65" Width="407" IsReadOnly="True">
                                         <DataGrid.Columns>
                                             <DataGridTextColumn   Header="Produkt" Width="*" Binding="{Binding Nazwa}" />
                                             <DataGridTextColumn   Header="Cena" Width="*" Binding="{Binding Cena, StringFormat={}{0:F2} }" />
@@ -157,19 +157,19 @@
             <TabItem x:Name="TabClients" Header="Klienci">
                 <Canvas>
                     <Grid x:Name="GridClientsSearch" Height="165" Width="276" Canvas.Left="480" Canvas.Top="62">
-                        <CheckBox x:Name="ChbClientsNazwisko" Content="" Margin="238,10,11,133"/>
-                        <Label x:Name="LblClientsMiejscowoscSearch" Content="Miejscowość:" Margin="1,71,187,67"/>
-                        <Label x:Name="LblClientsWojewodztwoSearch" Content="Województwo:" Margin="0,98,188,39"/>
-                        <TextBox x:Name="TxbClientsMiejscowoscSearch" TextWrapping="Wrap" RenderTransformOrigin="0.115,0.691" Margin="99,75,42,67" Height="23"/>
-                        <ComboBox x:Name="CmbClientsWojewodztwoSearch"  RenderTransformOrigin="0.115,0.691" Margin="98,103,47,39" Height="23"/>
-                        <Label x:Name="LblClientsNazwiskoSearch" Content="Nazwisko:" Margin="0,10,188,127"/>
-                        <TextBox x:Name="TxbClientsNazwiskoSearch" TextWrapping="Wrap" RenderTransformOrigin="0.115,0.691" Margin="98,10,43,133"/>
-                        <CheckBox x:Name="ChbClientsMiejscowosc" Content="" Margin="239,75,10,67"/>
-                        <CheckBox x:Name="ChbClientsWojewodztwo" Content="" Margin="239,103,10,39"/>
+                        <CheckBox x:Name="ChbClientsNazwisko" Content="" Margin="238,10,11,133" />
+                        <Label x:Name="LblClientsMiejscowoscSearch" Content="Miejscowość:" Margin="1,71,187,67" />
+                        <Label x:Name="LblClientsWojewodztwoSearch" Content="Województwo:" Margin="0,98,188,39" />
+                        <TextBox x:Name="TxbClientsMiejscowoscSearch" TextWrapping="Wrap" RenderTransformOrigin="0.115,0.691" Margin="99,75,42,67" Height="23" />
+                        <ComboBox x:Name="CmbClientsWojewodztwoSearch"  RenderTransformOrigin="0.115,0.691" Margin="98,103,47,39" Height="23" />
+                        <Label x:Name="LblClientsNazwiskoSearch" Content="Nazwisko:" Margin="0,10,188,127" />
+                        <TextBox x:Name="TxbClientsNazwiskoSearch" TextWrapping="Wrap" RenderTransformOrigin="0.115,0.691" Margin="98,10,43,133" />
+                        <CheckBox x:Name="ChbClientsMiejscowosc" Content="" Margin="239,75,10,67" />
+                        <CheckBox x:Name="ChbClientsWojewodztwo" Content="" Margin="239,103,10,39" />
                         <Button x:Name="BtnClientsSzukaj" Content="Szukaj" RenderTransformOrigin="0.449,0.517" Margin="126,135,75,10" Click="BtnClientsSzukaj_Click" />
-                        <CheckBox x:Name="ChbClientsFirma" Content="" Margin="239,37,10,106"/>
-                        <Label x:Name="LblClientsFirmaSearch" Content="Firma: " Margin="1,37,187,100"/>
-                        <TextBox x:Name="TxbClientsFirmaSearch" TextWrapping="Wrap" RenderTransformOrigin="0.115,0.691" Margin="99,37,42,106"/>
+                        <CheckBox x:Name="ChbClientsFirma" Content="" Margin="239,37,10,106" />
+                        <Label x:Name="LblClientsFirmaSearch" Content="Firma: " Margin="1,37,187,100" />
+                        <TextBox x:Name="TxbClientsFirmaSearch" TextWrapping="Wrap" RenderTransformOrigin="0.115,0.691" Margin="99,37,42,106" />
                     </Grid>
                     <DataGrid x:Name="DgClientsLista" IsReadOnly="True" HorizontalAlignment="Left" VerticalAlignment="Top" Height="1014" Width="177" Canvas.Left="10" Canvas.Top="37" SelectionChanged="DgClientsLista_SelectionChanged" SelectionMode="Single">
                         <DataGrid.Columns>
@@ -187,7 +187,7 @@
                     <Label x:Name="LblClientsMiejscowosc" Content="Miejscowość:" Height="27" Width="100" Canvas.Left="212" Canvas.Top="136" />
                     <Label x:Name="LblClientsKodPocztowy" Content="Kod pocztowy:" Height="27" Width="100" Canvas.Left="212" Canvas.Top="168" RenderTransformOrigin="0.623,3.557" />
                     <Label x:Name="LblClientsWojewodztwo" Content="Województwo:" Height="27" Width="100" Canvas.Left="212" Canvas.Top="200" />
-                    <Label x:Name="LblClientsIloscTransakcji" Content="Ilość transakcji:" Height="27" Width="225" Canvas.Left="212" Canvas.Top="232" />
+                    <Label x:Name="LblClientsIloscTransakcji" Content="Ilość transakcji:" Height="27" Width="225" Canvas.Left="212" Canvas.Top="232" Visibility="Hidden" />
                     <TextBox x:Name="TxbClientsNazwisko" Height="23" Canvas.Left="317" TextWrapping="Wrap" Canvas.Top="76" Width="120" RenderTransformOrigin="0.115,0.691" />
                     <TextBox x:Name="TxbClientsFirma" Height="23" Canvas.Left="317" TextWrapping="Wrap" Canvas.Top="108" Width="120" RenderTransformOrigin="0.115,0.691" />
                     <TextBox x:Name="TxbClientsMiejscowosc" Height="23" Canvas.Left="317" TextWrapping="Wrap" Canvas.Top="140" Width="120" RenderTransformOrigin="0.115,0.691" />
@@ -260,7 +260,7 @@
             </TabItem>
             <TabItem x:Name="TabEmployees" Header="Pracownicy">
                 <Canvas>
-                    <DataGrid x:Name="DgEmployeesList" Canvas.Left="10" Canvas.Top="26" Height="1042" Width="250" SelectionChanged="DgEmployeesList_SelectionChanged" SelectionMode="Single">
+                    <DataGrid x:Name="DgEmployeesList" Canvas.Left="10" Canvas.Top="26" Height="1042" Width="250" SelectionChanged="DgEmployeesList_SelectionChanged" SelectionMode="Single" IsReadOnly="True">
                         <DataGrid.Columns>
                             <DataGridTextColumn   Header="Imię" Width="*" Binding="{Binding Imie}" />
                             <DataGridTextColumn   Header="Nazwisko" Width="*" Binding="{Binding Nazwisko}" />

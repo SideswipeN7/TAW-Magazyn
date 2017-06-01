@@ -1,4 +1,3 @@
-﻿
 ﻿using Client.Communication;
 using Client.Model;
 using Client.Windows;
@@ -8,22 +7,22 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-
 namespace Client.Controller
 {
     internal class ClientsController : IWork
     {
-
         private static ClientsController _instance;
         private Admin _window;
         private ICommunication _comm;
         private List<Klient> clients;
+        private List<Klient> clientsSearched;
 
         private ClientsController()
         {
             _comm = Communicator.GetInstance();
             _comm.SetUrlAddress("http://c414305-001-site1.btempurl.com");
             //_comm.SetUrlAddress("http://localhost:52992");
+            clientsSearched = new List<Klient>();
         }
 
         public static ClientsController GetInstance(Admin window)
@@ -48,11 +47,7 @@ namespace Client.Controller
                     Task.Factory.StartNew(() =>
                     {
                         clients = x.Result.ToList();
-                        _window.Dispatcher.BeginInvoke(new Action(() =>
-                        {
-                            if (_window.RbClientsSzukaj.IsChecked == false)
-                                ShowData();
-                        }));
+                        ShowData();
                     });
                 });
             }
@@ -61,7 +56,6 @@ namespace Client.Controller
                 System.Diagnostics.Debug.WriteLine($"Error in Client Controller GetData: {ex}");
             }
         }
-
 
         public void AddData()
         {
@@ -113,7 +107,6 @@ namespace Client.Controller
 
                     _comm.RegisterClient(new KlientAdress() { Adres = adres, Klient = klient });
                     GetData();
-
                 }
             }
             catch (Exception ex)
@@ -121,8 +114,6 @@ namespace Client.Controller
                 System.Diagnostics.Debug.WriteLine($"Error in Client Controller AddData: {ex}");
             }
         }
-
-
 
         public void ChangeData()
         {
@@ -201,6 +192,7 @@ namespace Client.Controller
                 System.Diagnostics.Debug.WriteLine($"Error in Client Controller DeleteData: {ex}");
             }
         }
+
         public void ShowData()
         {
             try
@@ -208,8 +200,16 @@ namespace Client.Controller
                 _window.Dispatcher.BeginInvoke(new Action(() =>
                 {
                     _window.DgClientsLista.Items.Clear();
-                    foreach (Klient r in clients)
-                        _window.DgClientsLista.Items.Add(r);
+                    if (_window.RbClientsSzukaj.IsChecked == false)
+                    {
+                        foreach (Klient r in clients)
+                            _window.DgClientsLista.Items.Add(r);
+                    }
+                    if (_window.RbClientsSzukaj.IsChecked == true)
+                    {
+                        foreach (Klient r in clientsSearched)
+                            _window.DgClientsLista.Items.Add(r);
+                    }
                 }));
             }
             catch (Exception ex)
@@ -229,7 +229,7 @@ namespace Client.Controller
                     _window.TxbClientsMiejscowosc.Text = ((Klient)_window.DgClientsLista.SelectedItem).Ksiazka_adresow.Miejscowosc;
                     _window.TxbClientsNazwisko.Text = ((Klient)_window.DgClientsLista.SelectedItem).Nazwisko;
                     _window.CmbClientsWojewodztwo.SelectedItem = ((Klient)_window.DgClientsLista.SelectedItem).Ksiazka_adresow.Wojewodztwo;
-                    _window.LblClientsIloscTransakcji.Content = $"Ilość transakcji: {((Klient)_window.DgClientsLista.SelectedItem).Transakcje.Count}";
+                   // _window.LblClientsIloscTransakcji.Content = $"Ilość transakcji: {((Klient)_window.DgClientsLista.SelectedItem).Transakcje.Count}";
                 }
             }
             catch (Exception ex)
@@ -242,6 +242,7 @@ namespace Client.Controller
         {
             try
             {
+                clientsSearched.Clear();
                 Task.Factory.StartNew(() =>
                 {
                     GetData();
@@ -299,8 +300,11 @@ namespace Client.Controller
                                     }
                                 }
                         }
-                        foreach (Klient a in list)
-                            clients.RemoveAll(ar => ar.idKlienta == a.idKlienta);
+                        foreach (Klient a in clients)
+                        {
+                            if (!list.Contains(a))
+                                clientsSearched.Add(a);
+                        }
                         ShowData();
                     }));
                 }));

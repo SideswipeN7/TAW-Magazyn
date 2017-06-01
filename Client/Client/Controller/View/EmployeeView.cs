@@ -1,14 +1,10 @@
 ﻿using Client.Windows;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace Client.Controller.View
 {
-    class EmployeeView:IViewController
+    internal class EmployeeView : IViewController
     {
         private Admin _window { get; set; }
         private static EmployeeView _instance;
@@ -16,6 +12,7 @@ namespace Client.Controller.View
         private EmployeeView()
         {
         }
+
         public static EmployeeView GetInstance(Admin window)
         {
             if (_instance == null)
@@ -31,6 +28,16 @@ namespace Client.Controller.View
             _window.BtnEmployeeDodaj.Visibility = Visibility.Hidden;
             _window.BtnEmployeeModyfikuj.Visibility = Visibility.Hidden;
             _window.BtnEmployeeUsun.Visibility = Visibility.Hidden;
+
+            _window.TxbEmployeeHaslo.IsEnabled = false;
+            _window.TxbEmployeeImie.IsEnabled = false;
+            _window.TxbEmployeeKodPocztowy.IsEnabled = false;
+            _window.TxbEmployeeLogin.IsEnabled = false;
+            _window.TxbEmployeeMiejscowosc.IsEnabled = false;
+            _window.TxbEmployeeNazwisko.IsEnabled = false;
+            _window.TxbEmployeeWiek.IsEnabled = false;
+            _window.CmbEmployeeAdmin.IsEnabled = false;
+            _window.CmbEmployeeWojewodztwo.IsEnabled = false;
         }
 
         public void ShowSearch()
@@ -43,6 +50,16 @@ namespace Client.Controller.View
             _window.BtnEmployeeDodaj.Visibility = Visibility.Visible;
             _window.BtnEmployeeModyfikuj.Visibility = Visibility.Hidden;
             _window.BtnEmployeeUsun.Visibility = Visibility.Hidden;
+
+            _window.TxbEmployeeHaslo.IsEnabled = true;
+            _window.TxbEmployeeImie.IsEnabled = true;
+            _window.TxbEmployeeKodPocztowy.IsEnabled = true;
+            _window.TxbEmployeeLogin.IsEnabled = true;
+            _window.TxbEmployeeMiejscowosc.IsEnabled = true;
+            _window.TxbEmployeeNazwisko.IsEnabled = true;
+            _window.TxbEmployeeWiek.IsEnabled = true;
+            _window.CmbEmployeeAdmin.IsEnabled = true;
+            _window.CmbEmployeeWojewodztwo.IsEnabled = true;
         }
 
         public void ShowDelete()
@@ -50,6 +67,16 @@ namespace Client.Controller.View
             _window.BtnEmployeeDodaj.Visibility = Visibility.Hidden;
             _window.BtnEmployeeModyfikuj.Visibility = Visibility.Hidden;
             _window.BtnEmployeeUsun.Visibility = Visibility.Visible;
+
+            _window.TxbEmployeeHaslo.IsEnabled = false;
+            _window.TxbEmployeeImie.IsEnabled = false;
+            _window.TxbEmployeeKodPocztowy.IsEnabled = false;
+            _window.TxbEmployeeLogin.IsEnabled = false;
+            _window.TxbEmployeeMiejscowosc.IsEnabled = false;
+            _window.TxbEmployeeNazwisko.IsEnabled = false;
+            _window.TxbEmployeeWiek.IsEnabled = false;
+            _window.CmbEmployeeAdmin.IsEnabled = false;
+            _window.CmbEmployeeWojewodztwo.IsEnabled = false;
         }
 
         public void ShowModify()
@@ -57,6 +84,16 @@ namespace Client.Controller.View
             _window.BtnEmployeeDodaj.Visibility = Visibility.Hidden;
             _window.BtnEmployeeModyfikuj.Visibility = Visibility.Visible;
             _window.BtnEmployeeUsun.Visibility = Visibility.Hidden;
+
+            _window.TxbEmployeeHaslo.IsEnabled = true;
+            _window.TxbEmployeeImie.IsEnabled = true;
+            _window.TxbEmployeeKodPocztowy.IsEnabled = true;
+            _window.TxbEmployeeLogin.IsEnabled = true;
+            _window.TxbEmployeeMiejscowosc.IsEnabled = true;
+            _window.TxbEmployeeNazwisko.IsEnabled = true;
+            _window.TxbEmployeeWiek.IsEnabled = true;
+            _window.CmbEmployeeAdmin.IsEnabled = true;
+            _window.CmbEmployeeWojewodztwo.IsEnabled = true;
         }
     }
 }
