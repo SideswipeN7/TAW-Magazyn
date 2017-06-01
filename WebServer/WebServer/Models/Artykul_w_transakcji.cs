@@ -9,10 +9,9 @@
 
 namespace WebServer.Models
 {
-    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
-
+    
     public partial class Artykul_w_transakcji
     {
         public int idArt_w_trans { get; set; }
@@ -21,7 +20,6 @@ namespace WebServer.Models
         public int idArtykulu { get; set; }
     
         public virtual Artykul Artykuly { get; set; }
-        [JsonIgnore]
         public virtual Transakcja Transakcje { get; set; }
     }
 }

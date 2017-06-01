@@ -73,14 +73,17 @@ namespace WebServer.Controllers
 
             try
             {
+                Adres a = transakcja.Klienci.Ksiazka_adresow;
+                Klient k = transakcja.Klienci;
+                new ClientsController().RegisterClient(new KlientAdress() { Adres = a, Klient = k });
                 db.Transakcje.Add(transakcja);
                 db.SaveChanges();
                 int id = transakcja.idTransakcji;
                 foreach(Artykul_w_transakcji at in transakcja.Artykuly_w_transakcji)
                 {
-                    Artykul a = db.Artykuly.Find(at.idArtykulu);
-                    a.Ilosc -= 1;
-                    db.Entry(a).State = System.Data.Entity.EntityState.Modified;
+                    Artykul ar = db.Artykuly.Find(at.idArtykulu);
+                    ar.Ilosc -= 1;
+                    db.Entry(ar).State = System.Data.Entity.EntityState.Modified;
                     db.SaveChanges();
                 }
 

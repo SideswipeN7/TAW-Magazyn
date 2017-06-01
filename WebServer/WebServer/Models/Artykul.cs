@@ -9,10 +9,9 @@
 
 namespace WebServer.Models
 {
-    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
-
+    
     public partial class Artykul
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -28,8 +27,7 @@ namespace WebServer.Models
         public int idKategorii { get; set; }
     
         public virtual Kategoria Kategorie { get; set; }
-        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        [JsonIgnore]
-        public ICollection<Artykul_w_transakcji> Artykuly_w_transakcji { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Artykul_w_transakcji> Artykuly_w_transakcji { get; set; }
     }
 }
