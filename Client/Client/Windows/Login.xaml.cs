@@ -92,26 +92,28 @@ namespace Client.Windows
         {
             txtPassword.Visibility = System.Windows.Visibility.Visible;
             txbPassword.Visibility = System.Windows.Visibility.Collapsed;
+            txtPassword.Text = txbPassword.Password;
             BtnShow.Content = "Ukryj";
-            txtPassword.Focus();
+           // txtPassword.Focus();
         }
 
         private void ShowPasswordChars()
         {
             txbPassword.Visibility = System.Windows.Visibility.Visible;
             txtPassword.Visibility = System.Windows.Visibility.Collapsed;
+            txbPassword.Password = txtPassword.Text;
             BtnShow.Content = "Pokaż";
-            txbPassword.Focus();
+            //txbPassword.Focus();
         }
 
         private void txbPassword_PasswordChanged(object sender, RoutedEventArgs e)
         {
-            txtPassword.Text = txbPassword.Password;
+            //txtPassword.Text = txbPassword.Password;
         }
 
         private void txtPassword_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
-            txbPassword.Password = txtPassword.Text;
+            //txbPassword.Password = txtPassword.Text;
         }
     }
 }
