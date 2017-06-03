@@ -38,7 +38,9 @@ namespace Client.Controller
         {
             try
             {
+#pragma warning disable IDE0018 // Inline variable declaration
                 int wiek;
+#pragma warning restore IDE0018 // Inline variable declaration
                 if (_window.TxbEmployeeHaslo.Text.Length < 5)
                 {
                     MessageBox.Show("Hasło zbyt krótkie - minimum 5 znaków", "Bład", MessageBoxButton.OK);
@@ -108,7 +110,9 @@ namespace Client.Controller
         {
             try
             {
+#pragma warning disable IDE0018 // Inline variable declaration
                 int wiek;
+#pragma warning restore IDE0018 // Inline variable declaration
                 if (_window.TxbEmployeeHaslo.Text.Length < 5)
                 {
                     MessageBox.Show("Hasło zbyt krótkie - minimum 5 znaków", "Bład", MessageBoxButton.OK);

@@ -1,4 +1,5 @@
-﻿using Client.Controller;
+﻿using Client.Adapter;
+using Client.Controller;
 using System.Diagnostics;
 using System.Threading;
 using System.Windows;
@@ -15,7 +16,7 @@ namespace Client.Windows
         private ItemsController _itemController = ItemsController.GetInstance(_instance);
         public int ID { get; set; }
 
-        private Adapter.Service service { get; set; }
+        private Adapter.Service _service { get; set; }
 
         public static Admin GetInstance(int id, bool sudo)
         {
@@ -42,295 +43,297 @@ namespace Client.Windows
             InitializeComponent();
 
             ID = 0;
-            service = Adapter.Service.GetInstance(ID, this);
-            service.GetAll();
-            service.LoadAll();            
-            service.SelectaAll();
+            _service = Service.GetInstance(ID, this);
+            _service.GetAll();
+            _service.LoadAll();            
+            _service.SelectaAll();
         }
 
         //Magazine State
         private void DgStateLista_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-            service.SelectedMagazine();
+            _service.SelectedMagazine();
         }
         private void RbStateSzukaj_Checked(object sender, RoutedEventArgs e)
         {
-            service.ShowSearchMagazine();
+            _service.ShowSearchMagazine();
         }
 
         private void RbStateWszystko_Checked(object sender, RoutedEventArgs e)
         {
-            service.ShowAllMagazine();
+            _service.ShowAllMagazine();
         }
 
         private void BtnSateSzukaj_Click(object sender, RoutedEventArgs e)
         {
-            service.SearchMagazine();
+            _service.SearchMagazine();
         }
 
         //Categories
         private void CmbCategoryId_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-            service.CmbCategoryIdChange();
+            _service.CmbCategoryIdChange();
         }
 
         private void DgCategoryLista_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-            service.SelectedCategories();
+            _service.SelectedCategories();
         }
 
         private void RbCategoryWszystko_Checked(object sender, RoutedEventArgs e)
         {
-            service.ShowAllCategories();
+            _service.ShowAllCategories();
         }
 
         private void RbCategoryDodaj_Checked(object sender, RoutedEventArgs e)
         {
-            service.ShowAddCategories();
+            _service.ShowAddCategories();
         }
 
         private void RbCategoryModyfikuj_Checked(object sender, RoutedEventArgs e)
         {
-            service.ShowModifyCategories();
+            _service.ShowModifyCategories();
         }
 
         private void RbCategoryUsun_Checked(object sender, RoutedEventArgs e)
         {
-            service.ShowDeleteCategories();
+            _service.ShowDeleteCategories();
         }
 
         private void RbCategorySzukaj_Checked(object sender, RoutedEventArgs e)
         {
-            service.ShowSearchCategories();
+            _service.ShowSearchCategories();
         }
 
         private void BtnCategoryDodaj_Click(object sender, RoutedEventArgs e)
         {
-            service.AddCategories();
+            _service.AddCategories();
         }
 
         private void BtnCategoryModyfikuj_Click(object sender, RoutedEventArgs e)
         {
-            service.ModifyCategories();
+            _service.ModifyCategories();
         }
 
         private void BtnCategoryUsun_Click(object sender, RoutedEventArgs e)
         {
-            service.DeleteCategories();
+            _service.DeleteCategories();
         }
 
         private void BtnCategorySzukaj_Click(object sender, RoutedEventArgs e)
         {
-            service.SearchCategories();
+            _service.SearchCategories();
         }
 
         //Items
         private void DgItemLista_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-            service.SelectedItems();
+            _service.SelectedItems();
         }
 
         private void RbItemWszystko_Checked(object sender, RoutedEventArgs e)
         {
-            service.ShowAllItems();
+            _service.ShowAllItems();
         }
 
         private void RbItemSzukaj_Checked(object sender, RoutedEventArgs e)
         {
-            service.ShowSearchItems();
+            _service.ShowSearchItems();
         }
 
         private void RbItemModyfikuj_Checked(object sender, RoutedEventArgs e)
         {
-            service.ShowModifyItems();
+            _service.ShowModifyItems();
         }
 
         private void RbItemDodaj_Checked(object sender, RoutedEventArgs e)
         {
-            service.ShowAddItems();
+            _service.ShowAddItems();
         }
 
         private void BtnItemModyfikuj_Click(object sender, RoutedEventArgs e)
         {
-            service.ModifyItems();
+            _service.ModifyItems();
         }
 
         private void BtnItemDodaj_Click(object sender, RoutedEventArgs e)
         {
-            service.AddItems();
+            _service.AddItems();
         }
 
         private void BtnItemSzukaj_Click(object sender, RoutedEventArgs e)
         {
-            service.SearchItems();
+            _service.SearchItems();
         }
 
         private void RbItemUsun_Checked(object sender, RoutedEventArgs e)
         {
-            service.ShowDeleteItems();
+            _service.ShowDeleteItems();
         }
 
         private void BtnItemUsun_Click(object sender, RoutedEventArgs e)
         {
-            service.DeleteItems();
+            _service.DeleteItems();
         }
 
         //Clients
         private void DgClientsLista_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-            service.SelectedClients(); ;
+            _service.SelectedClients(); ;
         }
 
         private void RbClientsWszyscy_Checked(object sender, RoutedEventArgs e)
         {
-            service.ShowAllClients();
+            _service.ShowAllClients();
         }
 
         private void RbClientsSzukaj_Checked(object sender, RoutedEventArgs e)
         {
-            service.ShowSearchClients();
+            _service.ShowSearchClients();
         }
 
         private void RbClientsDodaj_Checked(object sender, RoutedEventArgs e)
         {
-            service.ShowAddClients();
+            _service.ShowAddClients();
         }
 
         private void RbClientsModyfikuj_Checked(object sender, RoutedEventArgs e)
         {
-            service.ShowModifyClients();
+            _service.ShowModifyClients();
         }
 
         private void RbClientsUsun_Checked(object sender, RoutedEventArgs e)
         {
-            service.ShowDeleteClients();
+            _service.ShowDeleteClients();
         }
 
         private void BtnClientsSzukaj_Click(object sender, RoutedEventArgs e)
         {
-            service.SearchClients();
+            _service.SearchClients();
         }
 
         private void BtnClientsModyfikuj_Click(object sender, RoutedEventArgs e)
         {
-            service.ModifyClients();
+            _service.ModifyClients();
         }
 
         private void BtnClientsUsun_Click(object sender, RoutedEventArgs e)
         {
-            service.DeleteClients();
+            _service.DeleteClients();
         }
 
         private void BtnClientsDodaj_Click(object sender, RoutedEventArgs e)
         {
-            service.AddClients();
+            _service.AddClients();
         }
 
         //Transactions
         private void RbDoGridOneNowyKlient_Checked(object sender, RoutedEventArgs e)
         {
-            service.TransactionNewSelcted();
+            _service.TransactionNewSelcted();
         }
 
         private void RbDoGridOneStalyKlient_Checked(object sender, RoutedEventArgs e)
         {
-            service.TransactionOldSelcted();
+            _service.TransactionOldSelcted();
         }
 
         private void CmbDoGridTwoNazwisko_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-            service.SelectClientDoTransactionSurname();
+            _service.SelectClientDoTransactionSurname();
         }
 
         private void CmbDoGridTwoFirma_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-            service.SelectClientDoTransactionFirm();
+            _service.SelectClientDoTransactionFirm();
         }
 
         private void BtnDoGridThreeDodajProdukty_Click(object sender, RoutedEventArgs e)
         {
-            service.AddToCart();
+            _service.AddToCart();
         }
 
         private void BtnDoGridFiveUsun_Click(object sender, RoutedEventArgs e)
         {
-            service.DeleteFormCart();
+            _service.DeleteFormCart();
         }
 
         private void DgOverviewGridOne_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-            service.SelectedTransaction();
+            _service.SelectedTransaction();
         }
 
         private void RbOverviewGridOneWszystkie_Checked(object sender, RoutedEventArgs e)
         {
-            service.ShowAllTransaction();
+            _service.ShowAllTransaction();
         }
 
         private void RbOverviewGridOneSzukaj_Checked(object sender, RoutedEventArgs e)
         {
-            service.ShowSearchTransaction();
+            _service.ShowSearchTransaction();
         }
 
         private void BtnDoGridFourRealizujZamowienie_Click(object sender, RoutedEventArgs e)
         {
-            service.AddTransaction();
+            _service.AddTransaction();
         }
 
         private void BtnOverviewGridTwoSzukaj_Click(object sender, RoutedEventArgs e)
         {
-            service.SearchTransaction();
+            _service.SearchTransaction();
         }
 
         //Employee
         private void DgEmployeesList_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-            service.SelectedEmployee();
+            _service.SelectedEmployee();
         }
 
         private void BtnEmployeeDodaj_Click(object sender, RoutedEventArgs e)
         {
-            service.AddEmployee();
+            _service.AddEmployee();
         }
 
         private void BtnEmployeeModyfikuj_Click(object sender, RoutedEventArgs e)
         {
-            service.ModifyEmployee();
+            _service.ModifyEmployee();
         }
 
         private void BtnEmployeeUsun_Click(object sender, RoutedEventArgs e)
         {
-            service.DeleteEmployee();
+            _service.DeleteEmployee();
         }
 
         private void RdEmployeeWszyscy_Checked(object sender, RoutedEventArgs e)
         {
-            service.ShowAllEmployee();
+            _service.ShowAllEmployee();
         }
 
         private void RdEmployeeDodaj_Checked(object sender, RoutedEventArgs e)
         {
-            service.ShowAddEmployee();
+            _service.ShowAddEmployee();
         }
 
         private void RdEmployeeModyfikuj_Checked(object sender, RoutedEventArgs e)
         {
-            service.ShowModifyEmployee();
+            _service.ShowModifyEmployee();
         }
 
         private void RdEmployeeUsun_Checked(object sender, RoutedEventArgs e)
         {
-            service.ShowDeleteEmployee();
+            _service.ShowDeleteEmployee();
         }
 
         private void BtnEmployeeHaslo_Click(object sender, RoutedEventArgs e)
         {
-            service.ShowPassword();
+            _service.ShowPassword();
         }
 
+#pragma warning disable IDE1006 // Naming Styles
         private void btnTabOverviewFaktura_Click(object sender, RoutedEventArgs e)
+#pragma warning restore IDE1006 // Naming Styles
         {
-            service.GetFacture();
+            _service.GetFacture();
         }
 
         private void MnAbout_Click(object sender, RoutedEventArgs e)
@@ -356,7 +359,9 @@ namespace Client.Windows
 
         private void MnLogOff_Click(object sender, RoutedEventArgs e)
         {
+#pragma warning disable IDE0017 // Simplify object initialization
             Login window = new Login();
+#pragma warning restore IDE0017 // Simplify object initialization
             window.Visibility = Visibility.Visible;
             Close();
         }

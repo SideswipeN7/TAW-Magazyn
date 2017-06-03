@@ -121,13 +121,12 @@ namespace Client.Controller.View
             _window.LblItemKategoria.Visibility = Visibility.Hidden;
             _window.LblItemNazwa.Visibility = Visibility.Hidden;
 
+            _window.TxbItemCenaMin.Visibility = Visibility.Visible;
             _window.TxbItemCenaMax.Visibility = Visibility.Hidden;
-            _window.TxbItemCenaMin.Visibility = Visibility.Hidden;
-            _window.TxbItemCenaMax.Visibility = Visibility.Hidden;
-            _window.TxbItemIlosc.Visibility = Visibility.Hidden;
-            _window.TxbItemINazwa.Visibility = Visibility.Hidden;
+            _window.TxbItemIlosc.Visibility = Visibility.Visible;
+            _window.TxbItemINazwa.Visibility = Visibility.Visible;
 
-            _window.CmbItemKategoria.Visibility = Visibility.Hidden;
+            _window.CmbItemKategoria.Visibility = Visibility.Visible;
 
             _window.BtnItemDodaj.Visibility = Visibility.Hidden;
             _window.BtnItemModyfikuj.Visibility = Visibility.Hidden;

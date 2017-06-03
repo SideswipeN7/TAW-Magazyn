@@ -20,7 +20,9 @@ namespace Client.Windows
             InitializeComponent();
         }
 
+#pragma warning disable IDE1006 // Naming Styles
         private void btnLogin_Click(object sender, RoutedEventArgs e)
+#pragma warning restore IDE1006 // Naming Styles
         {
             string password = "";
             if (txbPassword.IsVisible) password = txbPassword.Password;
@@ -75,7 +77,7 @@ namespace Client.Windows
             return null;
         }
 
-        private void button_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
             show = !show;
             switch (show)
@@ -109,14 +111,6 @@ namespace Client.Windows
             //txbPassword.Focus();
         }
 
-        private void txbPassword_PasswordChanged(object sender, RoutedEventArgs e)
-        {
-            //txtPassword.Text = txbPassword.Password;
-        }
 
-        private void txtPassword_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
-        {
-            //txbPassword.Password = txtPassword.Text;
-        }
     }
 }

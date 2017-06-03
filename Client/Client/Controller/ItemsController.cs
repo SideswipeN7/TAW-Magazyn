@@ -170,7 +170,7 @@ namespace Client.Controller
                 _window.Dispatcher.BeginInvoke(new Action(() =>
                 {
                     _window.DgItemLista.Items.Clear();
-                    if (_window.RbItemWszystko.IsChecked == false)
+                    if (_window.RbItemSzukaj.IsChecked == false)
                     {
                         foreach (Artykul r in art)
                         {
@@ -228,11 +228,11 @@ namespace Client.Controller
                     Task.Factory.StartNew(() =>
                     {
                         art = x.Result.ToList();
-                        _window.Dispatcher.BeginInvoke(new Action(() =>
-                        {
-                            if (_window.RbItemSzukaj.IsChecked == false)
-                                ShowData();
-                        }));
+                        //_window.Dispatcher.BeginInvoke(new Action(() =>
+                        //{
+                        //    if (_window.RbItemSzukaj.IsChecked == false)
+                        ShowData();
+                        //}));
                     });
                 });
             }

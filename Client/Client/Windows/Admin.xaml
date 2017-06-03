@@ -7,8 +7,16 @@
         mc:Ignorable="d"
           Title="Tryb Administratora" Height="1186" Width="1616.181" WindowStartupLocation="CenterScreen" WindowState="Maximized" SizeToContent="Manual">
     <Grid>
-        <TabControl x:Name="MainTab" Margin="0,44,0,-43">
-            <TabItem x:Name="TabState" Header="Stan Magazynu">
+        <TabControl x:Name="MainTab" Margin="0,24,0,-23">
+            <TabItem x:Name="TabState" Header="Stan Magazynu" RenderTransformOrigin="0.5,0.5" Margin="7,-2,-11,-2">
+                <TabItem.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform AngleX="-16.348"/>
+                        <RotateTransform/>
+                        <TranslateTransform X="-3.373"/>
+                    </TransformGroup>
+                </TabItem.RenderTransform>
                 <Canvas>
                     <RadioButton Content="Wszystko" Height="18" Width="100" x:Name="RbStateWszystko" Canvas.Left="85" Canvas.Top="5" Checked="RbStateWszystko_Checked" />
                     <RadioButton Content="Szukaj" Height="18" Width="100" x:Name="RbStateSzukaj" Canvas.Left="190" Canvas.Top="5" Checked="RbStateSzukaj_Checked" />
@@ -38,7 +46,15 @@
                 </Canvas>
             </TabItem>
 
-            <TabItem x:Name="TabTransactions" Header="Transakcje">
+            <TabItem x:Name="TabTransactions" Header="Transakcje" RenderTransformOrigin="0.5,0.5" Margin="11,-2,-15,-2">
+                <TabItem.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform AngleX="-17.745"/>
+                        <RotateTransform/>
+                        <TranslateTransform X="-3.68"/>
+                    </TransformGroup>
+                </TabItem.RenderTransform>
                 <Grid>
                     <TabControl x:Name="TabCtrlTransactions" Margin="-10,10,10,-10">
                         <TabItem x:Name="TabTransactionsDo" Header="Wykonaj">
@@ -154,7 +170,15 @@
                     </TabControl>
                 </Grid>
             </TabItem>
-            <TabItem x:Name="TabClients" Header="Klienci">
+            <TabItem x:Name="TabClients" Header="Klienci" RenderTransformOrigin="0.163,0.565" Margin="15,-2,-19,-2">
+                <TabItem.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform AngleX="-20.472"/>
+                        <RotateTransform/>
+                        <TranslateTransform X="-4.852"/>
+                    </TransformGroup>
+                </TabItem.RenderTransform>
                 <Canvas>
                     <Grid x:Name="GridClientsSearch" Height="165" Width="276" Canvas.Left="480" Canvas.Top="62">
                         <CheckBox x:Name="ChbClientsNazwisko" Content="" Margin="238,10,11,133" />
@@ -200,7 +224,15 @@
                     <ComboBox x:Name="CmbClientsWojewodztwo" Height="22" Width="120" Canvas.Left="317" Canvas.Top="205" />
                 </Canvas>
             </TabItem>
-            <TabItem x:Name="TabCategory" Header="Kategorie" Margin="-5,0,1,-2">
+            <TabItem x:Name="TabCategory" Header="Kategorie" Margin="19,-2,-23,-2" RenderTransformOrigin="0.5,0.5">
+                <TabItem.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform AngleX="-21.877"/>
+                        <RotateTransform/>
+                        <TranslateTransform X="-4.598"/>
+                    </TransformGroup>
+                </TabItem.RenderTransform>
                 <Canvas>
                     <DataGrid x:Name="DgCategoryLista" HorizontalAlignment="Left" VerticalAlignment="Top" Height="1035" Width="265"  IsReadOnly="True" Canvas.Left="10" Canvas.Top="40" SelectionChanged="DgCategoryLista_SelectionChanged" SelectionMode="Single">
                         <DataGrid.Columns>
@@ -224,7 +256,15 @@
                     <CheckBox x:Name="ChbCategoryNazwa" Content="" Canvas.Left="506" Canvas.Top="67" />
                 </Canvas>
             </TabItem>
-            <TabItem x:Name="TabItems" Header="Artykuł">
+            <TabItem x:Name="TabItems" Header="Artykuł" Margin="23,-2,-27,-2" RenderTransformOrigin="0.5,0.5">
+                <TabItem.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform AngleX="-23.107"/>
+                        <RotateTransform/>
+                        <TranslateTransform X="-4.907"/>
+                    </TransformGroup>
+                </TabItem.RenderTransform>
                 <Canvas>
                     <DataGrid x:Name="DgItemLista" HorizontalAlignment="Left" VerticalAlignment="Top" Height="1005" Width="265"  IsReadOnly="True" Canvas.Left="10" Canvas.Top="65" SelectionChanged="DgItemLista_SelectionChanged" SelectionMode="Single">
                         <DataGrid.Columns>
@@ -258,7 +298,15 @@
                     <Button x:Name="BtnItemUsun" Content="Usuń" Canvas.Left="480" Canvas.Top="175" Width="75" Click="BtnItemUsun_Click" />
                 </Canvas>
             </TabItem>
-            <TabItem x:Name="TabEmployees" Header="Pracownicy">
+            <TabItem x:Name="TabEmployees" Header="Pracownicy" Margin="27,-2,-31,-2" RenderTransformOrigin="0.5,0.5">
+                <TabItem.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform AngleX="-23.326"/>
+                        <RotateTransform/>
+                        <TranslateTransform X="-4.903"/>
+                    </TransformGroup>
+                </TabItem.RenderTransform>
                 <Canvas>
                     <DataGrid x:Name="DgEmployeesList" Canvas.Left="10" Canvas.Top="26" Height="1042" Width="250" SelectionChanged="DgEmployeesList_SelectionChanged" SelectionMode="Single" IsReadOnly="True">
                         <DataGrid.Columns>

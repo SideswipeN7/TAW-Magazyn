@@ -81,9 +81,9 @@ namespace Client.Controller.View
             _window.LblCategoryId.IsEnabled = true;
             _window.LblCategoryNazwa.IsEnabled = true;
 
-            _window.TxbCategoryNazwa.IsEnabled = true;
+            _window.TxbCategoryNazwa.IsEnabled = false;
 
-            _window.CmbCategoryId.IsEnabled = true;
+            _window.CmbCategoryId.IsEnabled = false;
         }
 
         public void ShowModify()
