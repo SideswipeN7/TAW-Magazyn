@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Client.Windows"
         mc:Ignorable="d"
-          Title="Tryb Administratora" Height="1186" Width="1616.181" WindowStartupLocation="CenterScreen" WindowState="Maximized" SizeToContent="Manual">
+          Title="Tryb Administratora" Height="768" Width="1024" WindowStartupLocation="CenterScreen" SizeToContent="WidthAndHeight" MinWidth="1024" MinHeight="768">
     <Grid>
-        <TabControl x:Name="MainTab" Margin="0,24,0,-23">
+        <TabControl x:Name="MainTab" Margin="0,19,0,-18">
             <TabItem x:Name="TabState" Header="Stan Magazynu" RenderTransformOrigin="0.5,0.5" Margin="7,-2,-11,-2">
                 <TabItem.RenderTransform>
                     <TransformGroup>
@@ -56,10 +56,18 @@
                     </TransformGroup>
                 </TabItem.RenderTransform>
                 <Grid>
-                    <TabControl x:Name="TabCtrlTransactions" Margin="-10,10,10,-10">
+                    <!--<Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="118*"/>
+                        <ColumnDefinition Width="0*"/>
+                        <ColumnDefinition Width="145*"/>
+                        <ColumnDefinition Width="17*"/>
+                        <ColumnDefinition Width="0*"/>
+                        <ColumnDefinition Width="1322*"/>
+                    </Grid.ColumnDefinitions>-->
+                    <TabControl x:Name="TabCtrlTransactions" Margin="30,0,-30,0">
                         <TabItem x:Name="TabTransactionsDo" Header="Wykonaj">
                             <Grid x:Name="GridTransactionsDoMain" Margin="0,-15,0,15">
-                                <Grid x:Name="GridTransactionsDoOne" Margin="0,37,791,300">
+                                <Grid x:Name="GridTransactionsDoOne" Margin="0,37,663,470">
                                     <Label x:Name="LblDoGridOneNazwisko" Content="Nazwisko:" HorizontalAlignment="Left" Margin="22,67,0,0" VerticalAlignment="Top" Width="83" />
                                     <Label x:Name="LblDoGridOneFirma" Content="Firma:" HorizontalAlignment="Left" Margin="22,93,0,0" VerticalAlignment="Top" Height="31" RenderTransformOrigin="0.5,0.5" Width="83">
                                     </Label>
@@ -78,7 +86,7 @@
                                     <TextBox x:Name="TxbDoGridOneImie" HorizontalAlignment="Left" Height="23" Margin="132,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
                                     <Label x:Name="LblDoGridOneInfo" Content="NOWY KLIENT" HorizontalAlignment="Left" Margin="22,10,0,0" VerticalAlignment="Top" Width="91" FontWeight="Bold" />
                                 </Grid>
-                                <Grid x:Name="GridDoTwo" Margin="0,300,791,0">
+                                <Grid x:Name="GridDoTwo" Margin="0,300,636,10">
                                     <Label x:Name="LblDoGridTwoNazwisko" Content="Nazwisko:" HorizontalAlignment="Left" Margin="21,94,0,0" VerticalAlignment="Top" Width="92" />
                                     <Label x:Name="LblDoGridTwoFirma" Content="Firma:" HorizontalAlignment="Left" Margin="21,125,0,0" VerticalAlignment="Top" Width="92" />
                                     <Label x:Name="LblDoGridTwoDostawca" Content="Dostawca:" HorizontalAlignment="Left" Margin="21,156,0,0" VerticalAlignment="Top" Width="92" />
@@ -96,20 +104,20 @@
                                     <Label x:Name="LblDoGridTwoInfo" Content="STAŁY KLIENT" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="92" FontWeight="Bold" />
                                 </Grid>
                                 <Grid x:Name="GridDoThree" Margin="300,0,518,300">
-                                    <Label x:Name="LblDoGridThreeProdukty" Content="Produkty" HorizontalAlignment="Left" Margin="112,10,0,0" VerticalAlignment="Top" />
-                                    <Label x:Name="LblDoGridThreeNazwa" Content="Nazwa:" HorizontalAlignment="Left" Margin="36,62,0,0" VerticalAlignment="Top" />
-                                    <Label x:Name="LblDoGridThreeIlosc" Content="Ilość:" HorizontalAlignment="Left" Margin="36,112,0,0" VerticalAlignment="Top" />
-                                    <ComboBox  x:Name="CmbDoGridThreeNazwa" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="120" Height="23" Margin="127,66,0,0" />
-                                    <TextBox x:Name="TxbDoGridThreeIlosc" HorizontalAlignment="Left" Height="23" Margin="127,116,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
-                                    <Button x:Name="BtnDoGridThreeDodajProdukty" Content="Dodaj Produkty" HorizontalAlignment="Left" Margin="127,165,0,0" VerticalAlignment="Top" Width="120" Click="BtnDoGridThreeDodajProdukty_Click" />
+                                    <Label x:Name="LblDoGridThreeProdukty" Content="Produkty" HorizontalAlignment="Left" Margin="82,31,0,0" VerticalAlignment="Top" />
+                                    <Label x:Name="LblDoGridThreeNazwa" Content="Nazwa:" HorizontalAlignment="Left" Margin="-12,84,0,0" VerticalAlignment="Top" />
+                                    <Label x:Name="LblDoGridThreeIlosc" Content="Ilość:" HorizontalAlignment="Left" Margin="0,107,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.792,1.038" />
+                                    <ComboBox  x:Name="CmbDoGridThreeNazwa" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="120" Height="23" Margin="53,84,0,0" />
+                                    <TextBox x:Name="TxbDoGridThreeIlosc" HorizontalAlignment="Left" Height="23" Margin="53,112,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
+                                    <Button x:Name="BtnDoGridThreeDodajProdukty" Content="Dodaj Produkty" HorizontalAlignment="Left" Margin="53,140,0,0" VerticalAlignment="Top" Width="120" Click="BtnDoGridThreeDodajProdukty_Click" />
                                 </Grid>
-                                <Grid x:Name="GridDoFour" Margin="300,300,518,0">
-                                    <Label x:Name="LblDoGridFourPodsumowanie" Content="Podsumowanie" HorizontalAlignment="Left" Margin="98,10,0,0" VerticalAlignment="Top" />
-                                    <Label x:Name="LblDoFourCena" Content="Cena:" HorizontalAlignment="Left" Margin="98,112,0,0" VerticalAlignment="Top" Width="178" />
-                                    <Button x:Name="BtnDoGridFourRealizujZamowienie" Content="Realizuj Zamówienie" HorizontalAlignment="Left" Margin="156,165,0,0" VerticalAlignment="Top" Width="120" Click="BtnDoGridFourRealizujZamowienie_Click" />
+                                <Grid x:Name="GridDoFour" Margin="348,450,470,-150">
+                                    <Label x:Name="LblDoGridFourPodsumowanie" Content="Podsumowanie" HorizontalAlignment="Left" Margin="10,15,0,757" />
+                                    <Label x:Name="LblDoFourCena" Content="Cena:" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Width="178" />
+                                    <Button x:Name="BtnDoGridFourRealizujZamowienie" Content="Realizuj Zamówienie" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top" Width="120" Click="BtnDoGridFourRealizujZamowienie_Click" />
                                 </Grid>
                                 <Grid x:Name="GridDoFive" Margin="600,0,0,0">
-                                    <DataGrid x:Name="DgDoGridFive" HorizontalAlignment="Left" Height="583" Margin="10,16,0,0" VerticalAlignment="Top" Width="405">
+                                    <DataGrid x:Name="DgDoGridFive" HorizontalAlignment="Left" Height="546" Margin="-110,35,0,0" VerticalAlignment="Top" Width="405">
                                         <DataGrid.Columns>
                                             <DataGridTextColumn   Header="Artykuł" Width="100"  Binding="{Binding Artykul.Nazwa}" />
                                             <DataGridTextColumn   Header="Ilość" Width="100" Binding="{Binding Ilosc}" />
@@ -117,7 +125,7 @@
                                             <DataGridTextColumn   Header="Cena Całościowa" Width="*" Binding="{Binding CenaCalosciowa, StringFormat={}{0:F2}}" />
                                         </DataGrid.Columns>
                                     </DataGrid>
-                                    <Button x:Name="BtnDoGridFiveUsun" Content="Usuń" HorizontalAlignment="Left" Margin="433,19,0,0" VerticalAlignment="Top" Width="75" Click="BtnDoGridFiveUsun_Click" />
+                                    <Button x:Name="BtnDoGridFiveUsun" Content="Usuń" HorizontalAlignment="Left" Margin="-110,581,0,0" VerticalAlignment="Top" Width="75" Click="BtnDoGridFiveUsun_Click" />
                                 </Grid>
                                 <RadioButton x:Name="RbDoGridOneNowyKlient" Content="Nowy Klient" HorizontalAlignment="Left" Margin="18,17,0,0" VerticalAlignment="Top" Checked="RbDoGridOneNowyKlient_Checked" />
                                 <RadioButton x:Name="RbDoGridOneStalyKlient" Content="Stały Klient" HorizontalAlignment="Left" Margin="137,17,0,0" VerticalAlignment="Top" Checked="RbDoGridOneStalyKlient_Checked" />
@@ -125,18 +133,26 @@
                         </TabItem>
                         <TabItem x:Name="TabOverview" Header="Przeglad">
                             <Grid>
-                                <Grid x:Name="GridOverviewOne" Margin="0,0,791,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="22*"/>
+                                    <ColumnDefinition Width="1575*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid x:Name="GridOverviewOne" Grid.ColumnSpan="2" Margin="0,0,694,0">
                                     <RadioButton x:Name="RbOverviewGridOneWszystkie" Content="Wszystkie" HorizontalAlignment="Left" Margin="48,10,0,0" VerticalAlignment="Top" Checked="RbOverviewGridOneWszystkie_Checked" />
                                     <RadioButton x:Name="RbOverviewGridOneSzukaj" Content="Szukaj" HorizontalAlignment="Left" Margin="188,10,0,0" VerticalAlignment="Top" Checked="RbOverviewGridOneSzukaj_Checked" />
-                                    <DataGrid x:Name="DgOverviewGridOne" HorizontalAlignment="Left" Margin="0,61" Width="307" SelectionChanged="DgOverviewGridOne_SelectionChanged" FrozenColumnCount="0" SelectionMode="Single" CanUserResizeRows="False" IsReadOnly="True">
+                                    <DataGrid x:Name="DgOverviewGridOne" HorizontalAlignment="Left" Margin="0,61,-85,61" Width="298" SelectionChanged="DgOverviewGridOne_SelectionChanged" FrozenColumnCount="0" SelectionMode="Single" CanUserResizeRows="False" IsReadOnly="True">
                                         <DataGrid.Columns>
                                             <DataGridTextColumn   Header="Transakcja" Width="*" Binding="{Binding idTransakcji}" />
                                             <DataGridTextColumn   Header="Data Transakcji Data" Width="*" Binding="{Binding Data}" />
                                         </DataGrid.Columns>
                                     </DataGrid>
                                 </Grid>
-                                <Grid x:Name="GridDoSearch" Margin="350,0,506,0">
-                                    <Grid x:Name="GridOverwviewSearch" Margin="10,357,468,120">
+                                <Grid x:Name="GridDoSearch" Margin="328,0,286,0" Grid.Column="1">
+                                    <!--<Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="190*"/>
+                                        <ColumnDefinition Width="263*"/>
+                                    </Grid.ColumnDefinitions>-->
+                                    <Grid x:Name="GridOverwviewSearch" Margin="0,343,94,120">
                                         <CheckBox x:Name="ChbOverviewGridTwoData" Content="Data" HorizontalAlignment="Left" Margin="20,31,0,0" VerticalAlignment="Top" />
                                         <CheckBox x:Name="ChbOverviewGridTwoNazwisko" Content="Nazwisko" HorizontalAlignment="Left" Margin="20,81,0,0" VerticalAlignment="Top" />
                                         <CheckBox x:Name="ChbOverviewGridTwoFirma" Content="Firma" HorizontalAlignment="Left" Margin="20,131,0,0" VerticalAlignment="Top" />
@@ -147,7 +163,7 @@
                                     </Grid>
                                     <Label x:Name="LblOverviewGridTwoNazwisko" Content="Nazwisko:" HorizontalAlignment="Left" Margin="10,40,0,0" VerticalAlignment="Top" />
                                     <Label x:Name="LblOverviewGridTwoNazwaFirmy" Content="Nazwa Firmy:" HorizontalAlignment="Left" Margin="10,71,0,0" VerticalAlignment="Top" />
-                                    <Label x:Name="LblOverviewGridTwoDostawca" Content="Dostawca:" HorizontalAlignment="Left" Margin="10,102,0,0" VerticalAlignment="Top" />
+                                    <Label x:Name="LblOverviewGridTwoDostawca" Content="Dostawca:" Margin="10,102,116,0" VerticalAlignment="Top" />
                                     <Label x:Name="LblOverviewGridTwoData" Content="Data:" HorizontalAlignment="Left" Margin="10,133,0,0" VerticalAlignment="Top" />
                                     <Label x:Name="LblOverviewGridTwoMiejscowosc" Content="Miejscowość:" HorizontalAlignment="Left" Margin="10,164,0,0" VerticalAlignment="Top" />
                                     <Label x:Name="LblOverviewGridTwoKodPocztowy" Content="Kod Pocztowy:" HorizontalAlignment="Left" Margin="10,195,0,0" VerticalAlignment="Top" />
@@ -156,9 +172,9 @@
                                     <Label x:Name="LblOverviewGridTwoCena" Content="Cena:" HorizontalAlignment="Left" Margin="10,293,0,0" VerticalAlignment="Top" />
                                     <Button x:Name="btnTabOverviewFaktura" Content="Faktura" HorizontalAlignment="Left" Margin="7,554,0,0" VerticalAlignment="Top" Width="120" Click="btnTabOverviewFaktura_Click" Height="23" />
                                 </Grid>
-                                <Grid x:Name="GridOverviewThree" Margin="634,0,10,0">
-                                    <Label x:Name="LblOverviewGridThreeProdukty" Content="Produkty" FontSize="14" HorizontalAlignment="Left" Margin="203,10,0,0" VerticalAlignment="Top" />
-                                    <DataGrid x:Name="DgOverviewGridThree" HorizontalAlignment="Left" Margin="40,60,0,65" Width="407" IsReadOnly="True">
+                                <Grid x:Name="GridOverviewThree" Margin="644,18,10,10" Grid.Column="1">
+                                    <Label x:Name="LblOverviewGridThreeProdukty" Content="Produkty" FontSize="14" HorizontalAlignment="Left" Margin="155,5,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.47,0" />
+                                    <DataGrid x:Name="DgOverviewGridThree" HorizontalAlignment="Left" Margin="10,39,0,86" Width="301" IsReadOnly="True">
                                         <DataGrid.Columns>
                                             <DataGridTextColumn   Header="Produkt" Width="*" Binding="{Binding Nazwa}" />
                                             <DataGridTextColumn   Header="Cena" Width="*" Binding="{Binding Cena, StringFormat={}{0:F2} }" />
@@ -180,22 +196,22 @@
                     </TransformGroup>
                 </TabItem.RenderTransform>
                 <Canvas>
-                    <Grid x:Name="GridClientsSearch" Height="165" Width="276" Canvas.Left="480" Canvas.Top="62">
-                        <CheckBox x:Name="ChbClientsNazwisko" Content="" Margin="238,10,11,133" />
-                        <Label x:Name="LblClientsMiejscowoscSearch" Content="Miejscowość:" Margin="1,71,187,67" />
+                    <Grid x:Name="GridClientsSearch" Height="165" Width="276" Canvas.Left="317" Canvas.Top="264">
+                        <CheckBox x:Name="ChbClientsNazwisko" Content="" Margin="238,10,11,127" />
+                        <Label x:Name="LblClientsMiejscowoscSearch" Content="Miejscowość:" Margin="0,66,188,72" />
                         <Label x:Name="LblClientsWojewodztwoSearch" Content="Województwo:" Margin="0,98,188,39" />
-                        <TextBox x:Name="TxbClientsMiejscowoscSearch" TextWrapping="Wrap" RenderTransformOrigin="0.115,0.691" Margin="99,75,42,67" Height="23" />
-                        <ComboBox x:Name="CmbClientsWojewodztwoSearch"  RenderTransformOrigin="0.115,0.691" Margin="98,103,47,39" Height="23" />
+                        <TextBox x:Name="TxbClientsMiejscowoscSearch" TextWrapping="Wrap" RenderTransformOrigin="0.115,0.691" Margin="98,66,43,76" Height="23" />
+                        <ComboBox x:Name="CmbClientsWojewodztwoSearch"  RenderTransformOrigin="0.115,0.691" Margin="98,98,43,44" Height="23" />
                         <Label x:Name="LblClientsNazwiskoSearch" Content="Nazwisko:" Margin="0,10,188,127" />
                         <TextBox x:Name="TxbClientsNazwiskoSearch" TextWrapping="Wrap" RenderTransformOrigin="0.115,0.691" Margin="98,10,43,133" />
-                        <CheckBox x:Name="ChbClientsMiejscowosc" Content="" Margin="239,75,10,67" />
-                        <CheckBox x:Name="ChbClientsWojewodztwo" Content="" Margin="239,103,10,39" />
+                        <CheckBox x:Name="ChbClientsMiejscowosc" Content="" Margin="238,66,11,76" />
+                        <CheckBox x:Name="ChbClientsWojewodztwo" Content="" Margin="239,98,11,44" />
                         <Button x:Name="BtnClientsSzukaj" Content="Szukaj" RenderTransformOrigin="0.449,0.517" Margin="126,135,75,10" Click="BtnClientsSzukaj_Click" />
-                        <CheckBox x:Name="ChbClientsFirma" Content="" Margin="239,37,10,106" />
+                        <CheckBox x:Name="ChbClientsFirma" Content="" Margin="238,37,11,106" />
                         <Label x:Name="LblClientsFirmaSearch" Content="Firma: " Margin="1,37,187,100" />
-                        <TextBox x:Name="TxbClientsFirmaSearch" TextWrapping="Wrap" RenderTransformOrigin="0.115,0.691" Margin="99,37,42,106" />
+                        <TextBox x:Name="TxbClientsFirmaSearch" TextWrapping="Wrap" RenderTransformOrigin="0.115,0.691" Margin="98,37,43,106" />
                     </Grid>
-                    <DataGrid x:Name="DgClientsLista" IsReadOnly="True" HorizontalAlignment="Left" VerticalAlignment="Top" Height="1014" Width="177" Canvas.Left="10" Canvas.Top="37" SelectionChanged="DgClientsLista_SelectionChanged" SelectionMode="Single">
+                    <DataGrid x:Name="DgClientsLista" IsReadOnly="True" HorizontalAlignment="Left" VerticalAlignment="Top" Height="661" Width="239" Canvas.Left="10" Canvas.Top="37" SelectionChanged="DgClientsLista_SelectionChanged" SelectionMode="Single">
                         <DataGrid.Columns>
                             <DataGridTextColumn   Header="Nazwisko" Width="*" Binding="{Binding Nazwisko}" />
                             <DataGridTextColumn   Header="Firma" Width="*" Binding="{Binding Nazwa_firmy}" />
@@ -206,22 +222,22 @@
                     <RadioButton x:Name="RbClientsDodaj" GroupName="gn" Content="Dodaj" Canvas.Left="198" Canvas.Top="10" RenderTransformOrigin="-2.457,0.36" Checked="RbClientsDodaj_Checked" />
                     <RadioButton x:Name="RbClientsModyfikuj" GroupName="gn" Content="Modyfikuj" Canvas.Left="286" Canvas.Top="10" RenderTransformOrigin="-2.457,0.36" Checked="RbClientsModyfikuj_Checked" />
                     <RadioButton x:Name="RbClientsUsun" GroupName="gn" Content="Usun" Canvas.Left="391" Canvas.Top="10" RenderTransformOrigin="-2.457,0.36" Checked="RbClientsUsun_Checked" />
-                    <Label x:Name="LblClientsNazwisko" Content="Nazwisko:" Height="27" Width="100" Canvas.Left="212" Canvas.Top="72" />
-                    <Label x:Name="LblClientsFirma" Content="Firma:" Height="27" Width="100" Canvas.Left="212" Canvas.Top="104" />
-                    <Label x:Name="LblClientsMiejscowosc" Content="Miejscowość:" Height="27" Width="100" Canvas.Left="212" Canvas.Top="136" />
-                    <Label x:Name="LblClientsKodPocztowy" Content="Kod pocztowy:" Height="27" Width="100" Canvas.Left="212" Canvas.Top="168" RenderTransformOrigin="0.623,3.557" />
-                    <Label x:Name="LblClientsWojewodztwo" Content="Województwo:" Height="27" Width="100" Canvas.Left="212" Canvas.Top="200" />
+                    <Label x:Name="LblClientsNazwisko" Content="Nazwisko:" Height="27" Width="100" Canvas.Left="368" Canvas.Top="73" />
+                    <Label x:Name="LblClientsFirma" Content="Firma:" Height="27" Width="100" Canvas.Left="368" Canvas.Top="105" />
+                    <Label x:Name="LblClientsMiejscowosc" Content="Miejscowość:" Height="27" Width="100" Canvas.Left="368" Canvas.Top="137" RenderTransformOrigin="1.665,0.37" />
+                    <Label x:Name="LblClientsKodPocztowy" Content="Kod pocztowy:" Height="27" Width="100" Canvas.Left="368" Canvas.Top="173" RenderTransformOrigin="0.623,3.557" />
+                    <Label x:Name="LblClientsWojewodztwo" Content="Województwo:" Height="27" Width="100" Canvas.Left="368" Canvas.Top="205" RenderTransformOrigin="1.44,0.778" />
                     <Label x:Name="LblClientsIloscTransakcji" Content="Ilość transakcji:" Height="27" Width="225" Canvas.Left="212" Canvas.Top="232" Visibility="Hidden" />
-                    <TextBox x:Name="TxbClientsNazwisko" Height="23" Canvas.Left="317" TextWrapping="Wrap" Canvas.Top="76" Width="120" RenderTransformOrigin="0.115,0.691" />
-                    <TextBox x:Name="TxbClientsFirma" Height="23" Canvas.Left="317" TextWrapping="Wrap" Canvas.Top="108" Width="120" RenderTransformOrigin="0.115,0.691" />
-                    <TextBox x:Name="TxbClientsMiejscowosc" Height="23" Canvas.Left="317" TextWrapping="Wrap" Canvas.Top="140" Width="120" RenderTransformOrigin="0.115,0.691" />
-                    <TextBox x:Name="TxbClientsKodPocztowy" Height="23" Canvas.Left="317" TextWrapping="Wrap" Canvas.Top="172" Width="120" RenderTransformOrigin="0.115,0.691" />
+                    <TextBox x:Name="TxbClientsNazwisko" Height="23" Canvas.Left="473" TextWrapping="Wrap" Canvas.Top="73" Width="120" RenderTransformOrigin="0.115,0.691" />
+                    <TextBox x:Name="TxbClientsFirma" Height="23" Canvas.Left="473" TextWrapping="Wrap" Canvas.Top="105" Width="120" RenderTransformOrigin="0.115,0.691" />
+                    <TextBox x:Name="TxbClientsMiejscowosc" Height="23" Canvas.Left="473" TextWrapping="Wrap" Canvas.Top="137" Width="120" RenderTransformOrigin="0.115,0.691" />
+                    <TextBox x:Name="TxbClientsKodPocztowy" Height="23" Canvas.Left="473" TextWrapping="Wrap" Canvas.Top="173" Width="120" RenderTransformOrigin="0.115,0.691" />
                     <Button x:Name="BtnClientsModyfikuj" Content="Modyfikuj" Canvas.Left="852" Canvas.Top="38" Width="75" Click="BtnClientsModyfikuj_Click" />
                     <Button x:Name="BtnClientsUsun" Content="Usuń" Canvas.Left="852" Canvas.Top="79" Width="75" Click="BtnClientsUsun_Click" />
                     <Button x:Name="BtnClientsDodaj" Content="Dodaj" Canvas.Left="852" Canvas.Top="120" Width="75" Click="BtnClientsDodaj_Click" />
-                    <Label x:Name="LblClientsImie" Content="Imię:" Height="27" Width="100" Canvas.Left="212" Canvas.Top="37" />
-                    <TextBox x:Name="TxbClientsImie" Height="23" Canvas.Left="317" TextWrapping="Wrap" Canvas.Top="41" Width="120" RenderTransformOrigin="0.115,0.691" />
-                    <ComboBox x:Name="CmbClientsWojewodztwo" Height="22" Width="120" Canvas.Left="317" Canvas.Top="205" />
+                    <Label x:Name="LblClientsImie" Content="Imię:" Height="27" Width="100" Canvas.Left="368" Canvas.Top="41" />
+                    <TextBox x:Name="TxbClientsImie" Height="23" Canvas.Left="473" TextWrapping="Wrap" Canvas.Top="41" Width="120" RenderTransformOrigin="0.115,0.691" />
+                    <ComboBox x:Name="CmbClientsWojewodztwo" Height="22" Width="120" Canvas.Left="473" Canvas.Top="205" RenderTransformOrigin="1.225,0.386" />
                 </Canvas>
             </TabItem>
             <TabItem x:Name="TabCategory" Header="Kategorie" Margin="19,-2,-23,-2" RenderTransformOrigin="0.5,0.5">
