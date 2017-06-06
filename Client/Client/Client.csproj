@@ -196,5 +196,8 @@
   <ItemGroup>
     <Resource Include="Media\Icons\magazyn.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Media\Images\untitle2d.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

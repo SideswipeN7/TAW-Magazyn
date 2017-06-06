@@ -62,12 +62,12 @@ namespace Client.Controller.View
             _window.BtnClientsSzukaj.Visibility = Visibility.Hidden;
             _window.BtnClientsUsun.Visibility = Visibility.Hidden;
             _window.BtnClientsDodaj.Visibility = Visibility.Visible;
-            _window.TxbClientsFirma.IsEnabled = false;
-            _window.TxbClientsImie.IsEnabled = false;
-            _window.TxbClientsKodPocztowy.IsEnabled = false;
-            _window.TxbClientsMiejscowosc.IsEnabled = false;
-            _window.TxbClientsNazwisko.IsEnabled = false;
-            _window.CmbClientsWojewodztwo.IsEnabled = false;
+            _window.TxbClientsFirma.IsEnabled = true;
+            _window.TxbClientsImie.IsEnabled = true;
+            _window.TxbClientsKodPocztowy.IsEnabled = true;
+            _window.TxbClientsMiejscowosc.IsEnabled = true;
+            _window.TxbClientsNazwisko.IsEnabled = true;
+            _window.CmbClientsWojewodztwo.IsEnabled = true;
         }
 
         public void ShowDelete()

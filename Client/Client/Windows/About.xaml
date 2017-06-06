@@ -6,8 +6,13 @@
         xmlns:local="clr-namespace:Client.Windows"
         mc:Ignorable="d"
         Title="O Aplikacji" Height="300" Width="300" WindowStyle="None" BorderThickness="1" ResizeMode="NoResize" ShowInTaskbar="False">
-    <Grid>
-        <Label x:Name="LblAboutOpis" Content="Label" HorizontalAlignment="Left" Margin="44,50,0,0" VerticalAlignment="Top" />
-        <Button x:Name="BtnAboutOk" Content="Ok" HorizontalAlignment="Left" Margin="105,203,0,0" VerticalAlignment="Top" Width="75" Click="BtnAboutOk_Click" />
+    <Grid Background="#FF8FB6AD" Margin="0,0,-55,-12">
+        <Label x:Name="LblAboutOpis" Content="Label" HorizontalAlignment="Left" Margin="10,73,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Black" FontSize="16" Height="181" Width="333" />
+        <Button x:Name="BtnAboutOk" Content="Ok" HorizontalAlignment="Left" Margin="141,272,0,0" VerticalAlignment="Top" Width="75" Click="BtnAboutOk_Click" FontFamily="Segoe UI Black" />
+        <Image x:Name="image" HorizontalAlignment="Left" Height="88" Margin="112,0,0,0" VerticalAlignment="Top" Width="121" Source="/Client;component/Media/Images/untitle2d.png" Stretch="Fill">
+            <Image.OpacityMask>
+                <ImageBrush ImageSource="/Client;component/Media/Images/untitle2d.png"/>
+            </Image.OpacityMask>
+        </Image>
     </Grid>
 </Window>

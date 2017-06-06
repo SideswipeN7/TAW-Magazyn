@@ -366,7 +366,7 @@ namespace Client.Windows
             Close();
         }
 
-        private void MainTab_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        private void TabCtrlTransactions_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
 
         }

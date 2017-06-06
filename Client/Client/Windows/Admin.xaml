@@ -7,7 +7,7 @@
         mc:Ignorable="d"
           Title="Tryb Administratora" Height="768" Width="1024" WindowStartupLocation="CenterScreen" SizeToContent="WidthAndHeight" MinWidth="1024" MinHeight="768">
     <Grid Background="#FF1DB8A3">
-        <TabControl x:Name="MainTab" Margin="0,19,0,-18" BorderBrush="#FF81D41C" Background="#FF69AE16">
+        <TabControl x:Name="MainTab" Margin="0,19,0,-18" BorderBrush="#FF81D41C" Background="#FFE741F7">
             <TabItem x:Name="TabState" Header="Stan Magazynu" RenderTransformOrigin="0.5,0.5" Margin="7,-2,-11,-2">
                 <TabItem.Background>
                     <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
@@ -56,7 +56,7 @@
                 <TabItem.Background>
                     <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
                         <GradientStop Color="#FFF0F0F0" Offset="0"/>
-                        <GradientStop Color="#FF3BC3B1" Offset="1"/>
+                        <GradientStop Color="#FF8BC50F" Offset="1"/>
                     </LinearGradientBrush>
                 </TabItem.Background>
                 <TabItem.RenderTransform>
@@ -67,7 +67,7 @@
                         <TranslateTransform X="-3.68"/>
                     </TransformGroup>
                 </TabItem.RenderTransform>
-                <Grid Background="Black">
+                <Grid Background="#FFFFF410">
                     <!--<Grid.ColumnDefinitions>
                         <ColumnDefinition Width="118*"/>
                         <ColumnDefinition Width="0*"/>
@@ -76,57 +76,72 @@
                         <ColumnDefinition Width="0*"/>
                         <ColumnDefinition Width="1322*"/>
                     </Grid.ColumnDefinitions>-->
-                    <TabControl x:Name="TabCtrlTransactions" Margin="30,0,-30,0">
-                        <TabItem x:Name="TabTransactionsDo" Header="Wykonaj">
-                            <Grid x:Name="GridTransactionsDoMain" Margin="0,-15,0,15">
-                                <Grid x:Name="GridTransactionsDoOne" Margin="0,37,663,470">
-                                    <Label x:Name="LblDoGridOneNazwisko" Content="Nazwisko:" HorizontalAlignment="Left" Margin="22,67,0,0" VerticalAlignment="Top" Width="83" />
-                                    <Label x:Name="LblDoGridOneFirma" Content="Firma:" HorizontalAlignment="Left" Margin="22,93,0,0" VerticalAlignment="Top" Height="31" RenderTransformOrigin="0.5,0.5" Width="83">
+                    <TabControl x:Name="TabCtrlTransactions" Background="#FFFFE90A" >
+                        <TabItem x:Name="TabTransactionsDo" Header="Wykonaj" FontFamily="Showcard Gothic" Margin="-2,-2,-200,-1">
+                            <TabItem.Background>
+                                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                    <GradientStop Color="#FFF0F0F0" Offset="0"/>
+                                    <GradientStop Color="#FFFFE90A" Offset="1"/>
+                                </LinearGradientBrush>
+                            </TabItem.Background>
+                            <Grid x:Name="GridTransactionsDoMain" Margin="0,-15,0,15" Background="#FFFFE90A">
+                                <Grid x:Name="GridTransactionsDoOne" Margin="0,37,663,380">
+                                    <Label x:Name="LblDoGridOneNazwisko" Content="Nazwisko:" HorizontalAlignment="Left" Margin="22,67,0,0" VerticalAlignment="Top" Width="83" FontFamily="Segoe UI Black" FontWeight="Bold" />
+                                    <Label x:Name="LblDoGridOneFirma" Content="Firma:" HorizontalAlignment="Left" Margin="22,93,0,0" VerticalAlignment="Top" Height="31" RenderTransformOrigin="0.5,0.5" Width="83" FontFamily="Segoe UI Black" FontWeight="Bold">
                                     </Label>
-                                    <Label x:Name="LblDoGridOneDostawca" Content="Dostawca:" HorizontalAlignment="Left" Margin="22,124,0,0" VerticalAlignment="Top" Width="83" />
-                                    <Label x:Name="LblDoGridOneMiejscowosc" Content="Miejscowość:" HorizontalAlignment="Left" Margin="19,154,0,0" VerticalAlignment="Top" Height="34" RenderTransformOrigin="0.514,0.765" Width="91">
+                                    <Label x:Name="LblDoGridOneDostawca" Content="Dostawca:" HorizontalAlignment="Left" Margin="22,124,0,0" VerticalAlignment="Top" Width="83" FontFamily="Segoe UI Black" FontWeight="Bold" />
+                                    <Label x:Name="LblDoGridOneMiejscowosc" Content="Miejscowość:" HorizontalAlignment="Left" Margin="19,154,0,0" VerticalAlignment="Top" Height="34" RenderTransformOrigin="0.514,0.765" Width="91" FontFamily="Segoe UI Black" FontWeight="Bold">
                                     </Label>
-                                    <Label x:Name="LblDoGridOneKodPocztowy" Content="Kod Pocztowy:" HorizontalAlignment="Left" Margin="19,188,0,0" VerticalAlignment="Top" Width="91" />
-                                    <Label x:Name="LblDoGridOneWojewodztwo" Content="Województwo:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="19,224,0,0" Width="91" />
+                                    <Label x:Name="LblDoGridOneKodPocztowy" Content="Kod Pocztowy:" HorizontalAlignment="Left" Margin="19,188,0,0" VerticalAlignment="Top" Width="108" FontWeight="Bold" FontFamily="Segoe UI Black" />
+                                    <Label x:Name="LblDoGridOneWojewodztwo" Content="Województwo:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="19,224,0,0" Width="108" FontWeight="Bold" FontFamily="Segoe UI Black" />
                                     <TextBox x:Name="TxbDoGridOneNazwisko" HorizontalAlignment="Left" Height="23" Margin="132,67,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
                                     <TextBox x:Name="TxbDoGridOneFirma" HorizontalAlignment="Left" Height="23" Margin="132,95,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
                                     <TextBox x:Name="TxbDoGridOneMiejscowosc" HorizontalAlignment="Left" Height="23" Margin="132,157,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
                                     <TextBox x:Name="TxbDoGridOneKodPocztowy" HorizontalAlignment="Left" Height="23" Margin="132,191,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
                                     <ComboBox x:Name="CmbDoGridOneDostawca" HorizontalAlignment="Left" Height="23"  Margin="132,127,0,0" Width="120"  VerticalAlignment="Top" />
                                     <ComboBox x:Name="CmbDoGridOneWojewodztwo" Height="23" Width="120" Margin="132,227,0,0"  VerticalAlignment="Top" HorizontalAlignment="Left" />
-                                    <Label x:Name="LblDoGridOneImie" Content="Imię:" HorizontalAlignment="Left" Margin="22,41,0,0" VerticalAlignment="Top" Width="91" />
+                                    <Label x:Name="LblDoGridOneImie" Content="Imię:" HorizontalAlignment="Left" Margin="22,41,0,0" VerticalAlignment="Top" Width="91" FontFamily="Segoe UI Black" FontWeight="Bold" />
                                     <TextBox x:Name="TxbDoGridOneImie" HorizontalAlignment="Left" Height="23" Margin="132,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
-                                    <Label x:Name="LblDoGridOneInfo" Content="NOWY KLIENT" HorizontalAlignment="Left" Margin="22,10,0,0" VerticalAlignment="Top" Width="91" FontWeight="Bold" />
+                                    <Label x:Name="LblDoGridOneInfo" Content="NOWY KLIENT" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Width="133" FontWeight="Bold" FontSize="16" />
                                 </Grid>
-                                <Grid x:Name="GridDoTwo" Margin="0,300,636,10">
-                                    <Label x:Name="LblDoGridTwoNazwisko" Content="Nazwisko:" HorizontalAlignment="Left" Margin="21,94,0,0" VerticalAlignment="Top" Width="92" />
-                                    <Label x:Name="LblDoGridTwoFirma" Content="Firma:" HorizontalAlignment="Left" Margin="21,125,0,0" VerticalAlignment="Top" Width="92" />
-                                    <Label x:Name="LblDoGridTwoDostawca" Content="Dostawca:" HorizontalAlignment="Left" Margin="21,156,0,0" VerticalAlignment="Top" Width="92" />
-                                    <Label x:Name="LblDoGridTwoMiejscowosc" Content="Miejscowość:" HorizontalAlignment="Left" Margin="21,187,0,0" VerticalAlignment="Top" Width="92" />
-                                    <Label x:Name="LblDoGridTwoKodPocztowy" Content="Kod Pocztowy:" HorizontalAlignment="Left" Margin="21,218,0,0" VerticalAlignment="Top" Width="92" />
-                                    <Label x:Name="LblDoGridTwoWojewodztwo" Content="Województwo:" HorizontalAlignment="Left" Margin="21,246,0,0" VerticalAlignment="Top" Width="92" />
-                                    <TextBox x:Name="TxbDoGridTwoMiejscowosc" HorizontalAlignment="Left" Height="23" Margin="135,190,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
-                                    <TextBox x:Name="TxbDoGridTwoKodPocztowy" HorizontalAlignment="Left" Height="23" Margin="135,218,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
-                                    <ComboBox x:Name="CmbDoGridTwoNazwisko" HorizontalAlignment="Left" Margin="135,94,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="CmbDoGridTwoNazwisko_SelectionChanged" />
-                                    <ComboBox x:Name="CmbDoGridTwoFirma" HorizontalAlignment="Left" Margin="135,125,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="CmbDoGridTwoFirma_SelectionChanged" />
-                                    <ComboBox x:Name="CmbDoGridTwoDostawca" HorizontalAlignment="Left" Margin="135,156,0,0" VerticalAlignment="Top" Width="120" />
-                                    <ComboBox x:Name="CmbDoGridTwoWojewodztwo" HorizontalAlignment="Left" Margin="135,250,0,0" VerticalAlignment="Top" Width="120" />
-                                    <Label x:Name="LblDoGridTwoImie" Content="Imię:" HorizontalAlignment="Left" Margin="21,63,0,0" VerticalAlignment="Top" Width="92" />
-                                    <TextBox x:Name="TxbDoGridTwoImie" HorizontalAlignment="Left" Height="23" Margin="135,63,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
-                                    <Label x:Name="LblDoGridTwoInfo" Content="STAŁY KLIENT" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="92" FontWeight="Bold" />
+                                <Grid x:Name="GridDoTwo" Margin="9,301,627,9">
+                                    <Label x:Name="LblDoGridTwoNazwisko" Content="Nazwisko:" HorizontalAlignment="Left" Margin="23,80,0,0" VerticalAlignment="Top" Width="92" FontFamily="Segoe UI Black" FontWeight="Bold" />
+                                    <Label x:Name="LblDoGridTwoFirma" Content="Firma:" HorizontalAlignment="Left" Margin="23,111,0,0" VerticalAlignment="Top" Width="92" FontFamily="Segoe UI Black" FontWeight="Bold" />
+                                    <Label x:Name="LblDoGridTwoDostawca" Content="Dostawca:" HorizontalAlignment="Left" Margin="23,142,0,0" VerticalAlignment="Top" Width="92" FontFamily="Segoe UI Black" FontWeight="Bold" />
+                                    <Label x:Name="LblDoGridTwoMiejscowosc" Content="Miejscowość:" HorizontalAlignment="Left" Margin="23,173,0,0" VerticalAlignment="Top" Width="92" FontFamily="Segoe UI Black" FontWeight="Bold" />
+                                    <Label x:Name="LblDoGridTwoKodPocztowy" Content="Kod Pocztowy:" HorizontalAlignment="Left" Margin="23,204,0,0" VerticalAlignment="Top" Width="109" FontFamily="Segoe UI Black" FontWeight="Bold" />
+                                    <Label x:Name="LblDoGridTwoWojewodztwo" Content="Województwo:" HorizontalAlignment="Left" Margin="23,232,0,0" VerticalAlignment="Top" Width="109" FontFamily="Segoe UI Black" FontWeight="Bold" />
+                                    <TextBox x:Name="TxbDoGridTwoMiejscowosc" HorizontalAlignment="Left" Height="23" Margin="137,176,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
+                                    <TextBox x:Name="TxbDoGridTwoKodPocztowy" HorizontalAlignment="Left" Height="23" Margin="137,204,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
+                                    <ComboBox x:Name="CmbDoGridTwoNazwisko" HorizontalAlignment="Left" Margin="137,80,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="CmbDoGridTwoNazwisko_SelectionChanged" />
+                                    <ComboBox x:Name="CmbDoGridTwoFirma" HorizontalAlignment="Left" Margin="137,111,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="CmbDoGridTwoFirma_SelectionChanged" />
+                                    <ComboBox x:Name="CmbDoGridTwoDostawca" HorizontalAlignment="Left" Margin="137,142,0,0" VerticalAlignment="Top" Width="120" />
+                                    <ComboBox x:Name="CmbDoGridTwoWojewodztwo" HorizontalAlignment="Left" Margin="137,236,0,0" VerticalAlignment="Top" Width="120" />
+                                    <Label x:Name="LblDoGridTwoImie" Content="Imię:" HorizontalAlignment="Left" Margin="23,49,0,0" VerticalAlignment="Top" Width="92" FontFamily="Segoe UI Black" FontWeight="Bold" />
+                                    <TextBox x:Name="TxbDoGridTwoImie" HorizontalAlignment="Left" Height="23" Margin="137,49,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
+                                    <Label x:Name="LblDoGridTwoInfo" Content="STAŁY KLIENT" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="138" FontWeight="Bold" FontSize="16" RenderTransformOrigin="0.5,0.5" >
+                                        <Label.RenderTransform>
+                                            <TransformGroup>
+                                                <ScaleTransform/>
+                                                <SkewTransform/>
+                                                <RotateTransform Angle="0.516"/>
+                                                <TranslateTransform/>
+                                            </TransformGroup>
+                                        </Label.RenderTransform>
+                                    </Label>
                                 </Grid>
                                 <Grid x:Name="GridDoThree" Margin="300,0,518,300">
-                                    <Label x:Name="LblDoGridThreeProdukty" Content="Produkty" HorizontalAlignment="Left" Margin="82,31,0,0" VerticalAlignment="Top" />
-                                    <Label x:Name="LblDoGridThreeNazwa" Content="Nazwa:" HorizontalAlignment="Left" Margin="-12,84,0,0" VerticalAlignment="Top" />
-                                    <Label x:Name="LblDoGridThreeIlosc" Content="Ilość:" HorizontalAlignment="Left" Margin="0,107,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.792,1.038" />
+                                    <Label x:Name="LblDoGridThreeProdukty" Content="Produkty" HorizontalAlignment="Left" Margin="82,31,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Black" FontWeight="Bold" />
+                                    <Label x:Name="LblDoGridThreeNazwa" Content="Nazwa:" HorizontalAlignment="Left" Margin="-12,84,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Black" FontWeight="Bold" />
+                                    <Label x:Name="LblDoGridThreeIlosc" Content="Ilość:" HorizontalAlignment="Left" Margin="0,110,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.792,1.038" FontFamily="Segoe UI Black" FontWeight="Bold" />
                                     <ComboBox  x:Name="CmbDoGridThreeNazwa" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="120" Height="23" Margin="53,84,0,0" />
                                     <TextBox x:Name="TxbDoGridThreeIlosc" HorizontalAlignment="Left" Height="23" Margin="53,112,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
-                                    <Button x:Name="BtnDoGridThreeDodajProdukty" Content="Dodaj Produkty" HorizontalAlignment="Left" Margin="53,140,0,0" VerticalAlignment="Top" Width="120" Click="BtnDoGridThreeDodajProdukty_Click" />
+                                    <Button x:Name="BtnDoGridThreeDodajProdukty" Content="Dodaj Produkty" HorizontalAlignment="Left" Margin="53,140,0,0" VerticalAlignment="Top" Width="120" Click="BtnDoGridThreeDodajProdukty_Click" FontFamily="Segoe UI Black" FontWeight="Bold" />
                                 </Grid>
                                 <Grid x:Name="GridDoFour" Margin="348,450,470,-150">
                                     <Label x:Name="LblDoGridFourPodsumowanie" Content="Podsumowanie" HorizontalAlignment="Left" Margin="10,15,0,757" />
-                                    <Label x:Name="LblDoFourCena" Content="Cena:" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Width="178" />
-                                    <Button x:Name="BtnDoGridFourRealizujZamowienie" Content="Realizuj Zamówienie" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top" Width="120" Click="BtnDoGridFourRealizujZamowienie_Click" />
+                                    <Label x:Name="LblDoFourCena" Content="Cena:" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Width="178" FontFamily="Segoe UI Black" FontWeight="Bold" />
+                                    <Button x:Name="BtnDoGridFourRealizujZamowienie" Content="Realizuj Zamówienie" HorizontalAlignment="Left" Margin="0,72,0,0" VerticalAlignment="Top" Width="130" Click="BtnDoGridFourRealizujZamowienie_Click" FontFamily="Segoe UI Black" FontWeight="Bold" />
                                 </Grid>
                                 <Grid x:Name="GridDoFive" Margin="600,0,0,0">
                                     <DataGrid x:Name="DgDoGridFive" HorizontalAlignment="Left" Height="546" Margin="-110,35,0,0" VerticalAlignment="Top" Width="405">
@@ -137,22 +152,28 @@
                                             <DataGridTextColumn   Header="Cena Całościowa" Width="*" Binding="{Binding CenaCalosciowa, StringFormat={}{0:F2}}" />
                                         </DataGrid.Columns>
                                     </DataGrid>
-                                    <Button x:Name="BtnDoGridFiveUsun" Content="Usuń" HorizontalAlignment="Left" Margin="-110,581,0,0" VerticalAlignment="Top" Width="75" Click="BtnDoGridFiveUsun_Click" />
+                                    <Button x:Name="BtnDoGridFiveUsun" Content="Usuń" HorizontalAlignment="Left" Margin="-110,581,0,0" VerticalAlignment="Top" Width="75" Click="BtnDoGridFiveUsun_Click" FontFamily="Segoe UI Black" FontWeight="Bold" />
                                 </Grid>
-                                <RadioButton x:Name="RbDoGridOneNowyKlient" Content="Nowy Klient" HorizontalAlignment="Left" Margin="18,17,0,0" VerticalAlignment="Top" Checked="RbDoGridOneNowyKlient_Checked" />
-                                <RadioButton x:Name="RbDoGridOneStalyKlient" Content="Stały Klient" HorizontalAlignment="Left" Margin="137,17,0,0" VerticalAlignment="Top" Checked="RbDoGridOneStalyKlient_Checked" />
+                                <RadioButton x:Name="RbDoGridOneNowyKlient" Content="Nowy Klient" HorizontalAlignment="Left" Margin="18,17,0,0" VerticalAlignment="Top" Checked="RbDoGridOneNowyKlient_Checked" FontFamily="Segoe UI Black" FontWeight="Bold" />
+                                <RadioButton x:Name="RbDoGridOneStalyKlient" Content="Stały Klient" HorizontalAlignment="Left" Margin="137,17,0,0" VerticalAlignment="Top" Checked="RbDoGridOneStalyKlient_Checked" FontFamily="Segoe UI Black" FontWeight="Bold" />
                             </Grid>
                         </TabItem>
-                        <TabItem x:Name="TabOverview" Header="Przeglad">
-                            <Grid>
+                        <TabItem x:Name="TabOverview" Header="Przeglad" FontFamily="Showcard Gothic" Margin="198,-7,-503,-2">
+                            <TabItem.Background>
+                                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                    <GradientStop Color="#FFF0F0F0" Offset="0"/>
+                                    <GradientStop Color="#FF6AFF14" Offset="1"/>
+                                </LinearGradientBrush>
+                            </TabItem.Background>
+                            <Grid Background="#FF6AFF14">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="22*"/>
                                     <ColumnDefinition Width="1575*"/>
                                 </Grid.ColumnDefinitions>
                                 <Grid x:Name="GridOverviewOne" Grid.ColumnSpan="2" Margin="0,0,694,0">
-                                    <RadioButton x:Name="RbOverviewGridOneWszystkie" Content="Wszystkie" HorizontalAlignment="Left" Margin="48,10,0,0" VerticalAlignment="Top" Checked="RbOverviewGridOneWszystkie_Checked" />
-                                    <RadioButton x:Name="RbOverviewGridOneSzukaj" Content="Szukaj" HorizontalAlignment="Left" Margin="188,10,0,0" VerticalAlignment="Top" Checked="RbOverviewGridOneSzukaj_Checked" />
-                                    <DataGrid x:Name="DgOverviewGridOne" HorizontalAlignment="Left" Margin="0,61,-85,61" Width="298" SelectionChanged="DgOverviewGridOne_SelectionChanged" FrozenColumnCount="0" SelectionMode="Single" CanUserResizeRows="False" IsReadOnly="True">
+                                    <RadioButton x:Name="RbOverviewGridOneWszystkie" Content="Wszystkie" HorizontalAlignment="Left" Margin="48,10,0,0" VerticalAlignment="Top" Checked="RbOverviewGridOneWszystkie_Checked" FontFamily="Segoe UI Black" FontWeight="Bold" />
+                                    <RadioButton x:Name="RbOverviewGridOneSzukaj" Content="Szukaj" HorizontalAlignment="Left" Margin="188,10,0,0" VerticalAlignment="Top" Checked="RbOverviewGridOneSzukaj_Checked" FontFamily="Segoe UI Black" FontWeight="Bold" />
+                                    <DataGrid x:Name="DgOverviewGridOne" HorizontalAlignment="Left" Margin="0,61,-85,61" Width="298" SelectionChanged="DgOverviewGridOne_SelectionChanged" FrozenColumnCount="0" SelectionMode="Single" CanUserResizeRows="False" IsReadOnly="True" FontFamily="Segoe UI Black">
                                         <DataGrid.Columns>
                                             <DataGridTextColumn   Header="Transakcja" Width="*" Binding="{Binding idTransakcji}" />
                                             <DataGridTextColumn   Header="Data Transakcji Data" Width="*" Binding="{Binding Data}" />
@@ -165,28 +186,28 @@
                                         <ColumnDefinition Width="263*"/>
                                     </Grid.ColumnDefinitions>-->
                                     <Grid x:Name="GridOverwviewSearch" Margin="0,343,94,120">
-                                        <CheckBox x:Name="ChbOverviewGridTwoData" Content="Data" HorizontalAlignment="Left" Margin="20,31,0,0" VerticalAlignment="Top" />
-                                        <CheckBox x:Name="ChbOverviewGridTwoNazwisko" Content="Nazwisko" HorizontalAlignment="Left" Margin="20,81,0,0" VerticalAlignment="Top" />
-                                        <CheckBox x:Name="ChbOverviewGridTwoFirma" Content="Firma" HorizontalAlignment="Left" Margin="20,131,0,0" VerticalAlignment="Top" />
+                                        <CheckBox x:Name="ChbOverviewGridTwoData" Content="Data" HorizontalAlignment="Left" Margin="20,31,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Black" FontWeight="Bold" />
+                                        <CheckBox x:Name="ChbOverviewGridTwoNazwisko" Content="Nazwisko" HorizontalAlignment="Left" Margin="20,81,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Black" FontWeight="Bold" />
+                                        <CheckBox x:Name="ChbOverviewGridTwoFirma" Content="Firma" HorizontalAlignment="Left" Margin="20,131,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Black" FontWeight="Bold" />
                                         <DatePicker x:Name="DpOverviewGridTwoDataPicker" HorizontalAlignment="Left" Margin="142,26,0,0" VerticalAlignment="Top" Width="120" />
                                         <TextBox x:Name="TxbOverviewGridTwoNazwisko" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="142,76,0,0" />
                                         <TextBox x:Name="TxbOverviewGridTwoFirma" HorizontalAlignment="Left" Height="23" Margin="142,126,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
-                                        <Button x:Name="BtnOverviewGridTwoSzukaj" Content="Szukaj" Click="BtnOverviewGridTwoSzukaj_Click" Margin="142,196,0,0" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="84" Height="23" VerticalAlignment="Top" />
+                                        <Button x:Name="BtnOverviewGridTwoSzukaj" Content="Szukaj" Click="BtnOverviewGridTwoSzukaj_Click" Margin="142,196,0,0" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="86" Height="21" VerticalAlignment="Top" FontFamily="Segoe UI Black" FontWeight="Bold" />
                                     </Grid>
-                                    <Label x:Name="LblOverviewGridTwoNazwisko" Content="Nazwisko:" HorizontalAlignment="Left" Margin="10,40,0,0" VerticalAlignment="Top" />
-                                    <Label x:Name="LblOverviewGridTwoNazwaFirmy" Content="Nazwa Firmy:" HorizontalAlignment="Left" Margin="10,71,0,0" VerticalAlignment="Top" />
-                                    <Label x:Name="LblOverviewGridTwoDostawca" Content="Dostawca:" Margin="10,102,116,0" VerticalAlignment="Top" />
-                                    <Label x:Name="LblOverviewGridTwoData" Content="Data:" HorizontalAlignment="Left" Margin="10,133,0,0" VerticalAlignment="Top" />
-                                    <Label x:Name="LblOverviewGridTwoMiejscowosc" Content="Miejscowość:" HorizontalAlignment="Left" Margin="10,164,0,0" VerticalAlignment="Top" />
-                                    <Label x:Name="LblOverviewGridTwoKodPocztowy" Content="Kod Pocztowy:" HorizontalAlignment="Left" Margin="10,195,0,0" VerticalAlignment="Top" />
-                                    <Label x:Name="LblOverviewGridTwoWojewodztwo" Content="Województwo:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,226,0,0" />
-                                    <Label x:Name="LblOverviewGridTwoIloscProduktow" Content="Ilość Produktów:" HorizontalAlignment="Left" Margin="10,262,0,0" VerticalAlignment="Top" />
-                                    <Label x:Name="LblOverviewGridTwoCena" Content="Cena:" HorizontalAlignment="Left" Margin="10,293,0,0" VerticalAlignment="Top" />
-                                    <Button x:Name="btnTabOverviewFaktura" Content="Faktura" HorizontalAlignment="Left" Margin="7,554,0,0" VerticalAlignment="Top" Width="120" Click="btnTabOverviewFaktura_Click" Height="23" />
+                                    <Label x:Name="LblOverviewGridTwoNazwisko" Content="Nazwisko:" HorizontalAlignment="Left" Margin="10,40,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Black" FontWeight="Bold" />
+                                    <Label x:Name="LblOverviewGridTwoNazwaFirmy" Content="Nazwa Firmy:" HorizontalAlignment="Left" Margin="10,71,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Black" FontWeight="Bold" />
+                                    <Label x:Name="LblOverviewGridTwoDostawca" Content="Dostawca:" Margin="10,102,116,0" VerticalAlignment="Top" FontFamily="Segoe UI Black" FontWeight="Bold" />
+                                    <Label x:Name="LblOverviewGridTwoData" Content="Data:" HorizontalAlignment="Left" Margin="10,133,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Black" FontWeight="Bold" />
+                                    <Label x:Name="LblOverviewGridTwoMiejscowosc" Content="Miejscowość:" HorizontalAlignment="Left" Margin="10,164,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Black" FontWeight="Bold" />
+                                    <Label x:Name="LblOverviewGridTwoKodPocztowy" Content="Kod Pocztowy:" HorizontalAlignment="Left" Margin="10,195,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Black" FontWeight="Bold" />
+                                    <Label x:Name="LblOverviewGridTwoWojewodztwo" Content="Województwo:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,226,0,0" FontFamily="Segoe UI Black" FontWeight="Bold" />
+                                    <Label x:Name="LblOverviewGridTwoIloscProduktow" Content="Ilość Produktów:" HorizontalAlignment="Left" Margin="10,262,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Black" FontWeight="Bold" />
+                                    <Label x:Name="LblOverviewGridTwoCena" Content="Cena:" HorizontalAlignment="Left" Margin="10,293,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Black" FontWeight="Bold" />
+                                    <Button x:Name="btnTabOverviewFaktura" Content="Faktura" HorizontalAlignment="Left" Margin="10,537,0,0" VerticalAlignment="Top" Width="120" Click="btnTabOverviewFaktura_Click" Height="23" FontFamily="Segoe UI Black" FontWeight="Bold" />
                                 </Grid>
                                 <Grid x:Name="GridOverviewThree" Margin="644,18,10,10" Grid.Column="1">
-                                    <Label x:Name="LblOverviewGridThreeProdukty" Content="Produkty" FontSize="14" HorizontalAlignment="Left" Margin="155,5,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.47,0" />
-                                    <DataGrid x:Name="DgOverviewGridThree" HorizontalAlignment="Left" Margin="10,39,0,86" Width="301" IsReadOnly="True">
+                                    <Label x:Name="LblOverviewGridThreeProdukty" Content="Produkty" FontSize="14" HorizontalAlignment="Left" Margin="155,5,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.47,0" FontFamily="Segoe UI Black" FontWeight="Bold" />
+                                    <DataGrid x:Name="DgOverviewGridThree" HorizontalAlignment="Left" Margin="10,39,0,86" Width="301" IsReadOnly="True" FontFamily="Segoe UI Black">
                                         <DataGrid.Columns>
                                             <DataGridTextColumn   Header="Produkt" Width="*" Binding="{Binding Nazwa}" />
                                             <DataGridTextColumn   Header="Cena" Width="*" Binding="{Binding Cena, StringFormat={}{0:F2} }" />
@@ -202,7 +223,7 @@
                 <TabItem.Background>
                     <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
                         <GradientStop Color="#FFF0F0F0" Offset="0"/>
-                        <GradientStop Color="#FF3BC3B1" Offset="1"/>
+                        <GradientStop Color="#FF0CFBA4" Offset="1"/>
                     </LinearGradientBrush>
                 </TabItem.Background>
                 <TabItem.RenderTransform>
@@ -213,56 +234,56 @@
                         <TranslateTransform X="-4.852"/>
                     </TransformGroup>
                 </TabItem.RenderTransform>
-                <Canvas>
+                <Canvas Background="#FF0CFBA4">
                     <Grid x:Name="GridClientsSearch" Height="165" Width="276" Canvas.Left="317" Canvas.Top="264">
-                        <CheckBox x:Name="ChbClientsNazwisko" Content="" Margin="238,10,11,127" />
-                        <Label x:Name="LblClientsMiejscowoscSearch" Content="Miejscowość:" Margin="0,66,188,72" />
-                        <Label x:Name="LblClientsWojewodztwoSearch" Content="Województwo:" Margin="0,98,188,39" />
-                        <TextBox x:Name="TxbClientsMiejscowoscSearch" TextWrapping="Wrap" RenderTransformOrigin="0.115,0.691" Margin="98,66,43,76" Height="23" />
-                        <ComboBox x:Name="CmbClientsWojewodztwoSearch"  RenderTransformOrigin="0.115,0.691" Margin="98,98,43,44" Height="23" />
-                        <Label x:Name="LblClientsNazwiskoSearch" Content="Nazwisko:" Margin="0,10,188,127" />
-                        <TextBox x:Name="TxbClientsNazwiskoSearch" TextWrapping="Wrap" RenderTransformOrigin="0.115,0.691" Margin="98,10,43,133" />
-                        <CheckBox x:Name="ChbClientsMiejscowosc" Content="" Margin="238,66,11,76" />
-                        <CheckBox x:Name="ChbClientsWojewodztwo" Content="" Margin="239,98,11,44" />
-                        <Button x:Name="BtnClientsSzukaj" Content="Szukaj" RenderTransformOrigin="0.449,0.517" Margin="126,135,75,10" Click="BtnClientsSzukaj_Click" />
-                        <CheckBox x:Name="ChbClientsFirma" Content="" Margin="238,37,11,106" />
-                        <Label x:Name="LblClientsFirmaSearch" Content="Firma: " Margin="1,37,187,100" />
-                        <TextBox x:Name="TxbClientsFirmaSearch" TextWrapping="Wrap" RenderTransformOrigin="0.115,0.691" Margin="98,37,43,106" />
+                        <CheckBox x:Name="ChbClientsNazwisko" Content="" Margin="239,10,10,127" />
+                        <Label x:Name="LblClientsMiejscowoscSearch" Content="Miejscowość:" Margin="0,66,188,72" FontFamily="Segoe UI Black" FontWeight="Bold" />
+                        <Label x:Name="LblClientsWojewodztwoSearch" Content="Województwo:" Margin="0,98,177,39" FontFamily="Segoe UI Black" FontWeight="Bold" />
+                        <TextBox x:Name="TxbClientsMiejscowoscSearch" TextWrapping="Wrap" RenderTransformOrigin="0.115,0.691" Margin="99,66,42,76" Height="23" />
+                        <ComboBox x:Name="CmbClientsWojewodztwoSearch"  RenderTransformOrigin="0.115,0.691" Margin="99,98,42,44" Height="23" />
+                        <Label x:Name="LblClientsNazwiskoSearch" Content="Nazwisko:" Margin="0,10,188,127" FontFamily="Segoe UI Black" FontWeight="Bold" />
+                        <TextBox x:Name="TxbClientsNazwiskoSearch" TextWrapping="Wrap" RenderTransformOrigin="0.115,0.691" Margin="99,10,42,133" />
+                        <CheckBox x:Name="ChbClientsMiejscowosc" Content="" Margin="239,66,10,76" />
+                        <CheckBox x:Name="ChbClientsWojewodztwo" Content="" Margin="240,98,10,44" />
+                        <Button x:Name="BtnClientsSzukaj" Content="Szukaj" RenderTransformOrigin="0.449,0.517" Margin="126,135,75,10" Click="BtnClientsSzukaj_Click" FontFamily="Segoe UI Black" FontWeight="Bold" />
+                        <CheckBox x:Name="ChbClientsFirma" Content="" Margin="239,37,10,106" />
+                        <Label x:Name="LblClientsFirmaSearch" Content="Firma: " Margin="1,37,187,100" FontFamily="Segoe UI Black" FontWeight="Bold" />
+                        <TextBox x:Name="TxbClientsFirmaSearch" TextWrapping="Wrap" RenderTransformOrigin="0.115,0.691" Margin="99,37,42,106" />
                     </Grid>
-                    <DataGrid x:Name="DgClientsLista" IsReadOnly="True" HorizontalAlignment="Left" VerticalAlignment="Top" Height="661" Width="239" Canvas.Left="10" Canvas.Top="37" SelectionChanged="DgClientsLista_SelectionChanged" SelectionMode="Single">
+                    <DataGrid x:Name="DgClientsLista" IsReadOnly="True" HorizontalAlignment="Left" VerticalAlignment="Top" Height="661" Width="239" Canvas.Left="10" Canvas.Top="37" SelectionChanged="DgClientsLista_SelectionChanged" SelectionMode="Single" FontFamily="Segoe UI Black" FontWeight="Bold">
                         <DataGrid.Columns>
                             <DataGridTextColumn   Header="Nazwisko" Width="*" Binding="{Binding Nazwisko}" />
                             <DataGridTextColumn   Header="Firma" Width="*" Binding="{Binding Nazwa_firmy}" />
                         </DataGrid.Columns>
                     </DataGrid>
-                    <RadioButton x:Name="RbClientsWszyscy" GroupName="gn" Content="Wszyscy" Canvas.Left="10" Canvas.Top="10" RenderTransformOrigin="-2.457,0.36" Checked="RbClientsWszyscy_Checked" />
-                    <RadioButton x:Name="RbClientsSzukaj" GroupName="gn" Content="Szukaj" Canvas.Left="111" Canvas.Top="10" RenderTransformOrigin="-2.457,0.36" Checked="RbClientsSzukaj_Checked" />
-                    <RadioButton x:Name="RbClientsDodaj" GroupName="gn" Content="Dodaj" Canvas.Left="198" Canvas.Top="10" RenderTransformOrigin="-2.457,0.36" Checked="RbClientsDodaj_Checked" />
-                    <RadioButton x:Name="RbClientsModyfikuj" GroupName="gn" Content="Modyfikuj" Canvas.Left="286" Canvas.Top="10" RenderTransformOrigin="-2.457,0.36" Checked="RbClientsModyfikuj_Checked" />
-                    <RadioButton x:Name="RbClientsUsun" GroupName="gn" Content="Usun" Canvas.Left="391" Canvas.Top="10" RenderTransformOrigin="-2.457,0.36" Checked="RbClientsUsun_Checked" />
-                    <Label x:Name="LblClientsNazwisko" Content="Nazwisko:" Height="27" Width="100" Canvas.Left="368" Canvas.Top="73" />
-                    <Label x:Name="LblClientsFirma" Content="Firma:" Height="27" Width="100" Canvas.Left="368" Canvas.Top="105" />
-                    <Label x:Name="LblClientsMiejscowosc" Content="Miejscowość:" Height="27" Width="100" Canvas.Left="368" Canvas.Top="137" RenderTransformOrigin="1.665,0.37" />
-                    <Label x:Name="LblClientsKodPocztowy" Content="Kod pocztowy:" Height="27" Width="100" Canvas.Left="368" Canvas.Top="173" RenderTransformOrigin="0.623,3.557" />
-                    <Label x:Name="LblClientsWojewodztwo" Content="Województwo:" Height="27" Width="100" Canvas.Left="368" Canvas.Top="205" RenderTransformOrigin="1.44,0.778" />
+                    <RadioButton x:Name="RbClientsWszyscy" GroupName="gn" Content="Wszyscy" Canvas.Left="10" Canvas.Top="10" RenderTransformOrigin="-2.457,0.36" Checked="RbClientsWszyscy_Checked" FontFamily="Segoe UI Black" FontWeight="Bold" />
+                    <RadioButton x:Name="RbClientsSzukaj" GroupName="gn" Content="Szukaj" Canvas.Left="111" Canvas.Top="10" RenderTransformOrigin="-2.457,0.36" Checked="RbClientsSzukaj_Checked" FontFamily="Segoe UI Black" FontWeight="Bold" />
+                    <RadioButton x:Name="RbClientsDodaj" GroupName="gn" Content="Dodaj" Canvas.Left="198" Canvas.Top="10" RenderTransformOrigin="-2.457,0.36" Checked="RbClientsDodaj_Checked" FontFamily="Segoe UI Black" FontWeight="Bold" />
+                    <RadioButton x:Name="RbClientsModyfikuj" GroupName="gn" Content="Modyfikuj" Canvas.Left="286" Canvas.Top="10" RenderTransformOrigin="-2.457,0.36" Checked="RbClientsModyfikuj_Checked" FontFamily="Segoe UI Black" FontWeight="Bold" />
+                    <RadioButton x:Name="RbClientsUsun" GroupName="gn" Content="Usun" Canvas.Left="391" Canvas.Top="10" RenderTransformOrigin="-2.457,0.36" Checked="RbClientsUsun_Checked" FontFamily="Segoe UI Black" FontWeight="Bold" />
+                    <Label x:Name="LblClientsNazwisko" Content="Nazwisko:" Height="27" Width="100" Canvas.Left="368" Canvas.Top="73" FontFamily="Segoe UI Black" FontWeight="Bold" />
+                    <Label x:Name="LblClientsFirma" Content="Firma:" Height="27" Width="100" Canvas.Left="368" Canvas.Top="105" FontFamily="Segoe UI Black" FontWeight="Bold" />
+                    <Label x:Name="LblClientsMiejscowosc" Content="Miejscowość:" Height="27" Width="100" Canvas.Left="368" Canvas.Top="137" RenderTransformOrigin="1.665,0.37" FontFamily="Segoe UI Black" FontWeight="Bold" />
+                    <Label x:Name="LblClientsKodPocztowy" Content="Kod pocztowy:" Height="27" Width="100" Canvas.Left="368" Canvas.Top="173" RenderTransformOrigin="0.623,3.557" FontFamily="Segoe UI Black" FontWeight="Bold" />
+                    <Label x:Name="LblClientsWojewodztwo" Content="Województwo:" Height="27" Width="100" Canvas.Left="368" Canvas.Top="205" RenderTransformOrigin="1.44,0.778" FontFamily="Segoe UI Black" FontWeight="Bold" />
                     <Label x:Name="LblClientsIloscTransakcji" Content="Ilość transakcji:" Height="27" Width="225" Canvas.Left="212" Canvas.Top="232" Visibility="Hidden" />
                     <TextBox x:Name="TxbClientsNazwisko" Height="23" Canvas.Left="473" TextWrapping="Wrap" Canvas.Top="73" Width="120" RenderTransformOrigin="0.115,0.691" />
                     <TextBox x:Name="TxbClientsFirma" Height="23" Canvas.Left="473" TextWrapping="Wrap" Canvas.Top="105" Width="120" RenderTransformOrigin="0.115,0.691" />
                     <TextBox x:Name="TxbClientsMiejscowosc" Height="23" Canvas.Left="473" TextWrapping="Wrap" Canvas.Top="137" Width="120" RenderTransformOrigin="0.115,0.691" />
                     <TextBox x:Name="TxbClientsKodPocztowy" Height="23" Canvas.Left="473" TextWrapping="Wrap" Canvas.Top="173" Width="120" RenderTransformOrigin="0.115,0.691" />
-                    <Button x:Name="BtnClientsModyfikuj" Content="Modyfikuj" Canvas.Left="852" Canvas.Top="38" Width="75" Click="BtnClientsModyfikuj_Click" />
-                    <Button x:Name="BtnClientsUsun" Content="Usuń" Canvas.Left="852" Canvas.Top="79" Width="75" Click="BtnClientsUsun_Click" />
-                    <Button x:Name="BtnClientsDodaj" Content="Dodaj" Canvas.Left="852" Canvas.Top="120" Width="75" Click="BtnClientsDodaj_Click" />
-                    <Label x:Name="LblClientsImie" Content="Imię:" Height="27" Width="100" Canvas.Left="368" Canvas.Top="41" />
+                    <Button x:Name="BtnClientsModyfikuj" Content="Modyfikuj" Canvas.Left="852" Canvas.Top="38" Width="75" Click="BtnClientsModyfikuj_Click" FontFamily="Segoe UI Black" FontWeight="Bold" />
+                    <Button x:Name="BtnClientsUsun" Content="Usuń" Canvas.Left="852" Canvas.Top="79" Width="75" Click="BtnClientsUsun_Click" FontFamily="Segoe UI Black" FontWeight="Bold" />
+                    <Button x:Name="BtnClientsDodaj" Content="Dodaj" Canvas.Left="852" Canvas.Top="120" Width="75" Click="BtnClientsDodaj_Click" FontFamily="Segoe UI Black" FontWeight="Bold" />
+                    <Label x:Name="LblClientsImie" Content="Imię:" Height="27" Width="100" Canvas.Left="368" Canvas.Top="41" FontFamily="Segoe UI Black" FontWeight="Bold" />
                     <TextBox x:Name="TxbClientsImie" Height="23" Canvas.Left="473" TextWrapping="Wrap" Canvas.Top="41" Width="120" RenderTransformOrigin="0.115,0.691" />
                     <ComboBox x:Name="CmbClientsWojewodztwo" Height="22" Width="120" Canvas.Left="473" Canvas.Top="205" RenderTransformOrigin="1.225,0.386" />
                 </Canvas>
             </TabItem>
-            <TabItem x:Name="TabCategory" Header="Kategorie" Margin="19,-2,-23,-2" RenderTransformOrigin="0.5,0.5">
+            <TabItem x:Name="TabCategory" Header="Kategorie" Margin="19,-2,-23,-2" RenderTransformOrigin="0.5,0.5" BorderBrush="#FF1313F0">
                 <TabItem.Background>
                     <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
                         <GradientStop Color="#FFF0F0F0" Offset="0"/>
-                        <GradientStop Color="#FF3BC3B1" Offset="1"/>
+                        <GradientStop Color="#FF0D34E2" Offset="1"/>
                     </LinearGradientBrush>
                 </TabItem.Background>
                 <TabItem.RenderTransform>
@@ -273,26 +294,26 @@
                         <TranslateTransform X="-4.598"/>
                     </TransformGroup>
                 </TabItem.RenderTransform>
-                <Canvas>
-                    <DataGrid x:Name="DgCategoryLista" HorizontalAlignment="Left" VerticalAlignment="Top" Height="1035" Width="265"  IsReadOnly="True" Canvas.Left="10" Canvas.Top="40" SelectionChanged="DgCategoryLista_SelectionChanged" SelectionMode="Single">
+                <Canvas Background="#FF0D34E2">
+                    <DataGrid x:Name="DgCategoryLista" HorizontalAlignment="Left" VerticalAlignment="Top" Height="1035" Width="265"  IsReadOnly="True" Canvas.Left="10" Canvas.Top="40" SelectionChanged="DgCategoryLista_SelectionChanged" SelectionMode="Single" FontFamily="Segoe UI Black">
                         <DataGrid.Columns>
                             <DataGridTextColumn   Header="ID" Width="*" Binding="{Binding idKategorii}" />
                             <DataGridTextColumn   Header="Nazwa" Width="*" Binding="{Binding Nazwa}" />
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Button x:Name="BtnCategoryUsun" Content="Usuń" Canvas.Left="461" Canvas.Top="140" Width="75" Click="BtnCategoryUsun_Click" />
-                    <RadioButton x:Name="RbCategoryWszystko" GroupName="gn" Content="Wszystko" Canvas.Left="10" Canvas.Top="10" Checked="RbCategoryWszystko_Checked" />
-                    <RadioButton x:Name="RbCategoryDodaj" GroupName="gn" Content="Dodaj" Canvas.Left="96" Canvas.Top="10" Checked="RbCategoryDodaj_Checked" />
-                    <RadioButton x:Name="RbCategoryModyfikuj" GroupName="gn" Content="Modyfikuj" Canvas.Left="168" Canvas.Top="10" Checked="RbCategoryModyfikuj_Checked" />
-                    <RadioButton x:Name="RbCategoryUsun" GroupName="gn" Content="Usuń" Canvas.Left="260" Canvas.Top="10" Checked="RbCategoryUsun_Checked" />
+                    <Button x:Name="BtnCategoryUsun" Content="Usuń" Canvas.Left="461" Canvas.Top="140" Width="75" Click="BtnCategoryUsun_Click" FontFamily="Segoe UI Black" />
+                    <RadioButton x:Name="RbCategoryWszystko" GroupName="gn" Content="Wszystko" Canvas.Left="10" Canvas.Top="10" Checked="RbCategoryWszystko_Checked" FontFamily="Segoe UI Black" />
+                    <RadioButton x:Name="RbCategoryDodaj" GroupName="gn" Content="Dodaj" Canvas.Left="96" Canvas.Top="10" Checked="RbCategoryDodaj_Checked" FontFamily="Segoe UI Black" />
+                    <RadioButton x:Name="RbCategoryModyfikuj" GroupName="gn" Content="Modyfikuj" Canvas.Left="168" Canvas.Top="10" Checked="RbCategoryModyfikuj_Checked" FontFamily="Segoe UI Black" />
+                    <RadioButton x:Name="RbCategoryUsun" GroupName="gn" Content="Usuń" Canvas.Left="260" Canvas.Top="10" Checked="RbCategoryUsun_Checked" FontFamily="Segoe UI Black" />
                     <TextBox x:Name="TxbCategoryNazwa" Height="23" Canvas.Left="369" TextWrapping="Wrap" Canvas.Top="67" Width="120" RenderTransformOrigin="0.115,0.691" />
                     <ComboBox x:Name="CmbCategoryId" Canvas.Left="369" Canvas.Top="40" Width="120" SelectionChanged="CmbCategoryId_SelectionChanged" />
-                    <Label x:Name="LblCategoryId" Content="Id:" Height="27" Width="57" Canvas.Left="312" Canvas.Top="35" />
-                    <Button x:Name="BtnCategoryDodaj" Content="Dodaj" Canvas.Left="369" Canvas.Top="140" Width="75" Click="BtnCategoryDodaj_Click" />
-                    <Button x:Name="BtnCategoryModyfikuj" Content="Modyfikuj" Width="75" Canvas.Left="369" Canvas.Top="175" Click="BtnCategoryModyfikuj_Click" />
-                    <Label x:Name="LblCategoryNazwa" Content="Nazwa:" Height="28" Width="57" Canvas.Left="312" Canvas.Top="62" />
-                    <RadioButton x:Name="RbCategorySzukaj" GroupName="gn" Content="Szukaj" Canvas.Left="323" Canvas.Top="10" Checked="RbCategorySzukaj_Checked" />
-                    <Button x:Name="BtnCategorySzukaj" Content="Szukaj" Canvas.Left="461" Canvas.Top="175" Width="75" Click="BtnCategorySzukaj_Click" />
+                    <Label x:Name="LblCategoryId" Content="Id:" Height="27" Width="57" Canvas.Left="312" Canvas.Top="35" FontFamily="Segoe UI Black" />
+                    <Button x:Name="BtnCategoryDodaj" Content="Dodaj" Canvas.Left="369" Canvas.Top="140" Width="75" Click="BtnCategoryDodaj_Click" FontFamily="Segoe UI Black" />
+                    <Button x:Name="BtnCategoryModyfikuj" Content="Modyfikuj" Width="75" Canvas.Left="369" Canvas.Top="175" Click="BtnCategoryModyfikuj_Click" FontFamily="Segoe UI Black" />
+                    <Label x:Name="LblCategoryNazwa" Content="Nazwa:" Height="28" Width="57" Canvas.Left="312" Canvas.Top="62" FontFamily="Segoe UI Black" />
+                    <RadioButton x:Name="RbCategorySzukaj" GroupName="gn" Content="Szukaj" Canvas.Left="323" Canvas.Top="10" Checked="RbCategorySzukaj_Checked" FontFamily="Segoe UI Black" />
+                    <Button x:Name="BtnCategorySzukaj" Content="Szukaj" Canvas.Left="461" Canvas.Top="175" Width="75" Click="BtnCategorySzukaj_Click" FontFamily="Segoe UI Black" />
                     <CheckBox x:Name="ChbCategoryNazwa" Content="" Canvas.Left="506" Canvas.Top="67" />
                 </Canvas>
             </TabItem>
@@ -300,7 +321,7 @@
                 <TabItem.Background>
                     <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
                         <GradientStop Color="#FFF0F0F0" Offset="0"/>
-                        <GradientStop Color="#FF3BC3B1" Offset="1"/>
+                        <GradientStop Color="#FFA40CFB" Offset="1"/>
                     </LinearGradientBrush>
                 </TabItem.Background>
                 <TabItem.RenderTransform>
@@ -311,8 +332,8 @@
                         <TranslateTransform X="-4.907"/>
                     </TransformGroup>
                 </TabItem.RenderTransform>
-                <Canvas>
-                    <DataGrid x:Name="DgItemLista" HorizontalAlignment="Left" VerticalAlignment="Top" Height="1005" Width="265"  IsReadOnly="True" Canvas.Left="10" Canvas.Top="65" SelectionChanged="DgItemLista_SelectionChanged" SelectionMode="Single">
+                <Canvas Background="#FFA40CFB">
+                    <DataGrid x:Name="DgItemLista" HorizontalAlignment="Left" VerticalAlignment="Top" Height="1005" Width="280"  IsReadOnly="True" Canvas.Left="10" Canvas.Top="65" SelectionChanged="DgItemLista_SelectionChanged" SelectionMode="Single" FontFamily="Segoe UI Black">
                         <DataGrid.Columns>
                             <DataGridTextColumn   Header="Nazwa" Width="*" Binding="{Binding Nazwa}" />
                             <DataGridTextColumn   Header="Ilość" Width="*" Binding="{Binding Ilosc}" />
@@ -320,35 +341,35 @@
                             <DataGridTextColumn   Header="Kategoria" Width="*" Binding="{Binding Path=Kategorie.Nazwa}" />
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Button x:Name="BtnItemDodaj" Content="Dodaj" Canvas.Left="480" Canvas.Top="219" Width="75" Click="BtnItemDodaj_Click" />
-                    <Button x:Name="BtnItemModyfikuj" Content="Modyfikuj" Canvas.Left="369" Canvas.Top="175" Width="75" Click="BtnItemModyfikuj_Click" />
-                    <TextBox x:Name="TxbItemIlosc" Height="23" TextWrapping="Wrap" Width="120" Canvas.Left="369" Canvas.Top="133" />
-                    <TextBox x:Name="TxbItemCenaMin" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Canvas.Left="369" Canvas.Top="100" />
-                    <ComboBox x:Name="CmbItemKategoria" Canvas.Left="369" Canvas.Top="35" Width="120" />
-                    <Label x:Name="LblItemKategoria" Content="Kategoria:" Height="27" Width="62" Canvas.Left="307" Canvas.Top="33" />
-                    <Label x:Name="LblItemNazwa" Content="Nazwa:" Height="28" Width="57" Canvas.Left="307" Canvas.Top="65" />
-                    <Label x:Name="LblItemIlosc" Content="Ilość:" Height="28" Width="57" Canvas.Left="307" Canvas.Top="128" />
-                    <Label x:Name="LblItemCena" Content="Cena:" Height="28" Width="57" Canvas.Left="307" Canvas.Top="95" />
-                    <TextBox x:Name="TxbItemINazwa" Height="23" TextWrapping="Wrap" Width="120" Canvas.Left="369" Canvas.Top="70" />
-                    <RadioButton x:Name="RbItemWszystko" GroupName="gn" Content="Wszystko" Canvas.Left="10" Canvas.Top="10" Checked="RbItemWszystko_Checked" />
-                    <RadioButton x:Name="RbItemSzukaj" GroupName="gn" Content="Szukaj" Canvas.Left="102" Canvas.Top="10" Checked="RbItemSzukaj_Checked" />
-                    <RadioButton x:Name="RbItemModyfikuj" GroupName="gn" Content="Modyfikuj" Canvas.Left="175" Canvas.Top="10" Checked="RbItemModyfikuj_Checked" />
-                    <RadioButton x:Name="RbItemDodaj" GroupName="gn" Content="Dodaj" Canvas.Left="266" Canvas.Top="10" Checked="RbItemDodaj_Checked" />
-                    <Button x:Name="BtnItemSzukaj" Content="Szukaj" Canvas.Left="369" Canvas.Top="214" Width="75" Click="BtnItemSzukaj_Click" />
-                    <CheckBox x:Name="ChbItemKategoria" Content="" Canvas.Left="504" Canvas.Top="42" RenderTransformOrigin="0.5,0.467" />
-                    <CheckBox x:Name="ChbItemCena" Content="" Canvas.Left="636" Canvas.Top="105" />
-                    <CheckBox x:Name="ChbItemIlosc" Content="" Canvas.Left="504" Canvas.Top="133" />
-                    <CheckBox x:Name="ChbItemNazwa" Content="" Canvas.Left="504" Canvas.Top="70" RenderTransformOrigin="0.4,0.6" />
-                    <TextBox x:Name="TxbItemCenaMax" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Canvas.Left="504" Canvas.Top="100" />
-                    <RadioButton x:Name="RbItemUsun" GroupName="gn" Content="Usuń" Canvas.Left="10" Canvas.Top="35" Checked="RbItemUsun_Checked" />
-                    <Button x:Name="BtnItemUsun" Content="Usuń" Canvas.Left="480" Canvas.Top="175" Width="75" Click="BtnItemUsun_Click" />
+                    <Button x:Name="BtnItemDodaj" Content="Dodaj" Canvas.Left="480" Canvas.Top="219" Width="75" Click="BtnItemDodaj_Click" FontFamily="Segoe UI Black" />
+                    <Button x:Name="BtnItemModyfikuj" Content="Modyfikuj" Canvas.Left="369" Canvas.Top="175" Width="75" Click="BtnItemModyfikuj_Click" FontFamily="Segoe UI Black" />
+                    <TextBox x:Name="TxbItemIlosc" Height="23" TextWrapping="Wrap" Width="120" Canvas.Left="386" Canvas.Top="135" />
+                    <TextBox x:Name="TxbItemCenaMin" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Canvas.Left="386" Canvas.Top="102" />
+                    <ComboBox x:Name="CmbItemKategoria" Canvas.Left="386" Canvas.Top="40" Width="120" />
+                    <Label x:Name="LblItemKategoria" Content="Kategoria:" Height="27" Width="71" Canvas.Left="308" Canvas.Top="35" FontFamily="Segoe UI Black" />
+                    <Label x:Name="LblItemNazwa" Content="Nazwa:" Height="28" Width="57" Canvas.Left="307" Canvas.Top="65" FontFamily="Segoe UI Black" />
+                    <Label x:Name="LblItemIlosc" Content="Ilość:" Height="28" Width="57" Canvas.Left="307" Canvas.Top="128" FontFamily="Segoe UI Black" />
+                    <Label x:Name="LblItemCena" Content="Cena:" Height="28" Width="57" Canvas.Left="307" Canvas.Top="95" FontFamily="Segoe UI Black" />
+                    <TextBox x:Name="TxbItemINazwa" Height="23" TextWrapping="Wrap" Width="120" Canvas.Left="386" Canvas.Top="72" />
+                    <RadioButton x:Name="RbItemWszystko" GroupName="gn" Content="Wszystko" Canvas.Left="10" Canvas.Top="10" Checked="RbItemWszystko_Checked" FontFamily="Segoe UI Black" />
+                    <RadioButton x:Name="RbItemSzukaj" GroupName="gn" Content="Szukaj" Canvas.Left="102" Canvas.Top="10" Checked="RbItemSzukaj_Checked" FontFamily="Segoe UI Black" />
+                    <RadioButton x:Name="RbItemModyfikuj" GroupName="gn" Content="Modyfikuj" Canvas.Left="175" Canvas.Top="10" Checked="RbItemModyfikuj_Checked" FontFamily="Segoe UI Black" />
+                    <RadioButton x:Name="RbItemDodaj" GroupName="gn" Content="Dodaj" Canvas.Left="266" Canvas.Top="10" Checked="RbItemDodaj_Checked" FontFamily="Segoe UI Black" />
+                    <Button x:Name="BtnItemSzukaj" Content="Szukaj" Canvas.Left="369" Canvas.Top="214" Width="75" Click="BtnItemSzukaj_Click" FontFamily="Segoe UI Black" />
+                    <CheckBox x:Name="ChbItemKategoria" Content="" Canvas.Left="521" Canvas.Top="44" RenderTransformOrigin="0.5,0.467" />
+                    <CheckBox x:Name="ChbItemCena" Content="" Canvas.Left="653" Canvas.Top="107" />
+                    <CheckBox x:Name="ChbItemIlosc" Content="" Canvas.Left="521" Canvas.Top="135" />
+                    <CheckBox x:Name="ChbItemNazwa" Content="" Canvas.Left="521" Canvas.Top="72" RenderTransformOrigin="0.4,0.6" />
+                    <TextBox x:Name="TxbItemCenaMax" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Canvas.Left="521" Canvas.Top="102" />
+                    <RadioButton x:Name="RbItemUsun" GroupName="gn" Content="Usuń" Canvas.Left="10" Canvas.Top="35" Checked="RbItemUsun_Checked" FontFamily="Segoe UI Black" />
+                    <Button x:Name="BtnItemUsun" Content="Usuń" Canvas.Left="480" Canvas.Top="175" Width="75" Click="BtnItemUsun_Click" FontFamily="Segoe UI Black" />
                 </Canvas>
             </TabItem>
-            <TabItem x:Name="TabEmployees" Header="Pracownicy" Margin="28,-4,-33,-2" RenderTransformOrigin="0.5,0.5" BorderBrush="{x:Null}">
+            <TabItem x:Name="TabEmployees" Header="Pracownicy" Margin="26,-2,-31,-2" RenderTransformOrigin="0.5,0.5" BorderBrush="{x:Null}">
                 <TabItem.Background>
                     <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
                         <GradientStop Color="#FFF0F0F0" Offset="0"/>
-                        <GradientStop Color="#FF3BC3B1" Offset="1"/>
+                        <GradientStop Color="#FFFB05F0" Offset="1"/>
                     </LinearGradientBrush>
                 </TabItem.Background>
                 <TabItem.RenderTransform>
@@ -359,26 +380,26 @@
                         <TranslateTransform X="-4.903"/>
                     </TransformGroup>
                 </TabItem.RenderTransform>
-                <Canvas>
-                    <DataGrid x:Name="DgEmployeesList" Canvas.Left="10" Canvas.Top="26" Height="1042" Width="250" SelectionChanged="DgEmployeesList_SelectionChanged" SelectionMode="Single" IsReadOnly="True">
+                <Canvas Background="#FFFB05F0">
+                    <DataGrid x:Name="DgEmployeesList" Canvas.Left="10" Canvas.Top="26" Height="1042" Width="250" SelectionChanged="DgEmployeesList_SelectionChanged" SelectionMode="Single" IsReadOnly="True" FontFamily="Segoe UI Black">
                         <DataGrid.Columns>
                             <DataGridTextColumn   Header="Imię" Width="*" Binding="{Binding Imie}" />
                             <DataGridTextColumn   Header="Nazwisko" Width="*" Binding="{Binding Nazwisko}" />
                         </DataGrid.Columns>
                     </DataGrid>
-                    <RadioButton x:Name="RdEmployeeWszyscy" Content="Wszyscy" Canvas.Left="10" Canvas.Top="6" Checked="RdEmployeeWszyscy_Checked" />
-                    <RadioButton x:Name="RdEmployeeDodaj" Content="Dodaj" Canvas.Left="94" Canvas.Top="6" Checked="RdEmployeeDodaj_Checked" />
-                    <RadioButton x:Name="RdEmployeeModyfikuj" Content="Modyfikuj" Canvas.Left="174" Canvas.Top="6" Checked="RdEmployeeModyfikuj_Checked" />
-                    <RadioButton x:Name="RdEmployeeUsun" Content="Usuń" Canvas.Left="252" Canvas.Top="6" Checked="RdEmployeeUsun_Checked" />
-                    <Label x:Name="LblEmployeeImie" Content="Imię:" Canvas.Left="306" Canvas.Top="42" />
+                    <RadioButton x:Name="RdEmployeeWszyscy" Content="Wszyscy" Canvas.Left="10" Canvas.Top="6" Checked="RdEmployeeWszyscy_Checked" FontFamily="Segoe UI Black" />
+                    <RadioButton x:Name="RdEmployeeDodaj" Content="Dodaj" Canvas.Left="94" Canvas.Top="6" Checked="RdEmployeeDodaj_Checked" FontFamily="Segoe UI Black" />
+                    <RadioButton x:Name="RdEmployeeModyfikuj" Content="Modyfikuj" Canvas.Left="164" Canvas.Top="6" Checked="RdEmployeeModyfikuj_Checked" FontFamily="Segoe UI Black" />
+                    <RadioButton x:Name="RdEmployeeUsun" Content="Usuń" Canvas.Left="259" Canvas.Top="6" Checked="RdEmployeeUsun_Checked" FontFamily="Segoe UI Black" />
+                    <Label x:Name="LblEmployeeImie" Content="Imię:" Canvas.Left="302" Canvas.Top="42" FontFamily="Segoe UI Black" />
                     <TextBox x:Name="TxbEmployeeImie" Height="23" Canvas.Left="396" TextWrapping="Wrap" Canvas.Top="45" Width="120" />
-                    <Label x:Name="LblEmployeeNazwisko" Content="Nazwisko:" Canvas.Left="306" Canvas.Top="77" />
-                    <Label x:Name="LblEmployeeWiek" Content="Wiek:" Canvas.Left="306" Canvas.Top="112" />
-                    <Label x:Name="LblEmployeeLogin" Content="Login:" Canvas.Left="306" Canvas.Top="148" />
-                    <Label x:Name="LblEmployeeAdmin" Content="Administrator:" Canvas.Left="306" Canvas.Top="234" />
-                    <Label x:Name="LblEmployeeMiejscowosc" Content="Miejscowość:" Canvas.Left="306" Canvas.Top="274" />
-                    <Label x:Name="LblEmployeeKodPocztowy" Content="Kod Pocztowy:" Canvas.Left="306" Canvas.Top="315" />
-                    <Label x:Name="LblEmployeeWojewodztwo" Content="Województwo:" Canvas.Left="303" Canvas.Top="353" />
+                    <Label x:Name="LblEmployeeNazwisko" Content="Nazwisko:" Canvas.Left="298" Canvas.Top="77" FontFamily="Segoe UI Black" />
+                    <Label x:Name="LblEmployeeWiek" Content="Wiek:" Canvas.Left="298" Canvas.Top="112" FontFamily="Segoe UI Black" />
+                    <Label x:Name="LblEmployeeLogin" Content="Login:" Canvas.Left="298" Canvas.Top="149" FontFamily="Segoe UI Black" />
+                    <Label x:Name="LblEmployeeAdmin" Content="Administrator:" Canvas.Left="298" Canvas.Top="234" FontFamily="Segoe UI Black" />
+                    <Label x:Name="LblEmployeeMiejscowosc" Content="Miejscowość:" Canvas.Left="302" Canvas.Top="275" FontFamily="Segoe UI Black" />
+                    <Label x:Name="LblEmployeeKodPocztowy" Content="Kod Pocztowy:" Canvas.Left="298" Canvas.Top="316" FontFamily="Segoe UI Black" />
+                    <Label x:Name="LblEmployeeWojewodztwo" Content="Województwo:" Canvas.Left="298" Canvas.Top="353" FontFamily="Segoe UI Black" />
                     <TextBox x:Name="TxbEmployeeNazwisko" Height="23" Canvas.Left="396" TextWrapping="Wrap" Canvas.Top="80" Width="120" />
                     <TextBox x:Name="TxbEmployeeWiek" Height="23" Canvas.Left="396" TextWrapping="Wrap" Canvas.Top="112" Width="120" />
                     <TextBox x:Name="TxbEmployeeLogin" Height="23" Canvas.Left="396" TextWrapping="Wrap" Canvas.Top="152" Width="120" />
@@ -386,12 +407,12 @@
                     <TextBox x:Name="TxbEmployeeKodPocztowy" Height="23" Canvas.Left="396" TextWrapping="Wrap" Canvas.Top="319" Width="120" />
                     <ComboBox x:Name="CmbEmployeeAdmin" Canvas.Left="396" Canvas.Top="234" Width="120" />
                     <ComboBox x:Name="CmbEmployeeWojewodztwo" Canvas.Left="396" Canvas.Top="357" Width="120" />
-                    <Label x:Name="LblEmployeeHaslo" Content="Hasło:" Canvas.Left="306" Canvas.Top="193" />
+                    <Label x:Name="LblEmployeeHaslo" Content="Hasło:" Canvas.Left="302" Canvas.Top="193" FontFamily="Segoe UI Black" />
                     <TextBox x:Name="TxbEmployeeHaslo" Height="23" Canvas.Left="396" TextWrapping="Wrap" Canvas.Top="197" Width="120" />
-                    <Button x:Name="BtnEmployeeDodaj" Content="Dodaj" Canvas.Left="666" Canvas.Top="148" Width="75" Click="BtnEmployeeDodaj_Click" />
-                    <Button x:Name="BtnEmployeeModyfikuj" Content="Modyfikuj" Canvas.Left="666" Canvas.Top="182" Width="75" Click="BtnEmployeeModyfikuj_Click" />
-                    <Button x:Name="BtnEmployeeUsun" Content="Usuń" Canvas.Left="666" Canvas.Top="219" Width="75" Click="BtnEmployeeUsun_Click" />
-                    <Button x:Name="BtnEmployeeHaslo" Content="Pokaż Hasło" Canvas.Left="534" Canvas.Top="199" Width="75" Click="BtnEmployeeHaslo_Click" />
+                    <Button x:Name="BtnEmployeeDodaj" Content="Dodaj" Canvas.Left="666" Canvas.Top="148" Width="75" Click="BtnEmployeeDodaj_Click" FontFamily="Segoe UI Black" />
+                    <Button x:Name="BtnEmployeeModyfikuj" Content="Modyfikuj" Canvas.Left="666" Canvas.Top="182" Width="75" Click="BtnEmployeeModyfikuj_Click" FontFamily="Segoe UI Black" />
+                    <Button x:Name="BtnEmployeeUsun" Content="Usuń" Canvas.Left="666" Canvas.Top="219" Width="75" Click="BtnEmployeeUsun_Click" FontFamily="Segoe UI Black" />
+                    <Button x:Name="BtnEmployeeHaslo" Content="Pokaż Hasło" Canvas.Left="534" Canvas.Top="199" Width="75" Click="BtnEmployeeHaslo_Click" FontFamily="Segoe UI Black" />
                 </Canvas>
             </TabItem>
         </TabControl>
