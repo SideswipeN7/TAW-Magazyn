@@ -6,9 +6,15 @@
         xmlns:local="clr-namespace:Client.Windows"
         mc:Ignorable="d"
           Title="Tryb Administratora" Height="768" Width="1024" WindowStartupLocation="CenterScreen" SizeToContent="WidthAndHeight" MinWidth="1024" MinHeight="768">
-    <Grid>
-        <TabControl x:Name="MainTab" Margin="0,19,0,-18">
+    <Grid Background="#FF1DB8A3">
+        <TabControl x:Name="MainTab" Margin="0,19,0,-18" BorderBrush="#FF81D41C" Background="#FF69AE16">
             <TabItem x:Name="TabState" Header="Stan Magazynu" RenderTransformOrigin="0.5,0.5" Margin="7,-2,-11,-2">
+                <TabItem.Background>
+                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                        <GradientStop Color="#FFF0F0F0" Offset="0"/>
+                        <GradientStop Color="#FFE60D48" Offset="1"/>
+                    </LinearGradientBrush>
+                </TabItem.Background>
                 <TabItem.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -17,36 +23,42 @@
                         <TranslateTransform X="-3.373"/>
                     </TransformGroup>
                 </TabItem.RenderTransform>
-                <Canvas>
-                    <RadioButton Content="Wszystko" Height="18" Width="100" x:Name="RbStateWszystko" Canvas.Left="85" Canvas.Top="5" Checked="RbStateWszystko_Checked" />
-                    <RadioButton Content="Szukaj" Height="18" Width="100" x:Name="RbStateSzukaj" Canvas.Left="190" Canvas.Top="5" Checked="RbStateSzukaj_Checked" />
-                    <DataGrid x:Name="DgStateLista" IsReadOnly="True" HorizontalAlignment="Left" VerticalAlignment="Top" Height="1045" Width="322" Canvas.Left="10" Canvas.Top="28" AutoGenerateColumns="False" SelectionMode="Single" SelectionChanged="DgStateLista_SelectionChanged">
+                <Canvas Background="#FFD61309">
+                    <RadioButton Content="Wszystko" Height="18" Width="100" x:Name="RbStateWszystko" Canvas.Left="85" Canvas.Top="5" Checked="RbStateWszystko_Checked" Background="#FFF5F4F4" Foreground="#FFF5F1F1" FontFamily="Segoe UI Black" FontWeight="Bold" />
+                    <RadioButton Content="Szukaj" Height="18" Width="100" x:Name="RbStateSzukaj" Canvas.Left="190" Canvas.Top="5" Checked="RbStateSzukaj_Checked" Foreground="#FFF3EBEB" FontWeight="Bold" FontFamily="Segoe UI Black" />
+                    <DataGrid x:Name="DgStateLista" IsReadOnly="True" HorizontalAlignment="Left" VerticalAlignment="Top" Height="1045" Width="322" Canvas.Left="10" Canvas.Top="28" AutoGenerateColumns="False" SelectionMode="Single" SelectionChanged="DgStateLista_SelectionChanged" FontFamily="Segoe UI Black" FontSize="14">
                         <DataGrid.Columns>
-                            <DataGridTextColumn   Header="Nazwa artykułu" Width="100" Binding="{Binding Nazwa}" />
+                            <DataGridTextColumn   Header="Nazwa artykułu" Width="120" Binding="{Binding Nazwa}" />
                             <DataGridTextColumn   Header="Ilość" Width="50" Binding="{Binding Ilosc}" />
                             <DataGridTextColumn   Header="Kategoria" Width="80" Binding="{Binding Path=Kategorie.Nazwa}" />
                             <DataGridTextColumn   Header="Cena" Width="*" Binding="{Binding Cena, StringFormat={}{0:F2}}" />
                         </DataGrid.Columns>
                     </DataGrid>
                     <TextBox x:Name="TxbStateNazwa" Height="23" Canvas.Left="461" TextWrapping="Wrap" Text="" Canvas.Top="66" Width="127" RenderTransformOrigin="-0.096,0.011" />
-                    <Label x:Name="LblStateNazwa" Content="Nazwa artykułu:" Canvas.Left="337" Canvas.Top="62" />
+                    <Label x:Name="LblStateNazwa" Content="Nazwa artykułu:" Canvas.Left="337" Canvas.Top="62" Foreground="#FFEAE2E2" FontWeight="Bold" FontFamily="Segoe UI Black" />
                     <TextBox x:Name="TxbStateIlosc" Height="23" Canvas.Left="461" TextWrapping="Wrap" Text="" Canvas.Top="93" Width="127" RenderTransformOrigin="-0.096,0.011" />
-                    <Label x:Name="LblStateIlosc" Content="Ilość artykułu:" Canvas.Left="337" Canvas.Top="93" />
+                    <Label x:Name="LblStateIlosc" Content="Ilość artykułu:" Canvas.Left="337" Canvas.Top="93" Foreground="#FFE0D7D7" FontFamily="Segoe UI Black" FontWeight="Bold" />
                     <TextBox x:Name="TxbStateCenaMin" Height="23" Canvas.Left="461" TextWrapping="Wrap" Text="" Canvas.Top="121" Width="127" RenderTransformOrigin="-0.096,0.011" />
-                    <Label x:Name="LblStateCena" Content="Cena:" Canvas.Left="337" Canvas.Top="119" />
-                    <Label x:Name="LblStateKategoria" Content="Kategoria:" Canvas.Left="337" Canvas.Top="149" />
+                    <Label x:Name="LblStateCena" Content="Cena:" Canvas.Left="337" Canvas.Top="119" Foreground="#FFF7F3F3" FontWeight="Bold" FontFamily="Segoe UI Black" />
+                    <Label x:Name="LblStateKategoria" Content="Kategoria:" Canvas.Left="337" Canvas.Top="149" Foreground="#FFECE3E3" FontWeight="Bold" FontFamily="Segoe UI Black" />
                     <ComboBox Height="26" Width="127" Canvas.Left="461" Canvas.Top="149" x:Name="CmbStateKategoria" />
-                    <Button x:Name="BtnSateSzukaj" Content="Szukaj" Canvas.Left="483" Canvas.Top="194" Width="75" RenderTransformOrigin="0.982,1.97" Click="BtnSateSzukaj_Click" />
-                    <CheckBox x:Name="ChbStateNazwa" Content="" Canvas.Left="593" Canvas.Top="68" />
-                    <CheckBox x:Name="ChbStateIlosc" Content="" Canvas.Left="593" Canvas.Top="101" />
-                    <CheckBox x:Name="ChbStateCena" Content="" Canvas.Left="762" Canvas.Top="129" RenderTransformOrigin="0.4,0.6" />
-                    <CheckBox x:Name="ChbStateKategoria" Content="" Canvas.Left="593" Canvas.Top="160" RenderTransformOrigin="0.55,6.933" />
+                    <Button x:Name="BtnSateSzukaj" Content="Szukaj" Canvas.Left="483" Canvas.Top="194" Width="75" RenderTransformOrigin="0.982,1.97" Click="BtnSateSzukaj_Click" FontFamily="Segoe UI Black" FontSize="14" />
+                    <CheckBox x:Name="ChbStateNazwa" Content="" Canvas.Left="593" Canvas.Top="66" />
+                    <CheckBox x:Name="ChbStateIlosc" Content="" Canvas.Left="593" Canvas.Top="93" />
+                    <CheckBox x:Name="ChbStateCena" Content="" Canvas.Left="750" Canvas.Top="123" RenderTransformOrigin="-0.35,0.133" Height="22" Width="24" />
+                    <CheckBox x:Name="ChbStateKategoria" Content="" Canvas.Left="593" Canvas.Top="150" RenderTransformOrigin="0.55,6.933" />
                     <TextBox x:Name="TxbStateCenaMax" Height="23" Canvas.Left="618" TextWrapping="Wrap" Text="" Canvas.Top="122" Width="127" RenderTransformOrigin="-0.096,0.011" />
-                    <Label x:Name="LblState_" Content="-" Canvas.Left="593" Canvas.Top="121" RenderTransformOrigin="0.511,0.526" />
+                    <Label x:Name="LblState_" Content="-" Canvas.Left="593" Canvas.Top="121" RenderTransformOrigin="0.511,0.526" Foreground="#FFDCDADA" FontFamily="Segoe UI Black" FontWeight="Bold" FontSize="14" />
                 </Canvas>
             </TabItem>
 
             <TabItem x:Name="TabTransactions" Header="Transakcje" RenderTransformOrigin="0.5,0.5" Margin="11,-2,-15,-2">
+                <TabItem.Background>
+                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                        <GradientStop Color="#FFF0F0F0" Offset="0"/>
+                        <GradientStop Color="#FF3BC3B1" Offset="1"/>
+                    </LinearGradientBrush>
+                </TabItem.Background>
                 <TabItem.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -55,7 +67,7 @@
                         <TranslateTransform X="-3.68"/>
                     </TransformGroup>
                 </TabItem.RenderTransform>
-                <Grid>
+                <Grid Background="Black">
                     <!--<Grid.ColumnDefinitions>
                         <ColumnDefinition Width="118*"/>
                         <ColumnDefinition Width="0*"/>
@@ -187,6 +199,12 @@
                 </Grid>
             </TabItem>
             <TabItem x:Name="TabClients" Header="Klienci" RenderTransformOrigin="0.163,0.565" Margin="15,-2,-19,-2">
+                <TabItem.Background>
+                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                        <GradientStop Color="#FFF0F0F0" Offset="0"/>
+                        <GradientStop Color="#FF3BC3B1" Offset="1"/>
+                    </LinearGradientBrush>
+                </TabItem.Background>
                 <TabItem.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -241,6 +259,12 @@
                 </Canvas>
             </TabItem>
             <TabItem x:Name="TabCategory" Header="Kategorie" Margin="19,-2,-23,-2" RenderTransformOrigin="0.5,0.5">
+                <TabItem.Background>
+                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                        <GradientStop Color="#FFF0F0F0" Offset="0"/>
+                        <GradientStop Color="#FF3BC3B1" Offset="1"/>
+                    </LinearGradientBrush>
+                </TabItem.Background>
                 <TabItem.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -273,6 +297,12 @@
                 </Canvas>
             </TabItem>
             <TabItem x:Name="TabItems" Header="Artykuł" Margin="23,-2,-27,-2" RenderTransformOrigin="0.5,0.5">
+                <TabItem.Background>
+                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                        <GradientStop Color="#FFF0F0F0" Offset="0"/>
+                        <GradientStop Color="#FF3BC3B1" Offset="1"/>
+                    </LinearGradientBrush>
+                </TabItem.Background>
                 <TabItem.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -314,7 +344,13 @@
                     <Button x:Name="BtnItemUsun" Content="Usuń" Canvas.Left="480" Canvas.Top="175" Width="75" Click="BtnItemUsun_Click" />
                 </Canvas>
             </TabItem>
-            <TabItem x:Name="TabEmployees" Header="Pracownicy" Margin="27,-2,-31,-2" RenderTransformOrigin="0.5,0.5">
+            <TabItem x:Name="TabEmployees" Header="Pracownicy" Margin="28,-4,-33,-2" RenderTransformOrigin="0.5,0.5" BorderBrush="{x:Null}">
+                <TabItem.Background>
+                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                        <GradientStop Color="#FFF0F0F0" Offset="0"/>
+                        <GradientStop Color="#FF3BC3B1" Offset="1"/>
+                    </LinearGradientBrush>
+                </TabItem.Background>
                 <TabItem.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -359,14 +395,14 @@
                 </Canvas>
             </TabItem>
         </TabControl>
-        <Menu x:Name="MainMenu" HorizontalAlignment="Left" Height="19" VerticalAlignment="Top" Width="1598">
-            <MenuItem Header="Użytkownik">
-                <MenuItem x:Name="MnLogOff" Header="Wyloguj" Click="MnLogOff_Click" />
+        <Menu x:Name="MainMenu" HorizontalAlignment="Left" Height="19" VerticalAlignment="Top" Width="1598" Background="#FF25C1A5">
+            <MenuItem Header="Użytkownik" FontFamily="Segoe UI Black">
+                <MenuItem x:Name="MnLogOff" Header="Wyloguj" Click="MnLogOff_Click" Background="#FF25C1A5" BorderBrush="#FF25C1A5" />
             </MenuItem>
-            <MenuItem Header="Pomoc">
-                <MenuItem x:Name="MnAbout" Header="o Aplikacji" Click="MnAbout_Click" />
-                <MenuItem x:Name="MnCreators" Header="Twórcy" Click="MnCreators_Click" />
-                <MenuItem x:Name="MnVersion" Header="Wersja" Click="MnVersion_Click" />
+            <MenuItem Header="Pomoc" FontFamily="Segoe UI Black">
+                <MenuItem x:Name="MnAbout" Header="o Aplikacji" Click="MnAbout_Click" Background="#FF25C1A5" BorderBrush="#FF25C1A5" />
+                <MenuItem x:Name="MnCreators" Header="Twórcy" Click="MnCreators_Click" Background="#FF25C1A5" BorderBrush="#FF25C1A5" />
+                <MenuItem x:Name="MnVersion" Header="Wersja" Click="MnVersion_Click" Background="#FF25C1A5" BorderBrush="#FF25C1A5" />
             </MenuItem>
         </Menu>
     </Grid>

@@ -187,6 +187,14 @@
       <Name>PluginExecutor</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Media\Images\machine-learning-smart-brain-wallpaper-768x480.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Media\Images\IMG_06062017_162248_0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Media\Icons\magazyn.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -7,8 +7,11 @@
         mc:Ignorable="d"
         Title="Twórcy" Height="227.877" Width="242.455" ResizeMode="NoResize" ShowInTaskbar="False" WindowStyle="None" BorderThickness="1">
     <Grid>
-        <Button x:Name="bt_creators_ok" Content="OK" HorizontalAlignment="Left" Margin="80,154,0,0" VerticalAlignment="Top" Width="75" Click="bt_creators_ok_Click" />
-        <Label x:Name="lbl_Creators" Content="Paweł Wanot &#xA;Michał Stanecki &#xA;Michał Nabdalik &#xA;Ryszard Janicki&#xD;&#xA;Mariusz Brząkała" HorizontalAlignment="Left" Margin="69,62,0,0" VerticalAlignment="Top" Height="87" />
-        <Label x:Name="lbl_Describtion" Content="Twórcami aplikacji są:" HorizontalAlignment="Left" Margin="55,31,0,0" VerticalAlignment="Top" />
+        <Grid.Background>
+            <ImageBrush ImageSource="/Client;component/Media/Images/machine-learning-smart-brain-wallpaper-768x480.jpg" Stretch="UniformToFill"/>
+        </Grid.Background>
+        <Button x:Name="bt_creators_ok" Content="OK" HorizontalAlignment="Left" Margin="97,196,0,0" VerticalAlignment="Top" Width="75" Click="bt_creators_ok_Click" />
+        <Label x:Name="lbl_Creators" Content="Paweł Wanot &#xA;Michał Stanecki &#xA;Michał Nabrdalik &#xA;Ryszard Janicki&#xA;" HorizontalAlignment="Left" Margin="30,41,0,0" VerticalAlignment="Top" Height="141" Foreground="#FFE61717" FontWeight="Bold" OpacityMask="#FFFFEFEF" BorderBrush="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" FontSize="24" />
+        <Label x:Name="lbl_Describtion" Content="Twórcami aplikacji są:" HorizontalAlignment="Left" Margin="10,-8,0,0" VerticalAlignment="Top" Foreground="#FFFF1E1E" FontWeight="Bold" FontSize="20" />
     </Grid>
 </Window>

@@ -5,14 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Client.Windows"
         mc:Ignorable="d"
-        Title="Logowanie" Height="243.243" Width="300" WindowStartupLocation="CenterScreen">
-    <Grid>
-        <Button x:Name="btnLogin" Content="Zaloguj" HorizontalAlignment="Left" Margin="99,164,0,0" VerticalAlignment="Top" Width="100" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="btnLogin_Click" />
-        <TextBox x:Name="txtLogin" Height="23" Width="150" Margin="58,51,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" />
-        <PasswordBox x:Name="txbPassword" Height="23" Width="150" Margin="58,110,0,0"  VerticalAlignment="Top"  HorizontalAlignment="Left" />
+        Title="Logowanie" Height="371.202" Width="349.088" WindowStartupLocation="CenterScreen" Icon="/Client;component/Media/Icons/magazyn.ico">
+    <Grid Margin="0,0,2,1">
+        <Button x:Name="btnLogin" Content="Zaloguj" HorizontalAlignment="Left" Margin="102,269,0,0" VerticalAlignment="Top" Width="107" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="btnLogin_Click" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" FontFamily="Wide Latin" Height="32" />
+        <TextBox x:Name="txtLogin" Height="23" Width="149" Margin="72,164,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" />
+        <PasswordBox x:Name="txbPassword" Height="23" Width="149" Margin="72,220,0,0"  VerticalAlignment="Top"  HorizontalAlignment="Left" />
         <TextBox x:Name="txtPassword" Height="23" Width="150" Margin="58,110,0,0"  VerticalAlignment="Top"  HorizontalAlignment="Left" Visibility="Collapsed" />
-        <Label x:Name="LblLogin" Content="Login" HorizontalAlignment="Left" Margin="58,20,0,0" VerticalAlignment="Top" />
-        <Label x:Name="LblHaslo" Content="Hasło" HorizontalAlignment="Left" Margin="58,79,0,0" VerticalAlignment="Top" />
-        <Button x:Name="BtnShow" Content="Pokaż" HorizontalAlignment="Left" Margin="213,110,0,0" VerticalAlignment="Top" Width="52" Click="Button_Click" Height="23" />
+        <Label x:Name="LblLogin" Content="Login" HorizontalAlignment="Left" Margin="32,164,0,0" VerticalAlignment="Top" />
+        <Label x:Name="LblHaslo" Content="Hasło" HorizontalAlignment="Left" Margin="32,220,0,0" VerticalAlignment="Top" />
+        <Button x:Name="BtnShow" Content="Pokaż" HorizontalAlignment="Left" Margin="239,220,0,0" VerticalAlignment="Top" Width="52" Click="Button_Click" Height="23" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" FontFamily="Comic Sans MS" />
+        <Image x:Name="image" HorizontalAlignment="Left" Height="156" Margin="88,1,0,0" VerticalAlignment="Top" Width="217" Source="/Client;component/Media/Images/IMG_06062017_162248_0.png" Cursor="None" RenderTransformOrigin="0.5,0.5">
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleY="-0.722"/>
+                    <RotateTransform Angle="0.928"/>
+                    <TranslateTransform X="0.387" Y="1.002"/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
     </Grid>
 </Window>
