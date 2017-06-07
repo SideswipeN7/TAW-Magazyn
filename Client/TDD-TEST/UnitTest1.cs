@@ -29,16 +29,19 @@ namespace TDD_TEST
             mockICommTransaction = new Mock<ICommTransaction>();
         }
 
-        //[Test]
-        //public void GetCategories()
-        //{
-        //    IEnumerable<Kategoria> result = comm.GetCategories();
-        //    result.ShouldBeEquivalentTo(new List<Kategoria> {new Kategoria {idKategorii=1,Nazwa="Komputery" },
-        //   new Kategoria {idKategorii=2,Nazwa="Telefony" },
-        //   new Kategoria {idKategorii=3,Nazwa="Aparaty"},
-        //   new Kategoria {idKategorii=4,Nazwa="Pralki" },
-        //   new Kategoria {idKategorii=5,Nazwa="Telewizory" } });
-        //}
+        [Test]
+        public void GetCategories()
+        {
+            ////ClientController =>Mock controller =>testc metody
+
+           // mockICommCategory.Setup(x => x.GetCategories());
+           // IEnumerable<Kategoria> result = comm.GetCategories();
+           // result.ShouldBeEquivalentTo(new List<Kategoria> {new Kategoria {idKategorii=1,Nazwa="Komputery" },
+           //new Kategoria {idKategorii=2,Nazwa="Telefony" },
+           //new Kategoria {idKategorii=3,Nazwa="Aparaty"},
+           //new Kategoria {idKategorii=4,Nazwa="Pralki" },
+           //new Kategoria {idKategorii=5,Nazwa="Telewizory" } });
+        }
 
         //[Test]
         //public void GetItems()
