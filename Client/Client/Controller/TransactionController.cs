@@ -1,5 +1,7 @@
 ﻿using Client.Communication;
+using Client.Interfaces;
 using Client.Model;
+using Client.Validators;
 using Client.Windows;
 using System;
 using System.Collections.Generic;
@@ -262,13 +264,8 @@ namespace Client.Controller
         {
             try
             {
-                if (_window.TxbDoGridOneImie.Text.Length > 2 &&
-                     _window.TxbDoGridOneNazwisko.Text.Length > 2 &&
-                     (_window.TxbDoGridOneFirma.Text.Length > 5 || _window.TxbDoGridOneFirma.Text.Length == 0) &&
-                     _window.TxbDoGridOneKodPocztowy.Text.Length == 6 &&
-                     _window.TxbDoGridOneMiejscowosc.Text.Length > 2 &&
-                     _window.CmbDoGridOneWojewodztwo.SelectedIndex >= 0 &&
-                     _window.CmbDoGridOneDostawca.SelectedIndex >= 0)
+                IValidate validator = TransactionNewValidator.GetInstance(_window);
+                if (validator.Validate())
                 {
                     Adres a = new Adres()
                     {
