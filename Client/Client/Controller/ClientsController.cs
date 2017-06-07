@@ -1,5 +1,7 @@
 ﻿using Client.Communication;
+using Client.Interfaces;
 using Client.Model;
+using Client.Validators;
 using Client.Windows;
 using System;
 using System.Collections.Generic;
@@ -13,15 +15,13 @@ namespace Client.Controller
     {
         private static ClientsController _instance;
         private Admin _window;
-        private ICommunication _comm;
+        private ICommClient _comm;
         private List<Klient> clients;
         private List<Klient> clientsSearched;
 
         protected ClientsController()
         {
-            _comm = Communicator.GetInstance();
-            _comm.SetUrlAddress("http://c414305-001-site1.btempurl.com");
-            //_comm.SetUrlAddress("http://localhost:52992");
+            _comm = CommClient.GetInstance();           
             clientsSearched = new List<Klient>();
         }
 
@@ -61,36 +61,8 @@ namespace Client.Controller
         {
             try
             {
-                if (_window.TxbClientsImie.Text.Length < 5)
-                {
-                    MessageBox.Show("Imię zbyt krótkie", "Bład", MessageBoxButton.OK);
-                }
-                else
-                if (_window.TxbClientsNazwisko.Text.Length < 5)
-                {
-                    MessageBox.Show("Nazwisko zbyt krótkie", "Bład", MessageBoxButton.OK);
-                }
-                else
-                if (_window.TxbClientsFirma.Text.Length != 0 && _window.TxbClientsFirma.Text.Length < 5)
-                {
-                    MessageBox.Show("Firma zbyt krótka nazwa", "Bład", MessageBoxButton.OK);
-                }
-                else
-                if (_window.TxbClientsKodPocztowy.Text.Length != 6)
-                {
-                    MessageBox.Show("Zły format kodu pocztowego", "Bład", MessageBoxButton.OK);
-                }
-                else
-                if (_window.TxbClientsMiejscowosc.Text.Length < 5)
-                {
-                    MessageBox.Show("Miejscowość zbyt krótka", "Bład", MessageBoxButton.OK);
-                }
-                else
-                if (_window.CmbClientsWojewodztwo.SelectedIndex < 0)
-                {
-                    MessageBox.Show("Bład wyboru Województwa", "Bład", MessageBoxButton.OK);
-                }
-                else
+                IValidate validator = ClientValidator.GetInstance(_window);
+                if (validator.Validate())
                 {
                     Adres adres = new Adres()
                     {
@@ -119,35 +91,8 @@ namespace Client.Controller
         {
             try
             {
-                if (_window.TxbClientsImie.Text.Length < 5)
-                {
-                    MessageBox.Show("Imię zbyt krótkie", "Bład", MessageBoxButton.OK);
-                }
-                else
-                if (_window.TxbClientsNazwisko.Text.Length < 5)
-                {
-                    MessageBox.Show("Nazwisko zbyt krótkie", "Bład", MessageBoxButton.OK);
-                }
-                else
-               if (_window.TxbClientsFirma.Text.Length != 0 && _window.TxbClientsFirma.Text.Length < 5)
-                {
-                    MessageBox.Show("Firma zbyt krótka nazwa", "Bład", MessageBoxButton.OK);
-                }
-                else
-                if (_window.TxbClientsKodPocztowy.Text.Length != 6)
-                {
-                    MessageBox.Show("Zły format kodu pocztowego", "Bład", MessageBoxButton.OK);
-                }
-                else
-                    if (_window.TxbClientsMiejscowosc.Text.Length < 5)
-                {
-                    MessageBox.Show("Miejscowość zbyt krótka", "Bład", MessageBoxButton.OK);
-                }
-                else if (_window.CmbClientsWojewodztwo.SelectedIndex < 0)
-                {
-                    MessageBox.Show("Bład wyboru Województwa", "Bład", MessageBoxButton.OK);
-                }
-                else
+                IValidate validator = ClientValidator.GetInstance(_window);
+                if (validator.Validate())
                 {
                     Adres adres = new Adres()
                     {
@@ -229,7 +174,7 @@ namespace Client.Controller
                     _window.TxbClientsMiejscowosc.Text = ((Klient)_window.DgClientsLista.SelectedItem).Ksiazka_adresow.Miejscowosc;
                     _window.TxbClientsNazwisko.Text = ((Klient)_window.DgClientsLista.SelectedItem).Nazwisko;
                     _window.CmbClientsWojewodztwo.SelectedItem = ((Klient)_window.DgClientsLista.SelectedItem).Ksiazka_adresow.Wojewodztwo;
-                   // _window.LblClientsIloscTransakcji.Content = $"Ilość transakcji: {((Klient)_window.DgClientsLista.SelectedItem).Transakcje.Count}";
+                    // _window.LblClientsIloscTransakcji.Content = $"Ilość transakcji: {((Klient)_window.DgClientsLista.SelectedItem).Transakcje.Count}";
                 }
             }
             catch (Exception ex)

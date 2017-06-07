@@ -17,16 +17,14 @@ namespace Client.Controller
         private InProgress inProg;
         private static TransactionController _instance;
         private Admin _window { get; set; }
-        private ICommunication _comm;
+        private ICommTransaction _comm;
         private List<Transakcja> transakcje;
         private List<Transakcja> transakcjeSearched;
         private int ID { get; set; }
 
         protected TransactionController()
         {
-            _comm = Communicator.GetInstance();
-            _comm.SetUrlAddress("http://c414305-001-site1.btempurl.com");
-             //_comm.SetUrlAddress("http://localhost:52992");
+            _comm = CommTransaction.GetInstance();
             transakcjeSearched = new List<Transakcja>();
         }
 
@@ -118,9 +116,8 @@ namespace Client.Controller
                     Task.Factory.StartNew(() =>
                     {
                         transakcje = x.Result.ToList();
-                       
-                                ShowData();
-                    
+
+                        ShowData();
                     });
                 });
             }
@@ -171,7 +168,7 @@ namespace Client.Controller
                                 }
                         }
 
-                        foreach(Transakcja t in transakcje)
+                        foreach (Transakcja t in transakcje)
                         {
                             if (!list.Contains(t))
                             {
@@ -342,14 +339,8 @@ namespace Client.Controller
         {
             try
             {
-               
-                if (_window.TxbDoGridTwoImie.Text.Length > 2 &&
-                     _window.CmbDoGridTwoNazwisko.SelectedIndex >= 0 &&
-                     _window.CmbDoGridTwoFirma.SelectedIndex >= 0 &&
-                     _window.TxbDoGridTwoKodPocztowy.Text.Length == 6 &&
-                     _window.TxbDoGridTwoMiejscowosc.Text.Length > 2 &&
-                     _window.CmbDoGridTwoWojewodztwo.SelectedIndex >= 0 &&
-                     _window.CmbDoGridTwoDostawca.SelectedIndex >= 0)
+                IValidate validator = TransactionOldValidator.GetInstance(_window);
+                if (validator.Validate())
                 {
                     Adres a = new Adres()
                     {

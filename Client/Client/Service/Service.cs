@@ -2,11 +2,11 @@
 using Client.Controller;
 using Client.Controller.View;
 using Client.Facture;
+using Client.Interfaces;
 using Client.Model;
 using Client.Windows;
 using System;
 using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -18,7 +18,10 @@ namespace Client.Adapter
         private Admin _window;
         private int ID { get; set; }
         private static Service _instance;
-        private ICommunication _comm;
+        private ICommSupplier _commSupp;
+        private ICommItems _commItem;
+        private ICommClient _commClie;
+        private ICommCategory _commCat;
 
         protected static List<string> states = new List<string>()
         {"Dolonośląskie","Kujawsko-Pomorskie","Lubelskie","Lubuskie","Łódzkie","Małopolskie","Mazowieckie", "Opolskie","Podkarpackie","Podlaskie","Pomorskie","Śląskie","Świętokrzyskie","Warmińsko-Mazurskie","Wielkopolskie","Zachodniopomorskie"};
@@ -29,8 +32,10 @@ namespace Client.Adapter
             {
                 _instance = new Service();
             }
-            _instance._comm = Communicator.GetInstance();
-            _instance._comm.SetUrlAddress("http://o1018869-001-site1.htempurl.com");
+            _instance._commSupp = CommSupplier.GetInstance();
+            _instance._commItem = CommItems.GetInstance();
+            _instance._commClie = CommClient.GetInstance();
+            _instance._commCat = CommCategory.GetInstance();
             _instance.ID = ID;
             _instance._window = window;
             return _instance;
@@ -293,7 +298,7 @@ namespace Client.Adapter
         {
             IViewController view = TransactionView.GetInstance(_window);
             view.ShowAll();
-            IWork work = TransactionController.GetInstance(ID,_window);
+            IWork work = TransactionController.GetInstance(ID, _window);
             work.GetData();
         }
 
@@ -364,21 +369,6 @@ namespace Client.Adapter
         {
             IViewController work = MagazineView.GetInstance(_window);
             work.ShowSearch();
-        }
-
-        public void ShowAddMagazine()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ShowDeleteMagazine()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ShowModifyMagazine()
-        {
-            throw new NotImplementedException();
         }
 
         public void AddMagazine()
@@ -653,7 +643,7 @@ namespace Client.Adapter
                 {
                     Task<IEnumerable<Dostawca>>.Factory.StartNew(() =>
                     {
-                        return _comm.GetSuppliers();
+                        return _commSupp.GetSuppliers();
                     }).ContinueWith(x =>
                     {
                         Task.Factory.StartNew(() =>
@@ -683,7 +673,6 @@ namespace Client.Adapter
                 _window.RdEmployeeWszyscy.IsChecked = true;
                 _window.RbCategoryWszystko.IsChecked = true;
                 _window.RbOverviewGridOneWszystkie.IsChecked = true;
-             
             }
             catch (Exception ex)
             { System.Diagnostics.Debug.WriteLine($"Error in Adapter SelectAll: {ex}"); }
@@ -711,7 +700,7 @@ namespace Client.Adapter
         private void LoadTransactionsDoProducts()
         {
             _window.CmbDoGridThreeNazwa.Items.Clear();
-            IEnumerable<Artykul> list = _comm.GetItems();
+            IEnumerable<Artykul> list = _commItem.GetItems();
             try
             {
                 foreach (Artykul r in list)
@@ -727,7 +716,7 @@ namespace Client.Adapter
         {
             try
             {
-                LoadClientsToCmb(_comm.GetClients());
+                LoadClientsToCmb(_commClie.GetClients());
             }
             catch (Exception ex)
             { System.Diagnostics.Debug.WriteLine($"Error in Adapter LoadClients: {ex}"); }
@@ -755,7 +744,7 @@ namespace Client.Adapter
 
         public void LoadCategories()
         {
-            IEnumerable<Kategoria> list = _comm.GetCategories();
+            IEnumerable<Kategoria> list = _commCat.GetCategories();
 
             foreach (Kategoria r in list)
             {

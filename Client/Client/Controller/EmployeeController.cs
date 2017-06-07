@@ -1,4 +1,5 @@
 ﻿using Client.Communication;
+using Client.Interfaces;
 using Client.Model;
 using Client.Windows;
 using System;
@@ -13,14 +14,12 @@ namespace Client.Controller
     {
         private static EmployeeController _instance;
         private Admin _window;
-        private ICommunication _comm;
+        private ICommEmployee _comm;
         private IEnumerable<Pracownik> employees;
 
         protected EmployeeController()
         {
-            _comm = Communicator.GetInstance();
-            _comm.SetUrlAddress("http://c414305-001-site1.btempurl.com");
-            //_comm.SetUrlAddress("http://localhost:52992");
+            _comm = CommEmployee.GetInstance();
         }
 
         public static EmployeeController GetInstance(Admin window)

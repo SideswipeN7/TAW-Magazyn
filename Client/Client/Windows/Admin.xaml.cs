@@ -1,7 +1,6 @@
 ﻿using Client.Adapter;
 using Client.Controller;
 using System.Diagnostics;
-using System.Threading;
 using System.Windows;
 
 namespace Client.Windows
@@ -45,7 +44,7 @@ namespace Client.Windows
             ID = 0;
             _service = Service.GetInstance(ID, this);
             _service.GetAll();
-            _service.LoadAll();            
+            _service.LoadAll();
             _service.SelectaAll();
         }
 
@@ -54,6 +53,7 @@ namespace Client.Windows
         {
             _service.SelectedMagazine();
         }
+
         private void RbStateSzukaj_Checked(object sender, RoutedEventArgs e)
         {
             _service.ShowSearchMagazine();
@@ -330,6 +330,7 @@ namespace Client.Windows
         }
 
 #pragma warning disable IDE1006 // Naming Styles
+
         private void btnTabOverviewFaktura_Click(object sender, RoutedEventArgs e)
 #pragma warning restore IDE1006 // Naming Styles
         {
@@ -368,7 +369,6 @@ namespace Client.Windows
 
         private void TabCtrlTransactions_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-
         }
     }
 }

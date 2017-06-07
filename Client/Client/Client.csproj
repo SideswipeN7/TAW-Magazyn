@@ -102,17 +102,32 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="Communication\CommCategory.cs" />
+    <Compile Include="Communication\CommClient.cs" />
+    <Compile Include="Communication\CommEmployee.cs" />
+    <Compile Include="Communication\CommItems.cs" />
+    <Compile Include="Communication\CommSupplier.cs" />
+    <Compile Include="Communication\CommTransaction.cs" />
+    <Compile Include="Interfaces\ICommCategory.cs" />
+    <Compile Include="Interfaces\ICommClient.cs" />
+    <Compile Include="Interfaces\ICommEmployee.cs" />
+    <Compile Include="Interfaces\ICommItems.cs" />
+    <Compile Include="Interfaces\ICommSupplier.cs" />
+    <Compile Include="Interfaces\ICommTransaction.cs" />
+    <Compile Include="Interfaces\IValidate.cs" />
     <Compile Include="Service\Service.cs" />
     <Compile Include="Interfaces\IServices.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Communication\Communicator.cs" />
     <Compile Include="Interfaces\ICommunication.cs" />
     <Compile Include="Controller\CategoryController.cs" />
     <Compile Include="Controller\ClientsController.cs" />
     <Compile Include="Controller\EmployeeController.cs" />
+    <Compile Include="Validators\ClientValidator.cs" />
+    <Compile Include="Validators\TransactionNewValidator.cs" />
+    <Compile Include="Validators\TransactionOldValidator.cs" />
     <Compile Include="View\CategoryView.cs" />
     <Compile Include="View\ClientsView.cs" />
     <Compile Include="View\EmployeeView.cs" />

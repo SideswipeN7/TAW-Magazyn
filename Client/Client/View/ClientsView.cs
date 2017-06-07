@@ -36,7 +36,6 @@ namespace Client.Controller.View
             _window.TxbClientsMiejscowosc.IsEnabled = false;
             _window.TxbClientsNazwisko.IsEnabled = false;
             _window.CmbClientsWojewodztwo.IsEnabled = false;
-
         }
 
         public void ShowSearch()

@@ -112,12 +112,6 @@
 
         void ShowSearchMagazine();
 
-        void ShowAddMagazine();
-
-        void ShowDeleteMagazine();
-
-        void ShowModifyMagazine();
-
         void AddMagazine();
 
         void DeleteMagazine();

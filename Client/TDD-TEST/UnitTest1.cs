@@ -1,9 +1,7 @@
 ﻿using Client.Communication;
 using Client.Model;
 using FluentAssertions;
-using Newtonsoft.Json;
 using NUnit.Framework;
-using PluginExecutor;
 using System.Collections.Generic;
 using System.Linq;
 

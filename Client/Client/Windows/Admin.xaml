@@ -11,16 +11,16 @@
             <TabItem x:Name="TabState" Header="Stan Magazynu" RenderTransformOrigin="0.5,0.5" Margin="7,-2,-11,-2">
                 <TabItem.Background>
                     <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
-                        <GradientStop Color="#FFF0F0F0" Offset="0"/>
-                        <GradientStop Color="#FFE60D48" Offset="1"/>
+                        <GradientStop Color="#FFF0F0F0" Offset="0" />
+                        <GradientStop Color="#FFE60D48" Offset="1" />
                     </LinearGradientBrush>
                 </TabItem.Background>
                 <TabItem.RenderTransform>
                     <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform AngleX="-16.348"/>
-                        <RotateTransform/>
-                        <TranslateTransform X="-3.373"/>
+                        <ScaleTransform />
+                        <SkewTransform AngleX="-16.348" />
+                        <RotateTransform />
+                        <TranslateTransform X="-3.373" />
                     </TransformGroup>
                 </TabItem.RenderTransform>
                 <Canvas Background="#FFD61309">
@@ -55,33 +55,33 @@
             <TabItem x:Name="TabTransactions" Header="Transakcje" RenderTransformOrigin="0.5,0.5" Margin="11,-2,-15,-2">
                 <TabItem.Background>
                     <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
-                        <GradientStop Color="#FFF0F0F0" Offset="0"/>
-                        <GradientStop Color="#FF8BC50F" Offset="1"/>
+                        <GradientStop Color="#FFF0F0F0" Offset="0" />
+                        <GradientStop Color="#FF8BC50F" Offset="1" />
                     </LinearGradientBrush>
                 </TabItem.Background>
                 <TabItem.RenderTransform>
                     <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform AngleX="-17.745"/>
-                        <RotateTransform/>
-                        <TranslateTransform X="-3.68"/>
+                        <ScaleTransform />
+                        <SkewTransform AngleX="-17.745" />
+                        <RotateTransform />
+                        <TranslateTransform X="-3.68" />
                     </TransformGroup>
                 </TabItem.RenderTransform>
                 <Grid Background="#FFFFF410">
                     <!--<Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="118*"/>
-                        <ColumnDefinition Width="0*"/>
-                        <ColumnDefinition Width="145*"/>
-                        <ColumnDefinition Width="17*"/>
-                        <ColumnDefinition Width="0*"/>
-                        <ColumnDefinition Width="1322*"/>
+                        <ColumnDefinition Width="118*" />
+                        <ColumnDefinition Width="0*" />
+                        <ColumnDefinition Width="145*" />
+                        <ColumnDefinition Width="17*" />
+                        <ColumnDefinition Width="0*" />
+                        <ColumnDefinition Width="1322*" />
                     </Grid.ColumnDefinitions>-->
-                    <TabControl x:Name="TabCtrlTransactions" Background="#FFFFE90A" >
+                    <TabControl x:Name="TabCtrlTransactions" Background="#FFFFE90A">
                         <TabItem x:Name="TabTransactionsDo" Header="Wykonaj" FontFamily="Showcard Gothic" Margin="-2,-2,-200,-1">
                             <TabItem.Background>
                                 <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
-                                    <GradientStop Color="#FFF0F0F0" Offset="0"/>
-                                    <GradientStop Color="#FFFFE90A" Offset="1"/>
+                                    <GradientStop Color="#FFF0F0F0" Offset="0" />
+                                    <GradientStop Color="#FFFFE90A" Offset="1" />
                                 </LinearGradientBrush>
                             </TabItem.Background>
                             <Grid x:Name="GridTransactionsDoMain" Margin="0,-15,0,15" Background="#FFFFE90A">
@@ -119,13 +119,13 @@
                                     <ComboBox x:Name="CmbDoGridTwoWojewodztwo" HorizontalAlignment="Left" Margin="137,236,0,0" VerticalAlignment="Top" Width="120" />
                                     <Label x:Name="LblDoGridTwoImie" Content="Imię:" HorizontalAlignment="Left" Margin="23,49,0,0" VerticalAlignment="Top" Width="92" FontFamily="Segoe UI Black" FontWeight="Bold" />
                                     <TextBox x:Name="TxbDoGridTwoImie" HorizontalAlignment="Left" Height="23" Margin="137,49,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
-                                    <Label x:Name="LblDoGridTwoInfo" Content="STAŁY KLIENT" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="138" FontWeight="Bold" FontSize="16" RenderTransformOrigin="0.5,0.5" >
+                                    <Label x:Name="LblDoGridTwoInfo" Content="STAŁY KLIENT" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="138" FontWeight="Bold" FontSize="16" RenderTransformOrigin="0.5,0.5">
                                         <Label.RenderTransform>
                                             <TransformGroup>
-                                                <ScaleTransform/>
-                                                <SkewTransform/>
-                                                <RotateTransform Angle="0.516"/>
-                                                <TranslateTransform/>
+                                                <ScaleTransform />
+                                                <SkewTransform />
+                                                <RotateTransform Angle="0.516" />
+                                                <TranslateTransform />
                                             </TransformGroup>
                                         </Label.RenderTransform>
                                     </Label>
@@ -161,14 +161,14 @@
                         <TabItem x:Name="TabOverview" Header="Przeglad" FontFamily="Showcard Gothic" Margin="198,-7,-503,-2">
                             <TabItem.Background>
                                 <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
-                                    <GradientStop Color="#FFF0F0F0" Offset="0"/>
-                                    <GradientStop Color="#FF6AFF14" Offset="1"/>
+                                    <GradientStop Color="#FFF0F0F0" Offset="0" />
+                                    <GradientStop Color="#FF6AFF14" Offset="1" />
                                 </LinearGradientBrush>
                             </TabItem.Background>
                             <Grid Background="#FF6AFF14">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="22*"/>
-                                    <ColumnDefinition Width="1575*"/>
+                                    <ColumnDefinition Width="22*" />
+                                    <ColumnDefinition Width="1575*" />
                                 </Grid.ColumnDefinitions>
                                 <Grid x:Name="GridOverviewOne" Grid.ColumnSpan="2" Margin="0,0,694,0">
                                     <RadioButton x:Name="RbOverviewGridOneWszystkie" Content="Wszystkie" HorizontalAlignment="Left" Margin="48,10,0,0" VerticalAlignment="Top" Checked="RbOverviewGridOneWszystkie_Checked" FontFamily="Segoe UI Black" FontWeight="Bold" />
@@ -182,8 +182,8 @@
                                 </Grid>
                                 <Grid x:Name="GridDoSearch" Margin="328,0,286,0" Grid.Column="1">
                                     <!--<Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="190*"/>
-                                        <ColumnDefinition Width="263*"/>
+                                        <ColumnDefinition Width="190*" />
+                                        <ColumnDefinition Width="263*" />
                                     </Grid.ColumnDefinitions>-->
                                     <Grid x:Name="GridOverwviewSearch" Margin="0,343,94,120">
                                         <CheckBox x:Name="ChbOverviewGridTwoData" Content="Data" HorizontalAlignment="Left" Margin="20,31,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Black" FontWeight="Bold" />
@@ -222,16 +222,16 @@
             <TabItem x:Name="TabClients" Header="Klienci" RenderTransformOrigin="0.163,0.565" Margin="15,-2,-19,-2">
                 <TabItem.Background>
                     <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
-                        <GradientStop Color="#FFF0F0F0" Offset="0"/>
-                        <GradientStop Color="#FF0CFBA4" Offset="1"/>
+                        <GradientStop Color="#FFF0F0F0" Offset="0" />
+                        <GradientStop Color="#FF0CFBA4" Offset="1" />
                     </LinearGradientBrush>
                 </TabItem.Background>
                 <TabItem.RenderTransform>
                     <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform AngleX="-20.472"/>
-                        <RotateTransform/>
-                        <TranslateTransform X="-4.852"/>
+                        <ScaleTransform />
+                        <SkewTransform AngleX="-20.472" />
+                        <RotateTransform />
+                        <TranslateTransform X="-4.852" />
                     </TransformGroup>
                 </TabItem.RenderTransform>
                 <Canvas Background="#FF0CFBA4">
@@ -282,16 +282,16 @@
             <TabItem x:Name="TabCategory" Header="Kategorie" Margin="19,-2,-23,-2" RenderTransformOrigin="0.5,0.5" BorderBrush="#FF1313F0">
                 <TabItem.Background>
                     <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
-                        <GradientStop Color="#FFF0F0F0" Offset="0"/>
-                        <GradientStop Color="#FF0D34E2" Offset="1"/>
+                        <GradientStop Color="#FFF0F0F0" Offset="0" />
+                        <GradientStop Color="#FF0D34E2" Offset="1" />
                     </LinearGradientBrush>
                 </TabItem.Background>
                 <TabItem.RenderTransform>
                     <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform AngleX="-21.877"/>
-                        <RotateTransform/>
-                        <TranslateTransform X="-4.598"/>
+                        <ScaleTransform />
+                        <SkewTransform AngleX="-21.877" />
+                        <RotateTransform />
+                        <TranslateTransform X="-4.598" />
                     </TransformGroup>
                 </TabItem.RenderTransform>
                 <Canvas Background="#FF0D34E2">
@@ -320,16 +320,16 @@
             <TabItem x:Name="TabItems" Header="Artykuł" Margin="23,-2,-27,-2" RenderTransformOrigin="0.5,0.5">
                 <TabItem.Background>
                     <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
-                        <GradientStop Color="#FFF0F0F0" Offset="0"/>
-                        <GradientStop Color="#FFA40CFB" Offset="1"/>
+                        <GradientStop Color="#FFF0F0F0" Offset="0" />
+                        <GradientStop Color="#FFA40CFB" Offset="1" />
                     </LinearGradientBrush>
                 </TabItem.Background>
                 <TabItem.RenderTransform>
                     <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform AngleX="-23.107"/>
-                        <RotateTransform/>
-                        <TranslateTransform X="-4.907"/>
+                        <ScaleTransform />
+                        <SkewTransform AngleX="-23.107" />
+                        <RotateTransform />
+                        <TranslateTransform X="-4.907" />
                     </TransformGroup>
                 </TabItem.RenderTransform>
                 <Canvas Background="#FFA40CFB">
@@ -368,16 +368,16 @@
             <TabItem x:Name="TabEmployees" Header="Pracownicy" Margin="26,-2,-31,-2" RenderTransformOrigin="0.5,0.5" BorderBrush="{x:Null}">
                 <TabItem.Background>
                     <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
-                        <GradientStop Color="#FFF0F0F0" Offset="0"/>
-                        <GradientStop Color="#FFFB05F0" Offset="1"/>
+                        <GradientStop Color="#FFF0F0F0" Offset="0" />
+                        <GradientStop Color="#FFFB05F0" Offset="1" />
                     </LinearGradientBrush>
                 </TabItem.Background>
                 <TabItem.RenderTransform>
                     <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform AngleX="-23.326"/>
-                        <RotateTransform/>
-                        <TranslateTransform X="-4.903"/>
+                        <ScaleTransform />
+                        <SkewTransform AngleX="-23.326" />
+                        <RotateTransform />
+                        <TranslateTransform X="-4.903" />
                     </TransformGroup>
                 </TabItem.RenderTransform>
                 <Canvas Background="#FFFB05F0">

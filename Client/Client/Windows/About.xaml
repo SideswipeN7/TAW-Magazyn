@@ -11,7 +11,7 @@
         <Button x:Name="BtnAboutOk" Content="Ok" HorizontalAlignment="Left" Margin="141,272,0,0" VerticalAlignment="Top" Width="75" Click="BtnAboutOk_Click" FontFamily="Segoe UI Black" />
         <Image x:Name="image" HorizontalAlignment="Left" Height="88" Margin="112,0,0,0" VerticalAlignment="Top" Width="121" Source="/Client;component/Media/Images/untitle2d.png" Stretch="Fill">
             <Image.OpacityMask>
-                <ImageBrush ImageSource="/Client;component/Media/Images/untitle2d.png"/>
+                <ImageBrush ImageSource="/Client;component/Media/Images/untitle2d.png" />
             </Image.OpacityMask>
         </Image>
     </Grid>

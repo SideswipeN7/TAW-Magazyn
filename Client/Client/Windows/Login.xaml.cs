@@ -22,6 +22,7 @@ namespace Client.Windows
         }
 
 #pragma warning disable IDE1006 // Naming Styles
+
         private void btnLogin_Click(object sender, RoutedEventArgs e)
 #pragma warning restore IDE1006 // Naming Styles
         {
@@ -114,7 +115,5 @@ namespace Client.Windows
             BtnShow.Content = "Pokaż";
             //txbPassword.Focus();
         }
-
-
     }
 }

@@ -32,8 +32,6 @@ namespace Client.Controller.View
             _window.LblState_.Visibility = Visibility.Hidden;
             _window.BtnSateSzukaj.Visibility = Visibility.Hidden;
 
-           
-
             _window.TxbStateCenaMax.Visibility = Visibility.Hidden;
             _window.LblStateCena.IsEnabled = false;
             _window.LblStateIlosc.IsEnabled = false;

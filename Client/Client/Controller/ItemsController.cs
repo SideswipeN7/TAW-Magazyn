@@ -1,4 +1,5 @@
 ﻿using Client.Communication;
+using Client.Interfaces;
 using Client.Model;
 using Client.Windows;
 using System;
@@ -14,15 +15,13 @@ namespace Client.Controller
     {
         private static ItemsController _instance;
         private Admin _window { get; set; }
-        private ICommunication _comm;
+        private ICommItems _comm;
         private List<Artykul> art;
         private List<Artykul> artSearched;
 
         protected ItemsController()
         {
-            _comm = Communicator.GetInstance();
-            _comm.SetUrlAddress("http://c414305-001-site1.btempurl.com");
-            //_comm.SetUrlAddress("http://localhost:52992");
+            _comm = CommItems.GetInstance();
             artSearched = new List<Artykul>();
         }
 

@@ -1,4 +1,5 @@
 ﻿using Client.Communication;
+using Client.Interfaces;
 using Client.Model;
 using Client.Windows;
 using System;
@@ -13,15 +14,13 @@ namespace Client.Controller
     {
         private static CategoryController _instance;
         private Admin _window { get; set; }
-        private ICommunication _comm;
+        private ICommCategory _comm;
         private List<Kategoria> categories;
         private List<Kategoria> categoriesSeareched;
 
         protected CategoryController()
         {
-            _comm = Communicator.GetInstance();
-            _comm.SetUrlAddress("http://c414305-001-site1.btempurl.com");
-            //_comm.SetUrlAddress("http://localhost:52992");
+            _comm = CommCategory.GetInstance();
             categoriesSeareched = new List<Kategoria>();
         }
 
