@@ -42,3 +42,9 @@ Client/PluginExecutor/obj/Debug/PluginExecutor.pdb
 Client/TDD-TEST/bin/Debug/PluginExecutor.dll
 Client/TDD-TEST/bin/Debug/PluginExecutor.pdb
 
+Client/Client/bin/Debug/
+Client/Client/obj/Debug/
+Client/PluginExecutor/bin/
+Client/PluginExecutor/obj/
+Client/TDD-TEST/bin/
+Client/TDD-TEST/obj/Debug/
