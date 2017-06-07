@@ -16,7 +16,7 @@ namespace Client.Controller
         private ICommunication _comm;
         private IEnumerable<Pracownik> employees;
 
-        private EmployeeController()
+        protected EmployeeController()
         {
             _comm = Communicator.GetInstance();
             _comm.SetUrlAddress("http://c414305-001-site1.btempurl.com");

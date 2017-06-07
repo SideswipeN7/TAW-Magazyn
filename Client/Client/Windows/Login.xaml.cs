@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using PluginExecutor;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Windows;
@@ -57,7 +58,10 @@ namespace Client.Windows
                     if (pluginType.GetInterface(typeof(IPluginLogin).Name) != null)
                     {
                         IPluginLogin TypeLoadedFromPlugin = (IPluginLogin)Activator.CreateInstance(pluginType);
-                        string pracownikJSON = TypeLoadedFromPlugin.Login(login, password);
+                        Dictionary<int, string> dictionary = new Dictionary<int, string>();
+                        dictionary.Add(0, login);
+                        dictionary.Add(1, password);
+                        string pracownikJSON = TypeLoadedFromPlugin.Execute(dictionary);
                         if (!pracownikJSON.Equals("null"))
                         {
                             Pracownik pracownik = JsonConvert.DeserializeObject<Pracownik>(pracownikJSON);

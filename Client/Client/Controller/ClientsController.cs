@@ -17,7 +17,7 @@ namespace Client.Controller
         private List<Klient> clients;
         private List<Klient> clientsSearched;
 
-        private ClientsController()
+        protected ClientsController()
         {
             _comm = Communicator.GetInstance();
             _comm.SetUrlAddress("http://c414305-001-site1.btempurl.com");

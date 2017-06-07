@@ -9,7 +9,7 @@ namespace Client.Facture
     {
         private static Facture _instance;
 
-        private Facture()
+        protected Facture()
         {
         }
 

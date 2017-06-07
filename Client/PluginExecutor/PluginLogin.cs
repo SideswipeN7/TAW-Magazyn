@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
 
@@ -6,7 +7,7 @@ namespace PluginExecutor
 {
     public class PluginLogin : IPluginLogin
     {
-        public string Login(string login, string password)
+        public string Execute(Dictionary<int, string> dictionary)
         {
             try
             {
@@ -17,7 +18,7 @@ namespace PluginExecutor
 
                 using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
                 {
-                    string json = "{\"login\": \"" + login + "\",\"password\": \"" + password + "\"}";
+                    string json = $"{{\"login\": \"{dictionary[0]}\",\"password\": \"{dictionary[1]}\"}}";
                     streamWriter.Write(json);
                 }
 

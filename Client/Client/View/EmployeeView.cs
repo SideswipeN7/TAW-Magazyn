@@ -9,7 +9,7 @@ namespace Client.Controller.View
         private Admin _window { get; set; }
         private static EmployeeView _instance;
 
-        private EmployeeView()
+        protected EmployeeView()
         {
         }
 

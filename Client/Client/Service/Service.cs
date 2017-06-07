@@ -20,7 +20,7 @@ namespace Client.Adapter
         private static Service _instance;
         private ICommunication _comm;
 
-        private static List<string> states = new List<string>()
+        protected static List<string> states = new List<string>()
         {"Dolonośląskie","Kujawsko-Pomorskie","Lubelskie","Lubuskie","Łódzkie","Małopolskie","Mazowieckie", "Opolskie","Podkarpackie","Podlaskie","Pomorskie","Śląskie","Świętokrzyskie","Warmińsko-Mazurskie","Wielkopolskie","Zachodniopomorskie"};
 
         public static Service GetInstance(int ID, Admin window)

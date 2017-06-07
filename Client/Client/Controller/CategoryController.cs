@@ -17,7 +17,7 @@ namespace Client.Controller
         private List<Kategoria> categories;
         private List<Kategoria> categoriesSeareched;
 
-        private CategoryController()
+        protected CategoryController()
         {
             _comm = Communicator.GetInstance();
             _comm.SetUrlAddress("http://c414305-001-site1.btempurl.com");

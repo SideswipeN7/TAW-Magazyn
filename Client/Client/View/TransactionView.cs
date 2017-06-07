@@ -9,7 +9,7 @@ namespace Client.Controller.View
         private Admin _window { get; set; }
         private static TransactionView _instance;
 
-        private TransactionView()
+        protected TransactionView()
         {
         }
 

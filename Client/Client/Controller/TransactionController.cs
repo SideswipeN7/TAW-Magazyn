@@ -20,7 +20,7 @@ namespace Client.Controller
         private List<Transakcja> transakcjeSearched;
         private int ID { get; set; }
 
-        private TransactionController()
+        protected TransactionController()
         {
             _comm = Communicator.GetInstance();
             _comm.SetUrlAddress("http://c414305-001-site1.btempurl.com");

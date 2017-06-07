@@ -1,7 +1,9 @@
-﻿namespace PluginExecutor
+﻿using System.Collections.Generic;
+
+namespace PluginExecutor
 {
     public interface IPluginLogin
     {
-        string Login(string login, string password);
+        string Execute(Dictionary<int,string> dictionary);
     }
 }

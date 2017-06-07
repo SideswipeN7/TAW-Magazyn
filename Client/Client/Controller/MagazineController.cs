@@ -18,7 +18,7 @@ namespace Client.Controller
         private List<Artykul> art;
         private List<Artykul> artSearched;
 
-        private MagazineController()
+        protected MagazineController()
         {
             _comm = Communicator.GetInstance();
             _comm.SetUrlAddress("http://c414305-001-site1.btempurl.com");

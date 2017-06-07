@@ -9,7 +9,7 @@ namespace Client.Controller.View
         private Admin _window { get; set; }
         private static MagazineView _instance;
 
-        private MagazineView()
+        protected MagazineView()
         {
         }
 
