@@ -14,18 +14,18 @@ namespace Client.Controller
     {
         private static CategoryController _instance;
         private Admin _window { get; set; }
-        public  ICommCategory _comm { get; set; }
+        public  ICommCategory _comm { get; set; }= CommCategory.GetInstance();
         private List<Kategoria> categories;
         private List<Kategoria> categoriesSeareched;
 
         protected CategoryController()
         {
-            _comm = CommCategory.GetInstance();
             categoriesSeareched = new List<Kategoria>();
         }
 
         public static CategoryController GetInstance(Admin window)
         {
+            
             if (_instance == null)
             {
                 _instance = new CategoryController();

@@ -11,7 +11,7 @@ namespace Client.Communication
     class CommCategory : ICommCategory
     {
         private static CommCategory _instance;
-        private string urlAddress { set; get; }
+        private string urlAddress {  get; } = ("http://c414305-001-site1.btempurl.com");
 
         protected CommCategory() { }
 
@@ -21,7 +21,6 @@ namespace Client.Communication
             {
                 _instance = new CommCategory();
             }
-            _instance.urlAddress = ("http://c414305-001-site1.btempurl.com");
             return _instance;
         }
 

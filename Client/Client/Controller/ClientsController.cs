@@ -15,13 +15,12 @@ namespace Client.Controller
     {
         private static ClientsController _instance;
         private Admin _window;
-        private ICommClient _comm;
+        private ICommClient _comm { get; set; } = CommClient.GetInstance();      
         private List<Klient> clients;
         private List<Klient> clientsSearched;
 
         protected ClientsController()
-        {
-            _comm = CommClient.GetInstance();           
+        {                 
             clientsSearched = new List<Klient>();
         }
 

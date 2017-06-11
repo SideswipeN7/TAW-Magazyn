@@ -14,7 +14,7 @@ namespace Client.Communication
     class CommItems: ICommItems
     {
         private static CommItems _instance;
-        private string urlAddress { set; get; }
+        private string urlAddress {  get; } = ("http://c414305-001-site1.btempurl.com");
 
         protected CommItems() { }
 
@@ -24,7 +24,6 @@ namespace Client.Communication
             {
                 _instance = new CommItems();
             }
-            _instance.urlAddress = ("http://c414305-001-site1.btempurl.com");
             return _instance;
         }
 

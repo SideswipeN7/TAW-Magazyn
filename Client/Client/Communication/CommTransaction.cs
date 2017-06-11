@@ -13,7 +13,7 @@ namespace Client.Communication
     class CommTransaction: ICommTransaction
     {
         private static CommTransaction _instance;
-        private string urlAddress { set; get; }
+        private string urlAddress {  get; } = ("http://c414305-001-site1.btempurl.com");
 
         protected CommTransaction() { }
 
@@ -23,7 +23,6 @@ namespace Client.Communication
             {
                 _instance = new CommTransaction();
             }
-            _instance.urlAddress=("http://c414305-001-site1.btempurl.com");
             return _instance;
         }  
 

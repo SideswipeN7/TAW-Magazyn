@@ -16,13 +16,12 @@ namespace Client.Controller
     {
         private static ItemsController _instance;
         private Admin _window { get; set; }
-        private ICommItems _comm;
+        private ICommItems _comm { get; set; } = CommItems.GetInstance();
         private List<Artykul> art;
         private List<Artykul> artSearched;
 
         protected ItemsController()
         {
-            _comm = CommItems.GetInstance();
             artSearched = new List<Artykul>();
         }
 

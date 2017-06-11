@@ -14,7 +14,7 @@ namespace Client.Communication
     class CommClient :ICommClient
     {
         private static CommClient _instance;
-        private string urlAddress { set; get; }
+        private string urlAddress { get; } = ("http://c414305-001-site1.btempurl.com");
         protected CommClient() { }
 
         public static CommClient GetInstance()
@@ -23,7 +23,6 @@ namespace Client.Communication
             {
                 _instance = new CommClient();
             }
-            _instance.urlAddress = ("http://c414305-001-site1.btempurl.com");
             return _instance;
         }
 

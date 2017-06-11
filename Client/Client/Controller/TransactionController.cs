@@ -17,14 +17,13 @@ namespace Client.Controller
         private InProgress inProg;
         private static TransactionController _instance;
         private Admin _window { get; set; }
-        private ICommTransaction _comm;
+        private ICommTransaction _comm { get; set; } = CommTransaction.GetInstance();
         private List<Transakcja> transakcje;
         private List<Transakcja> transakcjeSearched;
         private int ID { get; set; }
 
         protected TransactionController()
         {
-            _comm = CommTransaction.GetInstance();
             transakcjeSearched = new List<Transakcja>();
         }
 

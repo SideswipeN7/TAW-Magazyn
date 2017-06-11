@@ -14,13 +14,10 @@ namespace Client.Controller
     {
         private static EmployeeController _instance;
         private Admin _window;
-        private ICommEmployee _comm;
+        private ICommEmployee _comm { get; set; } = CommEmployee.GetInstance();
         private IEnumerable<Pracownik> employees;
 
-        protected EmployeeController()
-        {
-            _comm = CommEmployee.GetInstance();
-        }
+        protected EmployeeController() { }
 
         public static EmployeeController GetInstance(Admin window)
         {

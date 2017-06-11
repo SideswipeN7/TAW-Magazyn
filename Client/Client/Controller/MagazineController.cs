@@ -15,13 +15,12 @@ namespace Client.Controller
     {
         private Admin _window { get; set; }
         private static MagazineController _instance;
-        private ICommItems _comm;
+        private ICommItems _comm { get; set; } = CommItems.GetInstance();
         private List<Artykul> art;
         private List<Artykul> artSearched;
 
         protected MagazineController()
         {
-            _comm = CommItems.GetInstance();
             artSearched = new List<Artykul>();
         }
 
