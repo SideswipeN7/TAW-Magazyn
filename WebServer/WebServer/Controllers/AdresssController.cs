@@ -55,7 +55,10 @@ namespace WebServer.Controllers
         [ResponseType(typeof(int))]
         public int RegisterAddress(Adres adres)
         {
-            (!ModelState.IsValid) ?? 0;            
+            if (!ModelState.IsValid)
+            {
+                return 0;
+            }                 
 
             Adres newAdres = db?.Ksiazka_adresow?.FirstOrDefault(a => a.idAdresu == adres.idAdresu);            
 
