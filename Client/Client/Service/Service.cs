@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using static System.Diagnostics.Debug;
 
 namespace Client.Adapter
 {
@@ -421,7 +422,7 @@ namespace Client.Adapter
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Adapter ShowPassword: {ex} " + nameof(ShowPassword));
+               WriteLine($"Error in{nameof(_instance)} {nameof(ShowPassword)}: {ex} ");
             }
         }
 
@@ -486,7 +487,7 @@ namespace Client.Adapter
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Adapter SelectClientDoTransactionSurname: {ex} " + nameof(SelectClientDoTransactionSurname));
+                WriteLine($"Error in {nameof(_instance)} {nameof(SelectClientDoTransactionSurname)}: {ex} ");
             }
         }
 
@@ -520,7 +521,7 @@ namespace Client.Adapter
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Adapter SelectClientDoTransactionFirm: {ex} " + nameof(SelectClientDoTransactionFirm));
+                WriteLine($"Error in {nameof(_instance)} {nameof(SelectClientDoTransactionFirm)}: {ex} ");
             }
         }
 
@@ -542,7 +543,7 @@ namespace Client.Adapter
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Adapter AddToCart: {ex} " + nameof(AddToCart));
+               WriteLine($"Error in {nameof(_instance)} {nameof(AddToCart)}: {ex} ");
             }
         }
 
@@ -558,7 +559,7 @@ namespace Client.Adapter
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Adapter DeleteFormCart: {ex} " + nameof(DeleteFormCart));
+               WriteLine($"Error in {nameof(_instance)} {nameof(DeleteFormCart)}: {ex} " );
             }
         }
 
@@ -575,7 +576,7 @@ namespace Client.Adapter
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Adapter UpadtePrice: {ex} " + nameof(UpadtePrice));
+                WriteLine($"Error in {nameof(_instance)} {nameof(UpadtePrice)}: {ex} ");
             }
         }
 
@@ -593,7 +594,7 @@ namespace Client.Adapter
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Adapter CmbCategoryIdChange: {ex} " + nameof(CmbCategoryIdChange));
+               WriteLine($"Error in {nameof(_instance)} {nameof(CmbCategoryIdChange)}: {ex} ");
             }
         }
 
@@ -653,7 +654,9 @@ namespace Client.Adapter
                     });
                 }
                 catch (Exception ex)
-                { System.Diagnostics.Debug.WriteLine($"\nERROR {ex} " + nameof(LoadAll)); }
+                {
+                    WriteLine($"Error in {nameof(_instance)} {nameof(LoadAll)}: {ex} ");
+                  }
             }
             //Products for transactions
             LoadTransactionsDoProducts();
@@ -675,7 +678,7 @@ namespace Client.Adapter
                 _window.RbOverviewGridOneWszystkie.IsChecked = true;
             }
             catch (Exception ex)
-            { System.Diagnostics.Debug.WriteLine($"Error in Adapter SelectAll: {ex} " + nameof(SelectaAll)); }
+            { WriteLine($"Error in {nameof(_instance)} {nameof(SelectaAll)}: {ex} "); }
         }
 
         private void Load(IEnumerable<Dostawca> list)
@@ -694,7 +697,7 @@ namespace Client.Adapter
                 }));
             }
             catch (Exception ex)
-            { System.Diagnostics.Debug.WriteLine($"Error in Adapter Load: {ex} " + nameof(Load)); }
+            { WriteLine($"Error in  {nameof(_instance)} {nameof(Load)}: {ex} "); }
         }
 
         private void LoadTransactionsDoProducts()
@@ -709,7 +712,7 @@ namespace Client.Adapter
                 }
             }
             catch (Exception ex)
-            { System.Diagnostics.Debug.WriteLine($"Error in Adapter LoadTransactionsDoProducts: {ex} " + nameof(LoadTransactionsDoProducts)); }
+            { WriteLine($"Error  {nameof(_instance)} {nameof(LoadTransactionsDoProducts)}: {ex} " ); }
         }
 
         public void LoadClients()
@@ -719,7 +722,7 @@ namespace Client.Adapter
                 LoadClientsToCmb(_commClie.GetClients());
             }
             catch (Exception ex)
-            { System.Diagnostics.Debug.WriteLine($"Error in Adapter LoadClients: {ex} " + nameof(LoadClients)); }
+            { WriteLine($"Error in  {nameof(_instance)} {nameof(LoadClients)}: {ex} " ); }
         }
 
         private void LoadClientsToCmb(IEnumerable<Klient> clients)
@@ -739,18 +742,23 @@ namespace Client.Adapter
                 }
             }
             catch (Exception ex)
-            { System.Diagnostics.Debug.WriteLine($"Error in Adapter LoadClientsToCmb: {ex} " + nameof(LoadClientsToCmb)); }
+            { System.Diagnostics.Debug.WriteLine($"Error in  {nameof(_instance)} {nameof(LoadClientsToCmb)}: {ex} " ); }
         }
 
         public void LoadCategories()
         {
-            IEnumerable<Kategoria> list = _commCat.GetCategories();
-
-            foreach (Kategoria r in list)
+            try
             {
-                _window.CmbStateKategoria.Items.Add(new ComboBoxItem() { Content = r.Nazwa, Tag = r });
-                _window.CmbItemKategoria.Items.Add(new ComboBoxItem() { Content = r.Nazwa, Tag = r });
+                IEnumerable<Kategoria> list = _commCat.GetCategories();
+
+                foreach (Kategoria r in list)
+                {
+                    _window.CmbStateKategoria.Items.Add(new ComboBoxItem() { Content = r.Nazwa, Tag = r });
+                    _window.CmbItemKategoria.Items.Add(new ComboBoxItem() { Content = r.Nazwa, Tag = r });
+                }
             }
+            catch (Exception ex)
+            { System.Diagnostics.Debug.WriteLine($"Error in  {nameof(_instance)} {nameof(LoadCategories)}: {ex} "); }
         }
     }
 }

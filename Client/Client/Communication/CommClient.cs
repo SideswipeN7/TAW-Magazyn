@@ -46,7 +46,7 @@ namespace Client.Communication
                     throw new Exception("Server Error");
                 }
                 else
-                    WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  ChangeClient: {ex}{Environment.NewLine}");
+                    WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  {nameof(ChangeClient)}: {ex}{Environment.NewLine}");
             }
             throw new Exception("Exception in ChangeClient");
         }
@@ -68,7 +68,7 @@ namespace Client.Communication
                     throw new Exception("Server Error");
                 }
                 else
-                    WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  DeleteClient: {ex}{Environment.NewLine}");
+                    WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  {nameof(DeleteClient)}: {ex}{Environment.NewLine}");
             }
             throw new Exception("Exception in DeleteClient");
         }
@@ -92,7 +92,7 @@ namespace Client.Communication
                     throw new Exception("Server Error");
                 }
                 else
-                    WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  GetClients: {ex}{Environment.NewLine}");
+                    WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  {nameof(GetClients)}: {ex}{Environment.NewLine}");
             }
             throw new Exception("Exception in GetClients");
         }
@@ -120,7 +120,7 @@ namespace Client.Communication
                     throw new Exception("Server Error");
                 }
                 else
-                    WriteLine($"{Environment.NewLine}Exception in {nameof(_instance)}  RegisterClient: {ex}{Environment.NewLine}");
+                    WriteLine($"{Environment.NewLine}Exception in {nameof(_instance)}  {nameof(RegisterClient)}: {ex}{Environment.NewLine}");
                 return 0;
             }
             return 0;
@@ -148,7 +148,7 @@ namespace Client.Communication
                     throw new Exception("Server Error");
                 }
                 else
-                    WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  ChangeAddress: {ex}{Environment.NewLine}");
+                    WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  {nameof(ChangeAddress)}: {ex}{Environment.NewLine}");
             }
             throw new Exception("Exception in ChangeAddress");
         }

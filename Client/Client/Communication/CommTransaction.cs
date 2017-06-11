@@ -47,7 +47,7 @@ namespace Client.Communication
                     throw new Exception("Server Error");
                 }
                 else
-                    WriteLine($"{Environment.NewLine}Error in {nameof(_instance)} RegisterTransaction: {ex}{Environment.NewLine}");
+                    WriteLine($"{Environment.NewLine}Error in {nameof(_instance)} {nameof(RegisterTransaction)}: {ex}{Environment.NewLine}");
                 return 0;
             }
         }
@@ -71,7 +71,7 @@ namespace Client.Communication
                     throw new Exception("Server Error");
                 }
                 else
-                    WriteLine($"{Environment.NewLine} in {nameof(_instance)}  GetTransactions: {ex}{Environment.NewLine}");
+                    WriteLine($"{Environment.NewLine} in {nameof(_instance)}  {nameof(GetTransactions)}: {ex}{Environment.NewLine}");
             }
             throw new Exception("Exception in GetTransactions");
         }

@@ -6,8 +6,8 @@ using Client.Windows;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
+using static System.Diagnostics.Debug;
 
 namespace Client.Controller
 {
@@ -78,7 +78,7 @@ namespace Client.Controller
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Employee Controller AddData: {ex} " + nameof(AddData));
+                WriteLine($"Error in  {nameof(_instance)}  {nameof(AddData)}: {ex} ");
             }
         }
 
@@ -88,7 +88,7 @@ namespace Client.Controller
             try
             {
                 IValidate validator = EmployeeChangeValidator.GetInstance(_window);
-                if(validator.Validate())
+                if (validator.Validate())
                 {
                     int wiek = Int32.Parse(_window.TxbEmployeeWiek.Text);
                     {
@@ -123,7 +123,7 @@ namespace Client.Controller
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Employee Controller ChangeData: {ex} " + nameof(ChangeData));
+                WriteLine($"Error in  {nameof(_instance)}  {nameof(ChangeData)}: {ex} ");
             }
         }
 
@@ -140,7 +140,7 @@ namespace Client.Controller
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Employee Controller DeleteData: {ex} " + nameof(DeleteData));
+                WriteLine($"Error in {nameof(_instance)}  {nameof(DeleteData)}: {ex} ");
             }
         }
 
@@ -162,7 +162,7 @@ namespace Client.Controller
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Employee Controller ShowData: {ex} " + nameof(ShowData));
+                WriteLine($"Error in  {nameof(_instance)}  {nameof(ShowData)}: {ex} ");
             }
         }
 
@@ -200,7 +200,7 @@ namespace Client.Controller
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Employee Controller ShowSelectedData: {ex} " + nameof(ShowSelectedData));
+                WriteLine($"Error in  {nameof(_instance)}  {nameof(ShowSelectedData)}: {ex} ");
             }
         }
 
@@ -221,7 +221,7 @@ namespace Client.Controller
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Employee Controller GetData: {ex} " + nameof(GetData));
+                WriteLine($"Error in  {nameof(_instance)}  { nameof(GetData)}: {ex} ");
             }
             return null;
         }

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using static System.Diagnostics.Debug;
 
 namespace Client.Controller
 {
@@ -14,7 +15,7 @@ namespace Client.Controller
     {
         private static CategoryController _instance;
         private Admin _window { get; set; }
-        public  ICommCategory _comm { get; set; }= CommCategory.GetInstance();
+        public ICommCategory _comm { get; set; } = CommCategory.GetInstance();
         private List<Kategoria> categories;
         private List<Kategoria> categoriesSeareched;
 
@@ -25,7 +26,7 @@ namespace Client.Controller
 
         public static CategoryController GetInstance(Admin window)
         {
-            
+
             if (_instance == null)
             {
                 _instance = new CategoryController();
@@ -59,7 +60,7 @@ namespace Client.Controller
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Category Controller AddData: {ex} " + nameof(AddData));
+                WriteLine($"Error in  {nameof(_instance)}  {nameof(AddData)}: {ex} ");
             }
         }
 
@@ -83,7 +84,7 @@ namespace Client.Controller
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Category Controller ChangeData: {ex} " + nameof(ChangeData));
+                WriteLine($"Error in  {nameof(_instance)}  {nameof(ChangeData)}: {ex} ");
             }
         }
 
@@ -99,11 +100,11 @@ namespace Client.Controller
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Category Controller DeleteData: {ex} " + nameof(DeleteData));
+                WriteLine($"Error in  {nameof(_instance)}  {nameof(DeleteData)}: {ex} ");
             }
         }
 
-        public  IEnumerable<object> GetData()
+        public IEnumerable<object> GetData()
         {
             try
             {
@@ -126,14 +127,15 @@ namespace Client.Controller
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Category Controller GetData: {ex} " + nameof(GetData));
+                WriteLine($"Error in  {nameof(_instance)}  {nameof(GetData)}: {ex} ");
 
-            }                return null;
-
-               
             }
+            return null;
 
-        
+
+        }
+
+
 
         public void ShowData()
         {
@@ -152,7 +154,7 @@ namespace Client.Controller
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Category Controller ShowData: {ex} " + nameof(ShowData));
+                WriteLine($"Error in  {nameof(_instance)}  {nameof(ShowData)}: {ex} ");
             }
         }
 
@@ -168,7 +170,7 @@ namespace Client.Controller
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Category Controller ShowSelectedData: {ex} " + nameof(ShowSelectedData));
+                WriteLine($"Error in  {nameof(_instance)}  {nameof(ShowSelectedData)}: {ex} ");
             }
         }
 
@@ -201,7 +203,7 @@ namespace Client.Controller
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Category Controller SearchData: {ex} " + nameof(SearchData));
+                WriteLine($"Error in  {nameof(_instance)}  {nameof(SearchData)}: {ex} ");
             }
         }
     }

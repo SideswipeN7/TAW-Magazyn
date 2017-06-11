@@ -44,7 +44,7 @@ namespace Client.Communication
                     throw new Exception("Server Error");
                 }
                 else
-                    WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  GetItems: {ex}{Environment.NewLine}");
+                    WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  {nameof(GetItems)}: {ex}{Environment.NewLine}");
             }
             throw new Exception("Exception in GetItems");
         }
@@ -71,7 +71,7 @@ namespace Client.Communication
                     throw new Exception("Server Error");
                 }
                 else
-                    WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  ChangeItem: {ex}{Environment.NewLine}");
+                    WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  {nameof(ChangeItem)}: {ex}{Environment.NewLine}");
             }
             throw new Exception("Exception in ChangeAddress");
         }
@@ -97,7 +97,7 @@ namespace Client.Communication
                     throw new Exception("Server Error");
                 }
                 else
-                    WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  RegisterItem: {ex}{Environment.NewLine}");
+                    WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  {nameof(RegisterItem)}: {ex}{Environment.NewLine}");
             }
             throw new Exception("Exception in RegisterItem");
         }
@@ -119,7 +119,7 @@ namespace Client.Communication
                     throw new Exception("Server Error");
                 }
                 else
-                    WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  DeleteItem: {ex}{Environment.NewLine}");
+                    WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  {nameof(DeleteItem)}: {ex}{Environment.NewLine}");
             }
         }
     }

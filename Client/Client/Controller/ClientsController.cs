@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Windows;
+using static System.Diagnostics.Debug;
 
 namespace Client.Controller
 {
@@ -15,12 +15,12 @@ namespace Client.Controller
     {
         private static ClientsController _instance;
         private Admin _window;
-        private ICommClient _comm { get; set; } = CommClient.GetInstance();      
+        private ICommClient _comm { get; set; } = CommClient.GetInstance();
         private List<Klient> clients;
         private List<Klient> clientsSearched;
 
         protected ClientsController()
-        {                 
+        {
             clientsSearched = new List<Klient>();
         }
 
@@ -58,12 +58,12 @@ namespace Client.Controller
                         ShowData();
                         return clients;
                     });
-                    
+
                 });
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Client Controller GetData: {ex} " + nameof(GetData));
+                WriteLine($"Error in  {nameof(_instance)}  {nameof(GetData)}: {ex} ");
             }
             return null;
         }
@@ -94,7 +94,7 @@ namespace Client.Controller
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Client Controller AddData: {ex} " + nameof(AddData));
+                WriteLine($"Error in  {nameof(_instance)}  {nameof(AddData)}: {ex} ");
             }
         }
 
@@ -129,7 +129,7 @@ namespace Client.Controller
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Client Controller ChangeData: {ex} " + nameof(ChangeData));
+                WriteLine($"Error in  {nameof(_instance)}  {nameof(ChangeData)}: {ex} ");
             }
         }
 
@@ -145,7 +145,7 @@ namespace Client.Controller
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Client Controller DeleteData: {ex} " + nameof(DeleteData));
+                WriteLine($"Error in {nameof(_instance)}  { nameof(DeleteData)}: {ex} ");
             }
         }
 
@@ -170,7 +170,7 @@ namespace Client.Controller
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Client Controller ShowData: {ex} " + nameof(ShowData));
+                WriteLine($"Error in  {nameof(_instance)}  {nameof(ShowData)}: {ex} ");
             }
         }
 
@@ -190,7 +190,7 @@ namespace Client.Controller
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Client Controller ShowSelectedData: {ex} " + nameof(ShowSelectedData));
+                WriteLine($"Error in {nameof(_instance)}  {nameof(ShowSelectedData)}: {ex} ");
             }
         }
 
@@ -267,7 +267,7 @@ namespace Client.Controller
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Client Controller SearchData: {ex} " + nameof(SearchData));
+                WriteLine($"Error in C {nameof(_instance)}  {nameof(SearchData)}: {ex} ");
             }
         }
     }

@@ -42,7 +42,7 @@ namespace Client.Communication
                     throw new Exception("Server Error");
                 }
                 else
-                    WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  DeleteEmployee: {ex}{Environment.NewLine}");
+                    WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  {nameof(DeleteEmployee)}: {ex}{Environment.NewLine}");
             }
             throw new Exception("Exception in DeleteEmployee");
         }
@@ -66,7 +66,7 @@ namespace Client.Communication
                     throw new Exception("Server Error");
                 }
                 else
-                    WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  GetEmployees: {ex}{Environment.NewLine}");
+                    WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  {nameof(GetEmpoyees)}: {ex}{Environment.NewLine}");
             }
             throw new Exception("Exception in GetEmployees");
         }
@@ -91,7 +91,7 @@ namespace Client.Communication
                     throw new Exception("Server Error");
                 }
                 else
-                    WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  ModifyEmployee: {ex}{Environment.NewLine}");
+                    WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  {nameof(ModifyEmployee)}: {ex}{Environment.NewLine}");
             }
             throw new Exception("Exception in ModifyEmployee");
         }
@@ -117,7 +117,7 @@ namespace Client.Communication
                     throw new Exception("Server Error");
                 }
                 else
-                    WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  RegisterEmplyee: {ex}{Environment.NewLine}");
+                    WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  {nameof(RegisterEmployee)}: {ex}{Environment.NewLine}");
             }
             throw new Exception("Exception in RegisterEmployee");
         }

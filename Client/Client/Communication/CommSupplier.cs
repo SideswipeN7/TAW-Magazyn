@@ -43,7 +43,7 @@ namespace Client.Communication
                     throw new Exception("Server Error");
                 }
                 else
-                    WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  GetSuppliers: {ex}{Environment.NewLine}");
+                    WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  {nameof(GetSuppliers)}: {ex}{Environment.NewLine}");
             }
             throw new Exception("Exception in GetSuppliers");
         }

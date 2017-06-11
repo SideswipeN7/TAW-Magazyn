@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using static System.Diagnostics.Debug;
 
 namespace Client.Controller
 {
@@ -74,7 +75,7 @@ namespace Client.Controller
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Magazine Controller ShowData: {ex} " + nameof(ShowData));
+                WriteLine($"Error in  {nameof(_instance)}  { nameof(ShowData)}: {ex} ");
             }
         }
 
@@ -96,7 +97,7 @@ namespace Client.Controller
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Magazine Controller ShowSelectedData: {ex} " + nameof(ShowSelectedData));
+                WriteLine($"Error in {nameof(_instance)}  { nameof(ShowSelectedData)}: {ex} ");
             }
         }
 
@@ -186,8 +187,6 @@ namespace Client.Controller
                                 }
                             }
                         }
-                        //foreach (Artykul a in list)
-                        //    art.RemoveAll(ar => ar.idArtykulu == a.idArtykulu);
                         foreach (Artykul a in art)
                         {
                             if (!list.Contains(a))
@@ -199,7 +198,7 @@ namespace Client.Controller
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Magazine Controller SearchData: {ex} " + nameof(SearchData));
+                WriteLine($"Error in  {nameof(_instance)}  {} nameof(SearchData): {ex} ");
             }
         }
 
@@ -222,7 +221,7 @@ namespace Client.Controller
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Magazine Controller GetData: {ex} " + nameof(GetData));
+                WriteLine($"Error in  {nameof(_instance)}  {nameof(GetData)}: {ex} ");
             }
             return null;
         }

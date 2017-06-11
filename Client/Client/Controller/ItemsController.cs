@@ -9,6 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using static System.Diagnostics.Debug;
 
 namespace Client.Controller
 {
@@ -80,7 +81,7 @@ namespace Client.Controller
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Item Controller AddData: {ex} " + nameof(AddData));
+                WriteLine($"Error in {nameof(_instance)}  {nameof(AddData)}: {ex} ");
             }
         }
 
@@ -88,13 +89,13 @@ namespace Client.Controller
         {
             try
             {
-                int quantity;
-                decimal price;
+
+
                 IValidate validator = ItemChangeValidator.GetInstance(_window);
-                if(validator.Validate())
+                if (validator.Validate())
                 {
-                    Int32.TryParse(_window.TxbItemIlosc.Text, out quantity);
-                    Decimal.TryParse(_window.TxbItemCenaMin.Text, out price);
+                    int quantity = Int32.Parse(_window.TxbItemIlosc.Text);
+                    decimal price = Decimal.Parse(_window.TxbItemCenaMin.Text);
 
                     Artykul artykul = new Artykul()
                     {
@@ -121,7 +122,7 @@ namespace Client.Controller
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Item Controller ChangeData: {ex} " + nameof(ChangeData));
+                WriteLine($"Error in  {nameof(_instance)}  {nameof(ChangeData)}: {ex} ");
             }
         }
 
@@ -137,7 +138,7 @@ namespace Client.Controller
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Item Controller DeleteData: {ex} " + nameof(DeleteData));
+                WriteLine($"Error in  {nameof(_instance)}  {nameof(DeleteData)}: {ex} ");
             }
         }
 
@@ -166,7 +167,7 @@ namespace Client.Controller
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Item Controller ShowData: {ex} " + nameof(ShowData));
+                WriteLine($"Error in  {nameof(_instance)}  { nameof(ShowData)}: {ex} ");
             }
         }
 
@@ -190,7 +191,7 @@ namespace Client.Controller
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Item Controller ShowSelectedData: {ex} " + nameof(ShowSelectedData));
+                WriteLine($"Error in  {nameof(_instance)}  {nameof(ShowSelectedData)}: {ex} ");
             }
         }
 
@@ -213,7 +214,7 @@ namespace Client.Controller
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Item Controller GetData: {ex} " + nameof(GetData));
+                WriteLine($"Error in  {nameof(_instance)}  {nameof(GetData)}: {ex} ");
             }
             return null;
         }
@@ -310,7 +311,7 @@ namespace Client.Controller
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Item Controller SearchData: {ex} " + nameof(SearchData));
+                WriteLine($"Error in  {nameof(_instance)}  { nameof(SearchData)}: {ex} ");
             }
         }
     }
