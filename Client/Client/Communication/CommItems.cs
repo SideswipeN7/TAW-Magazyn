@@ -39,7 +39,12 @@ namespace Client.Communication
             }
             catch (Exception ex)
             {
-               WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  GetItems: {ex}{Environment.NewLine}");
+                if (ex.Message.Contains("500"))
+                {
+                    throw new Exception("Server Error");
+                }
+                else
+                    WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  GetItems: {ex}{Environment.NewLine}");
             }
             throw new Exception("Exception in GetItems");
         }
@@ -61,7 +66,12 @@ namespace Client.Communication
             }
             catch (Exception ex)
             {
-                WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  ChangeItem: {ex}{Environment.NewLine}");
+                if (ex.Message.Contains("500"))
+                {
+                    throw new Exception("Server Error");
+                }
+                else
+                    WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  ChangeItem: {ex}{Environment.NewLine}");
             }
             throw new Exception("Exception in ChangeAddress");
         }
@@ -82,7 +92,12 @@ namespace Client.Communication
             }
             catch (Exception ex)
             {
-               WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  RegisterItem: {ex}{Environment.NewLine}");
+                if (ex.Message.Contains("500"))
+                {
+                    throw new Exception("Server Error");
+                }
+                else
+                    WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  RegisterItem: {ex}{Environment.NewLine}");
             }
             throw new Exception("Exception in RegisterItem");
         }
@@ -99,7 +114,12 @@ namespace Client.Communication
             }
             catch (Exception ex)
             {
-               WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  DeleteItem: {ex}{Environment.NewLine}");
+                if (ex.Message.Contains("500"))
+                {
+                    throw new Exception("Server Error");
+                }
+                else
+                    WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  DeleteItem: {ex}{Environment.NewLine}");
             }
         }
     }

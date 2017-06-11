@@ -42,6 +42,11 @@ namespace Client.Communication
             }
             catch (Exception ex)
             {
+                if (ex.Message.Contains("500"))
+                {
+                    throw new Exception("Server Error");
+                }
+                else
                WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  ChangeCategory: {ex}{Environment.NewLine}");
             }
             throw new Exception("Exception in ChangeCategory");
@@ -59,7 +64,12 @@ namespace Client.Communication
             }
             catch (Exception ex)
             {
-               WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  DeleteCategory: {ex}{Environment.NewLine}");
+                if (ex.Message.Contains("500"))
+                {
+                    throw new Exception("Server Error");
+                }
+                else
+                    WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  DeleteCategory: {ex}{Environment.NewLine}");
             }
             throw new Exception("Exception in DeleteCategory");
         }
@@ -78,7 +88,12 @@ namespace Client.Communication
             }
             catch (Exception ex)
             {
-               WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  GetCategories: {ex}{Environment.NewLine}");
+                if (ex.Message.Contains("500"))
+                {
+                    throw new Exception("Server Error");
+                }
+                else
+                    WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  GetCategories: {ex}{Environment.NewLine}");
             }
             throw new Exception("Exception in GetCategories");
         }
@@ -99,7 +114,12 @@ namespace Client.Communication
             }
             catch (Exception ex)
             {
-              WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  RegisterCategory: {ex}{Environment.NewLine}");
+                if (ex.Message.Contains("500"))
+                {
+                    throw new Exception("Server Error");
+                }
+                else
+                    WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  RegisterCategory: {ex}{Environment.NewLine}");
             }
             return false;
         }

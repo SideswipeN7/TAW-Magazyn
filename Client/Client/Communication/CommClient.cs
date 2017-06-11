@@ -41,7 +41,12 @@ namespace Client.Communication
             }
             catch (Exception ex)
             {
-               WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  ChangeClient: {ex}{Environment.NewLine}");
+                if (ex.Message.Contains("500"))
+                {
+                    throw new Exception("Server Error");
+                }
+                else
+                    WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  ChangeClient: {ex}{Environment.NewLine}");
             }
             throw new Exception("Exception in ChangeClient");
         }
@@ -58,7 +63,12 @@ namespace Client.Communication
             }
             catch (Exception ex)
             {
-               WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  DeleteClient: {ex}{Environment.NewLine}");
+                if (ex.Message.Contains("500"))
+                {
+                    throw new Exception("Server Error");
+                }
+                else
+                    WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  DeleteClient: {ex}{Environment.NewLine}");
             }
             throw new Exception("Exception in DeleteClient");
         }
@@ -77,7 +87,12 @@ namespace Client.Communication
             }
             catch (Exception ex)
             {
-                WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  GetClients: {ex}{Environment.NewLine}");
+                if (ex.Message.Contains("500"))
+                {
+                    throw new Exception("Server Error");
+                }
+                else
+                    WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  GetClients: {ex}{Environment.NewLine}");
             }
             throw new Exception("Exception in GetClients");
         }
@@ -100,7 +115,12 @@ namespace Client.Communication
             }
             catch (Exception ex)
             {
-                WriteLine($"{Environment.NewLine}Exception in {nameof(_instance)}  RegisterClient: {ex}{Environment.NewLine}");
+                if (ex.Message.Contains("500"))
+                {
+                    throw new Exception("Server Error");
+                }
+                else
+                    WriteLine($"{Environment.NewLine}Exception in {nameof(_instance)}  RegisterClient: {ex}{Environment.NewLine}");
                 return 0;
             }
             return 0;
@@ -123,7 +143,12 @@ namespace Client.Communication
             }
             catch (Exception ex)
             {
-                WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  ChangeAddress: {ex}{Environment.NewLine}");
+                if (ex.Message.Contains("500"))
+                {
+                    throw new Exception("Server Error");
+                }
+                else
+                    WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  ChangeAddress: {ex}{Environment.NewLine}");
             }
             throw new Exception("Exception in ChangeAddress");
         }

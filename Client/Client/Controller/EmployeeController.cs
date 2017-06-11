@@ -1,6 +1,7 @@
 ﻿using Client.Communication;
 using Client.Interfaces;
 using Client.Model;
+using Client.Validators;
 using Client.Windows;
 using System;
 using System.Collections.Generic;
@@ -43,39 +44,10 @@ namespace Client.Controller
         {
             try
             {
-#pragma warning disable IDE0018 // Inline variable declaration
-                int wiek;
-#pragma warning restore IDE0018 // Inline variable declaration
-                if (_window.TxbEmployeeHaslo.Text.Length < 5)
+                IValidate validator = EmployeeAddValidator.GetInstance(_window);
+                if (validator.Validate())
                 {
-                    MessageBox.Show("Hasło zbyt krótkie - minimum 5 znaków", "Bład", MessageBoxButton.OK);
-                }
-                else
-
-                if (_window.TxbEmployeeLogin.Text.Length < 5) { MessageBox.Show("Login zbyt krótki - minimum 5 znaków", "Bład", MessageBoxButton.OK); }
-                else
-
-                if (_window.TxbEmployeeImie.Text.Length < 4) { MessageBox.Show("imię zbyt krótkie", "Bład", MessageBoxButton.OK); }
-                else
-
-                if (_window.TxbEmployeeNazwisko.Text.Length < 5) { MessageBox.Show("Nazwisko zbyt krótkie", "Bład", MessageBoxButton.OK); }
-                else
-
-                if (_window.TxbEmployeeMiejscowosc.Text.Length < 5) { MessageBox.Show("Miejscowość zbyt krótkie", "Bład", MessageBoxButton.OK); }
-                else
-
-                if (_window.TxbEmployeeKodPocztowy.Text.Length != 6) { MessageBox.Show("Zły format kodu pocztowego", "Bład", MessageBoxButton.OK); }
-                else
-
-                if (!Int32.TryParse(_window.TxbEmployeeWiek.Text, out wiek)) { MessageBox.Show("Zły foramt wieku", "Bład", MessageBoxButton.OK); }
-                else
-
-                if (_window.CmbEmployeeAdmin.SelectedIndex < 0) { MessageBox.Show("Błąd wyboru statusu użytkownika", "Bład", MessageBoxButton.OK); }
-                else
-
-                if (_window.CmbEmployeeWojewodztwo.SelectedIndex < 0) { MessageBox.Show("Bład wyboru województwa", "Bład", MessageBoxButton.OK); }
-                else
-                {
+                    int wiek = Int32.Parse(_window.TxbEmployeeWiek.Text);
                     {
                         Pracownik pracownik = new Pracownik()
                         {
@@ -115,39 +87,10 @@ namespace Client.Controller
         {
             try
             {
-#pragma warning disable IDE0018 // Inline variable declaration
-                int wiek;
-#pragma warning restore IDE0018 // Inline variable declaration
-                if (_window.TxbEmployeeHaslo.Text.Length < 5)
+                IValidate validator = EmployeeChangeValidator.GetInstance(_window);
+                if(validator.Validate())
                 {
-                    MessageBox.Show("Hasło zbyt krótkie - minimum 5 znaków", "Bład", MessageBoxButton.OK);
-                }
-                else
-
-                if (_window.TxbEmployeeLogin.Text.Length < 5) { MessageBox.Show("Login zbyt krótki - minimum 5 znaków", "Bład", MessageBoxButton.OK); }
-                else
-
-                if (_window.TxbEmployeeImie.Text.Length < 4) { MessageBox.Show("imię zbyt krótkie", "Bład", MessageBoxButton.OK); }
-                else
-
-                if (_window.TxbEmployeeNazwisko.Text.Length < 5) { MessageBox.Show("Nazwisko zbyt krótkie", "Bład", MessageBoxButton.OK); }
-                else
-
-                if (_window.TxbEmployeeMiejscowosc.Text.Length < 5) { MessageBox.Show("Miejscowość zbyt krótkie", "Bład", MessageBoxButton.OK); }
-                else
-
-                if (_window.TxbEmployeeKodPocztowy.Text.Length != 6) { MessageBox.Show("Zły format kodu pocztowego", "Bład", MessageBoxButton.OK); }
-                else
-
-                if (!Int32.TryParse(_window.TxbEmployeeWiek.Text, out wiek)) { MessageBox.Show("Zły foramt wieku", "Bład", MessageBoxButton.OK); }
-                else
-
-                if (_window.CmbEmployeeAdmin.SelectedIndex < 0) { MessageBox.Show("Błąd wyboru statusu użytkownika", "Bład", MessageBoxButton.OK); }
-                else
-
-                if (_window.CmbEmployeeWojewodztwo.SelectedIndex < 0) { MessageBox.Show("Bład wyboru województwa", "Bład", MessageBoxButton.OK); }
-                else
-                {
+                    int wiek = Int32.Parse(_window.TxbEmployeeWiek.Text);
                     {
                         Pracownik pracownik = new Pracownik()
                         {

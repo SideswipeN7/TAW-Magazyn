@@ -38,7 +38,12 @@ namespace Client.Communication
             }
             catch (Exception ex)
             {
-               WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  GetSuppliers: {ex}{Environment.NewLine}");
+                if (ex.Message.Contains("500"))
+                {
+                    throw new Exception("Server Error");
+                }
+                else
+                    WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  GetSuppliers: {ex}{Environment.NewLine}");
             }
             throw new Exception("Exception in GetSuppliers");
         }
