@@ -39,7 +39,7 @@ namespace Client.Communication
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}Error in DeleteEmployee: {ex}{Environment.NewLine}");
+                System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  DeleteEmployee: {ex}{Environment.NewLine}");
             }
             throw new Exception("Exception in DeleteEmployee");
         }
@@ -58,7 +58,7 @@ namespace Client.Communication
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}Error in GetEmployees: {ex}{Environment.NewLine}");
+                System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  GetEmployees: {ex}{Environment.NewLine}");
             }
             throw new Exception("Exception in GetEmployees");
         }
@@ -78,7 +78,7 @@ namespace Client.Communication
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}Error in ModifyEmployee: {ex}{Environment.NewLine}");
+                System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  ModifyEmployee: {ex}{Environment.NewLine}");
             }
             throw new Exception("Exception in ModifyEmployee");
         }
@@ -99,7 +99,7 @@ namespace Client.Communication
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}Error in RegisterEmplyee: {ex}{Environment.NewLine}");
+                System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  RegisterEmplyee: {ex}{Environment.NewLine}");
             }
             throw new Exception("Exception in RegisterEmployee");
         }

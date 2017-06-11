@@ -41,7 +41,7 @@ namespace Client.Communication
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}Error in GetItems: {ex}{Environment.NewLine}");
+                System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  GetItems: {ex}{Environment.NewLine}");
             }
             throw new Exception("Exception in GetItems");
         }
@@ -63,7 +63,7 @@ namespace Client.Communication
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}Error in ChangeItem: {ex}{Environment.NewLine}");
+                System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  ChangeItem: {ex}{Environment.NewLine}");
             }
             throw new Exception("Exception in ChangeAddress");
         }
@@ -84,7 +84,7 @@ namespace Client.Communication
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}Error in RegisterItem: {ex}{Environment.NewLine}");
+                System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  RegisterItem: {ex}{Environment.NewLine}");
             }
             throw new Exception("Exception in RegisterItem");
         }
@@ -101,7 +101,7 @@ namespace Client.Communication
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}Error in DeleteItem: {ex}{Environment.NewLine}");
+                System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  DeleteItem: {ex}{Environment.NewLine}");
             }
         }
     }

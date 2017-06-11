@@ -40,7 +40,7 @@ namespace Client.Communication
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}Error in GetSuppliers: {ex}{Environment.NewLine}");
+                System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  GetSuppliers: {ex}{Environment.NewLine}");
             }
             throw new Exception("Exception in GetSuppliers");
         }

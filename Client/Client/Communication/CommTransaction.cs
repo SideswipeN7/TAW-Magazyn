@@ -41,7 +41,7 @@ namespace Client.Communication
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}Error in RegisterTransaction: {ex}{Environment.NewLine}");
+                System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}Error in {nameof(_instance)} RegisterTransaction: {ex}{Environment.NewLine}");
                 return 0;
             }
         }
@@ -60,7 +60,7 @@ namespace Client.Communication
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"{Environment.NewLine} in GetTransactions: {ex}{Environment.NewLine}");
+                System.Diagnostics.Debug.WriteLine($"{Environment.NewLine} in {nameof(_instance)}  GetTransactions: {ex}{Environment.NewLine}");
             }
             throw new Exception("Exception in GetTransactions");
         }

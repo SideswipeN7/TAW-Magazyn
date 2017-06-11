@@ -41,7 +41,7 @@ namespace Client.Communication
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}Error in ChangeCategory: {ex}{Environment.NewLine}");
+                System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  ChangeCategory: {ex}{Environment.NewLine}");
             }
             throw new Exception("Exception in ChangeCategory");
         }
@@ -58,7 +58,7 @@ namespace Client.Communication
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}Error in DeleteCategory: {ex}{Environment.NewLine}");
+                System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  DeleteCategory: {ex}{Environment.NewLine}");
             }
             throw new Exception("Exception in DeleteCategory");
         }
@@ -77,7 +77,7 @@ namespace Client.Communication
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}Error in GetCategories: {ex}{Environment.NewLine}");
+                System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  GetCategories: {ex}{Environment.NewLine}");
             }
             throw new Exception("Exception in GetCategories");
         }
@@ -98,7 +98,7 @@ namespace Client.Communication
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}Error in RegisterCategory: {ex}{Environment.NewLine}");
+                System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  RegisterCategory: {ex}{Environment.NewLine}");
             }
             return false;
         }

@@ -43,7 +43,7 @@ namespace Client.Communication
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}Error in ChangeClient: {ex}{Environment.NewLine}");
+                System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  ChangeClient: {ex}{Environment.NewLine}");
             }
             throw new Exception("Exception in ChangeClient");
         }
@@ -60,7 +60,7 @@ namespace Client.Communication
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}Error in DeleteClient: {ex}{Environment.NewLine}");
+                System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  DeleteClient: {ex}{Environment.NewLine}");
             }
             throw new Exception("Exception in DeleteClient");
         }
@@ -79,7 +79,7 @@ namespace Client.Communication
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}Error in GetClients: {ex}{Environment.NewLine}");
+                System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  GetClients: {ex}{Environment.NewLine}");
             }
             throw new Exception("Exception in GetClients");
         }
@@ -102,7 +102,7 @@ namespace Client.Communication
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}Exception in RegisterClient: {ex}{Environment.NewLine}");
+                System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}Exception in {nameof(_instance)}  RegisterClient: {ex}{Environment.NewLine}");
                 return 0;
             }
             return 0;
@@ -125,7 +125,7 @@ namespace Client.Communication
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}Error in ChangeAddress: {ex}{Environment.NewLine}");
+                System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  ChangeAddress: {ex}{Environment.NewLine}");
             }
             throw new Exception("Exception in ChangeAddress");
         }
