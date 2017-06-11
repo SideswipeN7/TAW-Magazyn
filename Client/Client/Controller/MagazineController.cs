@@ -198,7 +198,7 @@ namespace Client.Controller
             }
             catch (Exception ex)
             {
-                WriteLine($"Error in  {nameof(_instance)}  {} nameof(SearchData): {ex} ");
+                WriteLine($"Error in  {nameof(_instance)}  { nameof(SearchData)}: {ex} ");
             }
         }
 

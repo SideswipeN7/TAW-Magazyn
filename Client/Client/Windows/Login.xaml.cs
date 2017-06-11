@@ -42,10 +42,8 @@ namespace Client.Windows
             }
         }
 
-        public void ShowError()
-        {
-            MessageBox.Show("Wprowadzone dane są niepoprawne");
-        }
+        public void ShowError()=>MessageBox.Show("Wprowadzone dane są niepoprawne");
+        
 
         private Admin LogIn(string login, string password)
         {
