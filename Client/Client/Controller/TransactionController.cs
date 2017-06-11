@@ -12,7 +12,7 @@ using System.Windows.Controls;
 
 namespace Client.Controller
 {
-    internal class TransactionController : IWork
+    public class TransactionController : IWork
     {
         private InProgress inProg;
         private static TransactionController _instance;
@@ -36,6 +36,16 @@ namespace Client.Controller
             }
             _instance._window = window;
             _instance.ID = id;
+            return _instance;
+        }
+
+        public static TransactionController GetInstance(ICommTransaction _comm)
+        {
+            if (_instance == null)
+            {
+                _instance = new TransactionController();
+            }
+            _instance._comm = _comm;
             return _instance;
         }
 
@@ -104,7 +114,7 @@ namespace Client.Controller
             throw new NotImplementedException();
         }
 
-        public void GetData()
+        public IEnumerable<object> GetData()
         {
             try
             {
@@ -118,6 +128,7 @@ namespace Client.Controller
                         transakcje = x.Result.ToList();
 
                         ShowData();
+                        return transakcje;
                     });
                 });
             }
@@ -125,6 +136,7 @@ namespace Client.Controller
             {
                 System.Diagnostics.Debug.WriteLine($"Error in Transaction Controller GetData: {ex}");
             }
+            return null;
         }
 
         public void SearchData()

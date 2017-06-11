@@ -11,7 +11,7 @@ using System.Windows.Controls;
 
 namespace Client.Controller
 {
-    internal class ItemsController : IWork
+    public class ItemsController : IWork
     {
         private static ItemsController _instance;
         private Admin _window { get; set; }
@@ -32,6 +32,15 @@ namespace Client.Controller
                 _instance = new ItemsController();
             }
             _instance._window = window;
+            return _instance;
+        }
+        public static ItemsController GetInstance(ICommItems _comm)
+        {
+            if (_instance == null)
+            {
+                _instance = new ItemsController();
+            }
+            _instance._comm = _comm;
             return _instance;
         }
 
@@ -215,7 +224,7 @@ namespace Client.Controller
             }
         }
 
-        public void GetData()
+        public IEnumerable<object> GetData()
         {
             try
             {
@@ -231,6 +240,7 @@ namespace Client.Controller
                         //{
                         //    if (_window.RbItemSzukaj.IsChecked == false)
                         ShowData();
+                        return art;
                         //}));
                     });
                 });
@@ -239,6 +249,7 @@ namespace Client.Controller
             {
                 System.Diagnostics.Debug.WriteLine($"Error in Item Controller GetData: {ex}");
             }
+            return null;
         }
 
         public void SearchData()

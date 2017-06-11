@@ -1,9 +1,16 @@
 ﻿using Client.Interfaces;
 using Client.Model;
+using Client.Windows;
+using Client.Controller;
 using FluentAssertions;
 using Moq;
 using NUnit.Framework;
-
+using System.Collections;
+using System.Collections.Generic;
+using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace TDD_TEST
 {
@@ -18,6 +25,13 @@ namespace TDD_TEST
         Mock<ICommSupplier> mockICommSupplier;
         Mock<ICommTransaction> mockICommTransaction;
 
+        CategoryController category;
+        ClientsController client;
+        EmployeeController employee;
+        ItemsController item;
+        MagazineController magazine;
+        TransactionController transaction;
+
         [SetUp]
         public void Setup()
         {
@@ -27,21 +41,109 @@ namespace TDD_TEST
             mockICommItems = new Mock<ICommItems>();
             mockICommSupplier = new Mock<ICommSupplier>();
             mockICommTransaction = new Mock<ICommTransaction>();
+
+
+            //client = ClientsController.GetInstance();
+            //employee = EmployeeController.GetInstance();
+            //magazine = MagazineController.GetInstance();
+            //transaction = TransactionController.GetInstance();
+          
+
+
+           
         }
 
         [Test]
+        [Parallelizable(ParallelScope.All)]
         public void GetCategories()
         {
-            ////ClientController =>Mock controller =>testc metody
+            //Arrange
+            mockICommCategory.Setup(x => x.GetCategories()).Returns(TestCategory);
+            category = CategoryController.GetInstance(mockICommCategory.Object);           
 
-           // mockICommCategory.Setup(x => x.GetCategories());
-           // IEnumerable<Kategoria> result = comm.GetCategories();
-           // result.ShouldBeEquivalentTo(new List<Kategoria> {new Kategoria {idKategorii=1,Nazwa="Komputery" },
-           //new Kategoria {idKategorii=2,Nazwa="Telefony" },
-           //new Kategoria {idKategorii=3,Nazwa="Aparaty"},
-           //new Kategoria {idKategorii=4,Nazwa="Pralki" },
-           //new Kategoria {idKategorii=5,Nazwa="Telewizory" } });
+            //Act
+            var res = category.GetData();
+
+            //Assert
+            res.Should().Equals(TestCategory);
         }
+
+        [Test]
+        [Parallelizable(ParallelScope.All)]
+        public void GetClients()
+        {
+            //Arrange
+            mockICommClient.Setup(x => x.GetClients()).Returns(TestClient);
+            client = ClientsController.GetInstance(mockICommClient.Object);
+
+            //Act
+            var res = client.GetData();
+
+            //Assert
+            res.Should().Equals(TestClient);
+        }
+
+        [Test]
+        [Parallelizable(ParallelScope.All)]
+        public void GetEmployees()
+        {
+            //Arrange
+            mockICommEmployee.Setup(x => x.GetEmpoyees()).Returns(TestEmployee);
+            employee = EmployeeController.GetInstance(mockICommEmployee.Object);
+
+            //Act
+            var res = employee.GetData();
+
+            //Assert
+            res.Should().Equals(TestEmployee);
+        }
+
+        [Test]
+        [Parallelizable(ParallelScope.All)]
+        public void GetItems()
+        {
+            //Arrange
+            mockICommItems.Setup(x => x.GetItems()).Returns(TestItem);
+            item = ItemsController.GetInstance(mockICommItems.Object);
+
+            //Act
+            var res = item.GetData();
+
+            //Assert
+            res.Should().Equals(TestItem);
+        }
+
+        [Test]
+        [Parallelizable(ParallelScope.All)]
+        public void GetMagazine()
+        {
+            //Arrange
+            mockICommItems.Setup(x => x.GetItems()).Returns(TestItem);
+            magazine = MagazineController.GetInstance(mockICommItems.Object);
+
+            //Act
+            var res = magazine.GetData();
+
+            //Assert
+            res.Should().Equals(TestItem);
+        }
+
+        [Test]
+        [Parallelizable(ParallelScope.All)]
+        public void GetTransactions()
+        {
+            //Arrange
+            mockICommTransaction.Setup(x => x.GetTransactions()).Returns(TestTransaction);
+            transaction = TransactionController.GetInstance(mockICommTransaction.Object);
+
+            //Act
+            var res = transaction.GetData();
+
+            //Assert
+            res.Should().Equals(TestTransaction);
+        }
+
+
 
         //[Test]
         //public void GetItems()
@@ -241,40 +343,39 @@ namespace TDD_TEST
         //}
 
         //Test cases
-        public static Kategoria[] TestChangeCategoryCases =
+        public static IEnumerable<Kategoria> TestCategory = new List<Kategoria>()
         {
             new Kategoria { idKategorii = 1, Nazwa = "Komputery"},
             new Kategoria { idKategorii = 999, Nazwa = "Test"}
         };
 
-        public static Dostawca[] TestChangeSupplierCases =
+        public static IEnumerable<Klient> TestClient = new List<Klient>()
         {
-            new Dostawca { idDostawcy = 1, Nazwa = "Kuries"},
-            new Dostawca { idDostawcy = 999, Nazwa = "Test"}
+            new Klient { idKlienta = 1, Imie ="Mariusz", Nazwisko ="Cebula", Nazwa_firmy = "Cebulex", idAdresu = 3 },
+            new Klient { idKlienta = 999, Imie ="Test", Nazwisko ="Test", Nazwa_firmy = "Test", idAdresu = 3 }
         };
 
-        public static Transakcja[] TestRegisterTransactionCases =
+        public static IEnumerable<Pracownik> TestEmployee= new List<Pracownik>()
+        {
+            new Pracownik { Haslo="ala",idPracownika=1,idAdresu=1,Imie="Marek",Login="Kolek",Nazwisko="Stopolski",Sudo=0,Wiek=45},
+             new Pracownik { Haslo="elokiu",idPracownika=2,idAdresu=2,Imie="Gierwant",Login="Ekstruder123",Nazwisko="Koniecpolski",Sudo=1,Wiek=99}
+        };
+
+        public static IEnumerable<Artykul> TestItem = new List<Artykul>()
+        {
+            new Artykul { Cena=55,idArtykulu=1,idKategorii=1,Ilosc=98,Nazwa="Ukulele"},
+            new Artykul { Cena=35,idArtykulu=2,idKategorii=3,Ilosc=5,Nazwa="Szkielet"},
+            new Artykul { Cena=95,idArtykulu=666,idKategorii=56,Ilosc=48,Nazwa="Gramofon"}
+        };
+
+        public static IEnumerable<Transakcja> TestTransaction = new List<Transakcja>()
         {
             new Transakcja {idTransakcji = 2 , Data = new System.DateTime(2017,06,01,13,45,30), idKlienta = 1, idPracownika = 3, idDostawcy =1},
             new Transakcja {idTransakcji = 9999, Data = new System.DateTime(2017,06,01,13,45,30), idKlienta = 1, idPracownika = 3, idDostawcy =1}
         };
 
-        public static Adres[] TestChangeAddressCases =
-        {
-            new Adres { idAdresu = 1, Miejscowosc = "Czeladz", Kod_pocztowy = "41-250", Wojewodztwo = "Slaskie" },
-            new Adres { idAdresu = 999, Miejscowosc = "Testowa", Kod_pocztowy = "11-111", Wojewodztwo = "Slaskie" }
-        };
+       
 
-        public static Dostawca[] TestRegisterSupplyCases =
-        {
-            new Dostawca { idDostawcy = 1, Nazwa = "Kuriers"},
-            new Dostawca { idDostawcy= 999, Nazwa="999"}
-        };
-
-        public static Klient[] TestChangeClientCases =
-        {
-            new Klient { idKlienta = 1, Imie ="Mariusz", Nazwisko ="Cebula", Nazwa_firmy = "Cebulex", idAdresu = 3 },
-            new Klient { idKlienta = 999, Imie ="Test", Nazwisko ="Test", Nazwa_firmy = "Test", idAdresu = 3 }
-        };
+       
     }
 }

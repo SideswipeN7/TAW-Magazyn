@@ -10,7 +10,7 @@ using System.Windows.Controls;
 
 namespace Client.Controller
 {
-    internal class EmployeeController : IWork
+    public class EmployeeController : IWork
     {
         private static EmployeeController _instance;
         private Admin _window;
@@ -29,6 +29,15 @@ namespace Client.Controller
                 _instance = new EmployeeController();
             }
             _instance._window = window;
+            return _instance;
+        }
+        public static EmployeeController GetInstance(ICommEmployee _comm)
+        {
+            if (_instance == null)
+            {
+                _instance = new EmployeeController();
+            }
+            _instance._comm = _comm;
             return _instance;
         }
 
@@ -256,7 +265,7 @@ namespace Client.Controller
         }
 
         //pobierz dane z BD a potem je pokaż
-        public void GetData()
+        public IEnumerable<object> GetData()
         {
             try
             {
@@ -267,12 +276,14 @@ namespace Client.Controller
               {
                   employees = x.Result;
                   ShowData();
+                  return employees;
               }));
             }
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine($"Error in Employee Controller GetData: {ex}");
             }
+            return null;
         }
 
         public void SearchData()

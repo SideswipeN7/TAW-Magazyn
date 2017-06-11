@@ -11,7 +11,7 @@ using System.Windows.Controls;
 
 namespace Client.Controller
 {
-    internal class MagazineController : IWork
+    public class MagazineController : IWork
     {
         private Admin _window { get; set; }
         private static MagazineController _instance;
@@ -32,6 +32,15 @@ namespace Client.Controller
                 _instance = new MagazineController();
             }
             _instance._window = window;
+            return _instance;
+        }
+        public static MagazineController GetInstance(ICommItems _comm)
+        {
+            if (_instance == null)
+            {
+                _instance = new MagazineController();
+            }
+            _instance._comm = _comm;
             return _instance;
         }
 
@@ -195,7 +204,7 @@ namespace Client.Controller
             }
         }
 
-        public void GetData()
+        public IEnumerable<object> GetData()
         {
             try
             {
@@ -208,6 +217,7 @@ namespace Client.Controller
                     {
                         art = x.Result.ToList();
                         ShowData();
+                        return art;
                     });
                 });
             }
@@ -215,6 +225,7 @@ namespace Client.Controller
             {
                 System.Diagnostics.Debug.WriteLine($"Error in Magazine Controller GetData: {ex}");
             }
+            return null;
         }
     }
 }

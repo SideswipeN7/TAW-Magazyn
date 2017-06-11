@@ -11,7 +11,7 @@ using System.Windows;
 
 namespace Client.Controller
 {
-    internal class ClientsController : IWork
+    public class ClientsController : IWork
     {
         private static ClientsController _instance;
         private Admin _window;
@@ -34,8 +34,17 @@ namespace Client.Controller
             _instance._window = window;
             return _instance;
         }
+        public static ClientsController GetInstance(ICommClient _comm)
+        {
+            if (_instance == null)
+            {
+                _instance = new ClientsController();
+            }
+            _instance._comm = _comm;
+            return _instance;
+        }
 
-        public void GetData()
+        public IEnumerable<object> GetData()
         {
             try
             {
@@ -48,13 +57,16 @@ namespace Client.Controller
                     {
                         clients = x.Result.ToList();
                         ShowData();
+                        return clients;
                     });
+                    
                 });
             }
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine($"Error in Client Controller GetData: {ex}");
             }
+            return null;
         }
 
         public void AddData()

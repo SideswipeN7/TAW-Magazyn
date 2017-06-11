@@ -18,10 +18,10 @@ namespace Client.Adapter
         private Admin _window;
         private int ID { get; set; }
         private static Service _instance;
-        private ICommSupplier _commSupp;
-        private ICommItems _commItem;
-        private ICommClient _commClie;
-        private ICommCategory _commCat;
+        public ICommSupplier _commSupp { get; set; }
+        public ICommItems _commItem { get; set; }
+        public ICommClient _commClie { get; set; }
+        public ICommCategory _commCat { get; set; }
 
         protected static List<string> states = new List<string>()
         {"Dolonośląskie","Kujawsko-Pomorskie","Lubelskie","Lubuskie","Łódzkie","Małopolskie","Mazowieckie", "Opolskie","Podkarpackie","Podlaskie","Pomorskie","Śląskie","Świętokrzyskie","Warmińsko-Mazurskie","Wielkopolskie","Zachodniopomorskie"};

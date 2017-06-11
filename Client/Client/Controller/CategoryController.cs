@@ -10,12 +10,12 @@ using System.Windows;
 
 namespace Client.Controller
 {
-    internal class CategoryController : IWork
+    public class CategoryController : IWork
     {
         private static CategoryController _instance;
         private Admin _window { get; set; }
-        private ICommCategory _comm;
-        private List<Kategoria> categories;
+        public  ICommCategory _comm { get; set; }
+        public List<Kategoria> categories;
         private List<Kategoria> categoriesSeareched;
 
         protected CategoryController()
@@ -31,6 +31,15 @@ namespace Client.Controller
                 _instance = new CategoryController();
             }
             _instance._window = window;
+            return _instance;
+        }
+        public static CategoryController GetInstance(ICommCategory _comm)
+        {
+            if (_instance == null)
+            {
+                _instance = new CategoryController();
+            }
+            _instance._comm = _comm;
             return _instance;
         }
 
@@ -94,7 +103,7 @@ namespace Client.Controller
             }
         }
 
-        public void GetData()
+        public  IEnumerable<object> GetData()
         {
             try
             {
@@ -106,18 +115,19 @@ namespace Client.Controller
                     Task.Factory.StartNew(() =>
                     {
                         categories = x.Result.ToList();
-                        _window.Dispatcher.BeginInvoke(new Action(() =>
-                        {
-                            if (_window.ChbCategoryNazwa.IsChecked == false)
-                                ShowData();
-                        }));
+                        //_window.Dispatcher.BeginInvoke(new Action(() =>
+                        //{
+                        //    if (_window.ChbCategoryNazwa.IsChecked == false)
+                        //        ShowData();
+                        //}));
+                        return categories;
                     });
                 });
             }
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine($"Error in Category Controller GetData: {ex}");
-            }
+            }                return null;
         }
 
         public void ShowData()

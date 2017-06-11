@@ -1,4 +1,6 @@
-﻿namespace Client.Controller
+﻿using System.Collections.Generic;
+
+namespace Client.Controller
 {
     internal interface IWork
     {
@@ -12,7 +14,7 @@
 
         void AddData();
 
-        void GetData();
+        IEnumerable<object> GetData();
 
         void SearchData();
     }

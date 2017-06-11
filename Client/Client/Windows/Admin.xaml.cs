@@ -15,7 +15,7 @@ namespace Client.Windows
         private ItemsController _itemController = ItemsController.GetInstance(_instance);
         public int ID { get; set; }
 
-        private Adapter.Service _service { get; set; }
+        public Adapter.Service _service { get; set; }
 
         public static Admin GetInstance(int id, bool sudo)
         {
