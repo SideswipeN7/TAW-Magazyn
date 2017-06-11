@@ -421,7 +421,7 @@ namespace Client.Adapter
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Adapter ShowPassword: {ex}");
+                System.Diagnostics.Debug.WriteLine($"Error in Adapter ShowPassword: {ex} " + nameof(ShowPassword));
             }
         }
 
@@ -486,7 +486,7 @@ namespace Client.Adapter
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Adapter SelectClientDoTransactionSurname: {ex}");
+                System.Diagnostics.Debug.WriteLine($"Error in Adapter SelectClientDoTransactionSurname: {ex} " + nameof(SelectClientDoTransactionSurname));
             }
         }
 
@@ -520,7 +520,7 @@ namespace Client.Adapter
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Adapter SelectClientDoTransactionFirm: {ex}");
+                System.Diagnostics.Debug.WriteLine($"Error in Adapter SelectClientDoTransactionFirm: {ex} " + nameof(SelectClientDoTransactionFirm));
             }
         }
 
@@ -542,7 +542,7 @@ namespace Client.Adapter
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Adapter AddToCart: {ex}");
+                System.Diagnostics.Debug.WriteLine($"Error in Adapter AddToCart: {ex} " + nameof(AddToCart));
             }
         }
 
@@ -558,7 +558,7 @@ namespace Client.Adapter
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Adapter DeleteFormCart: {ex}");
+                System.Diagnostics.Debug.WriteLine($"Error in Adapter DeleteFormCart: {ex} " + nameof(DeleteFormCart));
             }
         }
 
@@ -575,7 +575,7 @@ namespace Client.Adapter
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Adapter UpadtePrice: {ex}");
+                System.Diagnostics.Debug.WriteLine($"Error in Adapter UpadtePrice: {ex} " + nameof(UpadtePrice));
             }
         }
 
@@ -593,7 +593,7 @@ namespace Client.Adapter
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Adapter CmbCategoryIdChange: {ex}");
+                System.Diagnostics.Debug.WriteLine($"Error in Adapter CmbCategoryIdChange: {ex} " + nameof(CmbCategoryIdChange));
             }
         }
 
@@ -653,7 +653,7 @@ namespace Client.Adapter
                     });
                 }
                 catch (Exception ex)
-                { System.Diagnostics.Debug.WriteLine($"\nERROR {ex}"); }
+                { System.Diagnostics.Debug.WriteLine($"\nERROR {ex} " + nameof(LoadAll)); }
             }
             //Products for transactions
             LoadTransactionsDoProducts();
@@ -675,7 +675,7 @@ namespace Client.Adapter
                 _window.RbOverviewGridOneWszystkie.IsChecked = true;
             }
             catch (Exception ex)
-            { System.Diagnostics.Debug.WriteLine($"Error in Adapter SelectAll: {ex}"); }
+            { System.Diagnostics.Debug.WriteLine($"Error in Adapter SelectAll: {ex} " + nameof(SelectaAll)); }
         }
 
         private void Load(IEnumerable<Dostawca> list)
@@ -694,7 +694,7 @@ namespace Client.Adapter
                 }));
             }
             catch (Exception ex)
-            { System.Diagnostics.Debug.WriteLine($"Error in Adapter Load: {ex}"); }
+            { System.Diagnostics.Debug.WriteLine($"Error in Adapter Load: {ex} " + nameof(Load)); }
         }
 
         private void LoadTransactionsDoProducts()
@@ -709,7 +709,7 @@ namespace Client.Adapter
                 }
             }
             catch (Exception ex)
-            { System.Diagnostics.Debug.WriteLine($"Error in Adapter LoadTransactionsDoProducts: {ex}"); }
+            { System.Diagnostics.Debug.WriteLine($"Error in Adapter LoadTransactionsDoProducts: {ex} " + nameof(LoadTransactionsDoProducts)); }
         }
 
         public void LoadClients()
@@ -719,7 +719,7 @@ namespace Client.Adapter
                 LoadClientsToCmb(_commClie.GetClients());
             }
             catch (Exception ex)
-            { System.Diagnostics.Debug.WriteLine($"Error in Adapter LoadClients: {ex}"); }
+            { System.Diagnostics.Debug.WriteLine($"Error in Adapter LoadClients: {ex} " + nameof(LoadClients)); }
         }
 
         private void LoadClientsToCmb(IEnumerable<Klient> clients)
@@ -739,7 +739,7 @@ namespace Client.Adapter
                 }
             }
             catch (Exception ex)
-            { System.Diagnostics.Debug.WriteLine($"Error in Adapter LoadClientsToCmb: {ex}"); }
+            { System.Diagnostics.Debug.WriteLine($"Error in Adapter LoadClientsToCmb: {ex} " + nameof(LoadClientsToCmb)); }
         }
 
         public void LoadCategories()

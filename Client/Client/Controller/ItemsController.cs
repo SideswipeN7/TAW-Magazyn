@@ -81,7 +81,7 @@ namespace Client.Controller
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Item Controller AddData: {ex}");
+                System.Diagnostics.Debug.WriteLine($"Error in Item Controller AddData: {ex} " + nameof(AddData));
             }
         }
 
@@ -122,7 +122,7 @@ namespace Client.Controller
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Item Controller ChangeData: {ex}");
+                System.Diagnostics.Debug.WriteLine($"Error in Item Controller ChangeData: {ex} " + nameof(ChangeData));
             }
         }
 
@@ -138,7 +138,7 @@ namespace Client.Controller
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Item Controller DeleteData: {ex}");
+                System.Diagnostics.Debug.WriteLine($"Error in Item Controller DeleteData: {ex} " + nameof(DeleteData));
             }
         }
 
@@ -167,7 +167,7 @@ namespace Client.Controller
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Item Controller ShowData: {ex}");
+                System.Diagnostics.Debug.WriteLine($"Error in Item Controller ShowData: {ex} " + nameof(ShowData));
             }
         }
 
@@ -191,7 +191,7 @@ namespace Client.Controller
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Item Controller ShowSelectedData: {ex}");
+                System.Diagnostics.Debug.WriteLine($"Error in Item Controller ShowSelectedData: {ex} " + nameof(ShowSelectedData));
             }
         }
 
@@ -214,7 +214,7 @@ namespace Client.Controller
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Item Controller GetData: {ex}");
+                System.Diagnostics.Debug.WriteLine($"Error in Item Controller GetData: {ex} " + nameof(GetData));
             }
             return null;
         }
@@ -311,7 +311,7 @@ namespace Client.Controller
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Item Controller SearchData: {ex}");
+                System.Diagnostics.Debug.WriteLine($"Error in Item Controller SearchData: {ex} " + nameof(SearchData));
             }
         }
     }

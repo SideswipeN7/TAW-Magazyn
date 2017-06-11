@@ -136,7 +136,7 @@ namespace Client.Facture
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Facture NewFacture: {ex}");
+                System.Diagnostics.Debug.WriteLine($"Error in Facture NewFacture: {ex} " + nameof(NewFacture));
             }
         }
     }

@@ -64,7 +64,7 @@ namespace Client.Controller
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Client Controller GetData: {ex}");
+                System.Diagnostics.Debug.WriteLine($"Error in Client Controller GetData: {ex} " + nameof(GetData));
             }
             return null;
         }
@@ -95,7 +95,7 @@ namespace Client.Controller
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Client Controller AddData: {ex}");
+                System.Diagnostics.Debug.WriteLine($"Error in Client Controller AddData: {ex} " + nameof(AddData));
             }
         }
 
@@ -130,7 +130,7 @@ namespace Client.Controller
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Client Controller AddData: {ex}");
+                System.Diagnostics.Debug.WriteLine($"Error in Client Controller ChangeData: {ex} " + nameof(ChangeData));
             }
         }
 
@@ -146,7 +146,7 @@ namespace Client.Controller
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Client Controller DeleteData: {ex}");
+                System.Diagnostics.Debug.WriteLine($"Error in Client Controller DeleteData: {ex} " + nameof(DeleteData));
             }
         }
 
@@ -171,7 +171,7 @@ namespace Client.Controller
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Client Controller ShowData: {ex}");
+                System.Diagnostics.Debug.WriteLine($"Error in Client Controller ShowData: {ex} " + nameof(ShowData));
             }
         }
 
@@ -191,7 +191,7 @@ namespace Client.Controller
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Client Controller ShowSelectedData: {ex}");
+                System.Diagnostics.Debug.WriteLine($"Error in Client Controller ShowSelectedData: {ex} " + nameof(ShowSelectedData));
             }
         }
 
@@ -268,7 +268,7 @@ namespace Client.Controller
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Client Controller SearchData: {ex}");
+                System.Diagnostics.Debug.WriteLine($"Error in Client Controller SearchData: {ex} " + nameof(SearchData));
             }
         }
     }
