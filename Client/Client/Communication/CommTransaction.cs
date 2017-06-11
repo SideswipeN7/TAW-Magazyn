@@ -11,10 +11,10 @@ using static System.Diagnostics.Debug;
 
 namespace Client.Communication
 {
-    class CommTransaction: ICommTransaction
+    class CommTransaction : ICommTransaction
     {
         private static CommTransaction _instance;
-        private string urlAddress {  get; } = ("http://c414305-001-site1.btempurl.com");
+        private string urlAddress { get; } = ("http://c414305-001-site1.btempurl.com");
 
         protected CommTransaction() { }
 
@@ -25,7 +25,7 @@ namespace Client.Communication
                 _instance = new CommTransaction();
             }
             return _instance;
-        }  
+        }
 
         public int RegisterTransaction(Transakcja transakcja)
         {
@@ -42,7 +42,12 @@ namespace Client.Communication
             }
             catch (Exception ex)
             {
-               WriteLine($"{Environment.NewLine}Error in {nameof(_instance)} RegisterTransaction: {ex}{Environment.NewLine}");
+                if (ex.Message.Contains("500"))
+                {
+                    throw new Exception("Server Error");
+                }
+                else
+                    WriteLine($"{Environment.NewLine}Error in {nameof(_instance)} RegisterTransaction: {ex}{Environment.NewLine}");
                 return 0;
             }
         }
@@ -61,7 +66,12 @@ namespace Client.Communication
             }
             catch (Exception ex)
             {
-               WriteLine($"{Environment.NewLine} in {nameof(_instance)}  GetTransactions: {ex}{Environment.NewLine}");
+                if (ex.Message.Contains("500"))
+                {
+                    throw new Exception("Server Error");
+                }
+                else
+                    WriteLine($"{Environment.NewLine} in {nameof(_instance)}  GetTransactions: {ex}{Environment.NewLine}");
             }
             throw new Exception("Exception in GetTransactions");
         }
