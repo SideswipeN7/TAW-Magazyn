@@ -1,12 +1,10 @@
 ﻿using Client.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Client.Model;
 using RestSharp;
 using Newtonsoft.Json;
+using static System.Diagnostics.Debug;
 
 namespace Client.Communication
 {
@@ -40,7 +38,7 @@ namespace Client.Communication
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  GetSuppliers: {ex}{Environment.NewLine}");
+               WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  GetSuppliers: {ex}{Environment.NewLine}");
             }
             throw new Exception("Exception in GetSuppliers");
         }

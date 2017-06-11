@@ -1,13 +1,11 @@
 ﻿using Client.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Client.Model;
 using RestSharp;
 using Newtonsoft.Json;
 using System.Net;
+using static System.Diagnostics.Debug;
 
 namespace Client.Communication
 {
@@ -43,7 +41,7 @@ namespace Client.Communication
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  ChangeClient: {ex}{Environment.NewLine}");
+               WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  ChangeClient: {ex}{Environment.NewLine}");
             }
             throw new Exception("Exception in ChangeClient");
         }
@@ -60,7 +58,7 @@ namespace Client.Communication
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  DeleteClient: {ex}{Environment.NewLine}");
+               WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  DeleteClient: {ex}{Environment.NewLine}");
             }
             throw new Exception("Exception in DeleteClient");
         }
@@ -79,7 +77,7 @@ namespace Client.Communication
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  GetClients: {ex}{Environment.NewLine}");
+                WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  GetClients: {ex}{Environment.NewLine}");
             }
             throw new Exception("Exception in GetClients");
         }
@@ -102,7 +100,7 @@ namespace Client.Communication
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}Exception in {nameof(_instance)}  RegisterClient: {ex}{Environment.NewLine}");
+                WriteLine($"{Environment.NewLine}Exception in {nameof(_instance)}  RegisterClient: {ex}{Environment.NewLine}");
                 return 0;
             }
             return 0;
@@ -125,7 +123,7 @@ namespace Client.Communication
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  ChangeAddress: {ex}{Environment.NewLine}");
+                WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  ChangeAddress: {ex}{Environment.NewLine}");
             }
             throw new Exception("Exception in ChangeAddress");
         }

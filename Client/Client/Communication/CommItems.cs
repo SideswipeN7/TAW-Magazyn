@@ -1,13 +1,11 @@
 ﻿using Client.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Client.Model;
 using System.Net;
 using RestSharp;
 using Newtonsoft.Json;
+using static System.Diagnostics.Debug;
 
 namespace Client.Communication
 {
@@ -41,7 +39,7 @@ namespace Client.Communication
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  GetItems: {ex}{Environment.NewLine}");
+               WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  GetItems: {ex}{Environment.NewLine}");
             }
             throw new Exception("Exception in GetItems");
         }
@@ -63,7 +61,7 @@ namespace Client.Communication
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  ChangeItem: {ex}{Environment.NewLine}");
+                WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  ChangeItem: {ex}{Environment.NewLine}");
             }
             throw new Exception("Exception in ChangeAddress");
         }
@@ -84,7 +82,7 @@ namespace Client.Communication
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  RegisterItem: {ex}{Environment.NewLine}");
+               WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  RegisterItem: {ex}{Environment.NewLine}");
             }
             throw new Exception("Exception in RegisterItem");
         }
@@ -101,7 +99,7 @@ namespace Client.Communication
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  DeleteItem: {ex}{Environment.NewLine}");
+               WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  DeleteItem: {ex}{Environment.NewLine}");
             }
         }
     }

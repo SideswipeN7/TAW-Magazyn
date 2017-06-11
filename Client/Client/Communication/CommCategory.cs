@@ -5,6 +5,7 @@ using Client.Model;
 using RestSharp;
 using System.Net;
 using Newtonsoft.Json;
+using static System.Diagnostics.Debug;
 
 namespace Client.Communication
 {
@@ -41,7 +42,7 @@ namespace Client.Communication
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  ChangeCategory: {ex}{Environment.NewLine}");
+               WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  ChangeCategory: {ex}{Environment.NewLine}");
             }
             throw new Exception("Exception in ChangeCategory");
         }
@@ -58,7 +59,7 @@ namespace Client.Communication
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  DeleteCategory: {ex}{Environment.NewLine}");
+               WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  DeleteCategory: {ex}{Environment.NewLine}");
             }
             throw new Exception("Exception in DeleteCategory");
         }
@@ -77,7 +78,7 @@ namespace Client.Communication
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  GetCategories: {ex}{Environment.NewLine}");
+               WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  GetCategories: {ex}{Environment.NewLine}");
             }
             throw new Exception("Exception in GetCategories");
         }
@@ -98,7 +99,7 @@ namespace Client.Communication
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  RegisterCategory: {ex}{Environment.NewLine}");
+              WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  RegisterCategory: {ex}{Environment.NewLine}");
             }
             return false;
         }

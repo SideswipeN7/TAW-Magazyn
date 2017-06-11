@@ -1,13 +1,11 @@
 ﻿using Client.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Client.Model;
 using RestSharp;
 using Newtonsoft.Json;
 using System.Net;
+using static System.Diagnostics.Debug;
 
 namespace Client.Communication
 {
@@ -39,7 +37,7 @@ namespace Client.Communication
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  DeleteEmployee: {ex}{Environment.NewLine}");
+               WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  DeleteEmployee: {ex}{Environment.NewLine}");
             }
             throw new Exception("Exception in DeleteEmployee");
         }
@@ -58,7 +56,7 @@ namespace Client.Communication
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  GetEmployees: {ex}{Environment.NewLine}");
+               WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  GetEmployees: {ex}{Environment.NewLine}");
             }
             throw new Exception("Exception in GetEmployees");
         }
@@ -78,7 +76,7 @@ namespace Client.Communication
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  ModifyEmployee: {ex}{Environment.NewLine}");
+                WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  ModifyEmployee: {ex}{Environment.NewLine}");
             }
             throw new Exception("Exception in ModifyEmployee");
         }
@@ -99,7 +97,7 @@ namespace Client.Communication
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  RegisterEmplyee: {ex}{Environment.NewLine}");
+               WriteLine($"{Environment.NewLine}Error in {nameof(_instance)}  RegisterEmplyee: {ex}{Environment.NewLine}");
             }
             throw new Exception("Exception in RegisterEmployee");
         }
