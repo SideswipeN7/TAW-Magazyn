@@ -67,7 +67,7 @@ namespace WebServer.Controllers
                 }
                 catch (Exception ex)
                 {
-                    System.Diagnostics.Debug.WriteLine($"ERROR: {ex}");
+                    System.Diagnostics.Debug.WriteLine($"ERROR: {ex} " + nameof(RegisterTransItems));
                     return StatusCode(HttpStatusCode.Conflict);
                 }
             }

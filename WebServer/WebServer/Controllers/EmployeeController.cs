@@ -31,7 +31,7 @@ namespace WebServer.Controllers
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"\nERROR: {ex}");
+                System.Diagnostics.Debug.WriteLine($"\nERROR: {ex} " + nameof(GetKPracownicy));
                 return null;
             }
         }
@@ -103,7 +103,7 @@ namespace WebServer.Controllers
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"ERROR: {ex}");
+                System.Diagnostics.Debug.WriteLine($"ERROR: {ex} " + nameof(PutEmployee));
                 return false;
             }
         }

@@ -54,7 +54,7 @@ namespace WebServer.Controllers
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"ERROR: {ex}");
+                System.Diagnostics.Debug.WriteLine($"ERROR: {ex} " + nameof(ChangeSupplier));
                 return StatusCode(HttpStatusCode.NotModified);
             }
         }
@@ -81,7 +81,7 @@ namespace WebServer.Controllers
                 }
                 catch (Exception ex)
                 {
-                    System.Diagnostics.Debug.WriteLine($"ERROR: {ex}");
+                    System.Diagnostics.Debug.WriteLine($"ERROR: {ex} " + nameof(RegisterSupplier));
                     return StatusCode(HttpStatusCode.Conflict);
                 }
             }

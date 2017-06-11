@@ -40,7 +40,7 @@ namespace WebServer.Controllers
             }
             catch (DbUpdateConcurrencyException ex)
             {
-                Console.WriteLine($"Error: {ex}");
+                Console.WriteLine($"Error: {ex} " + nameof(ChangeCategory));
                 return Content(HttpStatusCode.Conflict, kategoria);
             }
 
@@ -67,7 +67,7 @@ namespace WebServer.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error: {ex}");
+                Console.WriteLine($"Error: {ex} " + nameof(RegisterCategory));
                 return Content(HttpStatusCode.Conflict, kategoria);
             }
         }
@@ -85,7 +85,7 @@ namespace WebServer.Controllers
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"ERROR: {ex}");
+                System.Diagnostics.Debug.WriteLine($"ERROR: {ex} " + nameof(DeleteCategory));
                 return HttpStatusCode.NotModified;
             }
         }

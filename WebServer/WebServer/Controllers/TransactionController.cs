@@ -92,7 +92,7 @@ namespace WebServer.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error: {ex}");
+                Console.WriteLine($"Error: {ex} " + nameof(RegisterTransaction));
                 return Content(HttpStatusCode.Conflict, transakcja);
             }
         }

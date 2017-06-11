@@ -44,7 +44,7 @@ namespace WebServer.Controllers
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"ERROR: {ex}");
+                System.Diagnostics.Debug.WriteLine($"ERROR: {ex} " + nameof(ChangeAdres));
                 return false;
             }
         }
@@ -55,12 +55,9 @@ namespace WebServer.Controllers
         [ResponseType(typeof(int))]
         public int RegisterAddress(Adres adres)
         {
-            if (!ModelState.IsValid)
-            {
-                return 0;
-            }
+            (!ModelState.IsValid) ?? 0;            
 
-            Adres newAdres = db.Ksiazka_adresow.FirstOrDefault(a => a.idAdresu == adres.idAdresu);
+            Adres newAdres = db?.Ksiazka_adresow?.FirstOrDefault(a => a.idAdresu == adres.idAdresu);            
 
             if (newAdres == null)
             {
@@ -72,7 +69,7 @@ namespace WebServer.Controllers
                 }
                 catch (DbEntityValidationException ex)
                 {
-                    System.Diagnostics.Debug.WriteLine($"ERROR: {ex}");
+                    System.Diagnostics.Debug.WriteLine($"ERROR: {ex} " + nameof(RegisterAddress));
                     return 0;
                 }
             }

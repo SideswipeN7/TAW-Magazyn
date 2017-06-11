@@ -30,7 +30,7 @@ namespace WebServer.Controllers
                 return clients;
             }catch(Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"\nERROR: {ex}");
+                System.Diagnostics.Debug.WriteLine($"\nERROR: {ex} " + nameof(GetKlienci));
                 return null;
             }
         }
@@ -73,7 +73,7 @@ namespace WebServer.Controllers
             }
             catch(Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}Exception in RegisterClient{Environment.NewLine}{ex}{Environment.NewLine}");
+                System.Diagnostics.Debug.WriteLine($"{Environment.NewLine}Exception in RegisterClient{Environment.NewLine}{ex}{Environment.NewLine}" + nameof(RegisterClient));
                 return Request.CreateResponse(HttpStatusCode.Conflict,0);
             }
         }
@@ -116,7 +116,7 @@ namespace WebServer.Controllers
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"ERROR: {ex}");
+                System.Diagnostics.Debug.WriteLine($"ERROR: {ex} " + nameof(DeleteClient));
                 return HttpStatusCode.NotModified;
             }
         }
