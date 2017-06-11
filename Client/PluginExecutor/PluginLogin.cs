@@ -32,7 +32,7 @@ namespace PluginExecutor
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in PluginLogin: {ex}");
+                System.Diagnostics.Debug.WriteLine($"Error in PluginLogin: {ex}" + nameof(Execute));
                 throw new Exception("ERROR in PluginLogin");
             }
         }

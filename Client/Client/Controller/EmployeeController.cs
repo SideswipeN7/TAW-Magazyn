@@ -100,7 +100,7 @@ namespace Client.Controller
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Employee Controller AddData: {ex}");
+                System.Diagnostics.Debug.WriteLine($"Error in Employee Controller AddData: {ex} " + nameof(AddData));
             }
         }
 
@@ -174,7 +174,7 @@ namespace Client.Controller
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Employee Controller ChangeData: {ex}");
+                System.Diagnostics.Debug.WriteLine($"Error in Employee Controller ChangeData: {ex} " + nameof(ChangeData));
             }
         }
 
@@ -191,7 +191,7 @@ namespace Client.Controller
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Employee Controller DeleteData: {ex}");
+                System.Diagnostics.Debug.WriteLine($"Error in Employee Controller DeleteData: {ex} " + nameof(DeleteData));
             }
         }
 
@@ -213,7 +213,7 @@ namespace Client.Controller
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Employee Controller ShowData: {ex}");
+                System.Diagnostics.Debug.WriteLine($"Error in Employee Controller ShowData: {ex} " + nameof(ShowData));
             }
         }
 
@@ -251,7 +251,7 @@ namespace Client.Controller
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Employee Controller ShowSelectedData: {ex}");
+                System.Diagnostics.Debug.WriteLine($"Error in Employee Controller ShowSelectedData: {ex} " + nameof(ShowSelectedData));
             }
         }
 
@@ -271,7 +271,7 @@ namespace Client.Controller
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Employee Controller GetData: {ex}");
+                System.Diagnostics.Debug.WriteLine($"Error in Employee Controller GetData: {ex} " + nameof(GetData));
             }
         }
 

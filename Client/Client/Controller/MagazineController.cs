@@ -66,7 +66,7 @@ namespace Client.Controller
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Magazine Controller ShowData: {ex}");
+                System.Diagnostics.Debug.WriteLine($"Error in Magazine Controller ShowData: {ex} " + nameof(ShowData));
             }
         }
 
@@ -88,7 +88,7 @@ namespace Client.Controller
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Magazine Controller ShowSelectedData: {ex}");
+                System.Diagnostics.Debug.WriteLine($"Error in Magazine Controller ShowSelectedData: {ex} " + nameof(ShowSelectedData));
             }
         }
 
@@ -191,7 +191,7 @@ namespace Client.Controller
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Magazine Controller SearchData: {ex}");
+                System.Diagnostics.Debug.WriteLine($"Error in Magazine Controller SearchData: {ex} " + nameof(SearchData));
             }
         }
 
@@ -213,7 +213,7 @@ namespace Client.Controller
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Magazine Controller GetData: {ex}");
+                System.Diagnostics.Debug.WriteLine($"Error in Magazine Controller GetData: {ex} " + nameof(GetData));
             }
         }
     }

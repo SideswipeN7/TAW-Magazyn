@@ -90,7 +90,7 @@ namespace Client.Controller
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Transaction Controller AddData: {ex}");
+                System.Diagnostics.Debug.WriteLine($"Error in Transaction Controller AddData: {ex} " + nameof(AddData));
             }
         }
 
@@ -123,7 +123,7 @@ namespace Client.Controller
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Transaction Controller GetData: {ex}");
+                System.Diagnostics.Debug.WriteLine($"Error in Transaction Controller GetData: {ex} " + nameof(GetData));
             }
         }
 
@@ -181,7 +181,7 @@ namespace Client.Controller
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Transaction Controller SearchData: {ex}");
+                System.Diagnostics.Debug.WriteLine($"Error in Transaction Controller SearchData: {ex} " + nameof(SearchData));
             }
         }
 
@@ -206,7 +206,7 @@ namespace Client.Controller
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Transaction Controller ShowData: {ex}");
+                System.Diagnostics.Debug.WriteLine($"Error in Transaction Controller ShowData: {ex} " + nameof(ShowData));
             }
         }
 
@@ -253,7 +253,7 @@ namespace Client.Controller
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Transaction Controller ShowSelectedData: {ex}");
+                System.Diagnostics.Debug.WriteLine($"Error in Transaction Controller ShowSelectedData: {ex} " + nameof(ShowSelectedData));
             }
         }
 
@@ -296,7 +296,7 @@ namespace Client.Controller
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Transaction Controller TransactionNew: {ex}");
+                System.Diagnostics.Debug.WriteLine($"Error in Transaction Controller TransactionNew: {ex} " + nameof(TransactionNew));
             }
         }
 
@@ -331,7 +331,7 @@ namespace Client.Controller
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Transaction Controller TransactionRegister: {ex}");
+                System.Diagnostics.Debug.WriteLine($"Error in Transaction Controller TransactionRegister: {ex} " + nameof(TransactionRegister));
             }
         }
 
@@ -371,7 +371,7 @@ namespace Client.Controller
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in Transaction Controller TransactionOld: {ex}");
+                System.Diagnostics.Debug.WriteLine($"Error in Transaction Controller TransactionOld: {ex} " + nameof(TransactionOld));
             }
         }
     }
