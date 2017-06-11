@@ -126,6 +126,8 @@
     <Compile Include="Controller\ClientsController.cs" />
     <Compile Include="Controller\EmployeeController.cs" />
     <Compile Include="Validators\ClientValidator.cs" />
+    <Compile Include="Validators\ItemAddValidator.cs" />
+    <Compile Include="Validators\ItemChangeValidator.cs" />
     <Compile Include="Validators\TransactionNewValidator.cs" />
     <Compile Include="Validators\TransactionOldValidator.cs" />
     <Compile Include="View\CategoryView.cs" />

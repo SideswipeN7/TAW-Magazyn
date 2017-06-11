@@ -207,12 +207,8 @@ namespace Client.Controller
                     Task.Factory.StartNew(() =>
                     {
                         art = x.Result.ToList();
-                        //_window.Dispatcher.BeginInvoke(new Action(() =>
-                        //{
-                        //    if (_window.RbItemSzukaj.IsChecked == false)
                         ShowData();
                         return art;
-                        //}));
                     });
                 });
             }
