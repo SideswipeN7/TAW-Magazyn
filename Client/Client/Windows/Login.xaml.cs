@@ -59,9 +59,11 @@ namespace Client.Windows
                     if (pluginType.GetInterface(typeof(IPluginLogin).Name) != null)
                     {
                         IPluginLogin TypeLoadedFromPlugin = (IPluginLogin)Activator.CreateInstance(pluginType);
-                        Dictionary<int, string> dictionary = new Dictionary<int, string>();
-                        dictionary.Add(0, login);
-                        dictionary.Add(1, password);
+                        Dictionary<int, string> dictionary = new Dictionary<int, string>()
+                        {
+                            [0] = login,
+                            [1] = password
+                        };
                         string pracownikJSON = TypeLoadedFromPlugin.Execute(dictionary);
                         if (!pracownikJSON.Equals("null"))
                         {
