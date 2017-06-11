@@ -41,16 +41,6 @@ namespace TDD_TEST
             mockICommItems = new Mock<ICommItems>();
             mockICommSupplier = new Mock<ICommSupplier>();
             mockICommTransaction = new Mock<ICommTransaction>();
-
-
-            //client = ClientsController.GetInstance();
-            //employee = EmployeeController.GetInstance();
-            //magazine = MagazineController.GetInstance();
-            //transaction = TransactionController.GetInstance();
-          
-
-
-           
         }
 
         [Test]

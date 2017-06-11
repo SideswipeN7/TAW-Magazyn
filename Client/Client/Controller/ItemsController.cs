@@ -1,6 +1,7 @@
 ﻿using Client.Communication;
 using Client.Interfaces;
 using Client.Model;
+using Client.Validators;
 using Client.Windows;
 using System;
 using System.Collections.Generic;
@@ -50,27 +51,12 @@ namespace Client.Controller
             {
                 int quantity;
                 decimal price;
-                if (_window.TxbItemINazwa.Text.Length < 5)
+                IValidate validator = ItemAddValidator.GetInstance(_window);
+                if (validator.Validate())
                 {
-                    MessageBox.Show("Nazwa zbyt krótka zbyt krótkie", "Bład", MessageBoxButton.OK);
-                }
-                else
-                if (!Int32.TryParse(_window.TxbItemIlosc.Text, out quantity))
-                {
-                    MessageBox.Show("Zły format ilości", "Bład", MessageBoxButton.OK);
-                }
-                else
-                if (!Decimal.TryParse(_window.TxbItemCenaMin.Text, out price))
-                {
-                    MessageBox.Show("Zły format Ceny", "Bład", MessageBoxButton.OK);
-                }
-                else
-                if (_window.CmbItemKategoria.SelectedIndex < 0)
-                {
-                    MessageBox.Show("Bład wyboru kategori", "Bład", MessageBoxButton.OK);
-                }
-                else
-                {
+                    Int32.TryParse(_window.TxbItemIlosc.Text, out quantity);
+                    Decimal.TryParse(_window.TxbItemCenaMin.Text, out price);
+
                     Artykul artykul = new Artykul()
                     {
                         Cena = price,
@@ -105,27 +91,12 @@ namespace Client.Controller
             {
                 int quantity;
                 decimal price;
-                if (_window.TxbItemINazwa.Text.Length < 5)
+                IValidate validator = ItemChangeValidator.GetInstance(_window);
+                if(validator.Validate())
                 {
-                    MessageBox.Show("Nazwa zbyt krótka zbyt krótkie", "Bład", MessageBoxButton.OK);
-                }
-                else
-                if (!Int32.TryParse(_window.TxbItemIlosc.Text, out quantity))
-                {
-                    MessageBox.Show("Zły format ilości", "Bład", MessageBoxButton.OK);
-                }
-                else
-                if (!Decimal.TryParse(_window.TxbItemCenaMin.Text, out price))
-                {
-                    MessageBox.Show("Zły format Ceny", "Bład", MessageBoxButton.OK);
-                }
-                else
-                if (_window.CmbItemKategoria.SelectedIndex < 0)
-                {
-                    MessageBox.Show("Bład wyboru kategori", "Bład", MessageBoxButton.OK);
-                }
-                else
-                {
+                    Int32.TryParse(_window.TxbItemIlosc.Text, out quantity);
+                    Decimal.TryParse(_window.TxbItemCenaMin.Text, out price);
+
                     Artykul artykul = new Artykul()
                     {
                         idArtykulu = ((Artykul)_window.DgItemLista.SelectedItem).idArtykulu,

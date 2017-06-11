@@ -15,7 +15,7 @@ namespace Client.Controller
         private static CategoryController _instance;
         private Admin _window { get; set; }
         public  ICommCategory _comm { get; set; }
-        public List<Kategoria> categories;
+        private List<Kategoria> categories;
         private List<Kategoria> categoriesSeareched;
 
         protected CategoryController()
@@ -115,11 +115,11 @@ namespace Client.Controller
                     Task.Factory.StartNew(() =>
                     {
                         categories = x.Result.ToList();
-                        //_window.Dispatcher.BeginInvoke(new Action(() =>
-                        //{
-                        //    if (_window.ChbCategoryNazwa.IsChecked == false)
-                        //        ShowData();
-                        //}));
+                        _window.Dispatcher.BeginInvoke(new Action(() =>
+                        {
+                            if (_window.ChbCategoryNazwa.IsChecked == false)
+                                ShowData();
+                        }));
                         return categories;
                     });
                 });
