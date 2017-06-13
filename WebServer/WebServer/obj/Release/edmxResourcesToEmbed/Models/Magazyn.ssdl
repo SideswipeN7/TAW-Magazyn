@@ -1,0 +1,216 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DB_A25DBA_magazynModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Artykuly">
+    <Key>
+      <PropertyRef Name="idArtykulu" />
+    </Key>
+    <Property Name="idArtykulu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nazwa" Type="nvarchar" MaxLength="45" Nullable="false" />
+    <Property Name="Ilosc" Type="int" Nullable="false" />
+    <Property Name="Cena" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+    <Property Name="idKategorii" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Artykuly_w_transakcji">
+    <Key>
+      <PropertyRef Name="idArt_w_trans" />
+    </Key>
+    <Property Name="idArt_w_trans" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Cena" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+    <Property Name="idTransakcji" Type="int" Nullable="false" />
+    <Property Name="idArtykulu" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Dostawcy">
+    <Key>
+      <PropertyRef Name="idDostawcy" />
+    </Key>
+    <Property Name="idDostawcy" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nazwa" Type="nvarchar" MaxLength="45" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Kategorie">
+    <Key>
+      <PropertyRef Name="idKategorii" />
+    </Key>
+    <Property Name="idKategorii" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nazwa" Type="nvarchar" MaxLength="45" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Klienci">
+    <Key>
+      <PropertyRef Name="idKlienta" />
+    </Key>
+    <Property Name="idKlienta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nazwisko" Type="nvarchar" MaxLength="45" Nullable="false" />
+    <Property Name="Imie" Type="nvarchar" MaxLength="45" Nullable="false" />
+    <Property Name="Nazwa_firmy" Type="nvarchar" MaxLength="45" Nullable="false" />
+    <Property Name="idAdresu" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Ksiazka_adresow">
+    <Key>
+      <PropertyRef Name="idAdresu" />
+    </Key>
+    <Property Name="idAdresu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Miejscowosc" Type="nvarchar" MaxLength="45" Nullable="false" />
+    <Property Name="Kod_pocztowy" Type="nvarchar" MaxLength="45" Nullable="false" />
+    <Property Name="Wojewodztwo" Type="nvarchar" MaxLength="45" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Pracownicy">
+    <Key>
+      <PropertyRef Name="idPracownika" />
+    </Key>
+    <Property Name="idPracownika" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Imie" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="Nazwisko" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="Wiek" Type="int" Nullable="false" />
+    <Property Name="Login" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="Haslo" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="Sudo" Type="int" Nullable="false" />
+    <Property Name="idAdresu" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Transakcje">
+    <Key>
+      <PropertyRef Name="idTransakcji" />
+    </Key>
+    <Property Name="idTransakcji" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Data" Type="datetime" Nullable="false" />
+    <Property Name="idKlienta" Type="int" Nullable="false" />
+    <Property Name="idPracownika" Type="int" Nullable="false" />
+    <Property Name="idDostawcy" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Artykuly_To_Kategorie">
+    <End Role="Kategorie" Type="Self.Kategorie" Multiplicity="1" />
+    <End Role="Artykuly" Type="Self.Artykuly" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kategorie">
+        <PropertyRef Name="idKategorii" />
+      </Principal>
+      <Dependent Role="Artykuly">
+        <PropertyRef Name="idKategorii" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Artykuly_w_transakcji_To_Artykuly">
+    <End Role="Artykuly" Type="Self.Artykuly" Multiplicity="1" />
+    <End Role="Artykuly_w_transakcji" Type="Self.Artykuly_w_transakcji" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Artykuly">
+        <PropertyRef Name="idArtykulu" />
+      </Principal>
+      <Dependent Role="Artykuly_w_transakcji">
+        <PropertyRef Name="idArtykulu" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Artykuly_w_transakcji_To_Transakcje">
+    <End Role="Transakcje" Type="Self.Transakcje" Multiplicity="1" />
+    <End Role="Artykuly_w_transakcji" Type="Self.Artykuly_w_transakcji" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Transakcje">
+        <PropertyRef Name="idTransakcji" />
+      </Principal>
+      <Dependent Role="Artykuly_w_transakcji">
+        <PropertyRef Name="idTransakcji" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Klienci_To_Ksiazka_adresow">
+    <End Role="Ksiazka_adresow" Type="Self.Ksiazka_adresow" Multiplicity="1" />
+    <End Role="Klienci" Type="Self.Klienci" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ksiazka_adresow">
+        <PropertyRef Name="idAdresu" />
+      </Principal>
+      <Dependent Role="Klienci">
+        <PropertyRef Name="idAdresu" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pracownicy_To_Ksiazka_adresow">
+    <End Role="Ksiazka_adresow" Type="Self.Ksiazka_adresow" Multiplicity="1" />
+    <End Role="Pracownicy" Type="Self.Pracownicy" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ksiazka_adresow">
+        <PropertyRef Name="idAdresu" />
+      </Principal>
+      <Dependent Role="Pracownicy">
+        <PropertyRef Name="idAdresu" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Transakcje_To_Dostawcy">
+    <End Role="Dostawcy" Type="Self.Dostawcy" Multiplicity="1" />
+    <End Role="Transakcje" Type="Self.Transakcje" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dostawcy">
+        <PropertyRef Name="idDostawcy" />
+      </Principal>
+      <Dependent Role="Transakcje">
+        <PropertyRef Name="idDostawcy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Transakcje_To_Klienci">
+    <End Role="Klienci" Type="Self.Klienci" Multiplicity="1" />
+    <End Role="Transakcje" Type="Self.Transakcje" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Klienci">
+        <PropertyRef Name="idKlienta" />
+      </Principal>
+      <Dependent Role="Transakcje">
+        <PropertyRef Name="idKlienta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Transakcje_To_Pracownicy">
+    <End Role="Pracownicy" Type="Self.Pracownicy" Multiplicity="1" />
+    <End Role="Transakcje" Type="Self.Transakcje" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pracownicy">
+        <PropertyRef Name="idPracownika" />
+      </Principal>
+      <Dependent Role="Transakcje">
+        <PropertyRef Name="idPracownika" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DB_A25DBA_magazynModelStoreContainer">
+    <EntitySet Name="Artykuly" EntityType="Self.Artykuly" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Artykuly_w_transakcji" EntityType="Self.Artykuly_w_transakcji" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Dostawcy" EntityType="Self.Dostawcy" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Kategorie" EntityType="Self.Kategorie" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Klienci" EntityType="Self.Klienci" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ksiazka_adresow" EntityType="Self.Ksiazka_adresow" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pracownicy" EntityType="Self.Pracownicy" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Transakcje" EntityType="Self.Transakcje" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Artykuly_To_Kategorie" Association="Self.FK_Artykuly_To_Kategorie">
+      <End Role="Kategorie" EntitySet="Kategorie" />
+      <End Role="Artykuly" EntitySet="Artykuly" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Artykuly_w_transakcji_To_Artykuly" Association="Self.FK_Artykuly_w_transakcji_To_Artykuly">
+      <End Role="Artykuly" EntitySet="Artykuly" />
+      <End Role="Artykuly_w_transakcji" EntitySet="Artykuly_w_transakcji" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Artykuly_w_transakcji_To_Transakcje" Association="Self.FK_Artykuly_w_transakcji_To_Transakcje">
+      <End Role="Transakcje" EntitySet="Transakcje" />
+      <End Role="Artykuly_w_transakcji" EntitySet="Artykuly_w_transakcji" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Klienci_To_Ksiazka_adresow" Association="Self.FK_Klienci_To_Ksiazka_adresow">
+      <End Role="Ksiazka_adresow" EntitySet="Ksiazka_adresow" />
+      <End Role="Klienci" EntitySet="Klienci" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pracownicy_To_Ksiazka_adresow" Association="Self.FK_Pracownicy_To_Ksiazka_adresow">
+      <End Role="Ksiazka_adresow" EntitySet="Ksiazka_adresow" />
+      <End Role="Pracownicy" EntitySet="Pracownicy" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Transakcje_To_Dostawcy" Association="Self.FK_Transakcje_To_Dostawcy">
+      <End Role="Dostawcy" EntitySet="Dostawcy" />
+      <End Role="Transakcje" EntitySet="Transakcje" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Transakcje_To_Klienci" Association="Self.FK_Transakcje_To_Klienci">
+      <End Role="Klienci" EntitySet="Klienci" />
+      <End Role="Transakcje" EntitySet="Transakcje" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Transakcje_To_Pracownicy" Association="Self.FK_Transakcje_To_Pracownicy">
+      <End Role="Pracownicy" EntitySet="Pracownicy" />
+      <End Role="Transakcje" EntitySet="Transakcje" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
